@@ -2,7 +2,7 @@ import React from 'react'
 import { Col, Form, FormGroup, Label, Input } from 'reactstrap';
 
 
-const MainInfo = ({fullDate, onDayClick}) => {
+const MainInfo = () => {
     return (
         <Form>
             <FormGroup row>
@@ -21,7 +21,14 @@ const MainInfo = ({fullDate, onDayClick}) => {
             <FormGroup row>
                 <Label>納期日</Label>
                 <Col sm={10}>
-                    <Input type="text" name="text"  placeholder="月　　日　　時　　分"/>
+                    <div>
+                        月:<Input type="text" name="text"  placeholder="月"/>
+                        日:<Input type="text" name="text"  placeholder="日" />
+                    </div>
+                    <div>
+                        時:<Input type="text" name="text"  placeholder="時"/>
+                        分:<Input type="text" name="text"  placeholder="分" />
+                    </div>
                 </Col>
             </FormGroup>
             <FormGroup check>

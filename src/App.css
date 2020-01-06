@@ -41,7 +41,7 @@
   max-width: 500px;
   background-color: white;
   padding: 10px;
-  box-shadow: 0 0 0 1px black, 0 1px 3px 0 black;
+  box-shadow: 0 0 0 1px black, 0 1px 10px 0 black;
 }
 
 .CalendarTitle {
@@ -90,13 +90,13 @@
 
 .Day--selected{
   background: dodgerblue;
-  border: 1px solid darkblue;
+  border: 1px solid black;
   color: white;
 }
 
 .Day--hovering {
   background: lightblue;
-  border: 1px solid lightblue;
+  border: 1px solid black;
 }
 
 .EmptyStateDay{
