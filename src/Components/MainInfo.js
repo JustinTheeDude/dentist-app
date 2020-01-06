@@ -1,26 +1,27 @@
 import React from 'react'
-import { Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Col, Form, FormGroup, Label, Input } from 'reactstrap';
 
 
-const MainInfo = () => {
+const MainInfo = ({fullDate, onDayClick}) => {
     return (
         <Form>
             <FormGroup row>
                 <Label>医院名住所</Label>
                 <Col sm={10}>
-                    <Input type="textarea" name="text" id="exampleText" placeholder="住所書いてください"/>
+                    <Input type="text" name="text"  placeholder="〒 123-4567"/>
+                    <Input type="text" name="text"  placeholder="住所"/>
                 </Col>
             </FormGroup>
             <FormGroup row>
                 <Label>患者名</Label>
                 <Col sm={10}>
-                    <Input type="text" name="text" id="exampleText" placeholder="名前"/>
+                    <Input type="text" name="text"  placeholder="名前"/>
                 </Col>
             </FormGroup>
             <FormGroup row>
                 <Label>納期日</Label>
                 <Col sm={10}>
-                    <Input type="text" name="text" id="exampleText" placeholder="月　　日　　時　　分"/>
+                    <Input type="text" name="text"  placeholder="月　　日　　時　　分"/>
                 </Col>
             </FormGroup>
             <FormGroup check>
@@ -38,7 +39,7 @@ const MainInfo = () => {
         <FormGroup row>
             <Label>主訴</Label>
             <Col sm={10}>
-                <Input type="textarea" name="text" id="exampleText" placeholder="主訴"/>
+                <Input type="textarea" name="text"  placeholder="主訴"/>
             </Col>
         </FormGroup>
         </Form>
