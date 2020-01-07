@@ -1,21 +1,12 @@
-import React from 'react';
+import React from "react";
 
-import Weekday from './Weekday';
-import Day from './Day';
+import Weekday from "./Weekday";
+import Day from "./Day";
 
-const weekdays = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday"
-]
+const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
 class Month extends React.PureComponent {
- 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.renderWeek = this.renderWeek.bind(this);
         this.handleMouseEnter = this.handleMouseEnter.bind(this);
@@ -23,19 +14,13 @@ class Month extends React.PureComponent {
 
         this.state = {
             hoveredDate: null,
-        }
+        };
     }
 
     render() {
-        const {month, year} = this.props
+        const {month, year} = this.props;
         const weekdayMarkup = weekdays.map(weekday => {
-            return (
-                <Weekday 
-                    key={weekday}
-                    title={weekdayAbrv(weekday)}
-                    label={weekday}
-                />
-            )
+            return <Weekday key={weekday} title={weekdayAbrv(weekday)} label={weekday} />;
         });
 
         const weeks = getWeeksForMonth(month, year);
@@ -45,50 +30,49 @@ class Month extends React.PureComponent {
                 <div roll="row" className="Week" key={index}>
                     {week.map(this.renderWeek)}
                 </div>
-            )
-        })
-
+            );
+        });
 
         return (
             <React.Fragment>
                 <div className="WeekdayContainer">{weekdayMarkup}</div>
-                {weeksMarkup}    
+                {weeksMarkup}
             </React.Fragment>
-        )
+        );
     }
 
     renderWeek(fullDate, dayIndex) {
         const {onDayClick} = this.props;
         const {hoveredDate} = this.state;
 
-        if(fullDate === null) {
-            return <Day key={dayIndex} />
+        if (fullDate === null) {
+            return <Day key={dayIndex} />;
         }
-        
-       const date = fullDate.getDate()
+
+        const date = fullDate.getDate();
         return (
-            <Day 
-            key={dayIndex}
-            fullDate={fullDate}
-            onClick={onDayClick}
-            selected={date === this.props.date}
-            hovering={date === hoveredDate}
-            onMouseEnter={this.handleMouseEnter}
-            onMouseLeave={this.handleMouseLeave}
+            <Day
+                key={dayIndex}
+                fullDate={fullDate}
+                onClick={onDayClick}
+                selected={date === this.props.date}
+                hovering={date === hoveredDate}
+                onMouseEnter={this.handleMouseEnter}
+                onMouseLeave={this.handleMouseLeave}
             />
-        )
+        );
     }
-    handleMouseEnter(date){
+
+    handleMouseEnter(date) {
         this.setState({
-            hoveredDate: date
-        })
+            hoveredDate: date,
+        });
     }
     handleMouseLeave() {
         this.setState({
-            hoveredDate: null
-        })
+            hoveredDate: null,
+        });
     }
-
 }
 
 function weekdayAbrv(weekday) {
@@ -96,15 +80,15 @@ function weekdayAbrv(weekday) {
 }
 
 const week_length = 7;
-function  getWeeksForMonth(month, year) {
+function getWeeksForMonth(month, year) {
     const firstOfMonth = new Date(year, month, 1);
     const firstDayOfWeek = firstOfMonth.getDay();
-    const weeks =[[]];
+    const weeks = [[]];
 
     let currentWeek = weeks[0];
     let currentDate = firstOfMonth;
 
-    for(let i = 0; i < firstDayOfWeek; i++) {
+    for (let i = 0; i < firstDayOfWeek; i++) {
         currentWeek.push(null);
     }
 
@@ -117,14 +101,12 @@ function  getWeeksForMonth(month, year) {
         currentWeek.push(currentDate);
         currentDate = new Date(year, month, currentDate.getDate() + 1);
     }
-    
+
     while (currentWeek.length < 7) {
         currentWeek.push(null);
     }
 
     return weeks;
 }
-
-
 
 export default Month;
