@@ -1,5 +1,5 @@
 import React from "react";
-import {Col, Form, FormGroup, Label, Input} from "reactstrap";
+import {Col, Form, FormGroup, Label, Input, Button} from "reactstrap";
 
 const MainInfo = () => {
     return (
@@ -50,6 +50,7 @@ const MainInfo = () => {
                     <Input type="textarea" name="text" placeholder="主訴" />
                 </Col>
             </FormGroup>
+            <Button>Submit</Button>
         </Form>
     );
 };
