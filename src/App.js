@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import Header from "./Components/Header";
 import MainInfo from "./Components/MainInfo";
-import Calendar from "react-calendar";
+// import Calendar from "react-calendar";
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
 
@@ -20,7 +20,7 @@ class App extends Component {
             <div>
                 <Header />
                 <MainInfo />
-                <Calendar selectRange={true} />
+                {/* <Calendar selectRange={true} /> */}
             </div>
         );
     }
