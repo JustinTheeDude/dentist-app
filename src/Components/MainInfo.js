@@ -38,32 +38,21 @@ const MainInfo = () => {
                     </div>
                 </Col>
             </FormGroup>
-            <FormGroup check >
-                <div>性別</div>
-                <Label check>
-                    <Input type="radio" name="radio1" /> 男
-                </Label>
+            <FormGroup>
+                <Label for="exampleSelect">性別</Label>
+                <Input type="select" name="select" id="exampleSelect">
+                <option>男</option>
+                <option>女</option>
+                </Input>
             </FormGroup>
-            <FormGroup check >
-                <Label check>
-                    <Input type="radio" name="radio1" /> 女
-                </Label>
-            </FormGroup>
-            <FormGroup check>
-                <div>製品仕様</div>
-                <Label check >
-                    <Input type="radio" name="radio1" /> レジン床
-                </Label>
-            </FormGroup>
-            <FormGroup check>
-                <Label check >
-                    <Input type="radio" name="radio1"  /> 金属床(Co-Cr. Ti. Gold)
-                </Label>
-            </FormGroup>
-            <FormGroup check>
-                <Label check >
-                    <Input type="radio" name="radio1" />治療用義歯
-                </Label>
+            <FormGroup>
+            <Label for="exampleSelect">製品仕様</Label>
+                <Input type="select" name="select" id="exampleSelect">
+                <option>レジン床</option>
+                <option>金属床(Co-Cr. Ti. Gold)</option>
+                <option>治療用義歯</option>
+                <option>他</option>
+                </Input>
             </FormGroup>
             <FormGroup row >
                 <Col sm={10}>
@@ -93,15 +82,12 @@ const MainInfo = () => {
                     </div>
                 </Col>
             </FormGroup>
-            <FormGroup check >
-                <Label check>
-                    <Input type="radio" name="radio1" /> 保険
-                </Label>
-            </FormGroup>
-            <FormGroup check >
-                <Label check>
-                    <Input type="radio" name="radio1" /> 自費
-                </Label>
+            <FormGroup>
+                <Label for="exampleSelect">支払い</Label>
+                <Input type="select" name="select" id="exampleSelect">
+                <option>保険</option>
+                <option>自費</option>
+                </Input>
             </FormGroup>
             <FormGroup row>
                 <Label>主訴</Label>
