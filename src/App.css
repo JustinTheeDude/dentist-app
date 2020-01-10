@@ -14,10 +14,8 @@
 }
 
 .App-header {
-    background-color: #282c34;
+    background-color: dodgerblue;
     min-height: 100vh;
-    /* display: flex; */
-    /* flex-direction: column; */
     align-items: center;
     justify-content: center;
     font-size: calc(10px + 2vmin);
@@ -36,7 +34,12 @@
         transform: rotate(360deg);
     }
 }
-
+.header{
+    color: black;
+   background-color: dodgerblue;
+    text-align: center;
+    font-size: 50px;
+}
 #main_form {
     position: relative;
     max-width: 1300px;
@@ -45,7 +48,9 @@
 }
 
 .hospital-info-header {
+    position: relative;
     font-weight: bold;
+    left: -18px;
 }
 
 .age-div{
@@ -89,13 +94,12 @@
     position: relative;
     top: 0px;
     left: 70px;
-    /* font-size: x-large; */
     font-weight: bold;
 }
 
 .delivery-time {
     position: relative;
-    width: 200px;
+    width: 125px;
     left: 350px;
     top: 165px;
     font-weight: bold;
