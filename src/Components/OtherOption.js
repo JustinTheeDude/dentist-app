@@ -5,7 +5,7 @@ const OtherOption = () => {
     return (
         <FormGroup row >
         <Col sm={10}>
-            <Input type="text" name="text" placeholder="他"  />
+            <Input type="textarea" name="text" placeholder="他"  />
         </Col>
         </FormGroup> 
     )
