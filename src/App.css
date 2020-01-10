@@ -44,8 +44,8 @@
     margin: auto;
 }
 
-.hospital-info-div {
-    font-size: large;
+.hospital-info-header {
+    font-weight: bold;
 }
 
 .age-div{
@@ -78,9 +78,17 @@
     top: 130px;
 }
 
-.patient-info-div {
+.patient-info-header {
     position: relative;
     left: -15px;
     padding-bottom: 1%;
-    font-size: larger;
+    font-weight: bold;
+}
+
+.order-header {
+    position: relative;
+    top: 0px;
+    left: 70px;
+    /* font-size: x-large; */
+    font-weight: bold;
 }

@@ -15,7 +15,7 @@ class MainInfo extends Component {
     render () {
         return (
             <Form id="main_form" className="main-form">
-                <div className="hospital-info-div">医院情報</div>
+                <h3 className="hospital-info-header">医院情報</h3>
                 <FormGroup>
                     <Label for="exampleAddress">医院名住所</Label>
                     <Input type="text" name="address" id="exampleAddress" placeholder="市区町村"/>
@@ -47,7 +47,7 @@ class MainInfo extends Component {
                     
                     </Col>
                 </FormGroup>
-                <div　className="patient-info-div">患者情報</div>
+                <h3　className="patient-info-header">患者情報</h3>
                 <FormGroup row >
                     <Label>患者名</Label>
                     <Col sm={10}>
