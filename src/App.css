@@ -42,5 +42,45 @@
     max-width: 1300px;
     left:0px;
     margin: auto;
+}
 
+.hospital-info-div {
+    font-size: large;
+}
+
+.age-div{
+    position: relative;
+    left: 1083px;
+    top: 35px;
+    font-size: large;
+}
+
+.age-label{
+    position: relative;
+    left: 0px;
+    top: 40px;
+}
+.order-div{
+    position: relative;
+    left: -50px;
+    top: 100px;
+}
+.year-div{
+    position: relative;
+    top: 90px;
+}
+.month-div{
+    position: relative;
+    top: 115px;
+}
+.day-div{
+    position: relative;
+    top: 130px;
+}
+
+.patient-info-div {
+    position: relative;
+    left: -15px;
+    padding-bottom: 1%;
+    font-size: larger;
 }

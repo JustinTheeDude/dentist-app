@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Col, Form, FormGroup, Label, Input,Button, FormFeedback, FormText} from "reactstrap";
+import {Col, Row, Form, FormGroup, Label,Input, Button} from "reactstrap";
 import OtherOption from './OtherOption';
 class MainInfo extends Component {
 
@@ -15,15 +15,19 @@ class MainInfo extends Component {
     render () {
         return (
             <Form id="main_form" className="main-form">
-                <FormGroup row>
-                    <Label >医院名住所</Label>
-                    <Col sm={10}>
-                        <Input type="text" name="text" placeholder="〒 123-4567" />
-                        <FormFeedback>You will not be able to see this</FormFeedback>
-                        <FormText>Example help text that remains unchanged.</FormText>
-                        <Input type="text" name="text" placeholder="住所" />
-                    </Col>
+                <div className="hospital-info-div">医院情報</div>
+                <FormGroup>
+                    <Label for="exampleAddress">医院名住所</Label>
+                    <Input type="text" name="address" id="exampleAddress" placeholder="市区町村"/>
                 </FormGroup>
+                    <Row form>
+                    <Col md={6}>    
+                <FormGroup>
+                    <Label for="exampleZip">〒</Label>
+                    <Input type="text" name="zip" id="exampleZip"/>
+                </FormGroup>  
+                    </Col>
+                    </Row>
                 <FormGroup row >
                     <Label >担当名</Label>
                     <Col sm={10}>
@@ -31,24 +35,30 @@ class MainInfo extends Component {
                     </Col>
                 </FormGroup>
                 <FormGroup row >
+                {/* This should be removed the order date should be set with the calendar */}
                     <Label>発注日</Label>   
                     <Col sm={10}>
-                    <div>
-                            年:
+                    <div className="order-div  year-div">年:</div>
+                    <div className="order-div month-div">月:</div>
+                    <div className="order-div day-div">日:</div>        
                             <Input type="text" name="text" placeholder="年" />
-                            月:
                             <Input type="text" name="text" placeholder="月" />
-                            日:
                             <Input type="text" name="text" placeholder="日" />
-                    </div>
+                    
+                    </Col>
+                </FormGroup>
+                <div　className="patient-info-div">患者情報</div>
+                <FormGroup row >
+                    <Label>患者名</Label>
+                    <Col sm={10}>
+                        <Input type="text" name="text" placeholder="名前" />
                     </Col>
                 </FormGroup>
                 <FormGroup row >
-                    <Label>年令</Label>
+                    <Label className="age-label">年令</Label>
                     <Col sm={10}>
-                        <div>
-                            <Input type="text" name="text" placeholder="番号" /> 才
-                        </div>
+                        <div className="age-div">才</div> 
+                        <Input type="text" name="text" placeholder="才" />                                          
                     </Col>
                 </FormGroup>
                 <FormGroup>
@@ -67,15 +77,9 @@ class MainInfo extends Component {
                     <option id="option-other">他</option>
                     </Input>
                     {this.state.value === "他" && <OtherOption />}
-                   
                 </FormGroup>
                 <FormGroup row >
-                    <Label>患者名</Label>
-                    <Col sm={10}>
-                        <Input type="text" name="text" placeholder="名前" />
-                    </Col>
-                </FormGroup>
-                <FormGroup row >
+                {/* This should also be removed the delivery date should be set with the calendar */}
                     <Label>納期日</Label>
                     <Col sm={10}>
                         <div>
