@@ -16,7 +16,7 @@ class MainInfo extends Component {
         return (
             <Form id="main_form" className="main-form">
                 <h3 className="hospital-info-header">医院情報</h3>
-                <FormGroup row >
+                <FormGroup row className="doctor-name" >
                     <Label >担当名</Label>
                     <Col sm={10}>
                         <Input type="text" name="text" placeholder="名前" />
@@ -35,7 +35,7 @@ class MainInfo extends Component {
                     </Col>
                     </Row>
                 <h3　className="patient-info-header">患者情報</h3>
-                <FormGroup row >
+                <FormGroup row className="patient-name" >
                     <Label>患者名</Label>
                     <Col sm={10}>
                         <Input type="text" name="text" placeholder="名前" />
@@ -72,7 +72,7 @@ class MainInfo extends Component {
                     <option>自費</option>
                     </Input>
                 </FormGroup>
-                <FormGroup row>
+                <FormGroup row className="main-complaint-label">
                     <Label>主訴</Label>
                     <Col sm={10}>
                         <Input type="textarea" name="text" placeholder="主訴" />
