@@ -15,6 +15,12 @@ class MainInfo extends Component {
         return (
             <Form id="main_form" className="main-form">
                 <h3 className="hospital-info-header">医院情報</h3>
+                <FormGroup row className="doctor-name" >
+                    <Label >担当名</Label>
+                    <Col sm={10}>
+                        <Input type="text" name="text" placeholder="名前" />
+                    </Col>
+                </FormGroup>
                 <FormGroup>
                     <Label for="exampleAddress">医院名住所</Label>
                     <Input type="text" name="address" id="exampleAddress" placeholder="市区町村" required />
@@ -26,6 +32,7 @@ class MainInfo extends Component {
                             <Input type="text" name="zip" id="exampleZip" />
                         </FormGroup>
                     </Col>
+<<<<<<< HEAD
                 </Row>
                 <FormGroup row>
                     <Label>担当名</Label>
@@ -47,6 +54,11 @@ class MainInfo extends Component {
                 </FormGroup>
                 <h3 className="patient-info-header">患者情報</h3>
                 <FormGroup row>
+=======
+                    </Row>
+                <h3　className="patient-info-header">患者情報</h3>
+                <FormGroup row className="patient-name" >
+>>>>>>> f0190859f7669a28a5626e3b2a2b018952a9d9a0
                     <Label>患者名</Label>
                     <Col sm={10}>
                         <Input type="text" name="text" placeholder="名前" required />
@@ -76,6 +88,7 @@ class MainInfo extends Component {
                     </Input>
                     {this.state.value === "他" && <OtherOption />}
                 </FormGroup>
+<<<<<<< HEAD
                 <FormGroup row>
                     {/* This should also be removed the delivery date should be set with the calendar */}
                     <Label>納期日</Label>
@@ -94,6 +107,8 @@ class MainInfo extends Component {
                         </div>
                     </Col>
                 </FormGroup>
+=======
+>>>>>>> f0190859f7669a28a5626e3b2a2b018952a9d9a0
                 <FormGroup>
                     <Label for="exampleSelect">支払い</Label>
                     <Input type="select" name="select" id="exampleSelect" required>
@@ -101,13 +116,26 @@ class MainInfo extends Component {
                         <option>自費</option>
                     </Input>
                 </FormGroup>
-                <FormGroup row>
+                <FormGroup row className="main-complaint-label">
                     <Label>主訴</Label>
                     <Col sm={10}>
                         <Input type="textarea" name="text" placeholder="主訴" required />
                     </Col>
                 </FormGroup>
+<<<<<<< HEAD
                 <Button>Submit</Button>
+=======
+                <FormGroup className="delivery-time">
+                    <Label for="exampleTime">納期時間</Label>
+                    <Input
+                    type="time"
+                    name="time"
+                    id="exampleTime"
+                    placeholder="time placeholder"
+                    />
+                </FormGroup> 
+                 <Button>Submit</Button>
+>>>>>>> f0190859f7669a28a5626e3b2a2b018952a9d9a0
             </Form>
         );
     }
