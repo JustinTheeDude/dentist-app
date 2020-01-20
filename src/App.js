@@ -7,31 +7,35 @@ import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
 
 class App extends Component {
-
     state = {
         date: new Date(),
-      }
-    
-    onChange = date => this.setState({ date })
-   
-    render() {
+        deliveryDate: "",
+    };
 
+    onChange = deliveryDate => {
+        this.setState({deliveryDate});
+        console.log(this.state.deliveryDate);
+    };
+
+    render() {
         return (
             <div>
                 <Header />
                 <MainInfo />
                 <h3 className="order-heading">発注日/納期日</h3>
                 <Calendar
-                selectRange={true}  
-                calendarType="US"
-                // activeStartDate={today => console.log(today)}
-                onClickDay={ value => console.log(value.toString().slice(0,16))  } 
+                    selectRange={true}
+                    calendarType="US"
+                    // activeStartDate={today => console.log(today)}
+                    onClickDay={this.onChange}
                 />
-                 <DeliveryDate day={this.state.date.toString().slice(0,16)}/>
+                <DeliveryDate
+                    day={this.state.date.toString().slice(0, 16)}
+                    delivery={this.state.deliveryDate.toString().slice(0, 16)}
+                />
             </div>
         );
     }
-
 }
 
 export default App;
