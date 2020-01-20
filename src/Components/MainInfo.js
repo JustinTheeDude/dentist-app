@@ -113,9 +113,10 @@ class MainInfo extends Component {
                         <Input type="textarea" name="text" placeholder="主訴" required />
                     </Col>
                 </FormGroup>
-                <FormGroup>
-                    <Label for="exampleTime">Time</Label>
+                <FormGroup  className="delivery-time" >
+                    <Label for="exampleTime" >Time</Label>
                     <Input
+                   
                     type="time"
                      name="time"
                     id="exampleTime"
