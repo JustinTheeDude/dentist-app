@@ -1,119 +1,129 @@
+  
 .App {
-    text-align: center;
+  text-align: center;
 }
 
 .App-logo {
-    height: 40vmin;
-    pointer-events: none;
+  height: 40vmin;
+  pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
 }
 
 .App-header {
-    background-color: #282c34;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 
 .App-link {
-    color: #61dafb;
+  color: #61dafb;
 }
 
 @keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
-
-.CalendarContainer {
-    max-width: 500px;
-    background-color: white;
-    padding: 10px;
-    box-shadow: 0 0 0 1px black, 0 1px 10px 0 black;
-}
-
-.CalendarTitle {
-    font-size: 1.2rem;
+.header{
     color: black;
+    background-color: dodgerblue;
     text-align: center;
+    font-size: 50px;
 }
-
-.WeekdayContainer {
-    display: flex;
-}
-
-.Weekday {
-    display: block;
-    flex: 1 0 0%;
-    padding: 0, 8rem;
-    background: transparent;
-    font-size: 1.2rem;
-    color: black;
-    text-align: center;
-}
-
-.Week {
-    display: flex;
-}
-
-.Day {
-    display: block;
-    flex: 1 0 0%;
-    width: 14.28571%;
-    margin: 0;
-    padding: 0.8rem;
-    background: transparent;
-    border: 1px solid black;
-    border-radius: 0;
-    outline: none;
-    font-size: 1.2rem;
-    text-align: center;
-    cursor: pointer;
-}
-
-.Day + .Day,
-.Day + .EmptyStateDay {
-    margin-left: -1px;
-}
-
-.Day--selected {
-    background: dodgerblue;
-    border: 1px solid black;
-    color: white;
-}
-
-.Day--hovering {
-    background: lightblue;
-    border: 1px solid black;
-}
-
-.EmptyStateDay {
-    display: block;
-    flex: 1 0 0%;
-    width: calc(100% / 7);
-    margin: 0;
-    padding: 0.8rem;
-    border: 1px solid black;
-}
-
 #main_form {
+    position: relative;
     max-width: 1300px;
+    left:0px;
     margin: auto;
+    overflow: hidden;
 }
 
-.EmptyStateDay + .EmptyStateDay,
-.EmptyStateDay + Day {
-    margin-left: -1px;
+.hospital-info-header {
+    position: relative;
+    font-weight: bold;
+    left: auto;
 }
+
+.doctor-name {
+  position: relative;
+  left: 15px;
+}
+.age-div{
+    position: relative;
+    left: 1083px;
+    top: 35px;
+    font-size: large;
+}
+
+.age-label{
+    position: relative;
+    left: 15px;
+    top: 40px;
+}
+.order-div{
+    position: relative;
+    left: -50px;
+    top: 100px;
+}
+.year-div{
+    position: relative;
+    top: 90px;
+}
+.month-div{
+    position: relative;
+    top: 115px;
+}
+.day-div{
+    position: relative;
+    top: 130px;
+}
+
+.patient-info-header {
+    position: relative;
+    left: 0px;
+    padding-bottom: 1%;
+    font-weight: bold;
+}
+
+.patient-name {
+  position: relative;
+  left: 15px;
+}
+
+.order-heading {
+    position: relative;
+    width: 300px;
+    top: 0px;
+    left: 20px;
+    font-weight: bold;
+}
+
+.main-complaint-label{
+  position: relative;
+  left: 15px;
+}
+.delivery-time {
+    position: relative;
+    width: 125px;
+    left: 0px;
+    top: 0px;
+    font-weight: bold;
+    font-size: x-large; 
+}
+
+/* .delivery-div {
+    color:red;
+} */
