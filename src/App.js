@@ -10,6 +10,7 @@ class App extends Component {
     state = {
         date: new Date(),
         deliveryDate: "",
+        minDate: new Date(),
     };
 
     onChange = deliveryDate => {
@@ -19,15 +20,15 @@ class App extends Component {
 
     render() {
         return (
-            <div>
+            <div id="main_content">
                 <Header />
                 <MainInfo />
                 <h3 className="order-heading">発注日/納期日</h3>
                 <Calendar
-                    selectRange={true}
                     calendarType="US"
                     // activeStartDate={today => console.log(today)}
                     onClickDay={this.onChange}
+                    minDate={this.state.minDate}
                 />
                 <DeliveryDate
                     day={this.state.date.toString().slice(0, 16)}
