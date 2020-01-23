@@ -46,12 +46,14 @@ class MainInfo extends Component {
                         <Input type="text" name="text" placeholder="名前" required />
                     </Col>
                 </FormGroup>
-                <FormGroup row>
-                    <Label className="age-label">年令</Label>
-                    <Col sm={10}>
-                        <div className="age-div">才</div>
-                        <Input type="text" name="text" placeholder="才" required />
-                    </Col>
+                <FormGroup className="age-label">
+                    <Label for="exampleNumber" >年令</Label>
+                    <Input
+                    type="number"
+                    name="number"
+                    id="exampleNumber"
+                    placeholder="才"
+                    />
                 </FormGroup>
                 <FormGroup>
                     <Label>性別</Label>
@@ -86,9 +88,8 @@ class MainInfo extends Component {
                 <FormGroup  className="delivery-time" >
                     <Label for="exampleTime" >Time</Label>
                     <Input
-                   
                     type="time"
-                     name="time"
+                    name="time"
                     id="exampleTime"
                      placeholder="time placeholder"
                     />
