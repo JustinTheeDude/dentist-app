@@ -4,13 +4,22 @@ import OtherOption from "./OtherOption";
 class MainInfo extends Component {
     constructor(props) {
         super(props);
-        this.state = {value: ""};
-
+        this.state = {
+            value: "",
+            age: null,
+        };
         this.handleChange = this.handleChange.bind(this);
+        this.handleNegativeAge = this.handleNegativeAge.bind(this);
     }
+
     handleChange(event) {
-        this.setState({value: event.target.value});
+        this.setState({value: event.target.value, age: event.target.value});
     }
+//for this to work I need to get the event from the number
+    handleNegativeAge(event) {
+        this.setState({ age: ""})
+    }
+
     render() {
         return (
             <Form id="main_form" className="main-form">
@@ -49,11 +58,13 @@ class MainInfo extends Component {
                 <FormGroup className="age-label">
                     <Label for="exampleNumber" >年令</Label>
                     <Input
+                    onChange={this.handleChange} 
                     type="number"
                     name="number"
                     id="exampleNumber"
                     placeholder="才"
-                    />
+                    /> 
+                    {this.state.age < 0 &&  }
                 </FormGroup>
                 <FormGroup>
                     <Label>性別</Label>
