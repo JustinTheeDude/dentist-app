@@ -28,26 +28,20 @@ class MainInfo extends Component {
                         <Input type="text" name="text" placeholder="名前" />
                     </Col>
                 </FormGroup>
-                <FormGroup>
+                <FormGroup className="hospital-address">
                     <Label for="exampleAddress">医院名住所</Label>
                     <Input type="text" name="address" id="exampleAddress" placeholder="市区町村" required />
                 </FormGroup>
                 <Row form>
                     <Col md={6}>
-                        <FormGroup>
+                        <FormGroup className="zip">
                             <Label for="exampleZip">〒</Label>
-                            <Input type="text" name="zip" id="exampleZip" />
+                            <Input type="text" name="zip" id="exampleZip" placeholder="555-5555" />
                         </FormGroup>
                     </Col>
                 </Row>
-                <FormGroup row>
-                    <Label>担当名</Label>
-                    <Col sm={10}>
-                        <Input type="text" name="text" placeholder="名前" />
-                    </Col>
-                </FormGroup>
                 <h3 className="patient-info-header">患者情報</h3>
-                <FormGroup row>
+                <FormGroup className="patient-name" row>
                     <Label>患者名</Label>
                     <Col sm={10}>
                         <Input type="text" name="text" placeholder="名前" required />
@@ -64,7 +58,7 @@ class MainInfo extends Component {
                     placeholder="才"
                     />
                 </FormGroup>
-                <FormGroup>
+                <FormGroup className="gender-select-menu">
                     <Label>性別</Label>
                     <Input type="select" name="select" id="gender-select-menu" required>
                         <option>男</option>
