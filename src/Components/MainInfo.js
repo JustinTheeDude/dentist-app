@@ -6,19 +6,17 @@ class MainInfo extends Component {
         super(props);
         this.state = {
             value: "",
-            age: null,
         };
         this.handleChange = this.handleChange.bind(this);
-        this.handleNegativeAge = this.handleNegativeAge.bind(this);
+
     }
 
     handleChange(event) {
-        this.setState({value: event.target.value, age: event.target.value});
+        this.setState({
+            value: event.target.value, 
+        });
     }
-//for this to work I need to get the event from the number
-    handleNegativeAge(event) {
-        this.setState({ age: ""})
-    }
+
 
     render() {
         return (
@@ -60,11 +58,11 @@ class MainInfo extends Component {
                     <Input
                     onChange={this.handleChange} 
                     type="number"
+                    min="0"
                     name="number"
                     id="exampleNumber"
                     placeholder="才"
-                    /> 
-                    {this.state.age < 0 &&  <p className="negative-age">年令を負の数にすることはできません</p>}
+                    />
                 </FormGroup>
                 <FormGroup>
                     <Label>性別</Label>
