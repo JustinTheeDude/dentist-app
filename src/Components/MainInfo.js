@@ -64,7 +64,7 @@ class MainInfo extends Component {
                     id="exampleNumber"
                     placeholder="才"
                     /> 
-                    {this.state.age < 0 &&  }
+                    {this.state.age < 0 &&  <p className="negative-age">年令を負の数にすることはできません</p>}
                 </FormGroup>
                 <FormGroup>
                     <Label>性別</Label>

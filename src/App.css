@@ -132,3 +132,9 @@
     bottom: 525px;
     font-size: large;
 }
+
+.negative-age {
+  position: relative;
+  width: 350px;
+  color: red;
+}
