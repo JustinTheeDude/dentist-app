@@ -95,7 +95,7 @@
   left: 16px;
   width: 500px;
   bottom: 100px;
-  color:red;
+
 }
 
 .gender-select-menu {
@@ -112,10 +112,7 @@
     font-weight: bold;
 
 }
-/* #product-spec-menu {
-  position: relative;
-  bottom: 300px;
-} */
+
 .main-complaint-label{
   position: relative;
   left: 15px;
