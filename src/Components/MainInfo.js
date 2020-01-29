@@ -51,6 +51,7 @@ class MainInfo extends Component {
         itemsRef.push(item);
     };
 
+
     render() {
         return (
             <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
@@ -67,7 +68,7 @@ class MainInfo extends Component {
                         />
                     </Col>
                 </FormGroup>
-                <FormGroup>
+                <FormGroup className="hospital-address">
                     <Label for="exampleAddress">医院名住所</Label>
                     <Input
                         type="text"
@@ -81,7 +82,7 @@ class MainInfo extends Component {
                 </FormGroup>
                 <Row form>
                     <Col md={6}>
-                        <FormGroup>
+                        <FormGroup className="zip">
                             <Label for="exampleZip">〒</Label>
                             <Input
                                 type="text"
@@ -140,7 +141,7 @@ class MainInfo extends Component {
                     </Col>
                 </FormGroup>
                 <h3 className="patient-info-header">患者情報</h3>
-                <FormGroup row>
+                <FormGroup className="patient-name" row>
                     <Label>患者名</Label>
                     <Col sm={10}>
                         <Input
@@ -153,21 +154,19 @@ class MainInfo extends Component {
                         />
                     </Col>
                 </FormGroup>
-                <FormGroup row>
-                    <Label className="age-label">年令</Label>
-                    <Col sm={10}>
-                        <div className="age-div">才</div>
-                        <Input
-                            type="text"
-                            name="age"
-                            placeholder="才"
-                            onChange={this.handleChange}
-                            value={this.state.age}
-                            required
-                        />
-                    </Col>
+
+                <FormGroup className="age-label">
+                    <Label for="exampleNumber" >年令</Label>
+                    <Input
+                    onChange={this.handleChange} 
+                    type="number"
+                    min="0"
+                    name="number"
+                    id="exampleNumber"
+                    placeholder="才"
+                    />
                 </FormGroup>
-                <FormGroup>
+                <FormGroup className="gender-select-menu">
                     <Label>性別</Label>
                     <Input type="select" name="select" id="gender-select-menu" required>
                         <option>男</option>
@@ -184,24 +183,6 @@ class MainInfo extends Component {
                     </Input>
                     {this.state.value === "他" && <OtherOption />}
                 </FormGroup>
-                <FormGroup row>
-                    {/* This should also be removed the delivery date should be set with the calendar */}
-                    <Label>納期日</Label>
-                    <Col sm={10}>
-                        <div>
-                            月:
-                            <Input type="text" name="text" placeholder="月" required />
-                            日:
-                            <Input type="text" name="text" placeholder="日" required />
-                        </div>
-                        <div>
-                            時:
-                            <Input type="text" name="text" placeholder="時" required />
-                            分:
-                            <Input type="text" name="text" placeholder="分" required />
-                        </div>
-                    </Col>
-                </FormGroup>
                 <FormGroup>
                     <Label for="exampleSelect">支払い</Label>
                     <Input type="select" name="select" id="exampleSelect" required>
@@ -215,9 +196,15 @@ class MainInfo extends Component {
                         <Input type="textarea" name="text" placeholder="主訴" required />
                     </Col>
                 </FormGroup>
-                <FormGroup className="delivery-time">
-                    <Label for="exampleTime">Time</Label>
-                    <Input type="time" name="time" id="exampleTime" placeholder="time placeholder" />
+
+                <FormGroup  className="delivery-time" >
+                    <Label for="exampleTime" >Time</Label>
+                    <Input
+                    type="time"
+                    name="time"
+                    id="exampleTime"
+                     placeholder="time placeholder"
+                    />
                 </FormGroup>
                 <div className="calendar">
                     <h3 className="order-heading">発注日/納期日</h3>

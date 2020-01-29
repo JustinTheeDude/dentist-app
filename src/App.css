@@ -86,33 +86,68 @@
     top: 115px;
 }
 .day-div {
-    position: relative;
-    top: 130px;
+  position: relative;
+  width: 300px;
+  left: 16px;
+}
+
+.hospital-address{
+  position: relative;
+  width: 500px;
+}
+.zip {
+  position: relative;
+  width: 200px;
+  left: 510px;
+  bottom: 108px;
 }
 
 .patient-info-header {
-    position: relative;
-    left: 0px;
-    padding-bottom: 1%;
-    font-weight: bold;
+  position: relative;
+  bottom: 90px;
+  left: 0px;
+  padding-bottom: 1%;
+  font-weight: bold;
 }
+
+.age-label{
+    position: relative;
+    left: 470px;
+    bottom: 207px;
+    width: 100px;
+}
+
 
 .patient-name {
-    position: relative;
-    left: 15px;
+  position: relative;
+  left: 16px;
+  width: 500px;
+  bottom: 100px;
+  color:red;
 }
 
+.gender-select-menu {
+  position: relative;
+  left: 580px;
+  bottom: 314px;
+  width: 110px;
+}
 .order-heading {
     position: relative;
     width: 300px;
     top: 0px;
     left: 20px;
     font-weight: bold;
-}
 
-.main-complaint-label {
-    position: relative;
-    left: 15px;
+
+
+/* #product-spec-menu {
+  position: relative;
+  bottom: 300px;
+} */
+.main-complaint-label{
+  position: relative;
+  left: 15px;
 }
 .delivery-time {
     position: relative;
@@ -137,4 +172,11 @@
 
 .delivery-div {
     color: red;
+}
+  
+.delivery-div {
+    position: relative;
+    left: 170px;
+    bottom: 525px;
+    font-size: large;
 }
