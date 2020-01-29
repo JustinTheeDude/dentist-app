@@ -1,52 +1,160 @@
 import React, {Component} from "react";
 import {Col, Row, Form, FormGroup, Label, Input, Button} from "reactstrap";
 import OtherOption from "./OtherOption";
+import firebase from "./firebase.js";
+import Calendar from "react-calendar";
+import DeliveryDate from "./DeliveryDate";
+
 class MainInfo extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            value: "",
-        };
-        this.handleChange = this.handleChange.bind(this);
+    state = {
+        date: new Date(),
+        deliveryDate: "",
+        minDate: new Date(),
+        value: "",
+        doctorName: "",
+        address: "",
+        zip: "",
+        contactName: "",
+        year: "",
+        month: "",
+        day: "",
+        info: "",
+        age: "",
+    };
 
-    }
+    onChange = deliveryDate => {
+        this.setState({deliveryDate});
+        console.log(this.state.deliveryDate);
+    };
 
-    handleChange(event) {
+    handleChange = e => {
         this.setState({
-            value: event.target.value, 
+            [e.target.name]: e.target.value,
         });
-    }
+    };
+
+    handleSubmit = e => {
+        e.preventDefault();
+        const itemsRef = firebase.database().ref("Form");
+        const item = {
+            value: this.state.value,
+            doctorName: this.state.doctorName,
+            address: this.state.address,
+            zip: this.state.zip,
+            contactName: this.state.contactName,
+            year: this.state.year,
+            month: this.state.month,
+            day: this.state.day,
+            info: this.state.info,
+            age: this.state.age,
+        };
+        itemsRef.push(item);
+    };
 
 
     render() {
         return (
-            <Form id="main_form" className="main-form">
+            <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
                 <h3 className="hospital-info-header">医院情報</h3>
-                <FormGroup row className="doctor-name" >
-                    <Label >担当名</Label>
+                <FormGroup row className="doctor-name">
+                    <Label>担当名</Label>
                     <Col sm={10}>
-                        <Input type="text" name="text" placeholder="名前" />
+                        <Input
+                            type="text"
+                            name="doctorName"
+                            placeholder="名前"
+                            onChange={this.handleChange}
+                            value={this.state.doctorName}
+                        />
                     </Col>
                 </FormGroup>
                 <FormGroup className="hospital-address">
                     <Label for="exampleAddress">医院名住所</Label>
-                    <Input type="text" name="address" id="exampleAddress" placeholder="市区町村" required />
+                    <Input
+                        type="text"
+                        name="address"
+                        id="exampleAddress"
+                        placeholder="市区町村"
+                        onChange={this.handleChange}
+                        value={this.state.address}
+                        required
+                    />
                 </FormGroup>
                 <Row form>
                     <Col md={6}>
                         <FormGroup className="zip">
                             <Label for="exampleZip">〒</Label>
-                            <Input type="text" name="zip" id="exampleZip" placeholder="555-5555" />
+                            <Input
+                                type="text"
+                                name="zip"
+                                id="exampleZip"
+                                onChange={this.handleChange}
+                                value={this.state.zip}
+                                required
+                            />
                         </FormGroup>
                     </Col>
                 </Row>
+                <FormGroup row>
+                    <Label>担当名</Label>
+                    <Col sm={10}>
+                        <Input
+                            type="text"
+                            name="contactName"
+                            placeholder="名前"
+                            onChange={this.handleChange}
+                            value={this.state.contactName}
+                        />
+                    </Col>
+                </FormGroup>
+                <FormGroup row>
+                    {/* This should be removed the order date should be set with the calendar */}
+                    <Label>発注日</Label>
+                    <Col sm={10}>
+                        <div className="order-div  year-div">年:</div>
+                        <div className="order-div month-div">月:</div>
+                        <div className="order-div day-div">日:</div>
+                        <Input
+                            type="text"
+                            name="year"
+                            placeholder="年"
+                            onChange={this.handleChange}
+                            value={this.state.year}
+                            required
+                        />
+                        <Input
+                            type="text"
+                            name="month"
+                            placeholder="月"
+                            onChange={this.handleChange}
+                            value={this.state.month}
+                            required
+                        />
+                        <Input
+                            type="text"
+                            name="day"
+                            placeholder="日"
+                            onChange={this.handleChange}
+                            value={this.state.day}
+                            required
+                        />
+                    </Col>
+                </FormGroup>
                 <h3 className="patient-info-header">患者情報</h3>
                 <FormGroup className="patient-name" row>
                     <Label>患者名</Label>
                     <Col sm={10}>
-                        <Input type="text" name="text" placeholder="名前" required />
+                        <Input
+                            type="text"
+                            name="info"
+                            placeholder="名前"
+                            onChange={this.handleChange}
+                            value={this.state.info}
+                            required
+                        />
                     </Col>
                 </FormGroup>
+
                 <FormGroup className="age-label">
                     <Label for="exampleNumber" >年令</Label>
                     <Input
@@ -88,6 +196,7 @@ class MainInfo extends Component {
                         <Input type="textarea" name="text" placeholder="主訴" required />
                     </Col>
                 </FormGroup>
+
                 <FormGroup  className="delivery-time" >
                     <Label for="exampleTime" >Time</Label>
                     <Input
@@ -97,6 +206,19 @@ class MainInfo extends Component {
                      placeholder="time placeholder"
                     />
                 </FormGroup>
+                <div className="calendar">
+                    <h3 className="order-heading">発注日/納期日</h3>
+                    <Calendar
+                        calendarType="US"
+                        // activeStartDate={today => console.log(today)}
+                        onClickDay={this.onChange}
+                        minDate={this.state.minDate}
+                    />
+                    <DeliveryDate
+                        day={this.state.date.toString().slice(0, 16)}
+                        delivery={this.state.deliveryDate.toString().slice(0, 16)}
+                    />
+                </div>
                 <Button>Submit</Button>
             </Form>
         );
