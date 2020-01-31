@@ -72,24 +72,7 @@
     left: 15px;
     top: 40px;
 }
-.order-div {
-    position: relative;
-    left: -50px;
-    top: 100px;
-}
-.year-div {
-    position: relative;
-    top: 90px;
-}
-.month-div {
-    position: relative;
-    top: 115px;
-}
-.day-div {
-  position: relative;
-  width: 300px;
-  left: 16px;
-}
+
 
 .hospital-address{
   position: relative;
@@ -104,7 +87,7 @@
 
 .patient-info-header {
   position: relative;
-  bottom: 90px;
+  bottom: 100px;
   left: 0px;
   padding-bottom: 1%;
   font-weight: bold;
@@ -112,25 +95,44 @@
 
 .age-label{
     position: relative;
-    left: 470px;
-    bottom: 207px;
+    left: 630px;
+    top: -207px;
     width: 100px;
-}
-
-
-.patient-name {
-  position: relative;
-  left: 16px;
-  width: 500px;
-  bottom: 100px;
-  color:red;
 }
 
 .gender-select-menu {
   position: relative;
-  left: 580px;
+  left: 500px;
   bottom: 314px;
   width: 110px;
+}
+
+.patient-name {
+  position: relative;
+  left: 20px;
+  width: 500px;
+  bottom: 100px;
+
+}
+
+#product-specs-menu {
+  position: relative;
+  bottom: 300px;
+  width: 300px;
+}
+
+.patient-payment-select {
+  position: relative;
+  bottom: 408px;
+  left: 320px;
+  width: 250px;
+}
+
+.main-complaint-label{
+  position: relative;
+  bottom: 400px;
+  left: 15px;
+
 }
 .order-heading {
     position: relative;
@@ -139,16 +141,9 @@
     left: 20px;
     font-weight: bold;
 
-
-
-/* #product-spec-menu {
-  position: relative;
-  bottom: 300px;
-} */
-.main-complaint-label{
-  position: relative;
-  left: 15px;
 }
+
+
 .delivery-time {
     position: relative;
     width: 125px;
@@ -170,9 +165,9 @@
     background: dodgerblue;
 }
 
-.delivery-div {
+/* .delivery-div {
     color: red;
-}
+} */
   
 .delivery-div {
     position: relative;

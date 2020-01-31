@@ -95,51 +95,6 @@ class MainInfo extends Component {
                         </FormGroup>
                     </Col>
                 </Row>
-                <FormGroup row>
-                    <Label>担当名</Label>
-                    <Col sm={10}>
-                        <Input
-                            type="text"
-                            name="contactName"
-                            placeholder="名前"
-                            onChange={this.handleChange}
-                            value={this.state.contactName}
-                        />
-                    </Col>
-                </FormGroup>
-                <FormGroup row>
-                    {/* This should be removed the order date should be set with the calendar */}
-                    <Label>発注日</Label>
-                    <Col sm={10}>
-                        <div className="order-div  year-div">年:</div>
-                        <div className="order-div month-div">月:</div>
-                        <div className="order-div day-div">日:</div>
-                        <Input
-                            type="text"
-                            name="year"
-                            placeholder="年"
-                            onChange={this.handleChange}
-                            value={this.state.year}
-                            required
-                        />
-                        <Input
-                            type="text"
-                            name="month"
-                            placeholder="月"
-                            onChange={this.handleChange}
-                            value={this.state.month}
-                            required
-                        />
-                        <Input
-                            type="text"
-                            name="day"
-                            placeholder="日"
-                            onChange={this.handleChange}
-                            value={this.state.day}
-                            required
-                        />
-                    </Col>
-                </FormGroup>
                 <h3 className="patient-info-header">患者情報</h3>
                 <FormGroup className="patient-name" row>
                     <Label>患者名</Label>
@@ -173,9 +128,9 @@ class MainInfo extends Component {
                         <option>女</option>
                     </Input>
                 </FormGroup>
-                <FormGroup>
+                <FormGroup  id="product-specs-menu">
                     <Label>製品仕様</Label>
-                    <Input type="select" name="select" id="product-specs-menu" onChange={this.handleChange} required>
+                    <Input type="select" name="select" onChange={this.handleChange} required>
                         <option>レジン床</option>
                         <option>金属床(Co-Cr. Ti. Gold)</option>
                         <option>治療用義歯</option>
@@ -183,7 +138,7 @@ class MainInfo extends Component {
                     </Input>
                     {this.state.value === "他" && <OtherOption />}
                 </FormGroup>
-                <FormGroup>
+                <FormGroup className="patient-payment-select">
                     <Label for="exampleSelect">支払い</Label>
                     <Input type="select" name="select" id="exampleSelect" required>
                         <option>保険</option>
