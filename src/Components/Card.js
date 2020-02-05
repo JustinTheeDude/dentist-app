@@ -27,9 +27,11 @@ class Card extends Component {
             <div className="cards">
                 {this.state.items.map(item => {
                     return (
-                        <div className="contactCards" key={item.id}>
-                            <h1>{item.contactName}</h1>
-                            <h1>{item.address}</h1>
+                        <div className="contact-cards" key={item.id}>
+                            <div className="contact-info">
+                                <h1>{item.contactName}</h1>
+                                <p>{item.address}</p>
+                            </div>
                         </div>
                     );
                 })}

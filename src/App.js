@@ -5,9 +5,8 @@ import Maininfo from "./Components/MainInfo";
 // import DeliveryDate from "./Components/DeliveryDate";
 import Card from "./Components/Card";
 import "bootstrap/dist/css/bootstrap.css";
-import "./App.css";
+import "./styles/css/main.css";
 // import Header from './Components/Header';
-
 
 class App extends Component {
     state = {};
