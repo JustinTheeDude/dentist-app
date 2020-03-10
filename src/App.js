@@ -1,11 +1,19 @@
 import React, { Component } from "react";
 import MainInfo from "./Components/MainInfo";
-import Calendar from "react-calendar";
+// import Calendar from "react-calendar";
 import DeliveryDate from "./Components/DeliveryDate";
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
 import Header from './Components/Header';
 
+
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+  } from "react-router-dom";
+  
 
 class App extends Component {
 
@@ -24,21 +32,18 @@ class App extends Component {
 
     render() {
         return (
-            <div>
-                <Header />
-                <MainInfo />
-                <h3 className="order-heading">発注日/納期日</h3>
-                <Calendar
-                    calendarType="US"
-                    onClickDay={this.onChange}
-                    minDate={  this.state.minDate}
-                    onClickMonth={this.showMonth}
-                />
-                <DeliveryDate
-                    startDate={this.state.startDate.toString().slice(0, 16)}
-                    delivery={this.state.deliveryDate.toString().slice(0, 16)}
-                />
-            </div>
+            <Router>
+                <div>
+                    <Header />
+                    {/* <MainInfo /> */}
+                    <Route exact path="/home"  render={ () => <MainInfo /> } />
+
+                    <DeliveryDate
+                        startDate={this.state.startDate.toString().slice(0, 16)}
+                        delivery={this.state.deliveryDate.toString().slice(0, 16)}
+                    />
+                </div>
+            </Router>
         );
     }
 }

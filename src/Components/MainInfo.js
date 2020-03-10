@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import {Col, Row, Form, FormGroup, Label, Input, Button} from "reactstrap";
 import OtherOption from "./OtherOption";
+import Calendar from "react-calendar";
+
 class MainInfo extends Component {
     constructor(props) {
         super(props);
@@ -97,6 +99,13 @@ class MainInfo extends Component {
                      placeholder="time placeholder"
                     />
                 </FormGroup>
+                <h3 className="order-heading">発注日/納期日</h3>
+                <Calendar
+                    calendarType="US"
+                    onClickDay={this.onChange}
+                    minDate={  this.state.minDate}
+                    onClickMonth={this.showMonth}
+                />
                 <Button>Submit</Button>
             </Form>
         );
