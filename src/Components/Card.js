@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import firebase from "firebase";
+import {BrowserRouter as Router, Link} from "react-router-dom";
 
 class Card extends Component {
     state = {
@@ -24,18 +25,22 @@ class Card extends Component {
 
     render() {
         return (
-            <div className="cards">
-                {this.state.items.map(item => {
-                    return (
-                        <div className="contact-cards" key={item.id}>
-                            <div className="contact-info">
-                                <h1>{item.contactName}</h1>
-                                <p>{item.address}</p>
-                            </div>
-                        </div>
-                    );
-                })}
-            </div>
+            <Router>
+                <div className="cards">
+                    {this.state.items.map(item => {
+                        return (
+                            <Link to={`${item.id}`}>
+                                <div className="contact-cards" key={item.id}>
+                                    <div className="contact-info">
+                                        <h1>{item.contactName}</h1>
+                                        <p>{item.address}</p>
+                                    </div>
+                                </div>
+                            </Link>
+                        );
+                    })}
+                </div>
+            </Router>
         );
     }
 }
