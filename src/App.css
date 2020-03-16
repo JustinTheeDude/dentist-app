@@ -59,8 +59,7 @@
 
 .doctor-name {
   position: relative;
-  width: 300px;
-  left: 16px;
+  width: 300px; 
 }
 
 .hospital-address{
@@ -89,7 +88,6 @@
     width: 100px;
 }
 
-
 .patient-name {
   position: relative;
   left: 16px;
@@ -104,31 +102,53 @@
   bottom: 314px;
   width: 110px;
 }
-.order-heading {
-    position: relative;
-    width: 300px;
-    top: 0px;
-    left: 20px;
-    font-weight: bold;
 
+.product-specs-menu{
+  position: relative;
+  width: 250px;
+  bottom: 290px;
+}
+
+.exampleSelect {
+  position: relative;
+  width: 250px; 
+  bottom: 300px;
 }
 
 .main-complaint-label{
   position: relative;
-  left: 15px;
+  width: 1000px;
+  bottom: 300px;
 }
+
 .delivery-time {
-    position: relative;
-    width: 125px;
-    left: 0px;
-    top: 0px;
-    font-weight: bold;
-    font-size: x-large; 
+  position: relative;
+  width: 250px;
+  bottom: 300px;
+  font-weight: bold;
+  font-size: x-large; 
 }
 
 .delivery-div {
-    position: relative;
-    left: 170px;
-    bottom: 525px;
-    font-size: large;
+  position: relative;
+  left: 25px;
+  bottom: 770px;
+  font-size: large;
+}
+
+.calendar-heading {
+  position: relative;
+  bottom: 250px;
+  width: 500px;
+  font-weight: bold;
+}
+.main-cal {
+  position: relative;
+  bottom: 250px;
+}
+
+.submit-btn {
+  position: relative;
+  bottom: 245px;
+  background-color: dodgerblue;
 }

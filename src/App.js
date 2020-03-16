@@ -24,20 +24,12 @@ class App extends Component {
         month: ""
     };
 
-    onChange = deliveryDate => {
-        this.setState({deliveryDate});
-        // console.log(this.state.deliveryDate);
-    };
-    
-
     render() {
         return (
             <Router>
                 <div>
                     <Header />
-                    {/* <MainInfo /> */}
                     <Route exact path="/home"  render={ () => <MainInfo /> } />
-
                     <DeliveryDate
                         startDate={this.state.startDate.toString().slice(0, 16)}
                         delivery={this.state.deliveryDate.toString().slice(0, 16)}

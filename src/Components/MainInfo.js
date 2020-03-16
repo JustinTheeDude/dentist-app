@@ -1,7 +1,9 @@
 import React, {Component} from "react";
 import {Col, Row, Form, FormGroup, Label, Input, Button} from "reactstrap";
+
+// Component Imports
 import OtherOption from "./OtherOption";
-import Calendar from "react-calendar";
+import Cal from "./Cal";
 
 class MainInfo extends Component {
     constructor(props) {
@@ -24,7 +26,7 @@ class MainInfo extends Component {
         return (
             <Form id="main_form" className="main-form">
                 <h3 className="hospital-info-header">医院情報</h3>
-                <FormGroup row className="doctor-name" >
+                <FormGroup  className="doctor-name" >
                     <Label >担当名</Label>
                     <Col sm={10}>
                         <Input type="text" name="text" placeholder="名前" />
@@ -67,7 +69,7 @@ class MainInfo extends Component {
                         <option>女</option>
                     </Input>
                 </FormGroup>
-                <FormGroup>
+                <FormGroup className="product-specs-menu">
                     <Label>製品仕様</Label>
                     <Input type="select" name="select" id="product-specs-menu" onChange={this.handleChange} required>
                         <option>レジン床</option>
@@ -77,21 +79,21 @@ class MainInfo extends Component {
                     </Input>
                     {this.state.value === "他" && <OtherOption />}
                 </FormGroup>
-                <FormGroup>
-                    <Label for="exampleSelect">支払い</Label>
+                <FormGroup className="exampleSelect">
+                    <Label for="exampleSelect" >支払い</Label>
                     <Input type="select" name="select" id="exampleSelect" required>
                         <option>保険</option>
                         <option>自費</option>
                     </Input>
                 </FormGroup>
-                <FormGroup row className="main-complaint-label">
+                <FormGroup className="main-complaint-label">
                     <Label>主訴</Label>
                     <Col sm={10}>
                         <Input type="textarea" name="text" placeholder="主訴" required />
                     </Col>
                 </FormGroup>
                 <FormGroup  className="delivery-time" >
-                    <Label for="exampleTime" >Time</Label>
+                    <Label for="Time" >Time</Label>
                     <Input
                     type="time"
                     name="time"
@@ -99,14 +101,8 @@ class MainInfo extends Component {
                      placeholder="time placeholder"
                     />
                 </FormGroup>
-                <h3 className="order-heading">発注日/納期日</h3>
-                <Calendar
-                    calendarType="US"
-                    onClickDay={this.onChange}
-                    minDate={  this.state.minDate}
-                    onClickMonth={this.showMonth}
-                />
-                <Button>Submit</Button>
+                <Cal />
+                <Button className="submit-btn">Submit</Button>
             </Form>
         );
     }
