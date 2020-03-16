@@ -29,7 +29,7 @@ class Card extends Component {
                 <div className="cards">
                     {this.state.items.map(item => {
                         return (
-                            <Link to={`${item.id}`}>
+                            <Link to={`${item.id}`} key={item.id}>
                                 <div className="contact-cards" key={item.id}>
                                     <div className="contact-info">
                                         <h1>{item.contactName}</h1>
