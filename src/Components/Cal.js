@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Calendar from "react-calendar";
+import DeliveryDate from "./DeliveryDate";
 
 class Cal extends Component {
 
@@ -19,6 +20,11 @@ class Cal extends Component {
     render() {
         return (
             <div>
+                <DeliveryDate
+                    className="delivery-div"
+                    startDate={this.state.startDate.toString().slice(0, 16)}
+                    delivery={this.state.deliveryDate.toString().slice(0, 16)}
+                />
                 <h3 className="calendar-heading">発注日/納期日</h3>
                 <Calendar
                     className="main-cal"
