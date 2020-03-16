@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import MainInfo from "./Components/MainInfo";
-import DeliveryDate from "./Components/DeliveryDate";
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
 import Header from './Components/Header';

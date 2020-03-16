@@ -16,7 +16,6 @@ class Cal extends Component {
         // console.log(this.state.deliveryDate);
     };
 
-
     render() {
         return (
             <div>
