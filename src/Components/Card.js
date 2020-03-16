@@ -22,13 +22,12 @@ class Card extends Component {
             this.setState({items: newState});
         });
     }
-
     render() {
         return (
             <Router>
-                <div className="cards">
-                    {this.state.items.map(item => {
-                        return (
+                    <div className="cards">
+                        {this.state.items.map(item => {
+                            return (           
                             <Link to={`${item.id}`} key={item.id}>
                                 <div className="contact-cards" key={item.id}>
                                     <div className="contact-info">
@@ -37,9 +36,9 @@ class Card extends Component {
                                     </div>
                                 </div>
                             </Link>
-                        );
-                    })}
-                </div>
+                            );
+                        })}
+                    </div>
             </Router>
         );
     }
