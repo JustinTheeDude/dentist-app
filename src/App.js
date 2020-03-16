@@ -1,33 +1,25 @@
-import React, { Component } from "react";
-import MainInfo from "./Components/MainInfo";
+import React, {Component} from "react";
+import Header from "./Components/Header";
+import Maininfo from "./Components/MainInfo";
+// import Calendar from "react-calendar";
+// import DeliveryDate from "./Components/DeliveryDate";
+import Card from "./Components/Card";
 import "bootstrap/dist/css/bootstrap.css";
-import "./App.css";
-import Header from './Components/Header';
-
-
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-  } from "react-router-dom";
-  
+import "./styles/css/main.css";
+// import Header from './Components/Header';
 
 class App extends Component {
+    state = {};
 
     render() {
         return (
-            <Router>
-                <div>
-                    <Header />
-                    <Route exact path="/"  render={ () => <MainInfo /> } />
-
-                </div>
-            </Router>
+            <div id="main_content">
+                <Header />
+                <Card />
+                <Maininfo />
+            </div>
         );
     }
 }
 
 export default App;
-
-
