@@ -1,12 +1,16 @@
 import React, {Component} from "react";
 import firebase from "firebase";
-import {BrowserRouter as Router, Link} from "react-router-dom";
+import {BrowserRouter as Router } from "react-router-dom";
 
 class Card extends Component {
     state = {
         items: [],
     };
-
+    
+     handleClick = (e, id) => {
+        e.preventDefault();
+        console.log(`this card was clicked: ${id}`);
+    }
     componentDidMount() {
         const itemsRef = firebase.database().ref("Form");
         itemsRef.on("value", snap => {
@@ -28,14 +32,14 @@ class Card extends Component {
                     <div className="cards">
                         {this.state.items.map(item => {
                             return (           
-                            <Link to={`${item.id}`} key={item.id}>
-                                <div className="contact-cards" key={item.id}>
-                                    <div className="contact-info">
+                            
+                                <div className="contact-cards" key={item.id} onClick={e => this.handleClick(e,item.id) }>
+                                    <div className="contact-info" >
                                         <h1>{item.contactName}</h1>
                                         <p>{item.address}</p>
                                     </div>
                                 </div>
-                            </Link>
+                           
                             );
                         })}
                     </div>

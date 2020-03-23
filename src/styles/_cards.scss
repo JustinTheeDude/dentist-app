@@ -1,8 +1,9 @@
 .cards {
-    display: flex;
+    // display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     padding: 30px;
-    column-count: 3;
+    max-width: 500px;
 
     .contact-cards {
         background-color: $color-white;

@@ -1,5 +1,5 @@
-import React, {Component} from "react";
-import {Col, Row, Form, FormGroup, Label, Input, Button} from "reactstrap";
+import React, { Component } from "react";
+import { Col, Row, Form, FormGroup, Label, Input, Button } from "reactstrap";
 
 // Component Imports
 import OtherOption from "./OtherOption";

@@ -1,7 +1,16 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
+
+/**
+ * Component Imports
+ */
 import Header from "./Components/Header";
 import Maininfo from "./Components/MainInfo";
 import Card from "./Components/Card";
+import Login from "./Components/Login";
+
+/**
+ * styles Imports
+ */
 import "bootstrap/dist/css/bootstrap.css";
 import "./styles/css/main.css";
 
@@ -9,7 +18,7 @@ import "./styles/css/main.css";
 
 import { BrowserRouter,
          Route,
-         Switch,
+        //  Switch,
 } from 'react-router-dom';
 
 class App extends Component {
@@ -18,17 +27,17 @@ class App extends Component {
     render() {
         return (
             < BrowserRouter>
-            <Route path="/">
+            <Route>
                 <div id="main_content">
                     <Header />
-                        <Route 
-                            exact path="/card/:id"
-                            render={ () => <Card /> } 
-                        />
+                        <Route path='/login' component={Login} />
                         <Route 
                             exact path="/form"
-                            render={ () => <Maininfo />}
-
+                            render={ () => <Maininfo /> }
+                        />
+                        <Route 
+                            exact path="/cards"
+                            render={ () => <Card /> } 
                         />
                 </div>
                 </Route>
