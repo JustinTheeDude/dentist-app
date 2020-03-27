@@ -30,7 +30,7 @@ class App extends Component {
                 <Route>
                     <div id="main_content">
                         <Header />
-                        <Route exact path='/login' component={Login} />
+                        <Route exact path='/' component={Login} />
                         <Route 
                             exact path="/form"
                             render={ () => <Maininfo /> }

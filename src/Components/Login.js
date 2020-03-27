@@ -9,7 +9,7 @@ class Login extends Component {
             <Form>
             <FormGroup>
                 <Label for="exampleEmail">Email</Label>
-                <Input type="email" name="email" id="exampleEmail" placeholder="youremail@email.com" />
+                <Input type="email" name="email" id="exampleEmail" placeholder="examplel@email.com" />
                 </FormGroup>
                 <FormGroup>
                 <Label for="examplePassword">Password</Label>
