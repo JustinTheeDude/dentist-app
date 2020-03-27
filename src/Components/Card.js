@@ -1,10 +1,13 @@
 import React, {Component} from "react";
 import firebase from "firebase";
-import {BrowserRouter as Router, Link} from "react-router-dom";
+import {Link} from "react-router-dom";
+import CardInfo from "./CardInfo";
+import Layout from "./Layout";
 
 class Card extends Component {
     state = {
         items: [],
+        cardId: "",
     };
 
     componentDidMount() {
@@ -21,26 +24,31 @@ class Card extends Component {
             }
             this.setState({items: newState});
         });
+
+        console.log(this.state);
     }
 
     render() {
         return (
-            <Router>
-                <div className="cards">
-                    {this.state.items.map(item => {
-                        return (
-                            <Link to={`${item.id}`}>
-                                <div className="contact-cards" key={item.id}>
-                                    <div className="contact-info">
-                                        <h1>{item.contactName}</h1>
-                                        <p>{item.address}</p>
-                                    </div>
+            <div className="cards">
+                {this.state.items.map(item => {
+                    return (
+                        <Link
+                            to={{
+                                pathname: "/info",
+                                state: {cardId: item.id},
+                            }}
+                        >
+                            <div className="contact-cards" key={item.id}>
+                                <div className="contact-info">
+                                    <h1>{item.contactName}</h1>
+                                    <p>{item.address}</p>
                                 </div>
-                            </Link>
-                        );
-                    })}
-                </div>
-            </Router>
+                            </div>
+                        </Link>
+                    );
+                })}
+            </div>
         );
     }
 }
