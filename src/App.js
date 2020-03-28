@@ -12,30 +12,40 @@ import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import CardInfo from "./Components/CardInfo";
 import Layout from "./Components/Layout";
 
-class App extends Component {
-    state = {};
+//impor Provider
+import { Provider } from './Components/Context'
 
+
+class App extends Component {
+    state = {
+        items: [],
+        cardId: "",
+    };
+      
     componentDidMout() {
         const cardId = this.props.history.location.state;
         console.log(cardId);
     }
-
+    
     render() {
         return (
-            <div id="main_content">
-                <Router>
-                    <Layout>
-                        <Switch>
-                            <Route exact path="/">
-                                <Card />
-                            </Route>
-                            <Route path="/info">
-                                <CardInfo id={cardId} />
-                            </Route>
-                        </Switch>
-                    </Layout>
-                </Router>
-            </div>
+            <Provider value={this.state}>
+                <div id="main_content">
+                    <Router>
+                        <Layout>
+                            <Switch>
+                                <Route exact path="/">
+                                    <Card />
+                                </Route>
+                                <Route path="/info">
+                                    
+                                    <CardInfo  id={this.cardId} />
+                                </Route>
+                            </Switch>
+                        </Layout>
+                    </Router>
+                </div>
+            </Provider>
         );
     }
 }

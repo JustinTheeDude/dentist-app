@@ -4,53 +4,104 @@ import {Link} from "react-router-dom";
 import CardInfo from "./CardInfo";
 import Layout from "./Layout";
 
-class Card extends Component {
-    state = {
-        items: [],
-        cardId: "",
-    };
+import { Consumer } from './Context';
 
-    componentDidMount() {
-        const itemsRef = firebase.database().ref("Form");
-        itemsRef.on("value", snap => {
-            let items = snap.val();
-            let newState = [];
-            for (let item in items) {
-                newState.push({
-                    id: item,
-                    contactName: items[item].contactName,
+const Card = () => {
+    return (
+        <Consumer>
+            {context => {
+                const itemsRef = firebase.database().ref("Form");
+                itemsRef.on("value", snap => {
+                let items = snap.val();
+                let newContext = [];
+             for (let item in items) {
+                newContext.push({
+                     id: item,
+                     contactName: items[item].contactName,
                     address: items[item].address,
-                });
-            }
-            this.setState({items: newState});
-        });
+                 });
+             }
+             context = {item: newContext };
+         });
 
-        console.log(this.state);
-    }
 
-    render() {
-        return (
-            <div className="cards">
-                {this.state.items.map(item => {
-                    return (
+                return (
+                <div className="cards">
+                 { context.items.map(item => {
+                  return (
                         <Link
                             to={{
                                 pathname: "/info",
-                                state: {cardId: item.id},
+                                state: {cardId: item.id},                             
                             }}
-                        >
+                         >
                             <div className="contact-cards" key={item.id}>
-                                <div className="contact-info">
-                                    <h1>{item.contactName}</h1>
+                                 <div className="contact-info">
+                                     <h1>{item.contactName}</h1>
                                     <p>{item.address}</p>
-                                </div>
-                            </div>
+                                 </div>
+                             </div>
                         </Link>
-                    );
-                })}
+                     );
+                 })}
             </div>
-        );
-    }
+                );
+            }}
+        </Consumer>
+    )
 }
+
+
+
+
+
+// class Card extends Component {
+//     state = {
+//         items: [],
+//         cardId: "",
+//     };
+
+//     componentDidMount() {
+//         const itemsRef = firebase.database().ref("Form");
+//         itemsRef.on("value", snap => {
+//             let items = snap.val();
+//             let newState = [];
+//             for (let item in items) {
+//                 newState.push({
+//                     id: item,
+//                     contactName: items[item].contactName,
+//                     address: items[item].address,
+//                 });
+//             }
+//             this.setState({items: newState});
+//         });
+
+//         console.log(this.state);
+//     }
+
+//     render() {
+//         return (
+//             <div className="cards">
+//                 {this.state.items.map(item => {
+//                     return (
+//                         <Link
+//                             to={{
+//                                 pathname: "/info",
+//                                 state: {cardId: item.id},
+//                             }}
+//                         >
+//                             <div className="contact-cards" key={item.id}>
+//                                 <div className="contact-info">
+//                                     <h1>{item.contactName}</h1>
+//                                     <p>{item.address}</p>
+//                                 </div>
+//                             </div>
+//                         </Link>
+//                     );
+//                 })}
+//             </div>
+//         );
+//     // }
+// }
 
 export default Card;
