@@ -13,23 +13,17 @@ import CardInfo from "./Components/CardInfo";
 import Layout from "./Components/Layout";
 
 //impor Provider
-import { Provider } from './Components/Context'
-
+import AppProvider, {MyContext} from "./Components/Context/AppProvider";
 
 class App extends Component {
     state = {
         items: [],
         cardId: "",
     };
-      
-    componentDidMout() {
-        const cardId = this.props.history.location.state;
-        console.log(cardId);
-    }
-    
+
     render() {
         return (
-            <Provider value={this.state}>
+            <AppProvider>
                 <div id="main_content">
                     <Router>
                         <Layout>
@@ -38,14 +32,15 @@ class App extends Component {
                                     <Card />
                                 </Route>
                                 <Route path="/info">
-                                    
-                                    <CardInfo  id={this.cardId} />
+                                    <MyContext.Consumer>
+                                        {context => <CardInfo value={context.state.chosenCard} />}
+                                    </MyContext.Consumer>
                                 </Route>
                             </Switch>
                         </Layout>
                     </Router>
                 </div>
-            </Provider>
+            </AppProvider>
         );
     }
 }

@@ -19,7 +19,7 @@ class CardInfo extends Component {
         var ref = firebase
             .database()
             .ref("Form")
-            .child(this.props.id);
+            .child(this.props.value);
         ref.orderByKey().on("value", function(snapshot) {
             let items = snapshot.val();
             for (let item in items) {
@@ -35,7 +35,6 @@ class CardInfo extends Component {
                     zip: items["zip"],
                 });
             }
-            console.log(self.state);
         });
     }
 

@@ -3,6 +3,8 @@
     flex-wrap: wrap;
     justify-content: space-around;
     padding: 30px;
+    max-width: 1200px;
+    margin: auto;
 
     .contact-cards {
         background-color: $color-white;
@@ -16,6 +18,7 @@
         height: 300px;
         padding: 30px;
         transition: transform 0.5s ease;
+        margin: 30px auto;
 
         &:hover {
             transform: translateY(-10px);
