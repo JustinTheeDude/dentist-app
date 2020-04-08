@@ -13,7 +13,7 @@
     "react-bootstrap-date-picker": "^5.1.0",
     "react-calendar": "^2.19.2",
     "react-dom": "^16.12.0",
-    "react-scripts": "3.3.0",
+    "react-scripts": "^3.4.0",
     "reactstrap": "^8.2.0",
     "serialize-javascript": "^2.1.1"
   },

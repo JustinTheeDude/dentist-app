@@ -4,11 +4,10 @@ import {Link} from "react-router-dom";
 import CardInfo from "./CardInfo";
 import Layout from "./Layout";
 
-import AppProvider, {MyContext} from "./Context/AppProvider";
-
 class Card extends Component {
     state = {
         items: [],
+        cardId: "",
     };
 
     componentDidMount() {
@@ -25,34 +24,31 @@ class Card extends Component {
             }
             this.setState({items: newState});
         });
+
+        console.log(this.state);
     }
 
     render() {
         return (
-            <MyContext.Consumer>
-                {context => (
-                    <div className="cards">
-                        {this.state.items.map(item => {
-                            return (
-                                <Link
-                                    to={{
-                                        pathname: "/info",
-                                    }}
-                                    onClick={() => context.updateCard(item.id)}
-                                    key={item.id}
-                                >
-                                    <div className="contact-cards">
-                                        <div className="contact-info">
-                                            <h1>{item.contactName}</h1>
-                                            <p>{item.address}</p>
-                                        </div>
-                                    </div>
-                                </Link>
-                            );
-                        })}
-                    </div>
-                )}
-            </MyContext.Consumer>
+            <div className="cards">
+                {this.state.items.map(item => {
+                    return (
+                        <Link
+                            to={{
+                                pathname: "/info",
+                                state: {cardId: item.id},
+                            }}
+                        >
+                            <div className="contact-cards" key={item.id}>
+                                <div className="contact-info">
+                                    <h1>{item.contactName}</h1>
+                                    <p>{item.address}</p>
+                                </div>
+                            </div>
+                        </Link>
+                    );
+                })}
+            </div>
         );
     }
 }

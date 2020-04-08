@@ -1,3 +1,4 @@
+
 import React, {Component} from "react";
 import Header from "./Components/Header";
 import Maininfo from "./Components/MainInfo";
@@ -11,9 +12,9 @@ import "./styles/css/main.css";
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import CardInfo from "./Components/CardInfo";
 import Layout from "./Components/Layout";
-
-//impor Provider
-import AppProvider, {MyContext} from "./Components/Context/AppProvider";
+import Login from './Components/Login';
+//import Provider
+import AppProvider, { MyContext } from "./Components/Context/AppProvider";
 
 class App extends Component {
     state = {
@@ -28,10 +29,13 @@ class App extends Component {
                     <Router>
                         <Layout>
                             <Switch>
-                                <Route exact path="/">
+                                <Route exact path='/login'>
+                                    <Login />
+                                </Route>
+                                <Route exact path='/'>
                                     <Card />
                                 </Route>
-                                <Route path="/info">
+                                <Route path='/info'>
                                     <MyContext.Consumer>
                                         {context => <CardInfo value={context.state.chosenCard} />}
                                     </MyContext.Consumer>

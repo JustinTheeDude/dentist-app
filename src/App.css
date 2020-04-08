@@ -175,3 +175,11 @@
     bottom: 525px;
     font-size: large;
 }
+
+/*
+*Login Form
+*/
+
+#email {
+    width: 500px;
+}
