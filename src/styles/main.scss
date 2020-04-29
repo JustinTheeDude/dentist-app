@@ -2,7 +2,10 @@
 @import "_fonts.scss";
 @import "_cards.scss";
 @import "_form.scss";
+@import "_login.scss";
 
-#root {
+html {
+    width: 100%;
+    height: 100%;
     background-color: $color2;
 }
