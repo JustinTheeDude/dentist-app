@@ -5,7 +5,6 @@ import Maininfo from "./Components/MainInfo";
 // import DeliveryDate from "./Components/DeliveryDate";
 import Card from "./Components/Card";
 import "bootstrap/dist/css/bootstrap.css";
-import "./styles/css/main.css";
 // import Header from './Components/Header';
 //
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
@@ -24,25 +23,23 @@ class App extends Component {
     render() {
         return (
             <AppProvider>
-                <div id="main_content">
-                    <Router>
+                <Router>
+                    <Switch>
+                        <Route exact path="/">
+                            <Login />
+                        </Route>
                         <Layout>
-                            <Switch>
-                                <Route exact path="/">
-                                    <Login />
-                                </Route>
-                                <Route path="/cards">
-                                    <Card />
-                                </Route>
-                                <Route path="/info">
-                                    <MyContext.Consumer>
-                                        {context => <CardInfo value={context.state.chosenCard} />}
-                                    </MyContext.Consumer>
-                                </Route>
-                            </Switch>
+                            <Route path="/cards">
+                                <Card />
+                            </Route>
+                            <Route path="/info">
+                                <MyContext.Consumer>
+                                    {context => <CardInfo value={context.state.chosenCard} />}
+                                </MyContext.Consumer>
+                            </Route>
                         </Layout>
-                    </Router>
-                </div>
+                    </Switch>
+                </Router>
             </AppProvider>
         );
     }

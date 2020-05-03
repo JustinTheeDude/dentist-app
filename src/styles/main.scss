@@ -3,9 +3,22 @@
 @import "_cards.scss";
 @import "_form.scss";
 @import "_login.scss";
+@import "_navbar.scss";
+@import "_reset.scss";
 
 html {
     width: 100%;
     height: 100%;
     background-color: $color2;
+}
+
+body {
+    background-color: $color2;
+}
+
+main {
+    display: inline-block;
+    position: relative;
+    width: 95%;
+    height: 100vh;
 }

@@ -3,7 +3,6 @@ import firebase from "firebase";
 import {Link} from "react-router-dom";
 import CardInfo from "./CardInfo";
 import Layout from "./Layout";
-
 import AppProvider, {MyContext} from "./Context/AppProvider";
 
 class Card extends Component {
@@ -32,24 +31,45 @@ class Card extends Component {
             <MyContext.Consumer>
                 {context => (
                     <div className="cards">
-                        {this.state.items.map(item => {
-                            return (
-                                <Link
-                                    to={{
-                                        pathname: "/info",
-                                    }}
-                                    onClick={() => context.updateCard(item.id)}
-                                    key={item.id}
-                                >
-                                    <div className="contact-cards">
-                                        <div className="contact-info">
-                                            <h1>{item.contactName}</h1>
-                                            <p>{item.address}</p>
-                                        </div>
-                                    </div>
-                                </Link>
-                            );
-                        })}
+                        <h1 className="card-title">Orders</h1>
+                        <div className="table-titles">
+                            <ul>
+                                <li>Customer Name</li>
+                                <li>Address</li>
+                                <li>Status</li>
+                            </ul>
+                        </div>
+                        <div className="contact-cards">
+                            {this.state.items.map(item => {
+                                return (
+                                    <ul className="card-info">
+                                        <li>{item.contactName}</li>
+                                        <li>{item.address}</li>
+                                        <li className="status">
+                                            <span className="complete-dot">Complete</span>
+                                        </li>
+                                        <li className="info-button">
+                                            <Link
+                                                to={{
+                                                    pathname: "/info",
+                                                }}
+                                                onClick={() => context.updateCard(item.id)}
+                                                key={item.id}
+                                            >
+                                                <span className="dot"></span>
+                                                <span className="dot"></span>
+                                                <span className="dot"></span>
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                );
+                            })}
+                        </div>
+                        <div className="pages">
+                            <div className="number">
+                                <p>1</p>
+                            </div>
+                        </div>
                     </div>
                 )}
             </MyContext.Consumer>
