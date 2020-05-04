@@ -37,6 +37,9 @@ class App extends Component {
                                     {context => <CardInfo value={context.state.chosenCard} />}
                                 </MyContext.Consumer>
                             </Route>
+                            <Route path="/form">
+                                <Maininfo />
+                            </Route>
                         </Layout>
                     </Switch>
                 </Router>

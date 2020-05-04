@@ -6,11 +6,12 @@
     background-color: #fff;
     max-width: 1100px;
     position: absolute;
-    top: 10%;
+    top: 0;
     left: 0;
     right: 0;
     border-radius: 20px;
     box-shadow: 0px 3px 6px #2c28281c;
+    transform: translateY(35%);
 
     a {
         text-decoration: none;

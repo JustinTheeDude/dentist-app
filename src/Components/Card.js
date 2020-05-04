@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 import CardInfo from "./CardInfo";
 import Layout from "./Layout";
 import AppProvider, {MyContext} from "./Context/AppProvider";
+import NotificationBar from "./NotificationBar";
 
 class Card extends Component {
     state = {

@@ -1,0 +1,28 @@
+.notification-container {
+    background-color: #172b4d;
+    width: 100%;
+    padding: 30px;
+    height: 300px;
+
+    .search-notification {
+        position: relative;
+        &:before {
+            content: "";
+            background-image: url("../../assets/search.svg");
+            background-repeat: no-repeat;
+            display: inline-block;
+            position: absolute;
+            top: 60%;
+            transform: translate(30%, -50%);
+            width: 30px;
+            height: 30px;
+        }
+
+        .search-bar {
+            padding-left: 40px;
+            border-radius: 25px;
+            height: 40px;
+            border: none;
+        }
+    }
+}
