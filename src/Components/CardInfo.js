@@ -16,7 +16,7 @@ class CardInfo extends Component {
     };
 
     componentDidMount() {
-        if (this.props.value != "") {
+        if (this.props.value !== "") {
             var self = this;
             var ref = firebase
                 .database()
@@ -46,15 +46,15 @@ class CardInfo extends Component {
             <div>
                 {this.props.value ? (
                     <>
-                        <h1>Address: {this.state.address}</h1>
-                        <h1>Age: {this.state.age}</h1>
-                        <h1>Contact: {this.state.contactName}</h1>
-                        <h1>Day: {this.state.day}</h1>
-                        <h1>Doctor name: {this.state.doctorName}</h1>
-                        <h1>Info: {this.state.info}</h1>
-                        <h1>Month: {this.state.month}</h1>
-                        <h1>Year: {this.state.year}</h1>
-                        <h1>Zip: {this.state.zip}</h1>
+                        <h1>住所: {this.state.address}</h1>
+                        <h1>年: {this.state.age}</h1>
+                        <h1>患者名: {this.state.contactName}</h1>
+                        <h1>日付: {this.state.day}</h1>
+                        <h1>担当名: {this.state.doctorName}</h1>
+                        <h1>説明: {this.state.info}</h1>
+                        <h1>月: {this.state.month}</h1>
+                        <h1>年: {this.state.year}</h1>
+                        <h1>郵便番号: {this.state.zip}</h1>
                     </>
                 ) : (
                     <Redirect to="/cards" />

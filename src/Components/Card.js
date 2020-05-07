@@ -1,8 +1,8 @@
 import React, {Component} from "react";
 import firebase from "firebase";
 import {Link} from "react-router-dom";
-import CardInfo from "./CardInfo";
-import Layout from "./Layout";
+// import CardInfo from "./CardInfo";
+// import Layout from "./Layout";
 import AppProvider, {MyContext} from "./Context/AppProvider";
 
 class Card extends Component {
@@ -34,15 +34,15 @@ class Card extends Component {
                         <h1 className="card-title">Orders</h1>
                         <div className="table-titles">
                             <ul>
-                                <li>Customer Name</li>
-                                <li>Address</li>
-                                <li>Status</li>
+                                <li>患者情報</li>
+                                <li>住所</li>
+                                <li>状況報告</li>
                             </ul>
                         </div>
                         <div className="contact-cards">
                             {this.state.items.map(item => {
                                 return (
-                                    <ul className="card-info">
+                                    <ul className="card-info" key={item.id}>
                                         <li>{item.contactName}</li>
                                         <li>{item.address}</li>
                                         <li className="status">
