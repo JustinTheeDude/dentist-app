@@ -1,41 +1,56 @@
 import React, {Component} from "react";
-import Header from "./Components/Header";
+
 import Maininfo from "./Components/MainInfo";
 // import Calendar from "react-calendar";
 // import DeliveryDate from "./Components/DeliveryDate";
 import Card from "./Components/Card";
 import "bootstrap/dist/css/bootstrap.css";
-import "./styles/css/main.css";
 // import Header from './Components/Header';
 //
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import CardInfo from "./Components/CardInfo";
 import Layout from "./Components/Layout";
+import Login from "./Components/Login";
+import UserSignUp from './Components/UserSignUp';
+//import Provider
+import AppProvider, {MyContext} from "./Components/Context/AppProvider";
 
 class App extends Component {
-    state = {};
-
-    componentDidMout() {
-        const cardId = this.props.history.location.state;
-        console.log(cardId);
-    }
+    state = {
+        items: [],
+        cardId: "",
+    };
 
     render() {
         return (
-            <div id="main_content">
+            <AppProvider>
                 <Router>
-                    <Layout>
-                        <Switch>
-                            <Route exact path="/">
+                    <Switch>
+                        <Route exact path="/">
+                            <Login />
+                        </Route>
+                        <Route exact path="/signup">
+                            <UserSignUp />
+                        </Route>
+                        <Layout>
+                            <Route path="/cards">
                                 <Card />
                             </Route>
-                            <Route path="/info">
-                                <CardInfo id={cardId} />
+                            <Route path="/form">
+                                <Maininfo />
                             </Route>
-                        </Switch>
-                    </Layout>
+                            <Route path="/info">
+                                <MyContext.Consumer>
+                                    {context => <CardInfo value={context.state.chosenCard} />}
+                                </MyContext.Consumer>
+                            </Route>
+                            <Route path="/form">
+                                <Maininfo />
+                            </Route>
+                        </Layout>
+                    </Switch>
                 </Router>
-            </div>
+            </AppProvider>
         );
     }
 }

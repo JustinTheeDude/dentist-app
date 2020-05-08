@@ -1,56 +1,54 @@
-import React, {Component} from "react";
+import React, {useEffect, useState} from "react";
 import firebase from "firebase";
+import OrderList from "./OrderList";
+import Pagination from "./Pagination";
 import {Link} from "react-router-dom";
-import CardInfo from "./CardInfo";
-import Layout from "./Layout";
+import AppProvider, {MyContext} from "./Context/AppProvider";
 
-class Card extends Component {
-    state = {
-        items: [],
-        cardId: "",
-    };
+const Card = () => {
+    const [orders, setOrders] = useState([]);
+    const [orderPerPage] = useState(4);
+    const [currentOrderPage, setCurrentOrderPage] = useState(1);
 
-    componentDidMount() {
+    useEffect(() => {
         const itemsRef = firebase.database().ref("Form");
+        let newState = [];
         itemsRef.on("value", snap => {
             let items = snap.val();
-            let newState = [];
             for (let item in items) {
                 newState.push({
                     id: item,
                     contactName: items[item].contactName,
                     address: items[item].address,
+                    complete: items[item].complete,
                 });
             }
-            this.setState({items: newState});
+            setOrders(newState);
         });
+    }, []);
 
-        console.log(this.state);
-    }
+    const indexOfLastOrder = currentOrderPage * orderPerPage;
+    const indexOfFirstOrder = indexOfLastOrder - orderPerPage;
+    const currentOrder = orders.slice(indexOfFirstOrder, indexOfLastOrder);
+    const numbers = document.querySelectorAll(".number");
 
-    render() {
-        return (
-            <div className="cards">
-                {this.state.items.map(item => {
-                    return (
-                        <Link
-                            to={{
-                                pathname: "/info",
-                                state: {cardId: item.id},
-                            }}
-                        >
-                            <div className="contact-cards" key={item.id}>
-                                <div className="contact-info">
-                                    <h1>{item.contactName}</h1>
-                                    <p>{item.address}</p>
-                                </div>
-                            </div>
-                        </Link>
-                    );
-                })}
-            </div>
-        );
-    }
-}
+    const paginate = (pageNumber, e) => {
+        numbers.forEach(number => {
+            number.classList.remove("active");
+        });
+        e.target.classList.add("active");
+        setCurrentOrderPage(pageNumber);
+    };
+  
+    return (
+        <>
+            <OrderList
+                orders={currentOrder}
+                pagination={<Pagination orderPerPage={orderPerPage} totalOrders={orders.length} paginate={paginate} />}
+            />
+        </>
+    );
+};
+
 
 export default Card;
