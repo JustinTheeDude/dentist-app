@@ -1,6 +1,9 @@
 import React, {Component} from "react";
 import firebase from "firebase";
 import {Redirect} from "react-router-dom";
+import Mouth from "./mouth";
+import {MyContext} from "./Context/AppProvider";
+import {Button} from "reactstrap";
 
 class CardInfo extends Component {
     state = {
@@ -41,25 +44,57 @@ class CardInfo extends Component {
         }
     }
 
+    // {this.props.value ? (
+    // ) : (
+    //     <Redirect to="/cards" />
+    // )}
+    //
+    //
+
+    isComplete = "";
+
+    completeOrder = (id) => {
+        const itemsRef = firebase.database().ref("Form").child(id);
+        console.log(itemsRef);
+        itemsRef.once("value", (snapshot) => {
+            snapshot.forEach((child) => {
+                if(child.key === "complete") {
+                    if(child.node_.value_ === true) {
+                        itemsRef.update({"complete": false})
+                        this.isComplete = "Not Complete";
+                    } else {
+                        itemsRef.update({"complete": true})
+                        this.isComplete = "Complete";
+                    }
+                }
+            });
+        });
+    }
+
+
     render() {
         return (
-            <div>
-                {this.props.value ? (
-                    <>
-                        <h1>住所: {this.state.address}</h1>
-                        <h1>年: {this.state.age}</h1>
-                        <h1>患者名: {this.state.contactName}</h1>
-                        <h1>日付: {this.state.day}</h1>
-                        <h1>担当名: {this.state.doctorName}</h1>
-                        <h1>説明: {this.state.info}</h1>
-                        <h1>月: {this.state.month}</h1>
-                        <h1>年: {this.state.year}</h1>
-                        <h1>郵便番号: {this.state.zip}</h1>
-                    </>
-                ) : (
-                    <Redirect to="/cards" />
+            <MyContext.Consumer>
+                {context => (
+                    <div className="order-container">
+                        <div className="order-info">
+                            <h1>Address: {this.state.address}</h1>
+                            <h1>Age: {this.state.age}</h1>
+                            <h1>Contact: {this.state.contactName}</h1>
+                            <h1>Day: {this.state.day}</h1>
+                            <h1>Doctor name: {this.state.doctorName}</h1>
+                            <h1>Info: {this.state.info}</h1>
+                            <h1>Month: {this.state.month}</h1>
+                            <h1>Year: {this.state.year}</h1>
+                            <h1>Zip: {this.state.zip}</h1>
+                        </div>
+                        <div className="teeth">
+                            <Mouth preserveAspectRatio="meet" />
+                        </div>
+                        <Button onClick={() => this.completeOrder(this.props.value)}>{this.isComplete}</Button>
+                    </div>
                 )}
-            </div>
+            </MyContext.Consumer>
         );
     }
 }

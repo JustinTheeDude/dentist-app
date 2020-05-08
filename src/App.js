@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-// import Header from "./Components/Header";
+
 import Maininfo from "./Components/MainInfo";
 // import Calendar from "react-calendar";
 // import DeliveryDate from "./Components/DeliveryDate";
@@ -43,6 +43,9 @@ class App extends Component {
                                 <MyContext.Consumer>
                                     {context => <CardInfo value={context.state.chosenCard} />}
                                 </MyContext.Consumer>
+                            </Route>
+                            <Route path="/form">
+                                <Maininfo />
                             </Route>
                         </Layout>
                     </Switch>

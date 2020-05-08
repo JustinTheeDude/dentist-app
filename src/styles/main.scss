@@ -5,6 +5,8 @@
 @import "_login.scss";
 @import "_navbar.scss";
 @import "_reset.scss";
+@import "_notificationbar.scss";
+@import "_info.scss";
 
 html {
     width: 100%;
@@ -21,4 +23,5 @@ main {
     position: relative;
     width: 95%;
     height: 100vh;
+    overflow: scroll;
 }
