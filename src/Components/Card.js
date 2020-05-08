@@ -2,6 +2,8 @@ import React, {useEffect, useState} from "react";
 import firebase from "firebase";
 import OrderList from "./OrderList";
 import Pagination from "./Pagination";
+import {Link} from "react-router-dom";
+import AppProvider, {MyContext} from "./Context/AppProvider";
 
 const Card = () => {
     const [orders, setOrders] = useState([]);
@@ -37,7 +39,7 @@ const Card = () => {
         e.target.classList.add("active");
         setCurrentOrderPage(pageNumber);
     };
-
+  
     return (
         <>
             <OrderList
@@ -47,5 +49,6 @@ const Card = () => {
         </>
     );
 };
+
 
 export default Card;

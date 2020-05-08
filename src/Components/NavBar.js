@@ -17,7 +17,7 @@ let NavBar = () => {
                                     <rect width="20" height="22" fill="none" />
                                 </clipPath>
                             </defs>
-                            <g id="home" clip-path="url(#clip-path)">
+                            <g id="home" clipPath="url(#clip-path)">
                                 <path
                                     id="Path_435"
                                     data-name="Path 435"
@@ -25,9 +25,9 @@ let NavBar = () => {
                                     transform="translate(-2 -1)"
                                     fill="none"
                                     stroke="#7764e4"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
                                 />
                                 <path
                                     id="Path_436"
@@ -36,9 +36,9 @@ let NavBar = () => {
                                     transform="translate(-2 -1)"
                                     fill="none"
                                     stroke="#7764e4"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
                                 />
                             </g>
                         </svg>
@@ -56,7 +56,7 @@ let NavBar = () => {
                                     <rect width="18" height="22" fill="none" />
                                 </clipPath>
                             </defs>
-                            <g id="file-text" opacity="0.8" clip-path="url(#clip-path)">
+                            <g id="file-text" opacity="0.8" clipPath="url(#clip-path)">
                                 <path
                                     id="Path_441"
                                     data-name="Path 441"
@@ -64,9 +64,9 @@ let NavBar = () => {
                                     transform="translate(-3 -1)"
                                     fill="none"
                                     stroke="#fb6340"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
                                 />
                                 <path
                                     id="Path_442"
@@ -75,9 +75,9 @@ let NavBar = () => {
                                     transform="translate(-3 -1)"
                                     fill="none"
                                     stroke="#fb6340"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
                                 />
                                 <line
                                     id="Line_6"
@@ -86,9 +86,9 @@ let NavBar = () => {
                                     transform="translate(5 12)"
                                     fill="none"
                                     stroke="#fb6340"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
                                 />
                                 <line
                                     id="Line_7"
@@ -97,9 +97,9 @@ let NavBar = () => {
                                     transform="translate(5 16)"
                                     fill="none"
                                     stroke="#fb6340"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
                                 />
                                 <path
                                     id="Path_443"
@@ -108,9 +108,9 @@ let NavBar = () => {
                                     transform="translate(-3 -1)"
                                     fill="none"
                                     stroke="#fb6340"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
                                 />
                             </g>
                         </svg>

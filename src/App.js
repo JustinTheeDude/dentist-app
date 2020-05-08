@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+
 import Maininfo from "./Components/MainInfo";
 // import Calendar from "react-calendar";
 // import DeliveryDate from "./Components/DeliveryDate";
@@ -10,6 +11,7 @@ import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import CardInfo from "./Components/CardInfo";
 import Layout from "./Components/Layout";
 import Login from "./Components/Login";
+import UserSignUp from './Components/UserSignUp';
 //import Provider
 import AppProvider, {MyContext} from "./Components/Context/AppProvider";
 
@@ -27,9 +29,15 @@ class App extends Component {
                         <Route exact path="/">
                             <Login />
                         </Route>
+                        <Route exact path="/signup">
+                            <UserSignUp />
+                        </Route>
                         <Layout>
                             <Route path="/cards">
                                 <Card />
+                            </Route>
+                            <Route path="/form">
+                                <Maininfo />
                             </Route>
                             <Route path="/info">
                                 <MyContext.Consumer>
