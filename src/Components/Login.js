@@ -8,16 +8,19 @@ class Login extends Component {
         password: "",
     };
 
-    signIn = (email, password) => {
+    signIn = e => {
+        e.preventDefault()
+        const { email, password } = this.state
         firebase
             .auth()
             .signInWithEmailAndPassword(email, password)
             .then(function(res) {
-                console.log(res);
+                console.log("this is the log in res: ", res);
             })
             .catch(function(err) {
                 console.log(err);
             });
+
     };
 
     handleChange = e => {
@@ -28,7 +31,7 @@ class Login extends Component {
 
     render() {
         return (
-            <Form className="login" onSubmit={this.signIn(this.state.email, this.state.password)}>
+            <Form className="login" onSubmit={this.signIn}>
                 <FormGroup>
                     <Label for="Email">Email</Label>
                     <Input

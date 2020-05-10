@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 
 import Maininfo from "./Components/MainInfo";
 // import Calendar from "react-calendar";
@@ -6,14 +6,16 @@ import Maininfo from "./Components/MainInfo";
 import Card from "./Components/Card";
 import "bootstrap/dist/css/bootstrap.css";
 // import Header from './Components/Header';
-//
+
+import PrivateRoute from './PrivateRoute';
+
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import CardInfo from "./Components/CardInfo";
 import Layout from "./Components/Layout";
 import Login from "./Components/Login";
 import UserSignUp from './Components/UserSignUp';
 //import Provider
-import AppProvider, {MyContext} from "./Components/Context/AppProvider";
+import AppProvider, { MyContext } from "./Components/Context/AppProvider";
 
 class App extends Component {
     state = {
@@ -33,9 +35,7 @@ class App extends Component {
                             <UserSignUp />
                         </Route>
                         <Layout>
-                            <Route path="/cards">
-                                <Card />
-                            </Route>
+                            <PrivateRoute path="/cards" component={Card} />
                             <Route path="/form">
                                 <Maininfo />
                             </Route>
@@ -43,9 +43,6 @@ class App extends Component {
                                 <MyContext.Consumer>
                                     {context => <CardInfo value={context.state.chosenCard} />}
                                 </MyContext.Consumer>
-                            </Route>
-                            <Route path="/form">
-                                <Maininfo />
                             </Route>
                         </Layout>
                     </Switch>

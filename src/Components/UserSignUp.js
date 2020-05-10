@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import {Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import {Form, FormGroup, Label, Input, Button, FormText } from 'reactstrap';
 import firebase from './firebase';
+import { Redirect } from 'react-router-dom';
+// import signUp from './auth';
 
 export default class UserSignUp extends Component {
 
@@ -10,24 +12,32 @@ export default class UserSignUp extends Component {
     email: "",
     password: "",
     confirmPassword: "",
-    // errors: [],
+    errors: [],
   }
-
-  signUp = ( email, password) => {
+  
+  signUp = e => {
+    e.preventDefault();
+   const  { email, password } = this.state
     firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password) 
-      .then((res) => {
-        console.log(res)
+      .auth().createUserWithEmailAndPassword(email, password) 
+      .then( res => {
+        console.log("this is the res: ", res.user)
       })
       .catch((err) => {
-        console.log(err)
+        this.state.errors.push(err.message)
+        console.log(err.message)
       });
+    this.setState({
+      email: "",
+      password: "",
+      confirmPassword: "",
+    })
   }
+
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value,
-    })
+    });
   }
 
   render() {
@@ -37,11 +47,11 @@ export default class UserSignUp extends Component {
       email,
       password,
       confirmPassword,
-      // errors
+      errors
     } = this.state;
 
     return (
-      <Form className="login" onSubmit={this.signUp(this.state.email, this.state.password)}>
+      <Form className="login" onSubmit={this.signUp} >
         {/* <FormGroup>
           <Label for="firstName">First Name</Label>
           <Input
@@ -65,7 +75,7 @@ export default class UserSignUp extends Component {
           />
       </FormGroup> */}
       <FormGroup>
-          <Label for="Email">Email</Label>
+          <Label for="Email">Email/メール</Label>
           <Input
               type="email"
               name="email"
@@ -74,6 +84,7 @@ export default class UserSignUp extends Component {
               onChange={this.handleChange}
               value={email}
           />
+          {/* <FormText>{errors[0]}</FormText> */}
       </FormGroup>
       <FormGroup>
           <Label for="Password">Password</Label>
@@ -81,7 +92,7 @@ export default class UserSignUp extends Component {
               type="password"
               name="password"
               id="password"
-              placeholder="enter your password"
+              placeholder="パスワード"
               onChange={this.handleChange}
               value={password}
           />
@@ -92,12 +103,13 @@ export default class UserSignUp extends Component {
               type="password"
               name="confirmPassword"
               id="confirmPassword"
-              placeholder="Confirm password"
+              placeholder="パスワード確認"
               onChange={this.handleChange}
               value={confirmPassword}
           />
+          {/* <FormText>{errors[1]}</FormText> */}
       </FormGroup>
-      <Button>Submit</Button>
+      <Button >Submit</Button>
   </Form>
     )
   }
