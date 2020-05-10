@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import {Form, FormGroup, Label, Input, Button, FormText } from 'reactstrap';
 import firebase from './firebase';
-import { Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom'
 // import signUp from './auth';
 
-export default class UserSignUp extends Component {
+ class UserSignUp extends Component {
 
   state = {
     // firstName: "",
@@ -18,10 +18,14 @@ export default class UserSignUp extends Component {
   signUp = e => {
     e.preventDefault();
    const  { email, password } = this.state
+   let userId;
     firebase
       .auth().createUserWithEmailAndPassword(email, password) 
       .then( res => {
-        console.log("this is the res: ", res.user)
+        userId = res.user.uid;
+        if (userId) {
+          this.props.history.push('/cards')
+         } 
       })
       .catch((err) => {
         this.state.errors.push(err.message)
@@ -32,6 +36,7 @@ export default class UserSignUp extends Component {
       password: "",
       confirmPassword: "",
     })
+
   }
 
   handleChange = e => {
@@ -114,3 +119,5 @@ export default class UserSignUp extends Component {
     )
   }
 }
+
+export default withRouter(UserSignUp);

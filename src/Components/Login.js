@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import { withRouter } from 'react-router-dom';
 import {Form, FormGroup, Label, Input, Button} from "reactstrap";
 import firebase from "./firebase";
 
@@ -11,11 +12,16 @@ class Login extends Component {
     signIn = e => {
         e.preventDefault()
         const { email, password } = this.state
+        let userId;
         firebase
             .auth()
             .signInWithEmailAndPassword(email, password)
-            .then(function(res) {
+            .then(res =>  {
                 console.log("this is the log in res: ", res);
+                userId = res.user.uid;
+                if (userId) {
+                  this.props.history.push('/cards') 
+                }
             })
             .catch(function(err) {
                 console.log(err);
@@ -60,4 +66,4 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default withRouter(Login);

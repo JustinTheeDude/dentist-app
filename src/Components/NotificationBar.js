@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-
+import { Link } from 'react-router-dom';
 class NotificationBar extends Component {
     render() {
         return (
@@ -7,6 +7,7 @@ class NotificationBar extends Component {
                 <div className="search-notification">
                     <input className="search-bar" type="text" placeholder="Search" />
                 </div>
+                <Link to="/signout">Sign Out</Link>
             </div>
         );
     }
