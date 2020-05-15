@@ -18,7 +18,7 @@ const OrderList = ({orders, pagination}) => {
                     </div>
                     <div className="contact-cards">
                         {orders.map(order => {
-                            console.log(order);
+                            {/* console.log(order); */}
                             return (
                                 <ul className="card-info" key={order.id}>
                                     <li>{order.contactName}</li>

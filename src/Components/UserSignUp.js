@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import {Form, FormGroup, Label, Input, Button, FormText } from 'reactstrap';
+import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import firebase from './firebase';
-import { withRouter } from 'react-router-dom'
-// import signUp from './auth';
+import { withRouter, Link } from 'react-router-dom'
+
 
  class UserSignUp extends Component {
 
   state = {
-    // firstName: "",
-    // lastName: "",
+    displayName: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -16,22 +15,36 @@ import { withRouter } from 'react-router-dom'
   }
   
   signUp = e => {
-    e.preventDefault();
-   const  { email, password } = this.state
-   let userId;
-    firebase
-      .auth().createUserWithEmailAndPassword(email, password) 
-      .then( res => {
-        userId = res.user.uid;
-        if (userId) {
-          this.props.history.push('/cards')
-         } 
-      })
-      .catch((err) => {
-        this.state.errors.push(err.message)
-        console.log(err.message)
-      });
+   e.preventDefault();
+  let { email, password, confirmPassword, displayName } = this.state
+    if ( password === confirmPassword) {
+      firebase
+        .auth().createUserWithEmailAndPassword(email, password) 
+        .then( user => {
+          user = firebase.auth().currentUser
+          console.log("This is the user: ", user.email)
+          
+          if(user) {
+            user.updateProfile({
+              displayName: displayName
+            })
+            console.log("users name: ", displayName)
+            this.props.history.push('/cards')
+          }
+          // console.log("this is the user object after name input: ", user)
+          
+          
+        })
+        .catch((err) => {
+          this.state.errors.push(err.message)
+          console.log(err.message)
+        });
+    } else {
+      alert("passwords don't match")
+    }
+
     this.setState({
+      displayName: "",
       email: "",
       password: "",
       confirmPassword: "",
@@ -45,40 +58,31 @@ import { withRouter } from 'react-router-dom'
     });
   }
 
+  cancel = () => {
+    this.props.history.push('/');
+  }
   render() {
     const {
-      // firstName,
-      // lastName,
+      displayName,
       email,
       password,
       confirmPassword,
-      errors
+      // errors
     } = this.state;
 
     return (
       <Form className="login" onSubmit={this.signUp} >
-        {/* <FormGroup>
-          <Label for="firstName">First Name</Label>
+        <FormGroup>
+          <Label for="displayName">First Name</Label>
           <Input
               type="text"
-              name="firstName"
-              id="fistName"
-              placeholder="First Name"
+              name="displayName"
+              id="displayName"
+              placeholder="Your name"
               onChange={this.handleChange}
-              value={firstName}
+              value={displayName}
           />
       </FormGroup>
-      <FormGroup>
-          <Label for="lastName">Last Name</Label>
-          <Input
-              type="text"
-              name="lastName"
-              id="lastName"
-              placeholder="Last Name"
-              onChange={this.handleChange}
-              value={lastName}
-          />
-      </FormGroup> */}
       <FormGroup>
           <Label for="Email">Email/メール</Label>
           <Input
@@ -115,9 +119,18 @@ import { withRouter } from 'react-router-dom'
           {/* <FormText>{errors[1]}</FormText> */}
       </FormGroup>
       <Button >Submit</Button>
+      {/* margin property */}
+      &nbsp;&nbsp;&nbsp; 
+      <Button onClick={this.cancel}>Cancel</Button>
+      <p>
+        Already have a user account? <Link to="/">Click here</Link> to sign in!
+    </p>
   </Form>
+
+
     )
   }
 }
 
 export default withRouter(UserSignUp);
+
