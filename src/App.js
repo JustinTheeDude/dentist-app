@@ -7,7 +7,7 @@ import Card from "./Components/Card";
 import "bootstrap/dist/css/bootstrap.css";
 // import Header from './Components/Header';
 
-import PrivateRoute from './PrivateRoute';
+// import PrivateRoute from './PrivateRoute';
 
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import CardInfo from "./Components/CardInfo";
@@ -36,7 +36,7 @@ class App extends Component {
                             <UserSignUp />
                         </Route>
                         <Layout>
-                            <PrivateRoute path="/cards" component={Card} />
+                            <Route path="/cards" component={Card} />
                             <Route path="/form">
                                 <Maininfo />
                             </Route>

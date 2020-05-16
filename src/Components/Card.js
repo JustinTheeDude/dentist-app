@@ -2,8 +2,8 @@ import React, {useEffect, useState} from "react";
 import firebase from "firebase";
 import OrderList from "./OrderList";
 import Pagination from "./Pagination";
-import {Link} from "react-router-dom";
-import AppProvider, {MyContext} from "./Context/AppProvider";
+// import {Link} from "react-router-dom";
+// import AppProvider, {MyContext} from "./Context/AppProvider";
 
 const Card = () => {
     const [orders, setOrders] = useState([]);

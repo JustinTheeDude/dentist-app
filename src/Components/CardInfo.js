@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import firebase from "firebase";
-import {Redirect} from "react-router-dom";
+// import {Redirect} from "react-router-dom";
 import Mouth from "./mouth";
 import {MyContext} from "./Context/AppProvider";
 import {Button} from "reactstrap";

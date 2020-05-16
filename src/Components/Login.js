@@ -1,30 +1,30 @@
-import React, {Component} from "react";
-import { withRouter } from 'react-router-dom';
-import {Form, FormGroup, Label, Input, Button} from "reactstrap";
+import React, { Component } from "react";
+import { withRouter, Link } from 'react-router-dom';
+import {Form, FormGroup, Label, Input, Button, } from "reactstrap";
 import firebase from "./firebase";
 
 class Login extends Component {
     state = {
         email: "",
         password: "",
+        errors: []
     };
 
     signIn = e => {
         e.preventDefault()
-        const { email, password } = this.state
+        const { email, password} = this.state
         let userId;
         firebase
             .auth()
             .signInWithEmailAndPassword(email, password)
             .then(res =>  {
-                console.log("this is the log in res: ", res);
                 userId = res.user.uid;
                 if (userId) {
                   this.props.history.push('/cards') 
                 }
             })
-            .catch(function(err) {
-                console.log(err);
+            .catch( err  => {
+                console.log("this is the login catch error: ", err);
             });
 
     };
@@ -61,7 +61,11 @@ class Login extends Component {
                     />
                 </FormGroup>
                 <Button>Submit</Button>
+                <p>
+                 Don't have an account? <Link to="/signup">Click here</Link> to sign in!
+                </p>
             </Form>
+
         );
     }
 }

@@ -4,19 +4,25 @@ import firebase from 'firebase';
 class NotificationBar extends Component {
 
     render() {
-        const user = firebase.auth().currentUser;
-        // let name;
-        // if(user) {
-        //     name = user.displayName;
-        // }
+     let user = null
+     user = firebase.auth().currentUser
+      let name;
+      if(user) {
+         name = user.displayName
+      } 
+      console.log("username in notification: ", name)
+      //  firebase.auth().onAuthStateChanged( user => {
+      //      console.log("this is the user name in notification: ", user.displayName)
+      //  })
         return (
             <div className="notification-container">
                 <div className="search-notification">
                     <input className="search-bar" type="text" placeholder="Search" />
                 </div>
                 {
-                user ? 
-                <div> Welcome, {user.displayName} </div> 
+                
+                name? 
+                <div> Welcome, {name} </div> 
                 : null 
                 }
                 {
@@ -25,6 +31,7 @@ class NotificationBar extends Component {
                 :
                 <Link to="/signup">Sign up</Link>
                 }                
+                {/* <Link to="/signout">Sign Out</Link> */}
             </div>
 
         );

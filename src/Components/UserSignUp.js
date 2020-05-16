@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import firebase from './firebase';
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter, Link, Redirect } from 'react-router-dom'
 
 
  class UserSignUp extends Component {
@@ -26,31 +26,29 @@ import { withRouter, Link } from 'react-router-dom'
           
           if(user) {
             user.updateProfile({
-              displayName: displayName
+              displayName
             })
             console.log("users name: ", displayName)
             this.props.history.push('/cards')
           }
           // console.log("this is the user object after name input: ", user)
           
-          
         })
         .catch((err) => {
           this.state.errors.push(err.message)
           console.log(err.message)
         });
-    } else {
-      alert("passwords don't match")
-    }
+      } 
 
-    this.setState({
-      displayName: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-    })
-
+        this.setState({
+          displayName: "",
+          email: "",
+          password: "",
+          confirmPassword: "",
+        })
+  
   }
+
 
   handleChange = e => {
     this.setState({
@@ -59,7 +57,7 @@ import { withRouter, Link } from 'react-router-dom'
   }
 
   cancel = () => {
-    this.props.history.push('/');
+    this.props.history.push('/form');
   }
   render() {
     const {
@@ -125,9 +123,14 @@ import { withRouter, Link } from 'react-router-dom'
       <p>
         Already have a user account? <Link to="/">Click here</Link> to sign in!
     </p>
+    {
+      confirmPassword && confirmPassword !== password   ?
+      <div>パスワードが一致しません</div>
+      : 
+      null
+    }
   </Form>
-
-
+    
     )
   }
 }
