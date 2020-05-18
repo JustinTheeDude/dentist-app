@@ -1,11 +1,13 @@
 import React, { Component } from "react";
+import firebase from 'firebase';
+
 export const MyContext = React.createContext();
 
 class AppProvider extends Component {
     state = {
         chosenCard: "",
         lastCardId: "",
-        authenticatedUser: null
+        authenticatedUser: firebase.auth().currentUser || null,
     };
 
     render() {

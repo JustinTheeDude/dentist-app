@@ -7,7 +7,7 @@ import Card from "./Components/Card";
 import "bootstrap/dist/css/bootstrap.css";
 // import Header from './Components/Header';
 
-// import PrivateRoute from './PrivateRoute';
+import PrivateRoute from './PrivateRoute';
 
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import CardInfo from "./Components/CardInfo";
@@ -36,10 +36,14 @@ class App extends Component {
                             <UserSignUp />
                         </Route>
                         <Layout>
-                            <Route path="/cards" component={Card} />
-                            <Route path="/form">
+                            <PrivateRoute path="/cards" component={Card} />
+                            <PrivateRoute path="/form"  component={Maininfo} />
+                            {/* <PrivateRoute path="/info" component={ <MyContext.Consumer>
+                                    {context => <CardInfo value={context.state.chosenCard} />}
+                                </MyContext.Consumer>} /> */}
+                            {/* <Route path="/form">
                                 <Maininfo />
-                            </Route>
+                            </Route> */}
                             <Route path="/info">
                                 <MyContext.Consumer>
                                     {context => <CardInfo value={context.state.chosenCard} />}

@@ -1,24 +1,27 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { Consumer, MyContext } from './Components/Context/AppProvider';
+import { Consumer } from './Components/Context/AppProvider';
+import firebase from 'firebase';
+
 
 export default ({ component: Component, ...rest }) => {
+  const authUser = firebase.auth().currentUser;
   return (
-    <Consumer>
-        { MyContext => (
-          <Route 
-            {...rest}
-            rener={props => MyContext.authenticatedUser ? (
-              <Component {...props} />
-            ): (
-              <Redirect to={{
-                pathname: "/signin",
-                state: { from: props.location }
-              }} />
-            )
-            }
-          />
-        )}
-    </Consumer>
+
+      <Route 
+        {...rest}
+        render={props =>{
+          if(authUser) {
+            return <Component {...props} />
+          } else {
+            return  <Redirect to={{
+            pathname: "/",
+            state: { from: props.location }
+          }} />
+          }
+        }
+
+        }
+      />
   )
 }

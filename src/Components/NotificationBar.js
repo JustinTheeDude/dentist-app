@@ -20,7 +20,6 @@ class NotificationBar extends Component {
                     <input className="search-bar" type="text" placeholder="Search" />
                 </div>
                 {
-                
                 name? 
                 <div> Welcome, {name} </div> 
                 : null 
@@ -29,7 +28,7 @@ class NotificationBar extends Component {
                 user ?
                 <Link to="/signout">Sign Out</Link>
                 :
-                <Link to="/signup">Sign up</Link>
+                <Link to="/">Sign in</Link>
                 }                
                 {/* <Link to="/signout">Sign Out</Link> */}
             </div>
