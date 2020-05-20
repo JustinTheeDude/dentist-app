@@ -7,12 +7,13 @@ class Login extends Component {
     state = {
         email: "",
         password: "",
-        errors: []
+        error: []
     };
 
     signIn = e => {
         e.preventDefault()
-        const { email, password} = this.state
+       
+        const { email, password, errors } = this.state
         let userId;
         firebase
             .auth()
@@ -23,10 +24,11 @@ class Login extends Component {
                   this.props.history.push('/cards') 
                 }
             })
-            .catch( err  => {
-                console.log("this is the login catch error: ", err);
+            .catch( error  => {
+                console.log("this is the login catch error: ", errors);    
+                this.setState({ error })
+    
             });
-
     };
 
     handleChange = e => {
@@ -36,10 +38,12 @@ class Login extends Component {
     };
 
     render() {
+        const { error } = this.state
+    
         return (
             <Form className="login" onSubmit={this.signIn}>
                 <FormGroup>
-                    <Label for="Email">Email</Label>
+                    <Label for="Email">メールアドレス</Label>
                     <Input
                         type="email"
                         name="email"
@@ -48,21 +52,33 @@ class Login extends Component {
                         onChange={this.handleChange}
                         value={this.state.email}
                     />
+                    {
+                        error.code === "auth/user-not-found" ?
+                        <p style={{color: 'firebrick', fontSize: '15px' }}>メールアドレスが 間 違って います</p> 
+                        :
+                        null
+                    }   
                 </FormGroup>
                 <FormGroup>
-                    <Label for="Password">Password</Label>
+                    <Label for="Password">パスワード</Label>
                     <Input
                         type="password"
                         name="password"
                         id="password"
-                        placeholder="enter your password"
+                        placeholder="パスワード"
                         onChange={this.handleChange}
                         value={this.state.password}
                     />
+                    {
+                        error.code === "auth/wrong-password" ?
+                        <p style={{color: 'firebrick', fontSize: '15px' }}>パスワードが 間 違って います</p> 
+                        :
+                        null
+                    }
                 </FormGroup>
                 <Button>Submit</Button>
                 <p>
-                 Don't have an account? <Link to="/signup">Click here</Link> to sign in!
+                    アカウントを作成するにはここを<Link to="/signup">クリック</Link> 下さい！
                 </p>
             </Form>
 

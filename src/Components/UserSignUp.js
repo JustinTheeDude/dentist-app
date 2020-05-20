@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import firebase from './firebase';
-import { withRouter, Link, Redirect } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 
 
  class UserSignUp extends Component {
@@ -11,41 +11,75 @@ import { withRouter, Link, Redirect } from 'react-router-dom'
     email: "",
     password: "",
     confirmPassword: "",
-    errors: [],
+    nameError: [],
+    confirmPwError: [],
+    firebaseErr : [],
   }
   
   signUp = e => {
    e.preventDefault();
   let { email, password, confirmPassword, displayName } = this.state
-    if ( password === confirmPassword) {
-      firebase
-        .auth().createUserWithEmailAndPassword(email, password) 
-        .then( user => {
-          user = firebase.auth().currentUser
-          console.log("This is the user: ", user.email)
-          
-          if(user) {
-            user.updateProfile({
-              displayName
-            })
-            console.log("users name: ", displayName)
-            this.props.history.push('/cards')
-          }
-          // console.log("this is the user object after name input: ", user)
-          
-        })
-        .catch((err) => {
-          this.state.errors.push(err.message)
-          console.log(err.message)
-        });
-      } 
 
+    if (!displayName ) {
+        this.setState({ nameError: ["must have user name"] })
+    } 
+    else if (password !== confirmPassword) {
+      this.setState({ confirmPwError:  ["passwords don't match"] })
+    }
+    else {
+      firebase
+      .auth().createUserWithEmailAndPassword(email, password) 
+      .then( user => {
+        user = firebase.auth().currentUser
+        // console.log("This is the user: ", user.email)
+        
+        if(user) {
+          user.updateProfile({
+            displayName
+          })
+          console.log("users name: ", displayName)
+          this.props.history.push('/cards')
+        }
+        // console.log("this is the user object after name input: ", user)
         this.setState({
           displayName: "",
           email: "",
           password: "",
           confirmPassword: "",
         })
+      })
+      .catch((firebaseErr) => {
+        this.setState({ firebaseErr })
+      });
+    }
+    // if ( password === confirmPassword) {
+    //   firebase
+    //     .auth().createUserWithEmailAndPassword(email, password) 
+    //     .then( user => {
+    //       user = firebase.auth().currentUser
+    //       // console.log("This is the user: ", user.email)
+          
+    //       if(user) {
+    //         user.updateProfile({
+    //           displayName
+    //         })
+    //         console.log("users name: ", displayName)
+    //         this.props.history.push('/cards')
+    //       }
+    //       // console.log("this is the user object after name input: ", user)
+          
+    //     })
+    //     .catch((error) => {
+    //       this.setState({ error })
+    //     });
+    //   } 
+
+        // this.setState({
+        //   displayName: "",
+        //   email: "",
+        //   password: "",
+        //   confirmPassword: "",
+        // })
   
   }
 
@@ -65,9 +99,12 @@ import { withRouter, Link, Redirect } from 'react-router-dom'
       email,
       password,
       confirmPassword,
-      // errors
+      nameError,
+      confirmPwError,
+      firebaseErr,
     } = this.state;
-
+    console.log(nameError)
+    console.log(firebaseErr)
     return (
       <Form className="login" onSubmit={this.signUp} >
         <FormGroup>
@@ -80,6 +117,12 @@ import { withRouter, Link, Redirect } from 'react-router-dom'
               onChange={this.handleChange}
               value={displayName}
           />
+          {
+            nameError ?
+            <p style={{color: 'firebrick', fontSize: '15px' }}>{nameError}</p> 
+            :
+            null
+          }
       </FormGroup>
       <FormGroup>
           <Label for="Email">Email/メール</Label>
@@ -91,7 +134,12 @@ import { withRouter, Link, Redirect } from 'react-router-dom'
               onChange={this.handleChange}
               value={email}
           />
-          {/* <FormText>{errors[0]}</FormText> */}
+          {
+            firebaseErr.code === "auth/invalid-email" || firebaseErr.code ===  "auth/email-already-in-use" ?
+            <p style={{color: 'firebrick', fontSize: '15px' }}>メールアドレスが 間 違って います</p> 
+            :
+            null
+          }   
       </FormGroup>
       <FormGroup>
           <Label for="Password">Password</Label>
@@ -103,6 +151,12 @@ import { withRouter, Link, Redirect } from 'react-router-dom'
               onChange={this.handleChange}
               value={password}
           />
+          {
+            firebaseErr.code === "auth/weak-password" ?
+            <p style={{color: 'firebrick', fontSize: '15px' }}>パスワードが 間 違って います</p> 
+            :
+            null
+          }
       </FormGroup>
       <FormGroup>
           <Label for="confirmPassword">Confirm Password</Label>
@@ -114,7 +168,12 @@ import { withRouter, Link, Redirect } from 'react-router-dom'
               onChange={this.handleChange}
               value={confirmPassword}
           />
-          {/* <FormText>{errors[1]}</FormText> */}
+          {
+            confirmPwError ?
+            <p style={{color: 'firebrick', fontSize: '15px' }}>{confirmPwError}</p> 
+            :
+            null
+          }
       </FormGroup>
       <Button >Submit</Button>
       {/* margin property */}
