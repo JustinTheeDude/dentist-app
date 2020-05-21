@@ -12,7 +12,7 @@ class Login extends Component {
     };
 
     signIn = e => { 
-        const { email, password, errors } = this.state
+        const { email, password } = this.state
         let userId;
        
         e.preventDefault()
@@ -29,7 +29,7 @@ class Login extends Component {
                 }
             })
             .catch( error  => {
-                console.log("this is the login catch error: ", errors);    
+                // console.log("this is the login catch error: ", errors);    
                 this.setState({ error })
     
             });

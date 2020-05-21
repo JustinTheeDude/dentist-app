@@ -38,7 +38,6 @@ import { withRouter, Link } from 'react-router-dom'
           user.updateProfile({
             displayName
           })
-          console.log("users name: ", displayName)
           this.props.history.push('/cards')
         }
         // console.log("this is the user object after name input: ", user)
@@ -105,7 +104,6 @@ import { withRouter, Link } from 'react-router-dom'
               onChange={this.handleChange}
               value={email}
           />
-          
           {
             firebaseErr.code === "auth/invalid-email" &&
             <p style={{color: 'firebrick', fontSize: '15px' }}>メールアドレスを入力してください</p> 
