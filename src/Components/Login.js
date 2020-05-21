@@ -85,7 +85,7 @@ class Login extends Component {
                     <p style={{color: 'firebrick', fontSize: '13px' }}>メールアドレスとパスワードを入力してください</p> 
                 
                 }
-                <br></br>
+                <br />  
                 <Button>Submit</Button>
                 <p>
                     アカウントを作成するにはここを<Link to="/signup">クリック</Link> 下さい！
