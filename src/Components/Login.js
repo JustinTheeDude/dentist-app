@@ -8,30 +8,32 @@ class Login extends Component {
         email: "",
         password: "",
         noInput: false,
-        error: []
+        error: [],
+        user: "",
     };
 
-    signIn = e => { 
+    signIn = e => {
         const { email, password } = this.state
         let userId;
-       
+
         e.preventDefault()
         if( !email && !password) {
             this.setState({ noInput: true })
         }
         firebase
             .auth()
+            .setPersistence(firebase.auth.Auth.Persistence.SESSION)
             .signInWithEmailAndPassword(email, password)
             .then(res =>  {
                 userId = res.user.uid;
                 if (userId) {
-                  this.props.history.push('/cards') 
+                  this.props.history.push('/cards')
                 }
             })
             .catch( error  => {
-                // console.log("this is the login catch error: ", errors);    
+                // console.log("this is the login catch error: ", errors);
                 this.setState({ error })
-    
+
             });
     };
 
@@ -43,7 +45,7 @@ class Login extends Component {
 
     render() {
         const { error,noInput } = this.state
-    
+
         return (
             <Form className="login" onSubmit={this.signIn}>
                 <FormGroup>
@@ -58,7 +60,7 @@ class Login extends Component {
                     />
                     {
                         error.code === "auth/user-not-found" ?
-                        <p style={{color: 'firebrick', fontSize: '15px' }}>メールアドレスが 間 違って います</p> 
+                        <p style={{color: 'firebrick', fontSize: '15px' }}>メールアドレスが 間 違って います</p>
                         :
                         null
                     }
@@ -75,17 +77,17 @@ class Login extends Component {
                     />
                     {
                         error.code === "auth/wrong-password" ?
-                        <p style={{color: 'firebrick', fontSize: '15px' }}>パスワードが 間 違って います</p> 
+                        <p style={{color: 'firebrick', fontSize: '15px' }}>パスワードが 間 違って います</p>
                         :
                         null
                     }
-                </FormGroup>                
+                </FormGroup>
                 {
                     noInput &&
-                    <p style={{color: 'firebrick', fontSize: '13px' }}>メールアドレスとパスワードを入力してください</p> 
-                
+                    <p style={{color: 'firebrick', fontSize: '13px' }}>メールアドレスとパスワードを入力してください</p>
+
                 }
-                <br />  
+                <br />
                 <Button>Submit</Button>
                 <p>
                     アカウントを作成するにはここを<Link to="/signup">クリック</Link> 下さい！
