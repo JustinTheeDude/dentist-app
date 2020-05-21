@@ -17,14 +17,15 @@ import { withRouter, Link } from 'react-router-dom'
   }
   
   signUp = e => {
-   e.preventDefault();
-  let { email, password, confirmPassword, displayName } = this.state
+
+    e.preventDefault();
+    let { email, password, confirmPassword, displayName } = this.state
 
     if (!displayName ) {
-        this.setState({ nameError: ["must have user name"] })
+        this.setState({ nameError: ["名前を入力してください"] })
     } 
     else if (password !== confirmPassword) {
-      this.setState({ confirmPwError:  ["passwords don't match"] })
+      this.setState({ confirmPwError:  ["パスワードが一致しません"] })
     }
     else {
       firebase
@@ -52,34 +53,6 @@ import { withRouter, Link } from 'react-router-dom'
         this.setState({ firebaseErr })
       });
     }
-    // if ( password === confirmPassword) {
-    //   firebase
-    //     .auth().createUserWithEmailAndPassword(email, password) 
-    //     .then( user => {
-    //       user = firebase.auth().currentUser
-    //       // console.log("This is the user: ", user.email)
-          
-    //       if(user) {
-    //         user.updateProfile({
-    //           displayName
-    //         })
-    //         console.log("users name: ", displayName)
-    //         this.props.history.push('/cards')
-    //       }
-    //       // console.log("this is the user object after name input: ", user)
-          
-    //     })
-    //     .catch((error) => {
-    //       this.setState({ error })
-    //     });
-    //   } 
-
-        // this.setState({
-        //   displayName: "",
-        //   email: "",
-        //   password: "",
-        //   confirmPassword: "",
-        // })
   
   }
 
@@ -103,17 +76,15 @@ import { withRouter, Link } from 'react-router-dom'
       confirmPwError,
       firebaseErr,
     } = this.state;
-    console.log(nameError)
-    console.log(firebaseErr)
     return (
       <Form className="login" onSubmit={this.signUp} >
         <FormGroup>
-          <Label for="displayName">First Name</Label>
+          <Label for="displayName">名前</Label>
           <Input
               type="text"
               name="displayName"
               id="displayName"
-              placeholder="Your name"
+              placeholder="名前"
               onChange={this.handleChange}
               value={displayName}
           />
@@ -125,7 +96,7 @@ import { withRouter, Link } from 'react-router-dom'
           }
       </FormGroup>
       <FormGroup>
-          <Label for="Email">Email/メール</Label>
+          <Label for="Email">メール</Label>
           <Input
               type="email"
               name="email"
@@ -134,15 +105,19 @@ import { withRouter, Link } from 'react-router-dom'
               onChange={this.handleChange}
               value={email}
           />
+          
           {
-            firebaseErr.code === "auth/invalid-email" || firebaseErr.code ===  "auth/email-already-in-use" ?
-            <p style={{color: 'firebrick', fontSize: '15px' }}>メールアドレスが 間 違って います</p> 
-            :
-            null
+            firebaseErr.code === "auth/invalid-email" &&
+            <p style={{color: 'firebrick', fontSize: '15px' }}>メールアドレスを入力してください</p> 
           }   
+          {
+            firebaseErr.code ===  "auth/email-already-in-use" &&
+            <p style={{color: 'firebrick', fontSize: '15px' }}>このメールアドレスは使用されています</p> 
+          }
       </FormGroup>
       <FormGroup>
-          <Label for="Password">Password</Label>
+          <p style={{fontSize: '10px'}}>パスワードは6文字以上にする必要があります</p>
+          <Label for="Password">パスワード</Label>
           <Input
               type="password"
               name="password"
@@ -159,7 +134,7 @@ import { withRouter, Link } from 'react-router-dom'
           }
       </FormGroup>
       <FormGroup>
-          <Label for="confirmPassword">Confirm Password</Label>
+          <Label for="confirmPassword">パスワード確認</Label>
           <Input
               type="password"
               name="confirmPassword"
@@ -180,7 +155,7 @@ import { withRouter, Link } from 'react-router-dom'
       &nbsp;&nbsp;&nbsp; 
       <Button onClick={this.cancel}>Cancel</Button>
       <p>
-        Already have a user account? <Link to="/">Click here</Link> to sign in!
+      会員の方はこちら <Link to="/">クリック</Link> 下さい！
     </p>
     {
       confirmPassword && confirmPassword !== password   ?
