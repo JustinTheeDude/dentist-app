@@ -1,22 +1,37 @@
-import React, {Component} from "react";
-import {Form, FormGroup, Label, Input, Button} from "reactstrap";
+import React, { Component } from "react";
+import { withRouter, Link } from 'react-router-dom';
+import { Form, FormGroup, Label, Input, Button, } from "reactstrap";
 import firebase from "./firebase";
 
 class Login extends Component {
     state = {
         email: "",
         password: "",
+        noInput: false,
+        error: []
     };
 
-    signIn = (email, password) => {
+    signIn = e => { 
+        const { email, password } = this.state
+        let userId;
+       
+        e.preventDefault()
+        if( !email && !password) {
+            this.setState({ noInput: true })
+        }
         firebase
             .auth()
             .signInWithEmailAndPassword(email, password)
-            .then(function(res) {
-                console.log(res);
+            .then(res =>  {
+                userId = res.user.uid;
+                if (userId) {
+                  this.props.history.push('/cards') 
+                }
             })
-            .catch(function(err) {
-                console.log(err);
+            .catch( error  => {
+                // console.log("this is the login catch error: ", errors);    
+                this.setState({ error })
+    
             });
     };
 
@@ -27,10 +42,12 @@ class Login extends Component {
     };
 
     render() {
+        const { error,noInput } = this.state
+    
         return (
-            <Form className="login" onSubmit={this.signIn(this.state.email, this.state.password)}>
+            <Form className="login" onSubmit={this.signIn}>
                 <FormGroup>
-                    <Label for="Email">Email</Label>
+                    <Label for="Email">メールアドレス</Label>
                     <Input
                         type="email"
                         name="email"
@@ -39,22 +56,45 @@ class Login extends Component {
                         onChange={this.handleChange}
                         value={this.state.email}
                     />
+                    {
+                        error.code === "auth/user-not-found" ?
+                        <p style={{color: 'firebrick', fontSize: '15px' }}>メールアドレスが 間 違って います</p> 
+                        :
+                        null
+                    }
                 </FormGroup>
                 <FormGroup>
-                    <Label for="Password">Password</Label>
+                    <Label for="Password">パスワード</Label>
                     <Input
                         type="password"
                         name="password"
                         id="password"
-                        placeholder="enter your password"
+                        placeholder="パスワード"
                         onChange={this.handleChange}
                         value={this.state.password}
                     />
-                </FormGroup>
+                    {
+                        error.code === "auth/wrong-password" ?
+                        <p style={{color: 'firebrick', fontSize: '15px' }}>パスワードが 間 違って います</p> 
+                        :
+                        null
+                    }
+                </FormGroup>                
+                {
+                    noInput &&
+                    <p style={{color: 'firebrick', fontSize: '13px' }}>メールアドレスとパスワードを入力してください</p> 
+                
+                }
+                <br />  
                 <Button>Submit</Button>
+                <p>
+                    アカウントを作成するにはここを<Link to="/signup">クリック</Link> 下さい！
+                </p>
+
             </Form>
+
         );
     }
 }
 
-export default Login;
+export default withRouter(Login);

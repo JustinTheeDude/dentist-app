@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 
 import Maininfo from "./Components/MainInfo";
 // import Calendar from "react-calendar";
@@ -6,14 +6,17 @@ import Maininfo from "./Components/MainInfo";
 import Card from "./Components/Card";
 import "bootstrap/dist/css/bootstrap.css";
 // import Header from './Components/Header';
-//
+
+import PrivateRoute from './PrivateRoute';
+
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import CardInfo from "./Components/CardInfo";
 import Layout from "./Components/Layout";
 import Login from "./Components/Login";
 import UserSignUp from './Components/UserSignUp';
+import Logout from './Components/Logout';
 //import Provider
-import AppProvider, {MyContext} from "./Components/Context/AppProvider";
+import AppProvider, { MyContext } from "./Components/Context/AppProvider";
 
 class App extends Component {
     state = {
@@ -33,20 +36,20 @@ class App extends Component {
                             <UserSignUp />
                         </Route>
                         <Layout>
-                            <Route path="/cards">
-                                <Card />
-                            </Route>
-                            <Route path="/form">
+                            <PrivateRoute path="/cards" component={Card} />
+                            <PrivateRoute path="/form"  component={Maininfo} />
+                            {/* <PrivateRoute path="/info" component={ <MyContext.Consumer>
+                                    {context => <CardInfo value={context.state.chosenCard} />}
+                                </MyContext.Consumer>} /> */}
+                            {/* <Route path="/form">
                                 <Maininfo />
-                            </Route>
+                            </Route> */}
                             <Route path="/info">
                                 <MyContext.Consumer>
                                     {context => <CardInfo value={context.state.chosenCard} />}
                                 </MyContext.Consumer>
                             </Route>
-                            <Route path="/form">
-                                <Maininfo />
-                            </Route>
+                            <Route path="/signout"> <Logout /> </Route>
                         </Layout>
                     </Switch>
                 </Router>

@@ -1,4 +1,5 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
+
 
 export const MyContext = React.createContext();
 
@@ -9,6 +10,7 @@ class AppProvider extends Component {
     };
 
     render() {
+
         return (
             <MyContext.Provider
                 value={{
@@ -22,6 +24,8 @@ class AppProvider extends Component {
             </MyContext.Provider>
         );
     }
+
 }
+export const Consumer = MyContext.Consumer
 
 export default AppProvider;
