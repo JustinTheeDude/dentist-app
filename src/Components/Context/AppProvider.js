@@ -20,15 +20,12 @@ class AppProvider extends Component {
         itemsRef.on("value", snap => {
             let items = snap.val();
             for (let item in items) {
-                console.log(items[item]);
                 self.setState({
                     id: item,
                     contactName: items[item].contactName,
                     address: items[item].address,
                 });
             }
-
-            console.log(this.state);
         });
     }
 

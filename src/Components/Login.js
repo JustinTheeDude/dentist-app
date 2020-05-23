@@ -20,9 +20,9 @@ class Login extends Component {
         if( !email && !password) {
             this.setState({ noInput: true })
         }
+
         firebase
             .auth()
-            .setPersistence(firebase.auth.Auth.Persistence.SESSION)
             .signInWithEmailAndPassword(email, password)
             .then(res =>  {
                 userId = res.user.uid;
@@ -33,7 +33,6 @@ class Login extends Component {
             .catch( error  => {
                 // console.log("this is the login catch error: ", errors);
                 this.setState({ error })
-
             });
     };
 
