@@ -8,15 +8,23 @@
     "@testing-library/user-event": "^7.1.2",
     "bootstrap": "^4.4.1",
     "create-react-class": "^15.6.3",
+    "global": "^4.4.0",
     "jquery": "^1.9.1",
+    "node-sass": "^4.14.1",
     "react": "^16.12.0",
     "react-bootstrap-date-picker": "^5.1.0",
     "react-calendar": "^2.19.2",
     "react-dom": "^16.12.0",
+<<<<<<< HEAD
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.0",
+=======
+    "react-router-pagination": "^2.0.7",
+    "react-scripts": "^3.4.0",
+>>>>>>> e7112c7998e751572ae42371a2727fa09d3ddd24
     "reactstrap": "^8.2.0",
-    "serialize-javascript": "^2.1.1"
+    "serialize-javascript": "^2.1.1",
+    "serve": "^11.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -40,6 +48,7 @@
     ]
   },
   "devDependencies": {
+    "@svgr/cli": "^5.4.0",
     "firebase": "^7.7.0",
     "rc-calendar": "^9.15.9",
     "react-router-dom": "^5.1.2",
