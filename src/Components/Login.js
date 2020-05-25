@@ -23,17 +23,20 @@ class Login extends Component {
 
         firebase
             .auth()
-            .signInWithEmailAndPassword(email, password)
-            .then(res =>  {
-                userId = res.user.uid;
-                if (userId) {
-                  this.props.history.push('/cards')
-                }
+            .setPersistence(firebase.auth.Auth.Persistence.SESSION)
+            .then(() => {
+                firebase.auth().signInWithEmailAndPassword(email, password)
+                    .then(res =>  {
+                        userId = res.user.uid;
+                        if (userId) {
+                            this.props.history.push('/cards')
+                        }
+                    })
+                    .catch( error  => {
+                        // console.log("this is the login catch error: ", errors);
+                        this.setState({ error })
+                    });
             })
-            .catch( error  => {
-                // console.log("this is the login catch error: ", errors);
-                this.setState({ error })
-            });
     };
 
     handleChange = e => {
