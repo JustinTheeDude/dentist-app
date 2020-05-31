@@ -17,6 +17,7 @@ import UserSignUp from './Components/UserSignUp';
 import Logout from './Components/Logout';
 //import Provider
 import AppProvider, { MyContext } from "./Components/Context/AppProvider";
+import {AuthProvider} from "./Components/Context/Auth";
 
 class App extends Component {
     state = {
@@ -27,32 +28,34 @@ class App extends Component {
     render() {
         return (
             <AppProvider>
-                <Router>
-                    <Switch>
-                        <Route exact path="/">
-                            <Login />
-                        </Route>
-                        <Route exact path="/signup">
-                            <UserSignUp />
-                        </Route>
-                        <Layout>
-                            <PrivateRoute path="/cards" component={Card} />
-                            <PrivateRoute path="/form"  component={Maininfo} />
-                            {/* <PrivateRoute path="/info" component={ <MyContext.Consumer>
-                                    {context => <CardInfo value={context.state.chosenCard} />}
-                                </MyContext.Consumer>} /> */}
-                            {/* <Route path="/form">
-                                <Maininfo />
-                            </Route> */}
-                            <Route path="/info">
-                                <MyContext.Consumer>
-                                    {context => <CardInfo value={context.state.chosenCard} />}
-                                </MyContext.Consumer>
+                <AuthProvider>
+                    <Router>
+                        <Switch>
+                            <Route exact path="/">
+                                <Login />
                             </Route>
-                            <Route path="/signout"> <Logout /> </Route>
-                        </Layout>
-                    </Switch>
-                </Router>
+                            <Route exact path="/signup">
+                                <UserSignUp />
+                            </Route>
+                            <Layout>
+                                <PrivateRoute path="/cards" component={Card} />
+                                <PrivateRoute path="/form"  component={Maininfo} />
+                                {/* <PrivateRoute path="/info" component={ <MyContext.Consumer>
+                                    {context => <CardInfo value={context.state.chosenCard} />}
+                                    </MyContext.Consumer>} /> */}
+                                    {/* <Route path="/form">
+                                <Maininfo />
+                                </Route> */}
+                                <Route path="/info">
+                                    <MyContext.Consumer>
+                                        {context => <CardInfo value={context.state.chosenCard} />}
+                                    </MyContext.Consumer>
+                                </Route>
+                                <Route path="/signout"> <Logout /> </Route>
+                            </Layout>
+                        </Switch>
+                    </Router>
+                </AuthProvider>
             </AppProvider>
         );
     }
