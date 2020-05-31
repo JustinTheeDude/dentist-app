@@ -18,6 +18,26 @@ class CardInfo extends Component {
         zip: "",
     };
 
+    completeOrder = (id) => {
+        const itemsRef = firebase.database().ref("Form").child(id);
+        console.log(itemsRef);
+        itemsRef.once("value", (snapshot) => {
+            snapshot.forEach((child) => {
+                if(child.key === "complete") {
+                    if(child.node_.value_ === true) {
+                        itemsRef.update({"complete": false})
+                        this.isComplete = "Not Complete";
+                    } else {
+                        itemsRef.update({"complete": true})
+                        this.isComplete = "Complete";
+                    }
+                }
+            });
+        });
+    }
+
+
+
     componentDidMount() {
         if (this.props.value !== "") {
             var self = this;
@@ -42,6 +62,8 @@ class CardInfo extends Component {
                 }
             });
         }
+
+        this.completeOrder(this.props.value);
     }
 
     // {this.props.value ? (
@@ -52,25 +74,6 @@ class CardInfo extends Component {
     //
 
     isComplete = "";
-
-    completeOrder = (id) => {
-        const itemsRef = firebase.database().ref("Form").child(id);
-        console.log(itemsRef);
-        itemsRef.once("value", (snapshot) => {
-            snapshot.forEach((child) => {
-                if(child.key === "complete") {
-                    if(child.node_.value_ === true) {
-                        itemsRef.update({"complete": false})
-                        this.isComplete = "Not Complete";
-                    } else {
-                        itemsRef.update({"complete": true})
-                        this.isComplete = "Complete";
-                    }
-                }
-            });
-        });
-    }
-
 
     render() {
         return (
