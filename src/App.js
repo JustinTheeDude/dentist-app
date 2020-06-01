@@ -15,6 +15,8 @@ import Layout from "./Components/Layout";
 import Login from "./Components/Login";
 import UserSignUp from './Components/UserSignUp';
 import Logout from './Components/Logout';
+import Canvas from './Components/Canvas'
+
 //import Provider
 import AppProvider, { MyContext } from "./Components/Context/AppProvider";
 import {AuthProvider} from "./Components/Context/Auth";
@@ -51,7 +53,8 @@ class App extends Component {
                                         {context => <CardInfo value={context.state.chosenCard} />}
                                     </MyContext.Consumer>
                                 </Route>
-                                <Route path="/signout"> <Logout /> </Route>
+                                <Route path="/signout"> <Logout /></Route>
+                                <Route path="/canvas"> <Canvas /></Route>
                             </Layout>
                         </Switch>
                     </Router>
