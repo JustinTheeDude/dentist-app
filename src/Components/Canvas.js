@@ -2,11 +2,13 @@ import React, { Component } from "react";
 
 
 import CanvasDraw from "react-canvas-draw";
-
+import mouth from '../assets/mouth.png';
 
 class Canvas extends Component {
   state = {
     color: "black",
+    width: 300,
+    height: 300,
     brushRadius: 2,
     lazyRadius: 2
   };
@@ -45,7 +47,9 @@ class Canvas extends Component {
           brushColor={this.state.color}
           brushRadius={this.state.brushRadius}
           lazyRadius={this.state.lazyRadius}
-          imgSrc="../assets/mouth.png"  
+          height={this.state.height}
+          width={this.state.width}
+          imgSrc={mouth}
           />
       </div>
     );
