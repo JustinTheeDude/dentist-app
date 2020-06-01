@@ -54,7 +54,7 @@ class App extends Component {
                                     </MyContext.Consumer>
                                 </Route>
                                 <Route path="/signout"> <Logout /></Route>
-                                <Route path="/canvas"> <Canvas /></Route>
+                                {/* <Route path="/canvas"> <Canvas /></Route> */}
                             </Layout>
                         </Switch>
                     </Router>

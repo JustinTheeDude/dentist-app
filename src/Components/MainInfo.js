@@ -2,8 +2,11 @@ import React, {Component} from "react";
 import {Col, Row, Form, FormGroup, Label, Input, Button} from "reactstrap";
 import OtherOption from "./OtherOption";
 import firebase from "./firebase.js";
+
+// Component import
 import Calendar from "react-calendar";
 import DeliveryDate from "./DeliveryDate";
+import Canvas from './Canvas';
 
 class MainInfo extends Component {
     state = {
@@ -173,6 +176,7 @@ class MainInfo extends Component {
                         day={this.state.date.toString().slice(0, 16)}
                         delivery={this.state.deliveryDate.toString().slice(0, 16)}
                     />
+                    <Canvas />
                 </div>
                 <Button>Submit</Button>
             </Form>
