@@ -6,6 +6,7 @@ import Maininfo from "./Components/MainInfo";
 import Card from "./Components/Card";
 import "bootstrap/dist/css/bootstrap.css";
 // import Header from './Components/Header';
+import "./styles/main.scss";
 
 import PrivateRoute from './PrivateRoute';
 
