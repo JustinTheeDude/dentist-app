@@ -76,7 +76,7 @@ import { withRouter, Link } from 'react-router-dom'
       firebaseErr,
     } = this.state;
     return (
-      <Form className="login" onSubmit={this.signUp} >
+      <Form className="signup" onSubmit={this.signUp} >
         <FormGroup>
           <Label for="displayName">名前</Label>
           <Input
