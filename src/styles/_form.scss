@@ -2,4 +2,85 @@
     max-width: 1200px;
     padding: 30px;
     margin: auto;
+    label { 
+        display: block;
+        padding: .5rem 0 .25rem;
+        font-size: 20px;
+    }
+    input, textarea, select {
+        position: relative;
+        display: inline-block;
+        width: 500px;
+        border: 2px solid dodgerblue;
+        padding: .5rem;
+        border-radius: 5px;
+    }
+    h3 {
+        padding-bottom: .75rem;
+        font-size: xx-large;
+    }
+}
+
+.doctor-name {
+    position: relative;
+    top: 50px;
+    right: 70px;
+}
+.hospital-address {
+    position: relative;
+    left: 500px;
+    top: -53px;
+}
+.zip {
+    position: relative;
+    left: 500px;
+    top: -80px;
+}
+
+
+.patient-name-input {
+    position: relative;
+    top: 50px;
+    right: 70px;
+}
+.age {
+    position: relative;
+    left: 500px;
+    top: -62px;
+}
+
+.main-complaint {
+    position: relative;
+    left: 500px;
+    top: -280px;
+}
+.main-complaint-label{
+    position: relative;
+    top: -50px;
+    left: 50px;
+}
+.delivery-time {
+    position: relative;
+    top: -100px;
+}
+
+.calendar {
+    position: relative;
+    // left: 600px;
+
+}
+
+.canvas {
+    position: relative;
+    left: 500px;
+    top: -420px;
+
+}
+
+#btn {
+    position: relative;
+    top: -380px;
+    border: 2px solid darkblue;
+    background-color:dodgerblue;
+    
 }

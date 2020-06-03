@@ -59,10 +59,11 @@ class MainInfo extends Component {
         return (
             <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
                 <h3 className="hospital-info-header">医院情報</h3>
-                <FormGroup row className="doctor-name">
-                    <Label>担当名</Label>
+                <FormGroup row >
+                    <Label className="doc-name-label">担当名</Label>
                     <Col sm={10}>
                         <Input
+                            className="doctor-name"
                             type="text"
                             name="doctorName"
                             placeholder="名前"
@@ -100,9 +101,10 @@ class MainInfo extends Component {
                 </Row>
                 <h3 className="patient-info-header">患者情報</h3>
                 <FormGroup className="patient-name" row>
-                    <Label>患者名</Label>
+                    <Label className="patient-name-label">患者名</Label>
                     <Col sm={10}>
                         <Input
+                            className="patient-name-input" 
                             type="text"
                             name="info"
                             placeholder="名前"
@@ -113,7 +115,7 @@ class MainInfo extends Component {
                     </Col>
                 </FormGroup>
 
-                <FormGroup className="age-label">
+                <FormGroup className="age">
                     <Label for="exampleNumber" >年令</Label>
                     <Input
                     onChange={this.handleChange} 
@@ -148,8 +150,8 @@ class MainInfo extends Component {
                         <option>自費</option>
                     </Input>
                 </FormGroup>
-                <FormGroup row className="main-complaint-label">
-                    <Label>主訴</Label>
+                <FormGroup row className="main-complaint">
+                    <Label className="main-complaint-label">主訴</Label>
                     <Col sm={10}>
                         <Input type="textarea" name="text" placeholder="主訴" required />
                     </Col>
@@ -176,9 +178,11 @@ class MainInfo extends Component {
                         day={this.state.date.toString().slice(0, 16)}
                         delivery={this.state.deliveryDate.toString().slice(0, 16)}
                     />
-                    <Canvas />
+                    <div className="canvas">
+                        <Canvas />
+                    </div>
                 </div>
-                <Button>Submit</Button>
+                <Button id="btn">Submit</Button>
             </Form>
         );
     }
