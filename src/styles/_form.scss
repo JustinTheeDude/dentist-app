@@ -6,7 +6,7 @@
         display: block;
         padding: .5rem 0 .25rem;
     }
-    input, select {
+    input, select,textarea {
         position: relative;
         display: inline-block;
         width: 500px;
@@ -17,11 +17,6 @@
         padding-bottom: .15rem;
         font-size: xx-large;
         text-align: center;
-    }
-    textarea {
-        width: 600px;
-        border: 2px solid dodgerblue;
-        // border-radius: 5px;
     }
 }
 
@@ -59,6 +54,7 @@
 .age {
     position: relative;
     left: 540px;
+
     top: -102px;
 }
 .gender-select-menu,.product-specs-menu,.patient-payment-select{
@@ -67,7 +63,10 @@
     right: 10px;
 }
 
-
+.other-option {
+    position: relative;
+    bottom: -10px;
+}
 
 .main-complaint { 
     position: relative;
@@ -93,8 +92,6 @@
 .calendar {
     position: relative;
     top: -95px;
-    // left: 600px;
-
 }
 
 .canvas {

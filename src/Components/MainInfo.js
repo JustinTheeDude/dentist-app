@@ -33,8 +33,8 @@ class MainInfo extends Component {
     handleChange = e => {
         this.setState({
             [e.target.name]: e.target.value,
-        });
-
+            value: e.target.value
+        }); 
     };
 
     handleSubmit = e => {
@@ -55,8 +55,9 @@ class MainInfo extends Component {
         itemsRef.push(item);
     };
 
-
+    
     render() {
+        
         return (
             <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
                 <h3 className="hospital-info-header">医院情報</h3>
@@ -142,7 +143,7 @@ class MainInfo extends Component {
                         <option>治療用義歯</option>
                         <option id="option-other">他</option>
                     </Input>
-                    {this.state.value === "他" && <OtherOption />}
+                    {this.state.value === "他" && <div className="other-option"><OtherOption /> </div>}
                 </FormGroup>
                 <FormGroup className="patient-payment-select">
                     <Label for="exampleSelect">支払い</Label>
