@@ -5,22 +5,30 @@
     label { 
         display: block;
         padding: .5rem 0 .25rem;
-        font-size: 20px;
     }
-    input, textarea, select {
+    input, select {
         position: relative;
         display: inline-block;
         width: 500px;
         border: 2px solid dodgerblue;
-        padding: .5rem;
         border-radius: 5px;
     }
     h3 {
-        padding-bottom: .75rem;
+        padding-bottom: .15rem;
         font-size: xx-large;
+        text-align: center;
+    }
+    textarea {
+        width: 600px;
+        border: 2px solid dodgerblue;
+        // border-radius: 5px;
     }
 }
 
+.patient-info-header {
+    position: relative;
+    top: -50px;
+}
 .doctor-name {
     position: relative;
     top: 50px;
@@ -37,6 +45,11 @@
     top: -80px;
 }
 
+.patient-name {
+    position: relative;
+    top: -50px;
+}
+
 
 .patient-name-input {
     position: relative;
@@ -45,15 +58,23 @@
 }
 .age {
     position: relative;
-    left: 500px;
-    top: -62px;
+    left: 540px;
+    top: -102px;
+}
+.gender-select-menu,.product-specs-menu,.patient-payment-select{
+    position: relative;
+    top: -100px;
+    right: 10px;
 }
 
-.main-complaint {
+
+
+.main-complaint { 
     position: relative;
     left: 500px;
-    top: -280px;
+    top: -350px;
 }
+
 .main-complaint-label{
     position: relative;
     top: -50px;
@@ -61,11 +82,17 @@
 }
 .delivery-time {
     position: relative;
-    top: -100px;
+    top: -210px;
+    right: 10px;
 }
 
+.order-heading {
+    position: relative;
+    bottom: 160px;
+}
 .calendar {
     position: relative;
+    top: -95px;
     // left: 600px;
 
 }
@@ -79,6 +106,7 @@
 
 #btn {
     position: relative;
+    left: 500px;
     top: -380px;
     border: 2px solid darkblue;
     background-color:dodgerblue;

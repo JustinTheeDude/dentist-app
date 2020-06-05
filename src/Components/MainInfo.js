@@ -34,6 +34,7 @@ class MainInfo extends Component {
         this.setState({
             [e.target.name]: e.target.value,
         });
+
     };
 
     handleSubmit = e => {
@@ -133,7 +134,7 @@ class MainInfo extends Component {
                         <option>女</option>
                     </Input>
                 </FormGroup>
-                <FormGroup  id="product-specs-menu">
+                <FormGroup  className="product-specs-menu">
                     <Label>製品仕様</Label>
                     <Input type="select" name="select" onChange={this.handleChange} required>
                         <option>レジン床</option>
@@ -166,8 +167,8 @@ class MainInfo extends Component {
                      placeholder="time placeholder"
                     />
                 </FormGroup>
-                <div className="calendar">
                     <h3 className="order-heading">発注日/納期日</h3>
+                        <div className="calendar">
                     <Calendar
                         calendarType="US"
                         // activeStartDate={today => console.log(today)}
