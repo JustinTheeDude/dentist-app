@@ -85,6 +85,7 @@ class MainInfo extends Component {
                         value={this.state.address}
                         required
                     />
+                    {/* { !this.state.address && style={{ border: "2px solid firebrick"}} } */}
                 </FormGroup>
                 <Row form>
                     <Col md={6}>
