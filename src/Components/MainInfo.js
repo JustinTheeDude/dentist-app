@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Col, Row, Form, FormGroup, Label, Input, Button} from "reactstrap";
+import { Form, FormGroup, Label, Input, Button} from "reactstrap";
 import OtherOption from "./OtherOption";
 import firebase from "./firebase.js";
 
@@ -61,20 +61,17 @@ class MainInfo extends Component {
         return (
             <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
                 <h3 className="hospital-info-header">医院情報</h3>
-                <FormGroup row >
-                    <Label className="doc-name-label">担当名</Label>
-                    <Col sm={10}>
+                <FormGroup className="doc-name form-box">
+                    <Label >担当名</Label>
                         <Input
-                            className="doctor-name"
                             type="text"
                             name="doctorName"
                             placeholder="名前"
                             onChange={this.handleChange}
                             value={this.state.doctorName}
                         />
-                    </Col>
                 </FormGroup>
-                <FormGroup className="hospital-address">
+                <FormGroup className="hospital-address form-box">
                     <Label for="exampleAddress">医院名住所</Label>
                     <Input
                         type="text"
@@ -87,25 +84,20 @@ class MainInfo extends Component {
                     />
                     {/* { !this.state.address && style={{ border: "2px solid firebrick"}} } */}
                 </FormGroup>
-                <Row form>
-                    <Col md={6}>
-                        <FormGroup className="zip">
-                            <Label for="exampleZip">〒</Label>
-                            <Input
-                                type="text"
-                                name="zip"
-                                id="exampleZip"
-                                onChange={this.handleChange}
-                                value={this.state.zip}
-                                required
-                            />
-                        </FormGroup>
-                    </Col>
-                </Row>
+                <FormGroup className="zip form-box">
+                    <Label for="exampleZip">〒</Label>
+                    <Input
+                        type="text"
+                        name="zip"
+                        id="exampleZip"
+                        onChange={this.handleChange}
+                        value={this.state.zip}
+                        required
+                    />
+                </FormGroup>
                 <h3 className="patient-info-header">患者情報</h3>
-                <FormGroup className="patient-name" row>
+                <FormGroup className="patient-name form-box">
                     <Label className="patient-name-label">患者名</Label>
-                    <Col sm={10}>
                         <Input
                             className="patient-name-input" 
                             type="text"
@@ -115,10 +107,8 @@ class MainInfo extends Component {
                             value={this.state.info}
                             required
                         />
-                    </Col>
                 </FormGroup>
-
-                <FormGroup className="age">
+                <FormGroup className="age form-box">
                     <Label for="exampleNumber" >年令</Label>
                     <Input
                     onChange={this.handleChange} 
@@ -129,14 +119,14 @@ class MainInfo extends Component {
                     placeholder="才"
                     />
                 </FormGroup>
-                <FormGroup className="gender-select-menu">
+                <FormGroup className="gender-select-menu form-box">
                     <Label>性別</Label>
                     <Input type="select" name="select" id="gender-select-menu" required>
                         <option>男</option>
                         <option>女</option>
                     </Input>
                 </FormGroup>
-                <FormGroup  className="product-specs-menu">
+                <FormGroup  className="product-specs-menu form-box">
                     <Label>製品仕様</Label>
                     <Input type="select" name="select" onChange={this.handleChange} required>
                         <option>レジン床</option>
@@ -146,21 +136,18 @@ class MainInfo extends Component {
                     </Input>
                     {this.state.value === "他" && <div className="other-option"><OtherOption /> </div>}
                 </FormGroup>
-                <FormGroup className="patient-payment-select">
+                <FormGroup className="patient-payment-select form-box">
                     <Label for="exampleSelect">支払い</Label>
                     <Input type="select" name="select" id="exampleSelect" required>
                         <option>保険</option>
                         <option>自費</option>
                     </Input>
                 </FormGroup>
-                <FormGroup row className="main-complaint">
+                <FormGroup className="main-complaint form-box">
                     <Label className="main-complaint-label">主訴</Label>
-                    <Col sm={10}>
                         <Input type="textarea" name="text" placeholder="主訴" required />
-                    </Col>
                 </FormGroup>
-
-                <FormGroup  className="delivery-time" >
+                <FormGroup  className="delivery-time form-box" >
                     <Label for="exampleTime" >Time</Label>
                     <Input
                     type="time"
@@ -170,7 +157,7 @@ class MainInfo extends Component {
                     />
                 </FormGroup>
                     <h3 className="order-heading">発注日/納期日</h3>
-                        <div className="calendar">
+                    <div className="calendar form-box">
                     <Calendar
                         calendarType="US"
                         // activeStartDate={today => console.log(today)}
@@ -181,11 +168,11 @@ class MainInfo extends Component {
                         day={this.state.date.toString().slice(0, 16)}
                         delivery={this.state.deliveryDate.toString().slice(0, 16)}
                     />
-                    <div className="canvas">
+                    <div className="canvas form-box">
                         <Canvas />
                     </div>
                 </div>
-                <Button id="btn">Submit</Button>
+                <Button id="btn" className="form-boxS">Submit</Button>
             </Form>
         );
     }
