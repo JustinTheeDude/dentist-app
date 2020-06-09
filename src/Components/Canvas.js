@@ -18,6 +18,7 @@ class Canvas extends Component {
     return (
       <div>
         <button
+          id="btn-canvas"
           onClick={() => {
             localStorage.setItem(
               "savedDrawing",
@@ -27,14 +28,18 @@ class Canvas extends Component {
         >
           Save
         </button>
+        &nbsp; 
         <button
+          id="btn-canvas"
           onClick={() => {
             this.saveableCanvas.clear();
           }}
         >
           Clear
         </button>
-        <button
+        &nbsp; 
+        <button 
+          id="btn-canvas"
           onClick={() => {
             this.saveableCanvas.undo();
           }}
