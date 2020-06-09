@@ -16,27 +16,22 @@ class CardInfo extends Component {
         month: "",
         year: "",
         zip: "",
+        complete: false,
     };
 
     completeOrder = (id) => {
         const itemsRef = firebase.database().ref("Form").child(id);
-        console.log(itemsRef);
         itemsRef.once("value", (snapshot) => {
-            snapshot.forEach((child) => {
-                if(child.key === "complete") {
-                    if(child.node_.value_ === true) {
-                        itemsRef.update({"complete": false})
-                        this.isComplete = "Not Complete";
-                    } else {
-                        itemsRef.update({"complete": true})
-                        this.isComplete = "Complete";
-                    }
-                }
-            });
+            console.log(snapshot.child("complete").val());
+            if(snapshot.child("complete").val()) {
+                itemsRef.update({complete: false});
+                this.setState({complete: false});
+            } else {
+                itemsRef.update({complete: true});
+                this.setState({complete: true});
+            }
         });
     }
-
-
 
     componentDidMount() {
         if (this.props.value !== "") {
@@ -58,22 +53,24 @@ class CardInfo extends Component {
                         month: items["month"],
                         year: items["year"],
                         zip: items["zip"],
+                        complete: items["complete"]
                     });
                 }
             });
         }
-
-        this.completeOrder(this.props.value);
     }
 
-    // {this.props.value ? (
-    // ) : (
-    //     <Redirect to="/cards" />
-    // )}
-    //
-    //
+    isCompleteOrder = () => {
+        let isComplete = "";
+        if(!this.state.complete) {
+            console.log("here")
+            isComplete = "Not Complete";
+        } else {
+            isComplete = "Complete";
+        }
+        return isComplete;
+    }
 
-    isComplete = "";
 
     render() {
         return (
@@ -94,7 +91,7 @@ class CardInfo extends Component {
                         <div className="teeth">
                             <Mouth preserveAspectRatio="meet" />
                         </div>
-                        <Button onClick={() => this.completeOrder(this.props.value)}>{this.isComplete}</Button>
+                        <Button onClick={() => {this.completeOrder(this.props.value)}}>{this.isCompleteOrder()}</Button>
                     </div>
                 )}
             </MyContext.Consumer>

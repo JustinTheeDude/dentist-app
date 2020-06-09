@@ -21,7 +21,7 @@ const OrderList = ({orders, pagination}) => {
         if(orderView) {
             return  (
                 <>
-                    <button onClick={goBack}>Back</button>
+                    <button className="back-button" onClick={goBack}></button>
                     <CardInfo value={orderId}/>
                 </>
             )
