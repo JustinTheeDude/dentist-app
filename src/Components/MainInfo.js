@@ -172,7 +172,7 @@ class MainInfo extends Component {
                         <Canvas />
                     </div>
                 </div>
-                <Button id="btn" className="form-boxS">Submit</Button>
+                <Button id="btn" className="form-box">Submit</Button>
             </Form>
         );
     }

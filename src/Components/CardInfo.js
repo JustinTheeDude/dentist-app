@@ -44,13 +44,6 @@ class CardInfo extends Component {
         }
     }
 
-    // {this.props.value ? (
-    // ) : (
-    //     <Redirect to="/cards" />
-    // )}
-    //
-    //
-
     isComplete = "";
 
     completeOrder = (id) => {
