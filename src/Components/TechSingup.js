@@ -8,6 +8,7 @@ import { withRouter, Link } from 'react-router-dom'
 
   state = {
     tech_name: "",
+    displayName: "",
     tech_office: "",
     tech_id: "",
     email: "",
@@ -21,9 +22,9 @@ import { withRouter, Link } from 'react-router-dom'
   signUp = e => {
 
     e.preventDefault();
-    let { email, password, confirmPassword, tech_name, } = this.state
+    let { email, password, confirmPassword, displayName, } = this.state
 
-    if (!tech_name ) {
+    if (!displayName ) {
         this.setState({ nameError: ["名前を入力してください"] })
     } 
     else if (password !== confirmPassword) {
@@ -34,23 +35,23 @@ import { withRouter, Link } from 'react-router-dom'
       .auth().createUserWithEmailAndPassword(email, password) 
       .then( user => {
         user = firebase.auth().currentUser
-        const dentistRef = firebase.database().ref("Technician")
-        const  dentist = {
-          tech_name: this.state.tech_name,
+        const techRef = firebase.database().ref("Technician")
+        const  tech = {
+          displayName: this.state.displayName,
           tech_office: this.state.tech_office,
           tech_id: user.uid,
           email: this.state.email,
         }
-        dentistRef.push(dentist)
+        techRef.push(tech)
         if(user) {
           user.updateProfile({
-            tech_name
+            displayName
           })
           this.props.history.push('/cards')
         }
         // console.log("this is the user object after name input: ", user)
         this.setState({
-         tech_name: "",
+         displayName: "",
          tech_office:"",
           email: "",
           password: "",
@@ -76,7 +77,7 @@ import { withRouter, Link } from 'react-router-dom'
   }
   render() {
     const {
-      tech_name,
+      displayName,
       tech_office,
       email,
       password,
@@ -87,15 +88,16 @@ import { withRouter, Link } from 'react-router-dom'
     } = this.state;
     return (
       <Form className="signup" onSubmit={this.signUp} >
+      <h1>Technician Registration</h1>
         <FormGroup>
-          <Label for="tech_name">名前</Label>
+          <Label for="displayName">名前</Label>
           <Input
               type="text"
-              name="tech_name"
-              id="tech_name"
+              name="displayName"
+              id="displayName"
               placeholder="名前"
               onChange={this.handleChange}
-              value={tech_name}
+              value={displayName}
           />
           {
             nameError ?
@@ -105,21 +107,21 @@ import { withRouter, Link } from 'react-router-dom'
           }
       </FormGroup>
       <FormGroup>
-          <Label for="tech_office">Office Name</Label>
+          <Label for="tech_office">会社名</Label>
           <Input
               type="text"
               name="tech_office"
               id="tech_office"
-              placeholder="Office Name"
+              placeholder="会社名"
               onChange={this.handleChange}
               value={tech_office}
           />
-          {/* {
+          {
             nameError ?
             <p style={{color: 'firebrick', fontSize: '15px' }}>{nameError}</p> 
             :
             null
-          } */}
+          }
       </FormGroup>
       <FormGroup>
           <Label for="Email">メール</Label>
