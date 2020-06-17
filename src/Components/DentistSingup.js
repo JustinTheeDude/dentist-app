@@ -4,10 +4,12 @@ import firebase from './firebase';
 import { withRouter, Link } from 'react-router-dom'
 
 
- class UserSignUp extends Component {
+ class DentistSignup extends Component {
 
   state = {
-    displayName: "",
+    dentist_name: "",
+    dentist_office: "",
+    dentist_id: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -19,9 +21,9 @@ import { withRouter, Link } from 'react-router-dom'
   signUp = e => {
 
     e.preventDefault();
-    let { email, password, confirmPassword, displayName } = this.state
+    let { email, password, confirmPassword, dentist_name, } = this.state
 
-    if (!displayName ) {
+    if (!dentist_name ) {
         this.setState({ nameError: ["名前を入力してください"] })
     } 
     else if (password !== confirmPassword) {
@@ -32,17 +34,23 @@ import { withRouter, Link } from 'react-router-dom'
       .auth().createUserWithEmailAndPassword(email, password) 
       .then( user => {
         user = firebase.auth().currentUser
-        // console.log("This is the user: ", user.email)
-        
+        const dentistRef = firebase.database().ref("Dentist")
+        const  dentist = {
+          dentist_name: this.state.dentist_name,
+          dentist_office: this.state.dentist_office,
+          dentist_id: user.uid,
+          email: this.state.email,
+        }
+        dentistRef.push(dentist)
         if(user) {
           user.updateProfile({
-            displayName
+            dentist_name
           })
           this.props.history.push('/cards')
         }
-        // console.log("this is the user object after name input: ", user)
         this.setState({
-          displayName: "",
+         dentist_name: "",
+         dentist_office:"",
           email: "",
           password: "",
           confirmPassword: "",
@@ -67,7 +75,8 @@ import { withRouter, Link } from 'react-router-dom'
   }
   render() {
     const {
-      displayName,
+      dentist_name,
+      dentist_office,
       email,
       password,
       confirmPassword,
@@ -78,14 +87,14 @@ import { withRouter, Link } from 'react-router-dom'
     return (
       <Form className="signup" onSubmit={this.signUp} >
         <FormGroup>
-          <Label for="displayName">名前</Label>
+          <Label for="dentist_name">名前</Label>
           <Input
               type="text"
-              name="displayName"
-              id="displayName"
+              name="dentist_name"
+              id="dentist_name"
               placeholder="名前"
               onChange={this.handleChange}
-              value={displayName}
+              value={dentist_name}
           />
           {
             nameError ?
@@ -93,6 +102,23 @@ import { withRouter, Link } from 'react-router-dom'
             :
             null
           }
+      </FormGroup>
+      <FormGroup>
+          <Label for="dentist_office">Office Name</Label>
+          <Input
+              type="text"
+              name="dentist_office"
+              id="dentist_office"
+              placeholder="Office Name"
+              onChange={this.handleChange}
+              value={dentist_office}
+          />
+          {/* {
+            nameError ?
+            <p style={{color: 'firebrick', fontSize: '15px' }}>{nameError}</p> 
+            :
+            null
+          } */}
       </FormGroup>
       <FormGroup>
           <Label for="Email">メール</Label>
@@ -148,7 +174,7 @@ import { withRouter, Link } from 'react-router-dom'
             null
           }
       </FormGroup>
-      <Button >Submit</Button>
+      <Button>Submit</Button>
       {/* margin property */}
       &nbsp;&nbsp;&nbsp; 
       <Button onClick={this.cancel}>Cancel</Button>
@@ -167,5 +193,5 @@ import { withRouter, Link } from 'react-router-dom'
   }
 }
 
-export default withRouter(UserSignUp);
+export default withRouter(DentistSignup);
 
