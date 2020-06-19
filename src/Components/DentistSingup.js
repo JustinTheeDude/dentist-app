@@ -175,10 +175,10 @@ import { withRouter, Link } from 'react-router-dom'
             null
           }
       </FormGroup>
-      <Button>Submit</Button>
+      <Button className="btn-singup">Submit</Button>
       {/* margin property */}
       &nbsp;&nbsp;&nbsp; 
-      <Button onClick={this.cancel}>Cancel</Button>
+      <Button className="btn-singup" onClick={this.cancel}>Cancel</Button>
       <p>
       会員の方はこちら <Link to="/">クリック</Link> 下さい！
     </p>

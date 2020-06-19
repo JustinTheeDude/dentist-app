@@ -69,7 +69,7 @@ const Login = ({ history }) => {
             }
             <br />
             <Button>Submit</Button>
-            <p>
+            <p className="login-p">
                 アカウントを作成するにはここを<Link to="/registration">クリック</Link> 下さい！
             </p>
         </Form>
