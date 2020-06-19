@@ -86,7 +86,7 @@ import { withRouter, Link } from 'react-router-dom'
     } = this.state;
     return (
       <Form className="signup" onSubmit={this.signUp} >
-      <h1>Dentist Registration</h1>
+      <h1>歯科医の登録</h1>
         <FormGroup>
           <Label for="displayName">名前</Label>
           <Input

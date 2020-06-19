@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-
-
 import CanvasDraw from "react-canvas-draw";
 import mouth from '../assets/mouth.png';
 
@@ -13,7 +11,6 @@ class Canvas extends Component {
     lazyRadius: 2
   };
   
-
   render() {
     return (
       <div>
@@ -46,8 +43,21 @@ class Canvas extends Component {
         >
           Undo
         </button>
+        &nbsp; 
+        <button 
+          id="btn-canvas"
+          onClick={() => {
+            this.loadableCanvas.loadSaveData(
+              localStorage.getItem("savedDrawing")
+            );
+          }}
+        >
+          Load
+        </button>
 
         <CanvasDraw 
+          saveData={localStorage.getItem("savedDrawing")}
+          // ref={canvasDraw => (this.loadableCanvas = canvasDraw)}
           ref={canvasDraw => (this.saveableCanvas = canvasDraw)}
           brushColor={this.state.color}
           brushRadius={this.state.brushRadius}
