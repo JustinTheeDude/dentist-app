@@ -10,13 +10,16 @@ class Canvas extends Component {
     brushRadius: 2,
     lazyRadius: 2
   };
+
+
   
   render() {
     return (
       <div>
         <button
           id="btn-canvas"
-          onClick={() => {
+          onClick={(e) => {
+            e.preventDefault()
             localStorage.setItem(
               "savedDrawing",
               this.saveableCanvas.getSaveData()
@@ -28,7 +31,8 @@ class Canvas extends Component {
         &nbsp; 
         <button
           id="btn-canvas"
-          onClick={() => {
+          onClick={(e) => {
+            e.preventDefault()
             this.saveableCanvas.clear();
           }}
         >
@@ -37,27 +41,16 @@ class Canvas extends Component {
         &nbsp; 
         <button 
           id="btn-canvas"
-          onClick={() => {
+          onClick={(e) => {
+            e.preventDefault()
             this.saveableCanvas.undo();
           }}
         >
           Undo
-        </button>
-        &nbsp; 
-        <button 
-          id="btn-canvas"
-          onClick={() => {
-            this.loadableCanvas.loadSaveData(
-              localStorage.getItem("savedDrawing")
-            );
-          }}
-        >
-          Load
-        </button>
-
+        </button> 
+        
         <CanvasDraw 
-          saveData={localStorage.getItem("savedDrawing")}
-          // ref={canvasDraw => (this.loadableCanvas = canvasDraw)}
+          saveData={localStorage.getItem("savedDrawing")} 
           ref={canvasDraw => (this.saveableCanvas = canvasDraw)}
           brushColor={this.state.color}
           brushRadius={this.state.brushRadius}
