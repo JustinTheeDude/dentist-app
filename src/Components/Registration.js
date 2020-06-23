@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import { Button } from 'reactstrap';
 import {Link} from 'react-router-dom'
-// import firebase from 'firebase'
 
 class Registration extends Component {
   
