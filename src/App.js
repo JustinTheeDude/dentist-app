@@ -47,11 +47,6 @@ class App extends Component {
                                     {/* <Route path="/form">
                                 <Maininfo />
                                 </Route> */}
-                                <Route path="/info">
-                                    <MyContext.Consumer>
-                                        {context => <CardInfo value={context.state.chosenCard} />}
-                                    </MyContext.Consumer>
-                                </Route>
                                 <Route path="/signout"> <Logout /> </Route>
                             </Layout>
                         </Switch>

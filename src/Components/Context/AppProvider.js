@@ -11,6 +11,7 @@ class AppProvider extends Component {
         id: "",
         contactName: "",
         address: "",
+        orderView: false
     };
 
     componentDidMount() {
@@ -35,7 +36,9 @@ class AppProvider extends Component {
                 value={{
                     state: this.state,
                     updateCard: cardId => {
-                        this.setState({chosenCard: cardId, lastCardId: cardId});
+                        if(!this.state.orderView) {
+                            this.setState({chosenCard: cardId, lastCardId: cardId, orderView: true});
+                        }
                     },
                 }}
             >
@@ -45,6 +48,5 @@ class AppProvider extends Component {
     }
 
 }
-export const Consumer = MyContext.Consumer
 
 export default AppProvider;
