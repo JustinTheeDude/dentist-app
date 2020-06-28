@@ -2,12 +2,15 @@
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    align-items: center;
+    padding: 60px;
 
     .order-info {
         width: 50%;
 
         h1 {
             font-size: 30px;
+            font-family: $montserrat-font;
         }
     }
 
@@ -33,6 +36,34 @@
                 cursor: pointer;
 
             }
+        }
+    }
+}
+
+.cards {
+    position: absolute;
+
+    .back-button {
+        width: 40px;
+        height: 40px;
+        border: 0;
+        border-radius: 50%;
+        background-color: #7764E4;
+        box-shadow: 0px 3px 6px #2c28281c;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        cursor: pointer;
+        position: absolute;
+        text-align: left;
+        top: 30px;
+        left: 60px;
+
+        &:after {
+            content: "\2190";
+            font-size: 20px;
+            color: #fff;
         }
     }
 }

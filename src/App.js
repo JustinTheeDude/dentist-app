@@ -47,12 +47,13 @@ class App extends Component {
                             <Layout>
                                 <PrivateRoute path="/cards" component={Card} />
                                 <PrivateRoute path="/form"  component={Maininfo} />
-                                <Route path="/info">
-                                    <MyContext.Consumer>
-                                        {context => <CardInfo value={context.state.chosenCard} />}
-                                    </MyContext.Consumer>
-                                </Route>
-                                <Route path="/signout"> <Logout /></Route>
+                                {/* <PrivateRoute path="/info" component={ <MyContext.Consumer>
+                                    {context => <CardInfo value={context.state.chosenCard} />}
+                                    </MyContext.Consumer>} /> */}
+                                    {/* <Route path="/form">
+                                <Maininfo />
+                                </Route> */}
+                                <Route path="/signout"> <Logout /> </Route>
                             </Layout>
                         </Switch>
                     </Router>
