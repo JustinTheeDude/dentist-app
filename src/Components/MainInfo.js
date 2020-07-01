@@ -23,8 +23,9 @@ class MainInfo extends Component {
         day: "",
         info: "",
         age: "",
+        isEmpty: true
     };
-
+    user = firebase.auth().currentUser
     onChange = deliveryDate => {
         this.setState({deliveryDate});
         console.log(this.state.deliveryDate);
@@ -53,47 +54,110 @@ class MainInfo extends Component {
             age: this.state.age,
         };
         itemsRef.push(item);
-    };
-
+        const dentistRef = firebase.database().ref("Dentist")
+        dentistRef.orderByKey().on("child_added", (snapshot) => {
+                console.log(snapshot.val().key)
+            if(snapshot.val().dentist_id === this.user.uid) {            
+               dentistRef.child(snapshot.val().dentist_id).update({
+                address: this.state.address,
+                zip: this.state.zip
+                })  
+            }
+        })
+        if(this.props.value !== "") {
+            const ref = firebase
+                .database()
+                .ref("Dentist")
+            ref.orderByKey().on("child_added", (snapshot) => {
+                let items = snapshot.val();
+                if(this.user.uid === items.dentist_id) {
+                    this.setState({
+                        address: items["address"],
+                        zip: items["zip"],
+                        isEmpty: true
+                    })
+                }
+            })
+        }
+        // if(this.props.value !== "") {
+        //     const ref = firebase
+        //         .database()
+        //         .ref("Dentist")
+        //     ref.orderByKey().on("child_added", (snapshot) => {
+        //         let items = snapshot.val();
+        //         if(this.user.uid === items.dentist_id) {
+        //             this.setState({
+        //                 address: items["address"],
+        //                 zip: items["zip"]
+        //             })
+        //         }
+        //     })
+        // }
+    }
     
-    render() {
+    // componentDidMount() {
         
+    //     if(this.props.value !== "") {
+    //         const ref = firebase
+    //             .database()
+    //             .ref("Dentist")
+    //         ref.orderByKey().on("child_added", (snapshot) => {
+    //             let items = snapshot.val();
+    //             if(this.user.uid === items.dentist_id) {
+    //                 this.setState({
+    //                     address: items["address"],
+    //                     zip: items["zip"]
+    //                 })
+    //             }
+    //         })
+    //     }
+    // }
+    render() {
+        const user = firebase.auth().currentUser
         return (
             <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
                 <h3 className="hospital-info-header">医院情報</h3>
                 <FormGroup className="doc-name form-box">
                     <Label >担当名</Label>
-                        <Input
-                            type="text"
-                            name="doctorName"
-                            placeholder="名前"
-                            onChange={this.handleChange}
-                            value={this.state.doctorName}
-                        />
+                    { user.displayName ?
+                        <h1>{user.displayName}</h1> :
+                     <Input
+                        type="text"
+                        name="doctorName"
+                        placeholder="名前"
+                        onChange={this.handleChange}
+                        value={user.displayName}
+                    />  }
                 </FormGroup>
                 <FormGroup className="hospital-address form-box">
-                    <Label for="exampleAddress">医院名住所</Label>
-                    <Input
+                    <Label for="exampleAddress">医院名住所</Label>  
+                    {
+                     
+                     !this.state.isEmpty ?
+                     <h1>{this.state.address}</h1> :
+                     <Input
                         type="text"
                         name="address"
                         id="exampleAddress"
                         placeholder="市区町村"
                         onChange={this.handleChange}
                         value={this.state.address}
-                        required
-                    />
+                    /> }
                     {/* { !this.state.address && style={{ border: "2px solid firebrick"}} } */}
                 </FormGroup>
                 <FormGroup className="zip form-box">
                     <Label for="exampleZip">〒</Label>
-                    <Input
+                    {   !this.state.isEmpty ?
+                        <h1>{this.state.zip}</h1> :
+                        <Input
                         type="text"
                         name="zip"
                         id="exampleZip"
                         onChange={this.handleChange}
                         value={this.state.zip}
                         required
-                    />
+                    /> 
+                    }
                 </FormGroup>
                 <h3 className="patient-info-header">患者情報</h3>
                 <FormGroup className="patient-name form-box">
