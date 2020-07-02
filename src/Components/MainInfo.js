@@ -13,7 +13,7 @@ class MainInfo extends Component {
         date: new Date(),
         deliveryDate: "",
         minDate: new Date(),
-        value: "",
+        // value: "",
         doctorName: "",
         address: "",
         zip: "",
@@ -21,7 +21,7 @@ class MainInfo extends Component {
         year: "",
         month: "",
         day: "",
-        info: "",
+        // info: "",
         age: "",
     };
     user = firebase.auth().currentUser
@@ -41,16 +41,16 @@ class MainInfo extends Component {
         e.preventDefault();
         const itemsRef = firebase.database().ref("Form");
         const item = {
-            value: this.state.value,
-            doctorName: this.state.doctorName,
+            // value: this.state.value,
+            doctorName: this.user.displayName,
             address: this.state.address,
             zip: this.state.zip,
             contactName: this.state.contactName,
             year: this.state.year,
             month: this.state.month,
             day: this.state.day,
-            info: this.state.info,
-            age: this.state.age,
+            // info: this.state.info,
+            age: this.state.value,
         };
         itemsRef.push(item);
         const ref = firebase.database().ref("Dentist")
@@ -61,6 +61,15 @@ class MainInfo extends Component {
                 zip: this.state.zip
                 })  
             }
+        })
+        this.setState({
+            deliveryDate: "",
+            // value: "",
+            contactName: "",
+            year: "",
+            month: "",
+            day: "",
+            age: "",
         })
     }
     componentDidMount() {
@@ -89,13 +98,14 @@ class MainInfo extends Component {
                     <Label >担当名</Label>
                     { user.displayName ?
                         <h1>{user.displayName}</h1> :
-                     <Input
-                        type="text"
-                        name="doctorName"
-                        placeholder="名前"
-                        onChange={this.handleChange}
-                        value={user.displayName}
-                    />  }
+                        <Input
+                            type="text"
+                            name="doctorName"
+                            placeholder="名前"
+                            onChange={this.handleChange}
+                            value={user.displayName}
+                        />  
+                    }
                 </FormGroup>
                 <FormGroup className="hospital-address form-box">
                     <Label for="exampleAddress">医院名住所</Label> 
@@ -133,21 +143,21 @@ class MainInfo extends Component {
                         <Input
                             className="patient-name-input" 
                             type="text"
-                            name="info"
+                            name="contactName"
                             placeholder="名前"
                             onChange={this.handleChange}
-                            value={this.state.info}
+                            value={this.state.contactName}
                         />
                 </FormGroup>
                 <FormGroup className="age form-box">
                     <Label for="exampleNumber" >年令</Label>
                     <Input
-                    onChange={this.handleChange} 
-                    type="number"
-                    min="0"
-                    name="number"
-                    id="exampleNumber"
-                    placeholder="才"
+                        onChange={this.handleChange} 
+                        type="number"
+                        min="0"
+                        name="number"
+                        id="exampleNumber"
+                        placeholder="才"
                     />
                 </FormGroup>
                 <FormGroup className="gender-select-menu form-box">
@@ -176,7 +186,7 @@ class MainInfo extends Component {
                 </FormGroup>
                 <FormGroup className="main-complaint form-box">
                     <Label className="main-complaint-label">主訴</Label>
-                        <Input type="textarea" name="text" placeholder="主訴" required />
+                        <Input type="textarea" name="text" placeholder="主訴"  required />
                 </FormGroup>
                 <FormGroup  className="delivery-time form-box" >
                     <Label for="exampleTime" >Time</Label>
