@@ -46,9 +46,9 @@ class MainInfo extends Component {
             address: this.state.address,
             zip: this.state.zip,
             contactName: this.state.contactName,
-            year: this.state.year,
-            month: this.state.month,
-            day: this.state.day,
+            year: this.state.deliveryDate.toString().slice(11, 15),
+            month: this.state.deliveryDate.toString().slice(4, 7),
+            day: this.state.deliveryDate.toString().slice(0, 4),
             // info: this.state.info,
             age: this.state.value,
         };
@@ -194,7 +194,7 @@ class MainInfo extends Component {
                     type="time"
                     name="time"
                     id="exampleTime"
-                     placeholder="time placeholder"
+                    placeholder="time placeholder"
                     />
                 </FormGroup>
                     <h3 className="order-heading">発注日/納期日</h3>
@@ -206,7 +206,7 @@ class MainInfo extends Component {
                         minDate={this.state.minDate}
                     />
                     <DeliveryDate
-                        day={this.state.date.toString().slice(0, 16)}
+                        day={this.state.day}
                         delivery={this.state.deliveryDate.toString().slice(0, 16)}
                     />
                     <div className="canvas form-box">
