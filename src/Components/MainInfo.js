@@ -21,10 +21,16 @@ class MainInfo extends Component {
         year: "",
         month: "",
         day: "",
-        // info: "",
         age: "",
+        gender: "男",
+        specs: "レジン床",
+        paymentType: "保険",
+        OtherOption: "",
+        mainComplaint: "",
+        deliveryTime: ""
     };
     user = firebase.auth().currentUser
+
     onChange = deliveryDate => {
         this.setState({deliveryDate});
         console.log(this.state.deliveryDate);
@@ -33,9 +39,13 @@ class MainInfo extends Component {
     handleChange = e => {
         this.setState({
             [e.target.name]: e.target.value,
-            value: e.target.value
+            value: e.target.value,
+  
         }); 
-    };
+        console.log([e.target.name], e.target.value)
+        console.log("value: ", e.target.value)
+    }; 
+
 
     handleSubmit = e => {
         e.preventDefault();
@@ -50,7 +60,14 @@ class MainInfo extends Component {
             month: this.state.deliveryDate.toString().slice(4, 7),
             day: this.state.deliveryDate.toString().slice(0, 4),
             // info: this.state.info,
-            age: this.state.value,
+            age: this.state.age,
+            gender: this.state.gender,
+            specs: this.state.specs,
+            paymentType: this.state.paymentType,
+            OtherOption: this.state.OtherOption,
+            mainComplaint: this.state.mainComplaint,
+            deliveryTime: this.state.deliveryTime
+
         };
         itemsRef.push(item);
         const ref = firebase.database().ref("Dentist")
@@ -155,46 +172,48 @@ class MainInfo extends Component {
                         onChange={this.handleChange} 
                         type="number"
                         min="0"
-                        name="number"
+                        name="age"
                         id="exampleNumber"
                         placeholder="才"
-                    />
+                    /> 
                 </FormGroup>
                 <FormGroup className="gender-select-menu form-box">
                     <Label>性別</Label>
-                    <Input type="select" name="select" id="gender-select-menu" required>
+                    <Input type="select" name="gender" id="gender-select-menu"  value={this.state.gender}  onChange={this.handleChange} required>
                         <option>男</option>
                         <option>女</option>
                     </Input>
                 </FormGroup>
                 <FormGroup  className="product-specs-menu form-box">
                     <Label>製品仕様</Label>
-                    <Input type="select" name="select" onChange={this.handleChange} required>
+                    <Input type="select" name="specs" onChange={this.handleChange} required>
                         <option>レジン床</option>
                         <option>金属床(Co-Cr. Ti. Gold)</option>
                         <option>治療用義歯</option>
                         <option id="option-other">他</option>
                     </Input>
-                    {this.state.value === "他" && <div className="other-option"><OtherOption /> </div>}
+                    {this.state.value === "他" && <div className="other-option"><OtherOption onChange={this.handleChange} value={this.state.OtherOption}/> </div>}
+                    {/* {console.log(option[0])} */}
                 </FormGroup>
                 <FormGroup className="patient-payment-select form-box">
                     <Label for="exampleSelect">支払い</Label>
-                    <Input type="select" name="select" id="exampleSelect" required>
+                    <Input type="select" name="paymentType" id="exampleSelect" onChange={this.handleChange} required>
                         <option>保険</option>
                         <option>自費</option>
                     </Input>
                 </FormGroup>
                 <FormGroup className="main-complaint form-box">
                     <Label className="main-complaint-label">主訴</Label>
-                        <Input type="textarea" name="text" placeholder="主訴"  required />
+                        <Input type="textarea" name="mainComplaint" placeholder="主訴" onChange={this.handleChange} value={this.state.mainComplaint || ""} required />
                 </FormGroup>
                 <FormGroup  className="delivery-time form-box" >
                     <Label for="exampleTime" >Time</Label>
                     <Input
                     type="time"
-                    name="time"
+                    name="deliveryTime"
                     id="exampleTime"
                     placeholder="time placeholder"
+                    onChange={this.handleChange}
                     />
                 </FormGroup>
                     <h3 className="order-heading">発注日/納期日</h3>
