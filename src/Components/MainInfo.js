@@ -25,7 +25,6 @@ class MainInfo extends Component {
         gender: "男",
         specs: "レジン床",
         paymentType: "保険",
-        OtherOption: "",
         mainComplaint: "",
         deliveryTime: ""
     };
@@ -42,8 +41,6 @@ class MainInfo extends Component {
             value: e.target.value,
   
         }); 
-        console.log([e.target.name], e.target.value)
-        console.log("value: ", e.target.value)
     }; 
 
 
@@ -51,7 +48,6 @@ class MainInfo extends Component {
         e.preventDefault();
         const itemsRef = firebase.database().ref("Form");
         const item = {
-            // value: this.state.value,
             doctorName: this.user.displayName,
             address: this.state.address,
             zip: this.state.zip,
@@ -59,12 +55,10 @@ class MainInfo extends Component {
             year: this.state.deliveryDate.toString().slice(11, 15),
             month: this.state.deliveryDate.toString().slice(4, 7),
             day: this.state.deliveryDate.toString().slice(0, 4),
-            // info: this.state.info,
             age: this.state.age,
             gender: this.state.gender,
             specs: this.state.specs,
             paymentType: this.state.paymentType,
-            OtherOption: this.state.OtherOption,
             mainComplaint: this.state.mainComplaint,
             deliveryTime: this.state.deliveryTime
 
@@ -192,7 +186,7 @@ class MainInfo extends Component {
                         <option>治療用義歯</option>
                         <option id="option-other">他</option>
                     </Input>
-                    {this.state.value === "他" && <div className="other-option"><OtherOption onChange={this.handleChange} value={this.state.OtherOption}/> </div>}
+                    {this.state.value === "他" && <div className="other-option"><OtherOption/> </div>}
                     {/* {console.log(option[0])} */}
                 </FormGroup>
                 <FormGroup className="patient-payment-select form-box">
