@@ -47,8 +47,8 @@ class CardInfo extends Component {
     isComplete = "";
 
     completeOrder = (id) => {
+        const user = firebase.auth().currentUser;
         const itemsRef = firebase.database().ref("Form").child(id);
-        console.log(itemsRef);
         itemsRef.once("value", (snapshot) => {
             snapshot.forEach((child) => {
                 if(child.key === "complete") {

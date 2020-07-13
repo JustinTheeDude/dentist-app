@@ -34,12 +34,13 @@ class MainInfo extends Component {
         this.setState({
             [e.target.name]: e.target.value,
             value: e.target.value
-        }); 
+        });
     };
 
     handleSubmit = e => {
         e.preventDefault();
-        const itemsRef = firebase.database().ref("Form");
+        const user = firebase.auth().currentUser;
+        const itemsRef = firebase.database().ref(`Dentist/${user.uid}/Form`);
         const item = {
             value: this.state.value,
             doctorName: this.state.doctorName,
@@ -55,9 +56,9 @@ class MainInfo extends Component {
         itemsRef.push(item);
     };
 
-    
+
     render() {
-        
+
         return (
             <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
                 <h3 className="hospital-info-header">医院情報</h3>
@@ -99,7 +100,7 @@ class MainInfo extends Component {
                 <FormGroup className="patient-name form-box">
                     <Label className="patient-name-label">患者名</Label>
                         <Input
-                            className="patient-name-input" 
+                            className="patient-name-input"
                             type="text"
                             name="info"
                             placeholder="名前"
@@ -111,7 +112,7 @@ class MainInfo extends Component {
                 <FormGroup className="age form-box">
                     <Label for="exampleNumber" >年令</Label>
                     <Input
-                    onChange={this.handleChange} 
+                    onChange={this.handleChange}
                     type="number"
                     min="0"
                     name="number"
