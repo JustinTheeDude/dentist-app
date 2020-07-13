@@ -13,15 +13,19 @@ const OtherOption = () => {
     }
     const [values, setValues] = useState({otherOption: ''})
     const itemsRef = firebase.database().ref("Form");
-   
-    itemsRef.orderByKey().on("child_added", (snapshot) => {  
+   setTimeout(() => {
+        itemsRef.endAt().limitToLast(1).on("child_added", (snapshot) => {  
         // const user = firebase.auth().currentUser
-        if(snapshot.key) {
+        // console.log("this is the auth user: ", user.displayName)
+        console.log("this is the snapshot: ", snapshot.key)
+        if(!snapshot.key) {
             itemsRef.child(snapshot.key).update({
                 otherOption: values.otherOption
             })
         }
-    })
+    }) 
+   }, 1000)
+
     return (
         <FormGroup row >
         <Col sm={10}>

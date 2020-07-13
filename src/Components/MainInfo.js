@@ -13,7 +13,6 @@ class MainInfo extends Component {
         date: new Date(),
         deliveryDate: "",
         minDate: new Date(),
-        // value: "",
         doctorName: "",
         address: "",
         zip: "",
