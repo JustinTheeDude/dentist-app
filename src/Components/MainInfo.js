@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import { Form, FormGroup, Label, Input, Button} from "reactstrap";
-import OtherOption from "./OtherOption";
 import firebase from "./firebase.js";
 
 // Component import
@@ -25,7 +24,8 @@ class MainInfo extends Component {
         specs: "レジン床",
         paymentType: "保険",
         mainComplaint: "",
-        deliveryTime: ""
+        deliveryTime: "",
+        otherOption: "",
     };
     user = firebase.auth().currentUser
 
@@ -40,6 +40,8 @@ class MainInfo extends Component {
             value: e.target.value,
   
         }); 
+        console.log("e.target.name: e.target.value: ",[e.target.name], e.target.value )
+        console.log("value: e.target.value: ", e.target.value)
     }; 
 
 
@@ -59,7 +61,8 @@ class MainInfo extends Component {
             specs: this.state.specs,
             paymentType: this.state.paymentType,
             mainComplaint: this.state.mainComplaint,
-            deliveryTime: this.state.deliveryTime
+            deliveryTime: this.state.deliveryTime,
+            otherOption: this.state.otherOption
 
         };
         itemsRef.push(item);
@@ -179,14 +182,27 @@ class MainInfo extends Component {
                 </FormGroup>
                 <FormGroup  className="product-specs-menu form-box">
                     <Label>製品仕様</Label>
-                    <Input type="select" name="specs" onChange={this.handleChange} required>
+                    <Input type="select" name="specs" id="specs" onChange={this.handleChange} required>
                         <option>レジン床</option>
                         <option>金属床(Co-Cr. Ti. Gold)</option>
                         <option>治療用義歯</option>
-                        <option id="option-other">他</option>
+                        <option id="otherOption">他</option>
                     </Input>
-                    {this.state.value === "他" && <div className="other-option"><OtherOption/> </div>}
-                    {/* {console.log(option[0])} */}
+                    { this.state.value  === "他" || this.state.otherOption ?
+                        <FormGroup>
+                        <Label>他</Label>
+                            <Input 
+                                type="textarea" 
+                                name="otherOption"  
+                                placeholder="他" 
+                                onChange={this.handleChange}
+                                value={this.state.otherOption || ""} 
+                                required  
+                                /> 
+                        </FormGroup>
+                        :
+                        null
+                    }
                 </FormGroup>
                 <FormGroup className="patient-payment-select form-box">
                     <Label for="exampleSelect">支払い</Label>

@@ -44,15 +44,20 @@ class CardInfo extends Component {
                 let items = snapshot.val();
                 for (let item in items) {
                     self.setState({
-                        address: items["address"],
-                        age: items["age"],
-                        contactName: items["contactName"],
-                        day: items["day"],
                         doctorName: items["doctorName"],
-                        info: items["info"],
-                        month: items["month"],
-                        year: items["year"],
+                        address: items["address"],
                         zip: items["zip"],
+                        contactName: items["contactName"],
+                        year: items["year"],
+                        month: items["month"],
+                        day: items["day"],
+                        age: items["age"],
+                        gender: items["gender"],
+                        specs: items["specs"],
+                        paymentType: items["paymentType"],
+                        mainCompliant: items["mainComplaint"],
+                        deliverTime: items["deliveryTime"],
+                        otherOption: items["otherOption"],
                         complete: items["complete"]
                     });
                 }
@@ -78,15 +83,19 @@ class CardInfo extends Component {
                 {context => (
                     <div className="order-container">
                         <div className="order-info">
-                            <h1>住所: {this.state.address}</h1>
-                            <h1>年齢: {this.state.age}</h1>
-                            <h1>患者名: {this.state.contactName}</h1>
-                            <h1>日付: {this.state.day}</h1>
                             <h1>歯科医名: {this.state.doctorName}</h1>
-                            <h1>説明: {this.state.info}</h1>
+                            <h1>住所: {this.state.address}</h1>
+                            <h1>郵便番号: {this.state.zip}</h1> 
+                            <h1>患者名: {this.state.contactName}</h1>
+                            <h1>年齢: {this.state.age}</h1>
+                            <h1>性別: {this.state.gender}</h1>
+                            {!this.state.otherOption && <h1>製品仕様: {this.state.specs}</h1>}
+                            {this.state.otherOption && <h1>製品仕様 他: {this.state.otherOption}</h1>}
+                            <h1>支払い: {this.state.paymentType}</h1>
+                            <h1>主訴: {this.state.mainComplaint}</h1>
+                            <h1>日付: {this.state.day}</h1>
                             <h1>月: {this.state.month}</h1>
                             <h1>年: {this.state.year}</h1>
-                            <h1>郵便番号: {this.state.zip}</h1>
                         </div>
                         <div className="teeth">
                             <Mouth preserveAspectRatio="meet" />
