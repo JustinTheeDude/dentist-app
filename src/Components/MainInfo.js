@@ -37,17 +37,14 @@ class MainInfo extends Component {
     handleChange = e => {
         this.setState({
             [e.target.name]: e.target.value,
-            value: e.target.value,
-  
-        }); 
-        console.log("e.target.name: e.target.value: ",[e.target.name], e.target.value )
-        console.log("value: e.target.value: ", e.target.value)
-    }; 
-
+            value: e.target.value
+        });
+    };
 
     handleSubmit = e => {
         e.preventDefault();
-        const itemsRef = firebase.database().ref("Form");
+        const user = firebase.auth().currentUser;
+        const itemsRef = firebase.database().ref(`Dentist/${user.uid}/Form`);
         const item = {
             doctorName: this.user.displayName,
             address: this.state.address,
@@ -101,7 +98,6 @@ class MainInfo extends Component {
             })
         }
     }
-
     render() {
         const user = firebase.auth().currentUser
         return (
@@ -154,7 +150,7 @@ class MainInfo extends Component {
                 <FormGroup className="patient-name form-box">
                     <Label className="patient-name-label">患者名</Label>
                         <Input
-                            className="patient-name-input" 
+                            className="patient-name-input"
                             type="text"
                             name="contactName"
                             placeholder="名前"
@@ -165,13 +161,14 @@ class MainInfo extends Component {
                 <FormGroup className="age form-box">
                     <Label for="exampleNumber" >年令</Label>
                     <Input
-                        onChange={this.handleChange} 
-                        type="number"
-                        min="0"
-                        name="age"
-                        id="exampleNumber"
-                        placeholder="才"
-                    /> 
+
+                    onChange={this.handleChange}
+                    type="number"
+                    min="0"
+                    name="number"
+                    id="exampleNumber"
+                    placeholder="才"
+                    />
                 </FormGroup>
                 <FormGroup className="gender-select-menu form-box">
                     <Label>性別</Label>

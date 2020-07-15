@@ -65,15 +65,24 @@ class CardInfo extends Component {
         }
     }
 
-    isCompleteOrder = () => {
-        let isComplete = "";
-        if(!this.state.complete) {
-            console.log("here")
-            isComplete = "Not Complete";
-        } else {
-            isComplete = "Complete";
-        }
-        return isComplete;
+    isComplete = "";
+
+    completeOrder = (id) => {
+        const user = firebase.auth().currentUser;
+        const itemsRef = firebase.database().ref("Form").child(id);
+        itemsRef.once("value", (snapshot) => {
+            snapshot.forEach((child) => {
+                if(child.key === "complete") {
+                    if(child.node_.value_ === true) {
+                        itemsRef.update({"complete": false})
+                        this.isComplete = "Not Complete";
+                    } else {
+                        itemsRef.update({"complete": true})
+                        this.isComplete = "Complete";
+                    }
+                }
+            });
+        });
     }
 
 
