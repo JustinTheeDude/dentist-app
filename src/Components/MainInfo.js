@@ -6,6 +6,7 @@ import firebase from "./firebase.js";
 import Calendar from "react-calendar";
 import DeliveryDate from "./DeliveryDate";
 import Canvas from './Canvas';
+import { timers } from "jquery";
 
 class MainInfo extends Component {
     state = {
@@ -39,6 +40,8 @@ class MainInfo extends Component {
             [e.target.name]: e.target.value,
             value: e.target.value
         });
+        // console.log("this is the target name : target value: ", [e.target.name], ":",  e.target.value )
+        // console.log("this is the value: ", e.target.value)
     };
 
     handleSubmit = e => {
@@ -63,18 +66,10 @@ class MainInfo extends Component {
 
         };
         itemsRef.push(item);
-        const ref = firebase.database().ref("Dentist")
-        ref.orderByKey().on("child_added", (snapshot) => {
-            if(snapshot.val().dentist_id === this.user.uid) {   
-               ref.child(snapshot.key).update({
-                address: this.state.address,
-                zip: this.state.zip
-                })  
-            }
-        })
+        const ref = firebase.database().ref(`Dentist/${user.uid}/Info`)
+        ref.update({address: this.state.address, zip: this.state.zip})
         this.setState({
             deliveryDate: "",
-            // value: "",
             contactName: "",
             year: "",
             month: "",
@@ -84,18 +79,13 @@ class MainInfo extends Component {
     }
     componentDidMount() {
         if(this.props.value !== "") {
-            const ref = firebase
-                .database()
-                .ref("Dentist")
-            ref.orderByKey().on("child_added", (snapshot) => {
-                let items = snapshot.val();
-                if(this.user.uid === items.dentist_id) {
-                    this.setState({
-                        address: items["address"],
-                        zip: items["zip"],
-                    })
-                }
-            })
+            const ref = firebase.database().ref(`Dentist/${this.user.uid}/Info`)
+            ref.on('value',(snap)=>{
+                this.setState({
+                    address: snap.val().address,
+                    zip: snap.val().zip
+                })
+            });
         }
     }
     render() {
@@ -165,7 +155,7 @@ class MainInfo extends Component {
                     onChange={this.handleChange}
                     type="number"
                     min="0"
-                    name="number"
+                    name="age"
                     id="exampleNumber"
                     placeholder="才"
                     />
