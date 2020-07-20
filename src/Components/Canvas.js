@@ -1,17 +1,31 @@
 import React, { Component } from "react";
 import CanvasDraw from "react-canvas-draw";
 import mouth from '../assets/mouth.png';
-
+import firebase from "./firebase"
 class Canvas extends Component {
   state = {
     color: "black",
     width: 300,
     height: 300,
     brushRadius: 2,
-    lazyRadius: 2
+    lazyRadius: 2,
+    drawing: ''
   };
+  componentDidMount() {
+        const user = firebase.auth().currentUser
+        const ref = firebase.database().ref(`Dentist/${user.uid}/Form`)
+      ref.orderByChild("drawing").on("child_added", function(snap) {
+        if(this.state.drawing) {
+          this.setState({
+          drawing: snap.val().drawing
+        })
 
+        }
 
+        console.log("this is the drawing: ", typeof snap.val().drawing)
+      }) 
+    
+}
   
   render() {
     return (
@@ -20,13 +34,15 @@ class Canvas extends Component {
           id="btn-canvas"
           onClick={(e) => {
             e.preventDefault()
-            localStorage.setItem(
-              "savedDrawing",
-              this.saveableCanvas.getSaveData()
-            );
+            const user = firebase.auth().currentUser;
+            const itemsRef = firebase.database().ref(`Dentist/${user.uid}/Form`);
+            const items = { 
+                drawing: this.saveableCanvas.getSaveData()
+            }
+            itemsRef.push(items)
           }}
         >
-          Save
+        Save
         </button>
         &nbsp; 
         <button
@@ -50,7 +66,7 @@ class Canvas extends Component {
         </button> 
         
         <CanvasDraw 
-          saveData={localStorage.getItem("savedDrawing")} 
+          // saveData={localStorage.getItem("savedDrawing")} 
           ref={canvasDraw => (this.saveableCanvas = canvasDraw)}
           brushColor={this.state.color}
           brushRadius={this.state.brushRadius}
@@ -59,6 +75,10 @@ class Canvas extends Component {
           width={this.state.width}
           imgSrc={mouth}
           />
+          {/* <CanvasDraw 
+              saveData={this.drawing} 
+             imgSrc={mouth}
+          />  */}
       </div>
     );
   }

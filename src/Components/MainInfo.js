@@ -6,7 +6,7 @@ import firebase from "./firebase.js";
 import Calendar from "react-calendar";
 import DeliveryDate from "./DeliveryDate";
 import Canvas from './Canvas';
-import { timers } from "jquery";
+
 
 class MainInfo extends Component {
     state = {
@@ -40,8 +40,6 @@ class MainInfo extends Component {
             [e.target.name]: e.target.value,
             value: e.target.value
         });
-        // console.log("this is the target name : target value: ", [e.target.name], ":",  e.target.value )
-        // console.log("this is the value: ", e.target.value)
     };
 
     handleSubmit = e => {
@@ -88,6 +86,7 @@ class MainInfo extends Component {
             });
         }
     }
+
     render() {
         const user = firebase.auth().currentUser
         return (
@@ -215,8 +214,7 @@ class MainInfo extends Component {
                     <h3 className="order-heading">発注日/納期日</h3>
                     <div className="calendar form-box">
                     <Calendar
-                        calendarType="US"
-                        // activeStartDate={today => console.log(today)}
+                        calendarType="US"D
                         onClickDay={this.onChange}
                         minDate={this.state.minDate}
                     />
