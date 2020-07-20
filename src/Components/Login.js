@@ -68,7 +68,8 @@ const Login = ({ history }) => {
 
             }
             <br />
-            <Button>Submit</Button>
+            <Button className="btn-login">Submit</Button>
+            <br />
             <p className="login-p">
                 アカウントを作成するにはここを<Link to="/registration">クリック</Link> 下さい！
             </p>

@@ -153,9 +153,9 @@ class DentistSignup extends Component {
                         />
                         {
                             firebaseErr.code === "auth/weak-password" ?
-                                <p style={{color: 'firebrick', fontSize: '15px' }}>パスワードが 間 違って います</p>
-                                :
-                                null
+                            <p style={{color: 'firebrick', fontSize: '15px' }}>パスワードが 間 違って います</p>
+                            :
+                            null
                         }
                     </FormGroup>
                     <FormGroup>
@@ -179,6 +179,7 @@ class DentistSignup extends Component {
                     {/* margin property */}
                     &nbsp;&nbsp;&nbsp;
                     <Button className="btn-singup" onClick={this.cancel}>Cancel</Button>
+                    
                     <p>
                         会員の方はこちら <Link to="/">クリック</Link> 下さい！
                     </p>

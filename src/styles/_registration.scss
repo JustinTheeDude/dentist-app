@@ -24,6 +24,7 @@
         #dentist_office,
         #email,
         #password,
+        #confirmPassword,
         #tech_office {
             background-repeat: no-repeat;
             background-size: 25px 25px;
@@ -49,6 +50,9 @@
             background-image: url("../assets/lock.svg");
         }
 
+        #confirmPassword {
+            background-image: url("../assets/lock.svg");
+        }
         label {
             display: none;
         }

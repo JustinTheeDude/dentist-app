@@ -20,45 +20,18 @@
         text-align: center;
     }
 }
-// .form-box label {
-//     flex-basis: 9rem;
-// }
 
 .doc-name .hospital-address .zip {
     display: flex;
     flex-direction: row;
 }
-// .form-box .hospital-address {
-//     flex: 1;
-//     // position: relative;
-//     // left: 500px;
-//     // top: -53px;
-// }
-// .form-box .zip {
-//     flex: 1;
-//     // position: relative;
-//     // left: 500px;
-//     // top: -80px;
-// }
 
 .patient-name {
     flex: 1;
-    // position: relative;
-    // top: -50px;
 }
 
-
-// .patient-name-input {
-//     position: relative;
-//     top: 50px;
-//     right: 70px;
-// }
 .age {
     flex: 1;
-    // position: relative;
-    // left: 540px;
-
-    // top: -102px;
 }
 .gender-select-menu,.product-specs-menu,.patient-payment-select{
      flex:1;
@@ -66,30 +39,19 @@
 
 .main-complaint { 
     flex: 1;
-    // position: relative;
-    // left: 500px;
-    // top: -350px;
 }
 
 
 .delivery-time {
     flex: 1;
-    // position: relative;
-    // top: -210px;
-    // right: 10px;
 }
 
 .calendar {
     flex: 1;
-    // position: relative;
-    // top: -95px;
 }
 
 .canvas {
     flex: 1;
-    // position: relative;
-    // left: 500px;
-    // top: -420px;
 }
 #btn-canvas {
     border: 2px solid darkblue;
