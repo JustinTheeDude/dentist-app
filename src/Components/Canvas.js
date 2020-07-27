@@ -9,25 +9,20 @@ class Canvas extends Component {
     height: 300,
     brushRadius: 2,
     lazyRadius: 2,
-    drawing: ''
   };
-  componentDidMount() {
-        const user = firebase.auth().currentUser
-        const ref = firebase.database().ref(`Dentist/${user.uid}/Form`)
-      ref.orderByChild("drawing").on("child_added", function(snap) {
-        if(this.state.drawing) {
-          this.setState({
-          drawing: snap.val().drawing
-        })
 
-        }
+//  getDrawing() {
+//   const user = firebase.auth().currentUser
+//   const ref = firebase.database().ref(`Dentist/${user.uid}/Form`)
+//   let drawing; 
+//   ref.orderByChild("drawing").on("child_added", function(snap) {   
+//     drawing = snap.val().drawing;
+//  }) 
+//   return  drawing;
+//  }
 
-        console.log("this is the drawing: ", typeof snap.val().drawing)
-      }) 
-    
-}
-  
-  render() {
+ render() {
+
     return (
       <div>
         <button
@@ -66,7 +61,6 @@ class Canvas extends Component {
         </button> 
         
         <CanvasDraw 
-          // saveData={localStorage.getItem("savedDrawing")} 
           ref={canvasDraw => (this.saveableCanvas = canvasDraw)}
           brushColor={this.state.color}
           brushRadius={this.state.brushRadius}
@@ -75,10 +69,10 @@ class Canvas extends Component {
           width={this.state.width}
           imgSrc={mouth}
           />
-          {/* <CanvasDraw 
-              saveData={this.drawing} 
-             imgSrc={mouth}
-          />  */}
+        {/* <CanvasDraw 
+         saveData={this.getDrawing()}
+          imgSrc={mouth}
+        /> */}
       </div>
     );
   }

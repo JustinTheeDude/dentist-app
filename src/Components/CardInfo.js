@@ -1,9 +1,11 @@
 import React, {Component} from "react";
 import firebase from "firebase";
 // import {Redirect} from "react-router-dom";
-import Mouth from "./mouth";
+// import Mouth from "./mouth";
 import {MyContext} from "./Context/AppProvider";
 import {Button} from "reactstrap";
+import CanvasDraw from "react-canvas-draw";
+import mouth from '../assets/mouth.png';
 
 class CardInfo extends Component {
     state = {
@@ -19,6 +21,20 @@ class CardInfo extends Component {
         complete: false,
     };
 
+    /**
+     * Function gets drawing stored as a string and returns the string
+     */
+    getDrawing() {
+        const user = firebase.auth().currentUser
+        const ref = firebase.database().ref(`Dentist/${user.uid}/Form`)
+        let drawing; 
+        ref.orderByChild("drawing").on("child_added", function(snap) {   
+          drawing = snap.val().drawing;
+         
+        }) 
+        return  drawing;
+    }
+    
     completeOrder = (id) => {
         const itemsRef = firebase.database().ref("Form").child(id);
         itemsRef.once("value", (snapshot) => {
@@ -107,7 +123,11 @@ class CardInfo extends Component {
                             <h1>年: {this.state.year}</h1>
                         </div>
                         <div className="teeth">
-                            <Mouth preserveAspectRatio="meet" />
+                            {/* <Mouth preserveAspectRatio="meet" /> */}
+                            <CanvasDraw 
+                                saveData={this.getDrawing()}
+                                imgSrc={mouth}
+                            />
                         </div>
                         <Button onClick={() => {this.completeOrder(this.props.value)}}>{this.isCompleteOrder()}</Button>
                     </div>
