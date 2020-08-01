@@ -4,6 +4,7 @@ import { Form, FormGroup, Label, Input, Button, } from "reactstrap";
 import firebase from "./firebase";
 import {AuthContext} from "../Components/Context/Auth";
 
+
 const Login = ({ history }) => {
     const [error, setError] = useState("");
     const [noInput, setNoInput] = useState(false);

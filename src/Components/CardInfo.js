@@ -4,6 +4,7 @@ import firebase from "firebase";
 import Mouth from "./mouth";
 import {MyContext} from "./Context/AppProvider";
 import {Button} from "reactstrap";
+import PDF from "../Components/InfoPDF";
 
 class CardInfo extends Component {
     state = {
@@ -11,9 +12,7 @@ class CardInfo extends Component {
         age: "",
         contactName: "",
         day: "",
-        doctorName: "",
-        info: "",
-        month: "",
+        doctorName: "", info: "", month: "",
         year: "",
         zip: "",
         complete: false,
@@ -68,7 +67,6 @@ class CardInfo extends Component {
     isComplete = "";
 
     completeOrder = (id) => {
-        const user = firebase.auth().currentUser;
         const itemsRef = firebase.database().ref("Form").child(id);
         itemsRef.once("value", (snapshot) => {
             snapshot.forEach((child) => {
@@ -87,6 +85,8 @@ class CardInfo extends Component {
 
 
     render() {
+        let name = this.state.name;
+        console.log(name);
         return (
             <MyContext.Consumer>
                 {context => (
@@ -94,7 +94,7 @@ class CardInfo extends Component {
                         <div className="order-info">
                             <h1>歯科医名: {this.state.doctorName}</h1>
                             <h1>住所: {this.state.address}</h1>
-                            <h1>郵便番号: {this.state.zip}</h1> 
+                            <h1>郵便番号: {this.state.zip}</h1>
                             <h1>患者名: {this.state.contactName}</h1>
                             <h1>年齢: {this.state.age}</h1>
                             <h1>性別: {this.state.gender}</h1>
@@ -109,7 +109,19 @@ class CardInfo extends Component {
                         <div className="teeth">
                             <Mouth preserveAspectRatio="meet" />
                         </div>
-                        <Button onClick={() => {this.completeOrder(this.props.value)}}>{this.isCompleteOrder()}</Button>
+                        <Button onClick={() => {this.completeOrder(this.props.value)}}></Button>
+                        <PDF name={this.state.doctorName}
+                             address={this.state.address}
+                             zip={this.state.zip}
+                             contactName={this.state.contactName}
+                             age={this.state.age}
+                             gender={this.state.gender}
+                             paymentType={this.state.paymentType}
+                             mainComplaint={this.state.mainComplaint}
+                             day={this.state.day}
+                             month={this.state.month}
+                             year={this.state.year}
+                        />
                     </div>
                 )}
             </MyContext.Consumer>
