@@ -11,7 +11,7 @@ const Card = () => {
     useEffect(() => {
         const user = firebase.auth().currentUser;
         if(user) {
-            const itemsRef = firebase.database().ref(`Dentist/${user.uid}/Form`);
+            const itemsRef = firebase.database().ref("Form");
             let newState = [];
             itemsRef.on("value", snap => {
                 let items = snap.val();

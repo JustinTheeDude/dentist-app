@@ -20,6 +20,8 @@ class PDF extends React.Component{
     }
 
     componentDidMount() {
+        let filename = this.props.filename;
+        console.log(filename)
         Font.register({
             family: "takao",
             src: takao,
@@ -40,6 +42,7 @@ class PDF extends React.Component{
             padding: 10
         },
     });
+
 
 
     render() {
@@ -69,7 +72,7 @@ class PDF extends React.Component{
         return (
             <>
             {this.state.ready && (
-                <PDFDownloadLink document={doc} fileName="somename.pdf">
+                <PDFDownloadLink document={doc} fileName={this.props.filename.split(' ').join('').toLowerCase()}>
                 {({ blob, url, loading, error }) => (loading ? 'Loading document...' :
                 <Button onClick={() => (this.setState({ ready: false }))}>
                     download pdf

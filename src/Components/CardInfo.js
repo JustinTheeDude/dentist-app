@@ -12,7 +12,9 @@ class CardInfo extends Component {
         age: "",
         contactName: "",
         day: "",
-        doctorName: "", info: "", month: "",
+        doctorName: "",
+        info: "",
+        month: "",
         year: "",
         zip: "",
         complete: false,
@@ -85,8 +87,6 @@ class CardInfo extends Component {
 
 
     render() {
-        let name = this.state.name;
-        console.log(name);
         return (
             <MyContext.Consumer>
                 {context => (
@@ -121,6 +121,7 @@ class CardInfo extends Component {
                              day={this.state.day}
                              month={this.state.month}
                              year={this.state.year}
+                             filename={this.state.doctorName}
                         />
                     </div>
                 )}
