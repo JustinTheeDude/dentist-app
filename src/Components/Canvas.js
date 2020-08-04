@@ -11,21 +11,20 @@ class Canvas extends Component {
     lazyRadius: 2,
     drawing: ''
   };
-  componentDidMount() {
-        const user = firebase.auth().currentUser
-        const ref = firebase.database().ref(`Dentist/${user.uid}/Form`)
-      ref.orderByChild("drawing").on("child_added", function(snap) {
-        if(this.state.drawing) {
-          this.setState({
-          drawing: snap.val().drawing
-        })
+//   componentDidMount() {
+//         const user = firebase.auth().currentUser
+//         const ref = firebase.database().ref(`Dentist/${user.uid}/Form`)
+//       ref.orderByChild("drawing").on("child_added", function(snap) {
+//         if(this.state.drawing) {
+//           this.setState({
+//           drawing: snap.val().drawing
+//         })
 
-        }
+//         }
 
-        console.log("this is the drawing: ", typeof snap.val().drawing)
-      }) 
-    
-}
+//         console.log("this is the drawing: ", typeof snap.val().drawing)
+//       }) 
+// }
   
   render() {
     return (

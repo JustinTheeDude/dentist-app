@@ -13,6 +13,7 @@ class CardInfo extends Component {
         contactName: "",
         day: "",
         doctorName: "", info: "", month: "",
+        mainComplaint: "",
         year: "",
         zip: "",
         complete: false,
@@ -35,11 +36,13 @@ class CardInfo extends Component {
     componentDidMount() {
         if (this.props.value !== "") {
             var self = this;
+            const user = firebase.auth().currentUser;
             var ref = firebase
                 .database()
-                .ref("Form")
+                .ref(`Dentist/${user.uid}/Form`)
                 .child(this.props.value);
             ref.orderByKey().on("value", function(snapshot) {
+                console.log("this is the snapshot in cardinfo: ", snapshot)
                 let items = snapshot.val();
                 for (let item in items) {
                     self.setState({
@@ -54,7 +57,7 @@ class CardInfo extends Component {
                         gender: items["gender"],
                         specs: items["specs"],
                         paymentType: items["paymentType"],
-                        mainCompliant: items["mainComplaint"],
+                        mainComplaint: items["mainComplaint"],
                         deliverTime: items["deliveryTime"],
                         otherOption: items["otherOption"],
                         complete: items["complete"]
