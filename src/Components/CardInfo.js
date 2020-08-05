@@ -29,14 +29,14 @@ class CardInfo extends Component {
     getDrawing() {
         const user = firebase.auth().currentUser
         const ref = firebase.database().ref(`Dentist/${user.uid}/Form`)
-        let drawing; 
-        ref.orderByChild("drawing").on("child_added", function(snap) {   
+        let drawing;
+        ref.orderByChild("drawing").on("child_added", function(snap) {
           drawing = snap.val().drawing;
-         
-        }) 
+
+        })
         return  drawing;
     }
-    
+
     completeOrder = (id) => {
         const itemsRef = firebase.database().ref("Form").child(id);
         itemsRef.once("value", (snapshot) => {
@@ -55,6 +55,7 @@ class CardInfo extends Component {
         if (this.props.value !== "") {
             var self = this;
             const user = firebase.auth().currentUser;
+            console.log(user.uid);
             var ref = firebase
                 .database()
                 .ref(`Dentist/${user.uid}/Form`)
@@ -127,7 +128,7 @@ class CardInfo extends Component {
                         </div>
                         <div className="teeth">
                             {/* <Mouth preserveAspectRatio="meet" /> */}
-                            <CanvasDraw 
+                            <CanvasDraw
                                 saveData={this.getDrawing()}
                                 imgSrc={mouth}
                             />
@@ -144,7 +145,7 @@ class CardInfo extends Component {
                              day={this.state.day}
                              month={this.state.month}
                              year={this.state.year}
-                             filename={this.state.doctorName}
+                             filename={this.state.contactName}
                         />
                     </div>
                 )}
