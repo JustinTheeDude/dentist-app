@@ -10,6 +10,7 @@ class Canvas extends Component {
     brushRadius: 2,
     lazyRadius: 2,
   };
+
 //   componentDidMount() {
 //         const user = firebase.auth().currentUser
 //         const ref = firebase.database().ref(`Dentist/${user.uid}/Form`)
@@ -22,9 +23,9 @@ class Canvas extends Component {
 //         }
 
 //         console.log("this is the drawing: ", typeof snap.val().drawing)
-//       }) 
+//       })
 // }
-  
+
   render() {
     return (
       <div>
@@ -34,7 +35,7 @@ class Canvas extends Component {
             e.preventDefault()
             const user = firebase.auth().currentUser;
             const itemsRef = firebase.database().ref(`Dentist/${user.uid}/Form`);
-            const items = { 
+            const items = {
                 drawing: this.saveableCanvas.getSaveData()
             }
             itemsRef.push(items)
@@ -42,7 +43,7 @@ class Canvas extends Component {
         >
         Save
         </button>
-        &nbsp; 
+        &nbsp;
         <button
           id="btn-canvas"
           onClick={(e) => {
@@ -52,8 +53,8 @@ class Canvas extends Component {
         >
           Clear
         </button>
-        &nbsp; 
-        <button 
+        &nbsp;
+        <button
           id="btn-canvas"
           onClick={(e) => {
             e.preventDefault()
