@@ -7,7 +7,6 @@ const Card = () => {
     const [orders, setOrders] = useState([]);
     const [orderPerPage] = useState(4);
     const [currentOrderPage, setCurrentOrderPage] = useState(1);
-
     useEffect(() => {
         const user = firebase.auth().currentUser;
         if(user) {
