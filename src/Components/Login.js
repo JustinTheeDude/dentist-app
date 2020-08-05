@@ -4,6 +4,7 @@ import { Form, FormGroup, Label, Input, Button, } from "reactstrap";
 import firebase from "./firebase";
 import {AuthContext} from "../Components/Context/Auth";
 
+
 const Login = ({ history }) => {
     const [error, setError] = useState("");
     const [noInput, setNoInput] = useState(false);
@@ -71,7 +72,7 @@ const Login = ({ history }) => {
             <Button className="btn-login">Submit</Button>
             <br />
             <p className="login-p">
-                アカウントを作成するにはここを<Link to="/registration">クリック</Link> 下さい！
+                アカウントを作成するにはここを<Link to="/signup">クリック</Link> 下さい！
             </p>
         </Form>
     );

@@ -7,10 +7,9 @@ const Card = () => {
     const [orders, setOrders] = useState([]);
     const [orderPerPage] = useState(4);
     const [currentOrderPage, setCurrentOrderPage] = useState(1);
-
     useEffect(() => {
         const user = firebase.auth().currentUser;
-        const itemsRef = firebase.database().ref(`Technician/${user.uid}/Form`);
+        const itemsRef = firebase.database().ref(`Dentist/${user.uid}/Form`);
         let newState = [];
         itemsRef.on("value", snap => {
             let items = snap.val();

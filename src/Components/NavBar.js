@@ -8,7 +8,7 @@ let NavBar = () => {
                 <li>
                     <Link
                         to={{
-                            pathname: "/info",
+                            pathname: "/cards",
                         }}
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="22" viewBox="0 0 20 22">

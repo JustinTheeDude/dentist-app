@@ -6,6 +6,7 @@ import {MyContext} from "./Context/AppProvider";
 import {Button} from "reactstrap";
 import CanvasDraw from "react-canvas-draw";
 import mouth from '../assets/mouth.png';
+import PDF from "../Components/InfoPDF";
 
 class CardInfo extends Component {
     state = {
@@ -13,9 +14,8 @@ class CardInfo extends Component {
         age: "",
         contactName: "",
         day: "",
-        doctorName: "",
-        info: "",
-        month: "",
+        doctorName: "", info: "", month: "",
+        mainComplaint: "",
         year: "",
         zip: "",
         complete: false,
@@ -52,11 +52,13 @@ class CardInfo extends Component {
     componentDidMount() {
         if (this.props.value !== "") {
             var self = this;
+            const user = firebase.auth().currentUser;
             var ref = firebase
                 .database()
-                .ref("Form")
+                .ref(`Dentist/${user.uid}/Form`)
                 .child(this.props.value);
             ref.orderByKey().on("value", function(snapshot) {
+                console.log("this is the snapshot in cardinfo: ", snapshot)
                 let items = snapshot.val();
                 for (let item in items) {
                     self.setState({
@@ -71,7 +73,7 @@ class CardInfo extends Component {
                         gender: items["gender"],
                         specs: items["specs"],
                         paymentType: items["paymentType"],
-                        mainCompliant: items["mainComplaint"],
+                        mainComplaint: items["mainComplaint"],
                         deliverTime: items["deliveryTime"],
                         otherOption: items["otherOption"],
                         complete: items["complete"]
@@ -84,7 +86,6 @@ class CardInfo extends Component {
     isComplete = "";
 
     completeOrder = (id) => {
-        const user = firebase.auth().currentUser;
         const itemsRef = firebase.database().ref("Form").child(id);
         itemsRef.once("value", (snapshot) => {
             snapshot.forEach((child) => {
@@ -103,6 +104,8 @@ class CardInfo extends Component {
 
 
     render() {
+        let name = this.state.name;
+        console.log(name);
         return (
             <MyContext.Consumer>
                 {context => (
@@ -110,7 +113,7 @@ class CardInfo extends Component {
                         <div className="order-info">
                             <h1>歯科医名: {this.state.doctorName}</h1>
                             <h1>住所: {this.state.address}</h1>
-                            <h1>郵便番号: {this.state.zip}</h1> 
+                            <h1>郵便番号: {this.state.zip}</h1>
                             <h1>患者名: {this.state.contactName}</h1>
                             <h1>年齢: {this.state.age}</h1>
                             <h1>性別: {this.state.gender}</h1>
@@ -129,7 +132,19 @@ class CardInfo extends Component {
                                 imgSrc={mouth}
                             />
                         </div>
-                        <Button onClick={() => {this.completeOrder(this.props.value)}}>{this.isCompleteOrder()}</Button>
+                        <Button onClick={() => {this.completeOrder(this.props.value)}}></Button>
+                        <PDF name={this.state.doctorName}
+                             address={this.state.address}
+                             zip={this.state.zip}
+                             contactName={this.state.contactName}
+                             age={this.state.age}
+                             gender={this.state.gender}
+                             paymentType={this.state.paymentType}
+                             mainComplaint={this.state.mainComplaint}
+                             day={this.state.day}
+                             month={this.state.month}
+                             year={this.state.year}
+                        />
                     </div>
                 )}
             </MyContext.Consumer>
