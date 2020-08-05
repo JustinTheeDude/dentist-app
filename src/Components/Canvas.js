@@ -9,7 +9,6 @@ class Canvas extends Component {
     height: 300,
     brushRadius: 2,
     lazyRadius: 2,
-    drawing: ''
   };
 
 //   componentDidMount() {
@@ -63,10 +62,9 @@ class Canvas extends Component {
           }}
         >
           Undo
-        </button>
-
-        <CanvasDraw
-          // saveData={localStorage.getItem("savedDrawing")}
+        </button> 
+        
+        <CanvasDraw 
           ref={canvasDraw => (this.saveableCanvas = canvasDraw)}
           brushColor={this.state.color}
           brushRadius={this.state.brushRadius}
@@ -75,13 +73,13 @@ class Canvas extends Component {
           width={this.state.width}
           imgSrc={mouth}
           />
-          {/* <CanvasDraw
-              saveData={this.drawing}
-             imgSrc={mouth}
-          />  */}
-            </div>
-        );
-    }
+        {/* <CanvasDraw 
+         saveData={this.getDrawing()}
+          imgSrc={mouth}
+        /> */}
+      </div>
+    );
+  }
 }
 
 export default Canvas;
