@@ -3,8 +3,8 @@ import firebase from "firebase";
 // import {Redirect} from "react-router-dom";
 // import Mouth from "./mouth";
 import {MyContext} from "./Context/AppProvider";
-import {Button} from "reactstrap";
-import CanvasDraw from "react-canvas-draw";
+// import {Button} from "reactstrap";
+// import CanvasDraw from "react-canvas-draw";
 import mouth from '../assets/mouth.png';
 import PDF from "../Components/InfoPDF";
 
@@ -127,13 +127,14 @@ class CardInfo extends Component {
                             <h1>年: {this.state.year}</h1>
                         </div>
                         <div className="teeth">
+                            <img src={mouth} alt="mouth diagram" />
                             {/* <Mouth preserveAspectRatio="meet" /> */}
-                            <CanvasDraw
+                            {/* <CanvasDraw
                                 saveData={this.getDrawing()}
                                 imgSrc={mouth}
-                            />
+                            /> */}
                         </div>
-                        <Button onClick={() => {this.completeOrder(this.props.value)}}></Button>
+                        {/* <Button onClick={() => {this.completeOrder(this.props.value)}}></Button> */}
                         <PDF name={this.state.doctorName}
                              address={this.state.address}
                              zip={this.state.zip}

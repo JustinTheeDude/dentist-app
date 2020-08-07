@@ -11,13 +11,13 @@ import "./styles/main.scss";
 import PrivateRoute from './PrivateRoute';
 
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
-import CardInfo from "./Components/CardInfo";
+// import CardInfo from "./Components/CardInfo";
 import Layout from "./Components/Layout";
 import Login from "./Components/Login";
 import DentistSingup from './Components/DentistSingup';
 // import TechSignup from './Components/TechSingup';
 import Logout from './Components/Logout';
-import Registration from './Components/Registration';
+// import Registration from './Components/Registration';
 //import Provider
 import AppProvider, { MyContext } from "./Components/Context/AppProvider";
 import {AuthProvider} from "./Components/Context/Auth";
