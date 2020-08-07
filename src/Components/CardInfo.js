@@ -125,6 +125,7 @@ class CardInfo extends Component {
                             <h1>日付: {this.state.day}</h1>
                             <h1>月: {this.state.month}</h1>
                             <h1>年: {this.state.year}</h1>
+                            <h1>時間: {this.state.deliverTime}</h1>
                         </div>
                         <div className="teeth">
                             <img src={mouth} alt="mouth diagram" />

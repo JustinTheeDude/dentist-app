@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import { Form, FormGroup, Label, Input, Button} from "reactstrap";
 import firebase from "./firebase.js";
-
+import { Redirect } from 'react-router-dom';
 // Component import
 import Calendar from "react-calendar";
 import DeliveryDate from "./DeliveryDate";
@@ -73,6 +73,8 @@ class MainInfo extends Component {
             month: "",
             day: "",
             age: "",
+            mainComplaint: "",
+            otherOption: ""
         })
     }
     componentDidMount() {
