@@ -32,7 +32,7 @@ class MainInfo extends Component {
 
     onChange = deliveryDate => {
         this.setState({deliveryDate});
-        console.log(this.state.deliveryDate);
+        // console.log(this.state.deliveryDate);
     };
 
     handleChange = e => {
@@ -76,7 +76,7 @@ class MainInfo extends Component {
             mainComplaint: "",
             otherOption: ""
         })
-
+        this.props.history.push('/cards');
     }
     componentDidMount() {
         if(this.props.value !== "") {
