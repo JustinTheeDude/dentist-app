@@ -12,8 +12,7 @@ class CardInfo extends Component {
     state = {
         address: "",
         age: "",
-        contactName: "",
-        day: "",
+        contactName: "", day: "",
         doctorName: "",
         info: "",
         month: "",
@@ -61,27 +60,24 @@ class CardInfo extends Component {
                 .ref(`Dentist/${user.uid}/Form`)
                 .child(this.props.value);
             ref.orderByKey().on("value", function(snapshot) {
-                console.log("this is the snapshot in cardinfo: ", snapshot)
                 let items = snapshot.val();
-                for (let item in items) {
-                    self.setState({
-                        doctorName: items["doctorName"],
-                        address: items["address"],
-                        zip: items["zip"],
-                        contactName: items["contactName"],
-                        year: items["year"],
-                        month: items["month"],
-                        day: items["day"],
-                        age: items["age"],
-                        gender: items["gender"],
-                        specs: items["specs"],
-                        paymentType: items["paymentType"],
-                        mainComplaint: items["mainComplaint"],
-                        deliverTime: items["deliveryTime"],
-                        otherOption: items["otherOption"],
-                        complete: items["complete"]
-                    });
-                }
+                self.setState({
+                    doctorName: items["doctorName"],
+                    address: items["address"],
+                    zip: items["zip"],
+                    contactName: items["contactName"],
+                    year: items["year"],
+                    month: items["month"],
+                    day: items["day"],
+                    age: items["age"],
+                    gender: items["gender"],
+                    specs: items["specs"],
+                    paymentType: items["paymentType"],
+                    mainComplaint: items["mainComplaint"],
+                    deliverTime: items["deliveryTime"],
+                    otherOption: items["otherOption"],
+                    complete: items["complete"]
+                });
             });
         }
     }

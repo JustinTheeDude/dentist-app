@@ -7,9 +7,9 @@ const NotificationBar = () => {
     // console.log(currentUser)
     return (
         <div className="notification-container">
-            <div className="search-notification">
-                <input className="search-bar" type="text" placeholder="Search" />
-            </div>
+            {/* <div className="search-notification"> */}
+            {/*     <input className="search-bar" type="text" placeholder="Search" /> */}
+            {/* </div> */}
             {
                 currentUser?
                     <div> Welcome, {currentUser.displayName} </div>

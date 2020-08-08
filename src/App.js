@@ -19,7 +19,7 @@ import DentistSingup from './Components/DentistSingup';
 import Logout from './Components/Logout';
 // import Registration from './Components/Registration';
 //import Provider
-import AppProvider, { MyContext } from "./Components/Context/AppProvider";
+import AppProvider from "./Components/Context/AppProvider";
 import {AuthProvider} from "./Components/Context/Auth";
 
 

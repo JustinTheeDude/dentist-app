@@ -1,19 +1,38 @@
-  
+
 #main_form {
     max-width: 1200px;
     padding: 30px;
     margin: auto;
+    width: 90%;
+    background-color: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-radius: 20px;
+    box-shadow: 0px 3px 6px #2c28281c;
+    transform: translateY(200px);
 
-    label { 
+    .form-group {
+        max-width: 800px;
+        margin: 30px auto;
+    }
+
+
+    label {
         padding: .5rem 0 .25rem;
     }
+
     input, select,textarea {
         display: flex;
-        width: 500px;
-        border: 2px solid dodgerblue;
+        width: 100%;
+        appearance: none;
+        border: 0;
         border-radius: 5px;
+        box-shadow: 0px 2px 5px 2px rgba(#8898AA, .3);
+        margin: auto;
     }
-    
+
     h3 {
         padding-bottom: .15rem;
         font-size: xx-large;
@@ -21,9 +40,13 @@
     }
 }
 
-.doc-name .hospital-address .zip {
-    display: flex;
-    flex-direction: row;
+.doc-name  {
+    .hospital-address{
+        .zip {
+            display: flex;
+            flex-direction: row;
+        }
+    }
 }
 
 .patient-name {
@@ -33,11 +56,13 @@
 .age {
     flex: 1;
 }
-.gender-select-menu,.product-specs-menu,.patient-payment-select{
+
+.gender-select-menu,
+.product-specs-menu,
+.patient-payment-select {
      flex:1;
 }
-
-.main-complaint { 
+.main-complaint {
     flex: 1;
 }
 
@@ -48,19 +73,38 @@
 
 .calendar {
     flex: 1;
+    max-width: 800px;
+    margin: auto;
+
+    .react-calendar {
+        margin: auto;
+    }
 }
 
 .canvas {
     flex: 1;
 }
+
 #btn-canvas {
     border: 2px solid darkblue;
     background-color:dodgerblue;
     border-radius: 5px;
 }
-#btn {
 
-    border: 2px solid darkblue;
-    background-color:dodgerblue;
-    
+.delivery-div {
+    max-width: 800px;
+    margin-top: 30px;
+    text-align: center;
+}
+
+
+#btn {
+    background-color: #7764e4;
+    box-shadow: 0px 3px 6px #2c28281c;
+    color: $color-white;
+    transition: background-color .4s ease;
+
+    &:hover {
+        background-color: #8898aa;
+    }
 }
