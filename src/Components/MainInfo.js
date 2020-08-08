@@ -76,6 +76,7 @@ class MainInfo extends Component {
             mainComplaint: "",
             otherOption: ""
         })
+
     }
     componentDidMount() {
         if(this.props.value !== "") {
@@ -224,9 +225,9 @@ class MainInfo extends Component {
                         day={this.state.day}
                         delivery={this.state.deliveryDate.toString().slice(0, 16)}
                     />
-                    <div className="canvas form-box">
+                    {/* <div className="canvas form-box">
                         <Canvas />
-                    </div>
+                    </div> */}
                 </div>
                 <Button id="btn" className="form-box">Submit</Button>
             </Form>
