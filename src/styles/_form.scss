@@ -1,5 +1,66 @@
+  
 #main_form {
     max-width: 1200px;
     padding: 30px;
     margin: auto;
+
+    label { 
+        padding: .5rem 0 .25rem;
+    }
+    input, select,textarea {
+        display: flex;
+        width: 500px;
+        border: 2px solid dodgerblue;
+        border-radius: 5px;
+    }
+    
+    h3 {
+        padding-bottom: .15rem;
+        font-size: xx-large;
+        text-align: center;
+    }
+}
+
+.doc-name .hospital-address .zip {
+    display: flex;
+    flex-direction: row;
+}
+
+.patient-name {
+    flex: 1;
+}
+
+.age {
+    flex: 1;
+}
+.gender-select-menu,.product-specs-menu,.patient-payment-select{
+     flex:1;
+}
+
+.main-complaint { 
+    flex: 1;
+}
+
+
+.delivery-time {
+    flex: 1;
+}
+
+.calendar {
+    flex: 1;
+}
+
+.canvas {
+    flex: 1;
+}
+#btn-canvas {
+    border: 2px solid darkblue;
+    background-color:dodgerblue;
+    border-radius: 5px;
+}
+#btn {
+
+    border: 2px solid darkblue;
+    background-color:dodgerblue;
+    
 }

@@ -7,22 +7,24 @@ const Card = () => {
     const [orders, setOrders] = useState([]);
     const [orderPerPage] = useState(4);
     const [currentOrderPage, setCurrentOrderPage] = useState(1);
-
     useEffect(() => {
-        const itemsRef = firebase.database().ref("Form");
-        let newState = [];
-        itemsRef.on("value", snap => {
-            let items = snap.val();
-            for (let item in items) {
-                newState.push({
-                    id: item,
-                    contactName: items[item].contactName,
-                    address: items[item].address,
-                    complete: items[item].complete,
-                });
-            }
-            setOrders(newState);
-        });
+        const user = firebase.auth().currentUser;
+        if(user) {
+            const itemsRef = firebase.database().ref(`Dentist/${user.uid}/Form`);
+            let newState = [];
+            itemsRef.on("value", snap => {
+                let items = snap.val();
+                for (let item in items) {
+                    newState.push({
+                        id: item,
+                        contactName: items[item].contactName,
+                        address: items[item].address,
+                        complete: items[item].complete,
+                    });
+                }
+                setOrders(newState);
+            });
+        }
     }, []);
 
     const indexOfLastOrder = currentOrderPage * orderPerPage;

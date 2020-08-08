@@ -4,7 +4,7 @@ import {AuthContext} from "../Components/Context/Auth";
 
 const NotificationBar = () => {
     const {currentUser} = useContext(AuthContext);
-
+    // console.log(currentUser)
     return (
         <div className="notification-container">
             <div className="search-notification">

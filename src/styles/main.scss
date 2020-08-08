@@ -1,12 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
+@import "_reset.scss";
 @import "_colors.scss";
 @import "_fonts.scss";
 @import "_cards.scss";
 @import "_form.scss";
 @import "_login.scss";
 @import "_navbar.scss";
-@import "_reset.scss";
 @import "_notificationbar.scss";
 @import "_info.scss";
+@import "_signup";
+@import "_registrationbtn.scss";
+@import "_registration.scss";
 
 html {
     width: 100%;
@@ -16,6 +20,7 @@ html {
 
 body {
     background-color: $color2;
+    overflow: hidden;
 }
 
 main {

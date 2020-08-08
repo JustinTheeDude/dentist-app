@@ -6,7 +6,33 @@
     background-color: #fff;
     border-radius: 5px;
     padding: 30px;
-    width: 300px;
-    height: 300px;
-    box-shadow: 10px 10px 39px 1px rgba(0, 0, 0, 0.24);
+    width: 350px;
+    height: 350px;
+}
+
+html {
+    background: linear-gradient(350deg,  #172b4d 58%, #11cdef  30%);
+}
+.login-p{
+    color: black;
+}
+
+#email,
+#password {
+    background-repeat: no-repeat;
+    background-size: 25px 25px;
+    background-position: 15px 6px;
+    padding-left: 50px;
+}
+#email {
+    background-image: url("../assets/email.svg");
+}
+
+#password {
+    background-image: url("../assets/lock.svg");
+}
+
+.btn-login {
+    margin-top: -20px;
+    background-color: #172b4d;
 }

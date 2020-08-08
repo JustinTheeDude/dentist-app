@@ -1,0 +1,23 @@
+.signup {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 30px;
+  width: 400px;
+  height: 485px;
+}
+
+html {
+  background: linear-gradient(350deg,  #172b4d 58%, #11cdef  30%);
+}
+
+.btn-singup {
+  margin-top: 10px;
+}
+
+p {
+  margin-top: 3px;
+}
