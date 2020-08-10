@@ -31,9 +31,9 @@ const OrderList = ({orders, pagination}) => {
                 <h1 className="card-title">Orders</h1>
                 <div className="table-titles">
                     <ul>
-                        <li>Customer Name</li>
-                        <li>Address</li>
-                        <li>Status</li>
+                        <li>Patient Name</li>
+                        <li>Hospital Address</li>
+                        <li>Order Status</li>
                     </ul>
                 </div>
                 <div className="contact-cards">
