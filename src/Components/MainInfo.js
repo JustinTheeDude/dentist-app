@@ -205,7 +205,7 @@ class MainInfo extends Component {
                         <Input type="textarea" name="mainComplaint" placeholder="主訴" onChange={this.handleChange} value={this.state.mainComplaint || ""} required />
                 </FormGroup>
                 <FormGroup  className="delivery-time form-box" >
-                    <Label for="exampleTime" >Time</Label>
+                    <Label for="exampleTime">時間</Label>
                     <Input
                     type="time"
                     name="deliveryTime"

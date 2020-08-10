@@ -5,7 +5,7 @@ import Pagination from "./Pagination";
 
 const Card = () => {
     const [orders, setOrders] = useState([]);
-    const [orderPerPage] = useState(4);
+    const [orderPerPage] = useState(10);
     const [currentOrderPage, setCurrentOrderPage] = useState(1);
     useEffect(() => {
         const user = firebase.auth().currentUser;
