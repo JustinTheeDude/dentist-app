@@ -56,6 +56,8 @@ class PDF extends React.Component{
                         <Text>患者名: {this.props.contactName}</Text>
                         <Text>年齢: {this.props.age}</Text>
                         <Text>性別: {this.props.gender}</Text>
+                        <Text>製品仕様: {this.props.specs}</Text>
+                        <Text>製品仕様 他: {this.props.otherOption}</Text>
                         <Text>支払い: {this.props.paymentType}</Text>
                         <Text>主訴: {this.props.mainComplaint}</Text>
                         <Text>発注日: {this.props.date}</Text>

@@ -20,6 +20,8 @@ class CardInfo extends Component {
         mainComplaint: "",
         year: "",
         zip: "",
+        specs: "",
+        otherOption:"",
         complete: false,
     };
 
@@ -145,6 +147,8 @@ class CardInfo extends Component {
                              date={this.state.date}
                              deliveryDate={this.state.deliveryDate}
                              deliveryTime={this.state.deliveryTime}
+                             specs={this.state.specs}
+                             otherOption={this.state.otherOption}
                             //  day={this.state.day}
                             //  month={this.state.month}
                             //  year={this.state.year}
