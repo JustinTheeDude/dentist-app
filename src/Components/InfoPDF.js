@@ -58,9 +58,9 @@ class PDF extends React.Component{
                         <Text>性別: {this.props.gender}</Text>
                         <Text>支払い: {this.props.paymentType}</Text>
                         <Text>主訴: {this.props.mainComplaint}</Text>
-                        <Text>日付: {this.props.day}</Text>
-                        <Text>月: {this.props.month}</Text>
-                        <Text>年: {this.props.year}</Text>
+                        <Text>発注日: {this.props.date}</Text>
+                        <Text>配送日: {this.props.deliveryDate}</Text>
+                        <Text>時間: {this.props.deliveryTime}</Text>
                     </View>
                     <View style={this.styles.section}>
                         <Image src={mouth} />

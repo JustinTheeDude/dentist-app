@@ -3,7 +3,7 @@ import React from "react";
 // import { render } from "@testing-library/react";
 const DeliveryDate = props => (
     <div className="delivery-div">
-        Order date: {props.day}. Delivery date: {props.delivery}
+        Order date: {props.date}. Delivery date: {props.delivery}
     </div>
 );
 

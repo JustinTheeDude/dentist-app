@@ -1,11 +1,11 @@
 import React, {Component} from "react";
 import { Form, FormGroup, Label, Input, Button} from "reactstrap";
 import firebase from "./firebase.js";
-import { Redirect } from 'react-router-dom';
+
 // Component import
 import Calendar from "react-calendar";
 import DeliveryDate from "./DeliveryDate";
-import Canvas from './Canvas';
+// import Canvas from './Canvas';
 
 
 class MainInfo extends Component {
@@ -17,9 +17,9 @@ class MainInfo extends Component {
         address: "",
         zip: "",
         contactName: "",
-        year: "",
-        month: "",
-        day: "",
+        // year: "",
+        // month: "",
+        // day: "",
         age: "",
         gender: "男",
         specs: "レジン床",
@@ -29,10 +29,10 @@ class MainInfo extends Component {
         otherOption: "",
     };
     user = firebase.auth().currentUser
-
+    
     onChange = deliveryDate => {
         this.setState({deliveryDate});
-        // console.log(this.state.deliveryDate);
+        console.log(this.state.deliveryDate);
     };
 
     handleChange = e => {
@@ -51,9 +51,8 @@ class MainInfo extends Component {
             address: this.state.address,
             zip: this.state.zip,
             contactName: this.state.contactName,
-            year: this.state.deliveryDate.toString().slice(11, 15),
-            month: this.state.deliveryDate.toString().slice(4, 7),
-            day: this.state.deliveryDate.toString().slice(0, 4),
+            date: this.state.date.toString().slice(0, 15),
+            deliveryDate: this.state.deliveryDate.toString().slice(0, 15),  
             age: this.state.age,
             gender: this.state.gender,
             specs: this.state.specs,
@@ -71,7 +70,7 @@ class MainInfo extends Component {
             contactName: "",
             year: "",
             month: "",
-            day: "",
+            date: "",
             age: "",
             mainComplaint: "",
             otherOption: ""
@@ -92,6 +91,7 @@ class MainInfo extends Component {
 
     render() {
         const user = firebase.auth().currentUser
+        console.log("this is the delivery time: ", typeof this.state.deliveryTime)
         return (
             <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
                 <h3 className="hospital-info-header">医院情報</h3>
@@ -217,13 +217,13 @@ class MainInfo extends Component {
                     <h3 className="order-heading">発注日/納期日</h3>
                     <div className="calendar form-box">
                     <Calendar
-                        calendarType="US"D
+                        calendarType="US"
                         onClickDay={this.onChange}
                         minDate={this.state.minDate}
                     />
                     <DeliveryDate
-                        day={this.state.day}
-                        delivery={this.state.deliveryDate.toString().slice(0, 16)}
+                        date={this.state.date.toString().slice(0, 15)}
+                        delivery={this.state.deliveryDate.toString().slice(0, 15)}
                     />
                     {/* <div className="canvas form-box">
                         <Canvas />
