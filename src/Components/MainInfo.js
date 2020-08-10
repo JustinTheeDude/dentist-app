@@ -216,7 +216,7 @@ class MainInfo extends Component {
                     <h3 className="order-heading">発注日/納期日</h3>
                     <div className="calendar form-box">
                     <Calendar
-                        calendarType="US"D
+                        calendarType="US"
                         onClickDay={this.onChange}
                         minDate={this.state.minDate}
                     />
