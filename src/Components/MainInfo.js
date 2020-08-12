@@ -15,9 +15,6 @@ class MainInfo extends Component {
         address: "",
         zip: "",
         contactName: "",
-        // year: "",
-        // month: "",
-        // day: "",
         age: "",
         gender: "男",
         specs: "レジン床",
@@ -61,6 +58,7 @@ class MainInfo extends Component {
             otherOption: this.state.otherOption
 
         };
+
         itemsRef.push(item);
         const ref = firebase.database().ref(`Dentist/${user.uid}/Info`)
         ref.update({address: this.state.address, zip: this.state.zip})
