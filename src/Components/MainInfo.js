@@ -15,9 +15,6 @@ class MainInfo extends Component {
         address: "",
         zip: "",
         contactName: "",
-        year: "",
-        month: "",
-        day: "",
         age: "",
         gender: "男",
         specs: "レジン床",
@@ -28,9 +25,10 @@ class MainInfo extends Component {
     };
 
     user = firebase.auth().currentUser;
-
+    
     onChange = deliveryDate => {
         this.setState({deliveryDate});
+        console.log(this.state.deliveryDate);
     };
 
     handleChange = e => {
@@ -42,15 +40,15 @@ class MainInfo extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        const itemsRef = firebase.database().ref(`Dentist/${this.user.uid}/Form`);
+        const user = firebase.auth().currentUser;
+        const itemsRef = firebase.database().ref(`Dentist/${user.uid}/Form`);
         const item = {
             doctorName: this.user.displayName,
             address: this.state.address,
             zip: this.state.zip,
             contactName: this.state.contactName,
-            year: this.state.deliveryDate.toString().slice(11, 15),
-            month: this.state.deliveryDate.toString().slice(4, 7),
-            day: this.state.deliveryDate.toString().slice(0, 4),
+            date: this.state.date.toString().slice(0, 15),
+            deliveryDate: this.state.deliveryDate.toString().slice(0, 15),  
             age: this.state.age,
             gender: this.state.gender,
             specs: this.state.specs,
@@ -62,21 +60,20 @@ class MainInfo extends Component {
         };
 
         itemsRef.push(item);
-        const ref = firebase.database().ref(`Dentist/${this.user.uid}/Info`)
+        const ref = firebase.database().ref(`Dentist/${user.uid}/Info`)
         ref.update({address: this.state.address, zip: this.state.zip})
         this.setState({
             deliveryDate: "",
             contactName: "",
             year: "",
             month: "",
-            day: "",
+            date: "",
             age: "",
             mainComplaint: "",
             otherOption: ""
         })
-
+        this.props.history.push('/cards');
     }
-
     componentDidMount() {
         if(this.props.value !== "") {
             const ref = firebase.database().ref(`Dentist/${this.user.uid}/Info`)
@@ -91,6 +88,7 @@ class MainInfo extends Component {
 
     render() {
         const user = firebase.auth().currentUser
+        console.log("this is the delivery time: ", typeof this.state.deliveryTime)
         return (
             <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
                 <h3 className="hospital-info-header">医院情報</h3>
@@ -104,37 +102,37 @@ class MainInfo extends Component {
                             placeholder="名前"
                             onChange={this.handleChange}
                             value={user.displayName}
-                        />
+                        />  
                     }
                 </FormGroup>
                 <FormGroup className="hospital-address form-box">
-                    <Label for="exampleAddress">医院名住所</Label>
-                    {
+                    <Label for="exampleAddress">医院名住所</Label> 
+                    {     
                         this.state.address === null?
-                        <h1>{this.state.address}</h1> :
+                        <h1>{this.state.address}</h1> :    
                         <Input
                             type="text"
                             name="address"
                             id="exampleAddress"
                             placeholder="市区町村"
                             onChange={this.handleChange}
-                            value={this.state.address || ""}
-                        />
+                            value={this.state.address || ""} 
+                        /> 
                     }
-
+                   
                 </FormGroup>
                 <FormGroup className="zip form-box">
                     <Label for="exampleZip">〒</Label>
-                {
+                {  
                     this.state.zip === null ?
-                    <h1>{this.state.zip}</h1> :
+                    <h1>{this.state.zip}</h1> :            
                 <Input
                     type="text"
                     name="zip"
                     id="exampleZip"
                     onChange={this.handleChange}
                     value={this.state.zip || ""}
-                />
+                /> 
                 }
                 </FormGroup>
                 <h3 className="patient-info-header">患者情報</h3>
@@ -179,14 +177,14 @@ class MainInfo extends Component {
                     { this.state.value  === "他" || this.state.otherOption ?
                         <FormGroup>
                         <Label>他</Label>
-                            <Input
-                                type="textarea"
-                                name="otherOption"
-                                placeholder="他"
+                            <Input 
+                                type="textarea" 
+                                name="otherOption"  
+                                placeholder="他" 
                                 onChange={this.handleChange}
-                                value={this.state.otherOption || ""}
-                                required
-                                />
+                                value={this.state.otherOption || ""} 
+                                required  
+                                /> 
                         </FormGroup>
                         :
                         null
@@ -204,7 +202,7 @@ class MainInfo extends Component {
                         <Input type="textarea" name="mainComplaint" placeholder="主訴" onChange={this.handleChange} value={this.state.mainComplaint || ""} required />
                 </FormGroup>
                 <FormGroup  className="delivery-time form-box" >
-                    <Label for="exampleTime" >Time</Label>
+                    <Label for="exampleTime">時間</Label>
                     <Input
                     type="time"
                     name="deliveryTime"
@@ -221,8 +219,8 @@ class MainInfo extends Component {
                         minDate={this.state.minDate}
                     />
                     <DeliveryDate
-                        day={this.state.day}
-                        delivery={this.state.deliveryDate.toString().slice(0, 16)}
+                        date={this.state.date.toString().slice(0, 15)}
+                        delivery={this.state.deliveryDate.toString().slice(0, 15)}
                     />
                     {/* <div className="canvas form-box">
                         <Canvas />

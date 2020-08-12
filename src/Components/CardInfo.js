@@ -19,6 +19,8 @@ class CardInfo extends Component {
         mainComplaint: "",
         year: "",
         zip: "",
+        specs: "",
+        otherOption:"",
         complete: false,
     };
 
@@ -118,10 +120,9 @@ class CardInfo extends Component {
                             {this.state.otherOption && <h1>製品仕様 他: {this.state.otherOption}</h1>}
                             <h1>支払い: {this.state.paymentType}</h1>
                             <h1>主訴: {this.state.mainComplaint}</h1>
-                            <h1>日付: {this.state.day}</h1>
-                            <h1>月: {this.state.month}</h1>
-                            <h1>年: {this.state.year}</h1>
-                            <h1>時間: {this.state.deliverTime}</h1>
+                            <h1>発注日: {this.state.date}</h1>
+                            <h1>配送日: {this.state.deliveryDate}</h1>
+                            <h1>時間: {this.state.deliveryTime}</h1>
                         </div>
                         <div className="teeth">
                             <img src={mouth} alt="mouth diagram" />
@@ -140,9 +141,14 @@ class CardInfo extends Component {
                              gender={this.state.gender}
                              paymentType={this.state.paymentType}
                              mainComplaint={this.state.mainComplaint}
-                             day={this.state.day}
-                             month={this.state.month}
-                             year={this.state.year}
+                             date={this.state.date}
+                             deliveryDate={this.state.deliveryDate}
+                             deliveryTime={this.state.deliveryTime}
+                             specs={this.state.specs}
+                             otherOption={this.state.otherOption}
+                            //  day={this.state.day}
+                            //  month={this.state.month}
+                            //  year={this.state.year}
                              filename={this.state.contactName}
                         />
                     </div>
