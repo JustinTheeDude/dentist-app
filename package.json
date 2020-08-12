@@ -22,7 +22,8 @@
     "react-scripts": "^3.4.0",
     "reactstrap": "^8.2.0",
     "serialize-javascript": "^2.1.1",
-    "serve": "^11.3.2"
+    "serve": "^11.3.2",
+    "tools": "0.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -47,7 +48,7 @@
   },
   "devDependencies": {
     "@svgr/cli": "^5.4.0",
-    "firebase": "^7.16.1",
+    "firebase": "^7.17.2",
     "rc-calendar": "^9.15.9",
     "react-router-dom": "^5.1.2",
     "react-strap": "0.0.1"
