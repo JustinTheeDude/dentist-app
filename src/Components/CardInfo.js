@@ -63,7 +63,6 @@ class CardInfo extends Component {
                 .ref(`Dentist/${user.uid}/Form`)
                 .child(this.props.value);
             ref.orderByKey().on("value", function(snapshot) {
-            
                 let items = snapshot.val();
                 self.setState({
                     doctorName: items["doctorName"],
@@ -82,7 +81,6 @@ class CardInfo extends Component {
                     otherOption: items["otherOption"],
                     complete: items["complete"]
                 });
-                }
             });
         }
     }
