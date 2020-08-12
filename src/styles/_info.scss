@@ -3,10 +3,21 @@
     justify-content: space-around;
     flex-wrap: wrap;
     align-items: center;
-    padding: 60px;
+    padding: 80px 60px;
+    flex-direction: column;
+    width: 100%;
+
+    @media only screen and (min-width: 768px) {
+        padding: 80px;
+        flex-direction: row;
+    }
 
     .order-info {
-        width: 50%;
+        width: 100%;
+
+        @media only screen and (min-width: 768px) {
+            width: 50%;
+        }
 
         h1 {
             font-size: 30px;
@@ -15,7 +26,15 @@
     }
 
     .teeth {
-        width: 50%;
+        width: 100%;
+
+        @media only screen and (min-width: 768px) {
+            width: 50%;
+        }
+
+        img {
+            width: 100%;
+        }
 
         svg {
             &:not(:root) {
