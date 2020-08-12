@@ -65,23 +65,23 @@ class CardInfo extends Component {
             ref.orderByKey().on("value", function(snapshot) {
             
                 let items = snapshot.val();
-                for (let item in items) {
-                    self.setState({
-                        doctorName: items["doctorName"],
-                        address: items["address"],
-                        zip: items["zip"],
-                        contactName: items["contactName"],
-                        deliveryDate: items["deliveryDate"],
-                        date: items["date"],
-                        age: items["age"],
-                        gender: items["gender"],
-                        specs: items["specs"],
-                        paymentType: items["paymentType"],
-                        mainComplaint: items["mainComplaint"],
-                        deliveryTime: items["deliveryTime"],
-                        otherOption: items["otherOption"],
-                        complete: items["complete"]
-                    });
+                self.setState({
+                    doctorName: items["doctorName"],
+                    address: items["address"],
+                    zip: items["zip"],
+                    contactName: items["contactName"],
+                    year: items["year"],
+                    month: items["month"],
+                    day: items["day"],
+                    age: items["age"],
+                    gender: items["gender"],
+                    specs: items["specs"],
+                    paymentType: items["paymentType"],
+                    mainComplaint: items["mainComplaint"],
+                    deliverTime: items["deliveryTime"],
+                    otherOption: items["otherOption"],
+                    complete: items["complete"]
+                });
                 }
             });
         }

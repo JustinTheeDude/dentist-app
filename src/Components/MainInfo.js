@@ -5,7 +5,7 @@ import firebase from "./firebase.js";
 // Component import
 import Calendar from "react-calendar";
 import DeliveryDate from "./DeliveryDate";
-// import Canvas from './Canvas';
+
 
 
 class MainInfo extends Component {
