@@ -24,7 +24,9 @@ class MainInfo extends Component {
         otherOption: "",
     };
 
+
     user = firebase.auth().currentUser
+    
     
     onChange = deliveryDate => {
         this.setState({deliveryDate});
