@@ -25,6 +25,7 @@ class MainInfo extends Component {
         deliveryTime: "",
         otherOption: "",
     };
+
     user = firebase.auth().currentUser
     
     onChange = deliveryDate => {
