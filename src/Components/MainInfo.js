@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import { Form, FormGroup, Label, Input, Button} from "reactstrap";
 import firebase from "./firebase.js";
-
 // Component import
 import Calendar from "react-calendar";
 import DeliveryDate from "./DeliveryDate";
