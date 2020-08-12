@@ -70,13 +70,14 @@ class CardInfo extends Component {
                     contactName: items["contactName"],
                     year: items["year"],
                     month: items["month"],
-                    day: items["day"],
+                    date: items["date"],
+                    deliveryDate: items["deliveryDate"],
                     age: items["age"],
                     gender: items["gender"],
                     specs: items["specs"],
                     paymentType: items["paymentType"],
                     mainComplaint: items["mainComplaint"],
-                    deliverTime: items["deliveryTime"],
+                    deliveryTime: items["deliveryTime"],
                     otherOption: items["otherOption"],
                     complete: items["complete"]
                 });
