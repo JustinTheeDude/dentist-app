@@ -5,6 +5,7 @@ import firebase from "./firebase.js";
 import Calendar from "react-calendar";
 import DeliveryDate from "./DeliveryDate";
 
+
 class MainInfo extends Component {
     state = {
         date: new Date(),
