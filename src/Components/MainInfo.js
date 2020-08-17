@@ -63,7 +63,7 @@ class MainInfo extends Component {
 
         itemsRef.push(item);
         const ref = firebase.database().ref(`Dentist/${user.uid}/Info`)
-        ref.update({address: this.state.address, zip: this.state.zip, patientID: this.state.patientID})
+        ref.update({address: this.state.address, zip: this.state.zip})
         this.setState({
             deliveryDate: "",
             contactName: "",
@@ -150,6 +150,7 @@ class MainInfo extends Component {
                             onChange={this.handleChange}
                             value={this.state.contactName}
                         />
+                        <Label className="patientId-label">患者名ID</Label>
                         <Input
                             className="patient-id-input"
                             type="number"

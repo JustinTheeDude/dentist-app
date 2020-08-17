@@ -7,7 +7,7 @@ import {MyContext} from "./Context/AppProvider";
 // import CanvasDraw from "react-canvas-draw";
 import mouth from '../assets/mouth.png';
 import PDF from "../Components/InfoPDF";
-
+import chart from '../assets/420px-Ptnadult.svg.png';
 class CardInfo extends Component {
     state = {
         address: "",
@@ -68,6 +68,7 @@ class CardInfo extends Component {
                     address: items["address"],
                     zip: items["zip"],
                     contactName: items["contactName"],
+                    patientID: items["patientID"],
                     year: items["year"],
                     month: items["month"],
                     date: items["date"],
@@ -115,6 +116,7 @@ class CardInfo extends Component {
                             <h1>住所: {this.state.address}</h1>
                             <h1>郵便番号: {this.state.zip}</h1>
                             <h1>患者名: {this.state.contactName}</h1>
+                            <h1>患者ID: {this.state.patientID}</h1>
                             <h1>年齢: {this.state.age}</h1>
                             <h1>性別: {this.state.gender}</h1>
                             {!this.state.otherOption && <h1>製品仕様: {this.state.specs}</h1>}
@@ -127,6 +129,7 @@ class CardInfo extends Component {
                         </div>
                         <div className="teeth">
                             <img src={mouth} alt="mouth diagram" />
+                            <img src={chart} alt="zsigmondy diagram" />
                             {/* <Mouth preserveAspectRatio="meet" /> */}
                             {/* <CanvasDraw
                                 saveData={this.getDrawing()}
