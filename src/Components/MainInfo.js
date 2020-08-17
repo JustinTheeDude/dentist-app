@@ -15,6 +15,7 @@ class MainInfo extends Component {
         address: "",
         zip: "",
         contactName: "",
+        patientID: "",
         age: "",
         gender: "男",
         specs: "レジン床",
@@ -47,6 +48,7 @@ class MainInfo extends Component {
             address: this.state.address,
             zip: this.state.zip,
             contactName: this.state.contactName,
+            patientID: this.state.patientID,
             date: this.state.date.toString().slice(0, 15),
             deliveryDate: this.state.deliveryDate.toString().slice(0, 15),  
             age: this.state.age,
@@ -61,10 +63,11 @@ class MainInfo extends Component {
 
         itemsRef.push(item);
         const ref = firebase.database().ref(`Dentist/${user.uid}/Info`)
-        ref.update({address: this.state.address, zip: this.state.zip})
+        ref.update({address: this.state.address, zip: this.state.zip, patientID: this.state.patientID})
         this.setState({
             deliveryDate: "",
             contactName: "",
+            patientID: "",
             year: "",
             month: "",
             date: "",
@@ -80,7 +83,8 @@ class MainInfo extends Component {
             ref.on('value',(snap)=>{
                 this.setState({
                     address: snap.val().address,
-                    zip: snap.val().zip
+                    zip: snap.val().zip,
+                    patientID: snap.val().patientID
                 })
             });
         }
@@ -145,6 +149,14 @@ class MainInfo extends Component {
                             placeholder="名前"
                             onChange={this.handleChange}
                             value={this.state.contactName}
+                        />
+                        <Input
+                            className="patient-id-input"
+                            type="number"
+                            name="patientID"
+                            placeholder="ID Number"
+                            onChange={this.handleChange}
+                            value={this.state.patientID}
                         />
                 </FormGroup>
                 <FormGroup className="age form-box">
