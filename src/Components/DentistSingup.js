@@ -180,7 +180,7 @@ class DentistSignup extends Component {
                     &nbsp;&nbsp;&nbsp;
                     <Button className="btn-singup" onClick={this.cancel}>Cancel</Button>
                     
-                    <p style={{color: 'white', fontSize: '20px' }}>
+                    <p style={{color: 'black', fontSize: '20px' }}>
                         会員の方はこちら <Link to="/">クリック</Link> 下さい！
                     </p>
                     {
