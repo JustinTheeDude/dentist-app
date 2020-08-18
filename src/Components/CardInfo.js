@@ -4,7 +4,8 @@ import {MyContext} from "./Context/AppProvider";
 import mouth from '../assets/mouth.png';
 import PDF from "../Components/InfoPDF";
 import chart from '../assets/420px-Ptnadult.svg.png';
-
+import { Link } from 'react-router-dom';
+import { Button } from 'reactstrap';
 
 class CardInfo extends Component {
     state = {
@@ -51,7 +52,7 @@ class CardInfo extends Component {
             }
         });
     }
-
+    orderID;
     componentDidMount() {
         if (this.props.value !== "") {
             var self = this;
@@ -63,7 +64,6 @@ class CardInfo extends Component {
                 .child(this.props.value);
             ref.orderByKey().on("value", function(snapshot) {
                 let items = snapshot.val();
-                console.log("this is the patient id in cardinfo: ", items.patientID);
                 self.setState({
                     doctorName: items["doctorName"],
                     address: items["address"],
@@ -85,6 +85,15 @@ class CardInfo extends Component {
                 });
             });
         }
+        const user = firebase.auth().currentUser;
+        
+        const orderRef = firebase
+          .database()
+          .ref(`Dentist/${user.uid}/Form`)
+        orderRef.on("child_added", (snap) => {
+            console.log("This is the snap val in Edit form: ", snap.key)
+            this.orderID = snap.key
+          })
     }
 
     isComplete = "";
@@ -131,13 +140,8 @@ class CardInfo extends Component {
                         <div className="teeth">
                             <img src={mouth} alt="mouth diagram" />
                             <img src={chart} alt="zsigmondy diagram" />
-                            {/* <Mouth preserveAspectRatio="meet" /> */}
-                            {/* <CanvasDraw
-                                saveData={this.getDrawing()}
-                                imgSrc={mouth}
-                            /> */}
                         </div>
-                        {/* <Button onClick={() => {this.completeOrder(this.props.value)}}></Button> */}
+                        <Button><Link to={`/form/${this.orderID}/update`}>Edit</Link></Button>
                         <PDF name={this.state.doctorName}
                              address={this.state.address}
                              zip={this.state.zip}
@@ -154,7 +158,7 @@ class CardInfo extends Component {
                             //  day={this.state.day}
                             //  month={this.state.month}
                             //  year={this.state.year}
-                             filename={this.state.contactName}
+                            filename={this.state.contactName}
                         />
                     </div>
                 )}

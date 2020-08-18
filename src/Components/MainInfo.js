@@ -29,7 +29,6 @@ class MainInfo extends Component {
     
     onChange = deliveryDate => {
         this.setState({deliveryDate});
-        console.log(this.state.deliveryDate);
     };
 
     handleChange = e => {
@@ -80,7 +79,6 @@ class MainInfo extends Component {
         if(this.props.value !== "") {
             const ref = firebase.database().ref(`Dentist/${this.user.uid}/Info`)
             ref.on('value',(snap)=>{
-                console.log("this is the patient id: ", snap.val().patientID)
                 this.setState({
                     address: snap.val().address,
                     zip: snap.val().zip,
