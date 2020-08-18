@@ -40,7 +40,7 @@ const OrderList = ({orders, pagination}) => {
                     {orders.map(order => {
                         return (
                             <ul className="card-info" key={order.id}>
-                                <li>{order.contactName}</li>
+                                <li>{order.patientName}</li>
                                 <li>{order.address}</li>
                                 <CompleteOrder order={order.complete} />
                                 <li className="info-button" onClick={() => setUserOrder(order.id)}>

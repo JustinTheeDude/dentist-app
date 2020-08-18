@@ -1,18 +1,18 @@
 import React, {Component} from "react";
 import firebase from "firebase";
-// import {Redirect} from "react-router-dom";
-// import Mouth from "./mouth";
 import {MyContext} from "./Context/AppProvider";
-// import {Button} from "reactstrap";
-// import CanvasDraw from "react-canvas-draw";
 import mouth from '../assets/mouth.png';
 import PDF from "../Components/InfoPDF";
 import chart from '../assets/420px-Ptnadult.svg.png';
+
+
 class CardInfo extends Component {
     state = {
         address: "",
         age: "",
-        contactName: "", day: "",
+        patientName: "",
+        patientID: "", 
+        day: "",
         doctorName: "",
         info: "",
         month: "",
@@ -56,18 +56,19 @@ class CardInfo extends Component {
         if (this.props.value !== "") {
             var self = this;
             const user = firebase.auth().currentUser;
-            console.log(user.uid);
+            
             var ref = firebase
                 .database()
                 .ref(`Dentist/${user.uid}/Form`)
                 .child(this.props.value);
             ref.orderByKey().on("value", function(snapshot) {
                 let items = snapshot.val();
+                console.log("this is the patient id in cardinfo: ", items.patientID);
                 self.setState({
                     doctorName: items["doctorName"],
                     address: items["address"],
                     zip: items["zip"],
-                    contactName: items["contactName"],
+                    patientName: items["patientName"],
                     patientID: items["patientID"],
                     year: items["year"],
                     month: items["month"],
@@ -115,7 +116,7 @@ class CardInfo extends Component {
                             <h1>歯科医名: {this.state.doctorName}</h1>
                             <h1>住所: {this.state.address}</h1>
                             <h1>郵便番号: {this.state.zip}</h1>
-                            <h1>患者名: {this.state.contactName}</h1>
+                            <h1>患者名: {this.state.patientName}</h1>
                             <h1>患者ID: {this.state.patientID}</h1>
                             <h1>年齢: {this.state.age}</h1>
                             <h1>性別: {this.state.gender}</h1>

@@ -17,7 +17,7 @@ const Card = () => {
                 for (let item in items) {
                     newState.push({
                         id: item,
-                        contactName: items[item].contactName,
+                        patientName: items[item].patientName,
                         address: items[item].address,
                         complete: items[item].complete,
                     });

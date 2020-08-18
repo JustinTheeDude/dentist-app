@@ -14,7 +14,7 @@ class MainInfo extends Component {
         doctorName: "",
         address: "",
         zip: "",
-        contactName: "",
+        patientName: "",
         patientID: "",
         age: "",
         gender: "男",
@@ -47,7 +47,7 @@ class MainInfo extends Component {
             doctorName: this.user.displayName,
             address: this.state.address,
             zip: this.state.zip,
-            contactName: this.state.contactName,
+            patientName: this.state.patientName,
             patientID: this.state.patientID,
             date: this.state.date.toString().slice(0, 15),
             deliveryDate: this.state.deliveryDate.toString().slice(0, 15),  
@@ -58,7 +58,6 @@ class MainInfo extends Component {
             mainComplaint: this.state.mainComplaint,
             deliveryTime: this.state.deliveryTime,
             otherOption: this.state.otherOption
-
         };
 
         itemsRef.push(item);
@@ -66,7 +65,7 @@ class MainInfo extends Component {
         ref.update({address: this.state.address, zip: this.state.zip})
         this.setState({
             deliveryDate: "",
-            contactName: "",
+            patientName: "",
             patientID: "",
             year: "",
             month: "",
@@ -81,10 +80,10 @@ class MainInfo extends Component {
         if(this.props.value !== "") {
             const ref = firebase.database().ref(`Dentist/${this.user.uid}/Info`)
             ref.on('value',(snap)=>{
+                console.log("this is the patient id: ", snap.val().patientID)
                 this.setState({
                     address: snap.val().address,
                     zip: snap.val().zip,
-                    patientID: snap.val().patientID
                 })
             });
         }
@@ -92,7 +91,7 @@ class MainInfo extends Component {
 
     render() {
         const user = firebase.auth().currentUser
-        console.log("this is the delivery time: ", typeof this.state.deliveryTime)
+
         return (
             <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
                 <h3 className="hospital-info-header">医院情報</h3>
@@ -145,10 +144,10 @@ class MainInfo extends Component {
                         <Input
                             className="patient-name-input"
                             type="text"
-                            name="contactName"
+                            name="patientName"
                             placeholder="名前"
                             onChange={this.handleChange}
-                            value={this.state.contactName}
+                            value={this.state.patientName}
                         />
                         <Label className="patientId-label">患者名ID</Label>
                         <Input
