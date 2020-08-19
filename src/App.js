@@ -8,7 +8,6 @@ import "./styles/main.scss";
 
 // Component imports
 import Maininfo from "./Components/MainInfo";
-import EditForm from './Components/EditForm';
 import Card from "./Components/Card";
 import PrivateRoute from './PrivateRoute';
 import Layout from "./Components/Layout";
@@ -46,7 +45,7 @@ class App extends Component {
                             <Layout>
                                 <PrivateRoute path="/cards" component={Card} />
                                 <PrivateRoute path="/form"  component={Maininfo} />
-                                <PrivateRoute path="/form/:id/update" component={EditForm} />
+                                <PrivateRoute path="/form/:id/update" component={Maininfo} />
                                 {/* <PrivateRoute path="/info" component={ <MyContext.Consumer>
                                     {context => <CardInfo value={context.state.chosenCard} />}
                                     </MyContext.Consumer>} /> */}

@@ -22,6 +22,7 @@ class CardInfo extends Component {
         zip: "",
         specs: "",
         otherOption:"",
+        orderID: "",
         complete: false,
     };
 
@@ -52,7 +53,6 @@ class CardInfo extends Component {
             }
         });
     }
-    orderID;
     componentDidMount() {
         if (this.props.value !== "") {
             var self = this;
@@ -81,19 +81,11 @@ class CardInfo extends Component {
                     mainComplaint: items["mainComplaint"],
                     deliveryTime: items["deliveryTime"],
                     otherOption: items["otherOption"],
-                    complete: items["complete"]
+                    complete: items["complete"],
+                    orderID: snapshot.key
                 });
             });
-        }
-        const user = firebase.auth().currentUser;
-        
-        const orderRef = firebase
-          .database()
-          .ref(`Dentist/${user.uid}/Form`)
-        orderRef.on("child_added", (snap) => {
-            console.log("This is the snap val in Edit form: ", snap.key)
-            this.orderID = snap.key
-          })
+        }   
     }
 
     isComplete = "";
@@ -141,7 +133,7 @@ class CardInfo extends Component {
                             <img src={mouth} alt="mouth diagram" />
                             <img src={chart} alt="zsigmondy diagram" />
                         </div>
-                        <Button><Link to={`/form/${this.orderID}/update`}>Edit</Link></Button>
+                        <Button><Link to={`/form/${this.state.orderID}/update`}>Edit</Link></Button>
                         <PDF name={this.state.doctorName}
                              address={this.state.address}
                              zip={this.state.zip}
@@ -155,9 +147,6 @@ class CardInfo extends Component {
                              deliveryTime={this.state.deliveryTime}
                              specs={this.state.specs}
                              otherOption={this.state.otherOption}
-                            //  day={this.state.day}
-                            //  month={this.state.month}
-                            //  year={this.state.year}
                             filename={this.state.contactName}
                         />
                     </div>

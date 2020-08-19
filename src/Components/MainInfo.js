@@ -26,7 +26,7 @@ class MainInfo extends Component {
     };
 
     user = firebase.auth().currentUser;
-    
+    id = this.props.match.params.id
     onChange = deliveryDate => {
         this.setState({deliveryDate});
     };
@@ -75,6 +75,29 @@ class MainInfo extends Component {
         })
         this.props.history.push('/cards');
     }
+    handleUpdate = e => {
+        e.preventDefault()
+        const orderRef = firebase.database().ref(`Dentist/${this.user.uid}/Form`).child(this.id)
+        const items = {
+            doctorName: this.user.displayName,
+            address: this.state.address,
+            zip: this.state.zip,
+            patientName: this.state.patientName,
+            patientID: this.state.patientID,
+            date: this.state.date.toString().slice(0, 15),
+            deliveryDate: this.state.deliveryDate.toString().slice(0, 15),  
+            age: this.state.age,
+            gender: this.state.gender,
+            specs: this.state.specs,
+            paymentType: this.state.paymentType,
+            mainComplaint: this.state.mainComplaint,
+            deliveryTime: this.state.deliveryTime,
+            otherOption: this.state.otherOption
+        };
+        orderRef.update(items)
+    
+        this.props.history.push('/cards');
+    }
     componentDidMount() {
         if(this.props.value !== "") {
             const ref = firebase.database().ref(`Dentist/${this.user.uid}/Info`)
@@ -84,6 +107,34 @@ class MainInfo extends Component {
                     zip: snap.val().zip,
                 })
             });
+        }
+        
+        // console.log("This is the req params: ", this.props.match.params.id)
+        if(this.id) {
+            const orderRef = firebase.database().ref(`Dentist/${this.user.uid}/Form`).child(this.id)
+            orderRef.once("value", snap => {
+               let items = snap.val();
+               this.setState({
+                    doctorName: items["doctorName"],
+                    address: items["address"],
+                    zip: items["zip"],
+                    patientName: items["patientName"],
+                    patientID: items["patientID"],
+                    year: items["year"],
+                    month: items["month"],
+                    date: items["date"],
+                    deliveryDate: items["deliveryDate"],
+                    age: items["age"],
+                    gender: items["gender"],
+                    specs: items["specs"],
+                    paymentType: items["paymentType"],
+                    mainComplaint: items["mainComplaint"],
+                    deliveryTime: items["deliveryTime"],
+                    otherOption: items["otherOption"],
+                    complete: items["complete"],
+                    // orderID: snapshot.key
+                });
+           })
         }
     }
 
@@ -236,7 +287,12 @@ class MainInfo extends Component {
                         <Canvas />
                     </div> */}
                 </div>
-                <Button id="btn" className="form-box">Submit</Button>
+                {
+                    !this.id ?
+                    <Button id="btn" className="form-box">Submit</Button> :
+                    <Button id="btn" className="form-box" onClick={this.handleUpdate}>Update</Button> 
+                    
+                }
             </Form>
         );
     }

@@ -21,7 +21,7 @@ class PDF extends React.Component{
 
     componentDidMount() {
         let filename = this.props.filename;
-        console.log(filename)
+        // console.log(filename)
         Font.register({
             family: "takao",
             src: takao,
