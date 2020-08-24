@@ -9,6 +9,7 @@ const Card = () => {
     const [currentOrderPage, setCurrentOrderPage] = useState(1);
     useEffect(() => {
         const user = firebase.auth().currentUser;
+        let unmounted = false;
         if(user) {
             const itemsRef = firebase.database().ref(`Dentist/${user.uid}/Form`);
             let newState = [];
@@ -22,9 +23,13 @@ const Card = () => {
                         complete: items[item].complete,
                     });
                 }
-                setOrders(newState);
+                if(!unmounted) {
+                    setOrders(newState);
+                }
             });
         }
+
+        return () => unmounted = true;
     }, []);
 
     const indexOfLastOrder = currentOrderPage * orderPerPage;
