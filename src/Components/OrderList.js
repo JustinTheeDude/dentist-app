@@ -3,6 +3,7 @@ import {MyContext} from "./Context/AppProvider";
 import CompleteOrder from "./CompleteOrder";
 import CardInfo from "../Components/CardInfo";
 
+
 const OrderList = ({orders, pagination}) => {
 
     const [orderId, setOrder] = useState("");
@@ -16,13 +17,14 @@ const OrderList = ({orders, pagination}) => {
     const goBack = () => {
         setOrderView(false);
     }
-
+  
+ 
     const contentRender = (orderView, orderId, orders, context) => {
         if(orderView) {
             return  (
                 <>
                     <button className="back-button" onClick={goBack}></button>
-                    <CardInfo value={orderId}/>
+                        <CardInfo value={orderId}/>
                 </>
             )
         } else {

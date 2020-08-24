@@ -2,6 +2,7 @@ import React from 'react';
 import {Button} from "reactstrap";
 import takao from '../assets/takao.ttf';
 import mouth from '../assets/mouth.png';
+import diagram from '../assets/420px-Ptnadult.svg.png'
 import {PDFDownloadLink, Document, Page, Text, View, StyleSheet, Font, Image } from '@react-pdf/renderer';
 
 class PDF extends React.Component{
@@ -19,9 +20,8 @@ class PDF extends React.Component{
         });
     }
 
+    
     componentDidMount() {
-        let filename = this.props.filename;
-        // console.log(filename)
         Font.register({
             family: "takao",
             src: takao,
@@ -46,6 +46,7 @@ class PDF extends React.Component{
 
 
     render() {
+
         const doc = (
             <Document>
                 <Page size="A4" style={this.styles.page}>
@@ -53,7 +54,7 @@ class PDF extends React.Component{
                         <Text>歯科医名 :{this.props.name}</Text>
                         <Text>住所: {this.props.address}</Text>
                         <Text>郵便番号: {this.props.zip}</Text>
-                        <Text>患者名: {this.props.contactName}</Text>
+                        <Text>患者名: {this.props.patientName}</Text>
                         <Text>年齢: {this.props.age}</Text>
                         <Text>性別: {this.props.gender}</Text>
                         <Text>製品仕様: {this.props.specs}</Text>
@@ -66,6 +67,7 @@ class PDF extends React.Component{
                     </View>
                     <View style={this.styles.section}>
                         <Image src={mouth} />
+                        <Image src={diagram} />
                     </View>
                 </Page>
             </Document>

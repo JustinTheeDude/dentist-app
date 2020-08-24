@@ -24,7 +24,6 @@ class MainInfo extends Component {
         deliveryTime: "",
         otherOption: "",
     };
-
     user = firebase.auth().currentUser;
     id = this.props.match.params.id
     onChange = deliveryDate => {
@@ -39,6 +38,7 @@ class MainInfo extends Component {
     };
 
     handleSubmit = e => {
+ 
         e.preventDefault();
         const user = firebase.auth().currentUser;
         const itemsRef = firebase.database().ref(`Dentist/${user.uid}/Form`);
@@ -62,20 +62,12 @@ class MainInfo extends Component {
         itemsRef.push(item);
         const ref = firebase.database().ref(`Dentist/${user.uid}/Info`)
         ref.update({address: this.state.address, zip: this.state.zip})
-        this.setState({
-            deliveryDate: "",
-            patientName: "",
-            patientID: "",
-            year: "",
-            month: "",
-            date: "",
-            age: "",
-            mainComplaint: "",
-            otherOption: ""
-        })
+
         this.props.history.push('/cards');
     }
-    handleUpdate = e => {
+
+    handleUpdate = (e) => {
+
         e.preventDefault()
         const orderRef = firebase.database().ref(`Dentist/${this.user.uid}/Form`).child(this.id)
         const items = {
@@ -95,10 +87,11 @@ class MainInfo extends Component {
             otherOption: this.state.otherOption
         };
         orderRef.update(items)
-    
         this.props.history.push('/cards');
     }
+
     componentDidMount() {
+
         if(this.props.value !== "") {
             const ref = firebase.database().ref(`Dentist/${this.user.uid}/Info`)
             ref.on('value',(snap)=>{
@@ -108,8 +101,7 @@ class MainInfo extends Component {
                 })
             });
         }
-        
-        // console.log("This is the req params: ", this.props.match.params.id)
+
         if(this.id) {
             const orderRef = firebase.database().ref(`Dentist/${this.user.uid}/Form`).child(this.id)
             orderRef.once("value", snap => {
@@ -132,12 +124,11 @@ class MainInfo extends Component {
                     deliveryTime: items["deliveryTime"],
                     otherOption: items["otherOption"],
                     complete: items["complete"],
-                    // orderID: snapshot.key
                 });
            })
         }
     }
-
+    
     render() {
         const user = firebase.auth().currentUser
 

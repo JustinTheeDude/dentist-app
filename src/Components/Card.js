@@ -3,6 +3,7 @@ import firebase from "firebase";
 import OrderList from "./OrderList";
 import Pagination from "./Pagination";
 
+
 const Card = () => {
     const [orders, setOrders] = useState([]);
     const [orderPerPage] = useState(10);
@@ -24,8 +25,10 @@ const Card = () => {
                 }
                 setOrders(newState);
             });
-        }
+        } 
+
     }, []);
+
 
     const indexOfLastOrder = currentOrderPage * orderPerPage;
     const indexOfFirstOrder = indexOfLastOrder - orderPerPage;
@@ -39,6 +42,7 @@ const Card = () => {
         e.target.classList.add("active");
         setCurrentOrderPage(pageNumber);
     };
+    
 
     return (
         <>

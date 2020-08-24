@@ -22,7 +22,6 @@ class CardInfo extends Component {
         zip: "",
         specs: "",
         otherOption:"",
-        orderID: "",
         complete: false,
     };
 
@@ -57,13 +56,12 @@ class CardInfo extends Component {
         if (this.props.value !== "") {
             var self = this;
             const user = firebase.auth().currentUser;
-            
             var ref = firebase
-                .database()
-                .ref(`Dentist/${user.uid}/Form`)
-                .child(this.props.value);
+            .database()
+            .ref(`Dentist/${user.uid}/Form`)
+            .child(this.props.value);
             ref.orderByKey().on("value", function(snapshot) {
-                let items = snapshot.val();
+            let items = snapshot.val();
                 self.setState({
                     doctorName: items["doctorName"],
                     address: items["address"],
@@ -82,11 +80,10 @@ class CardInfo extends Component {
                     deliveryTime: items["deliveryTime"],
                     otherOption: items["otherOption"],
                     complete: items["complete"],
-                    orderID: snapshot.key
                 });
-            });
-        }   
-    }
+        });
+    }   
+}
 
     isComplete = "";
 
@@ -106,7 +103,9 @@ class CardInfo extends Component {
             });
         });
     }
-
+    componentWillUnmount() {
+        console.log("card info unmounted")
+    }
 
     render() {
         return (
@@ -133,11 +132,11 @@ class CardInfo extends Component {
                             <img src={mouth} alt="mouth diagram" />
                             <img src={chart} alt="zsigmondy diagram" />
                         </div>
-                        <Button><Link to={`/form/${this.state.orderID}/update`}>Edit</Link></Button>
+                        <Button ><Link className="btn btn-secondary"to={`/form/${this.props.value}/update`}>Edit</Link></Button>
                         <PDF name={this.state.doctorName}
                              address={this.state.address}
                              zip={this.state.zip}
-                             contactName={this.state.contactName}
+                             patientName={this.state.patientName}
                              age={this.state.age}
                              gender={this.state.gender}
                              paymentType={this.state.paymentType}
@@ -147,7 +146,7 @@ class CardInfo extends Component {
                              deliveryTime={this.state.deliveryTime}
                              specs={this.state.specs}
                              otherOption={this.state.otherOption}
-                            filename={this.state.contactName}
+                             filename={this.state.patientName}
                         />
                     </div>
                 )}
