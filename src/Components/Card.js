@@ -3,13 +3,13 @@ import firebase from "firebase";
 import OrderList from "./OrderList";
 import Pagination from "./Pagination";
 
-
 const Card = () => {
     const [orders, setOrders] = useState([]);
     const [orderPerPage] = useState(10);
     const [currentOrderPage, setCurrentOrderPage] = useState(1);
     useEffect(() => {
         const user = firebase.auth().currentUser;
+        let unmounted = false;
         if(user) {
             const itemsRef = firebase.database().ref(`Dentist/${user.uid}/Form`);
             let newState = [];
@@ -21,14 +21,20 @@ const Card = () => {
                         patientName: items[item].patientName,
                         address: items[item].address,
                         complete: items[item].complete,
-                    });
+                    });   
                 }
-                setOrders(newState);
+
+                console.log("unmounted value: ", unmounted)
+                console.log("this is the new state:  ", newState)
+                if(!unmounted) {
+                    // debugger;
+                    setOrders(newState);
+                } 
             });
-        } 
+        }
 
+        return () => unmounted = true;
     }, []);
-
 
     const indexOfLastOrder = currentOrderPage * orderPerPage;
     const indexOfFirstOrder = indexOfLastOrder - orderPerPage;
@@ -42,7 +48,6 @@ const Card = () => {
         e.target.classList.add("active");
         setCurrentOrderPage(pageNumber);
     };
-    
 
     return (
         <>

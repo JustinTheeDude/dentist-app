@@ -103,9 +103,7 @@ class CardInfo extends Component {
             });
         });
     }
-    componentWillUnmount() {
-        console.log("card info unmounted")
-    }
+
 
     render() {
         return (
