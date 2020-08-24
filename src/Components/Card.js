@@ -21,7 +21,7 @@ const Card = () => {
                         patientName: items[item].patientName,
                         address: items[item].address,
                         complete: items[item].complete,
-                    });   
+                    });
                 }
 
                 console.log("unmounted value: ", unmounted)
@@ -29,7 +29,8 @@ const Card = () => {
                 if(!unmounted) {
                     // debugger;
                     setOrders(newState);
-                } 
+                    newState = [];
+                }
             });
         }
 
