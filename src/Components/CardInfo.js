@@ -28,16 +28,16 @@ class CardInfo extends Component {
     /**
      * Function gets drawing stored as a string and returns the string
      */
-    getDrawing() {
-        const user = firebase.auth().currentUser
-        const ref = firebase.database().ref(`Dentist/${user.uid}/Form`)
-        let drawing;
-        ref.orderByChild("drawing").on("child_added", function(snap) {
-          drawing = snap.val().drawing;
+    // getDrawing() {
+    //     const user = firebase.auth().currentUser
+    //     const ref = firebase.database().ref(`Dentist/${user.uid}/Form`)
+    //     let drawing;
+    //     ref.orderByChild("drawing").on("child_added", function(snap) {
+    //       drawing = snap.val().drawing;
 
-        })
-        return  drawing;
-    }
+    //     })
+    //     return  drawing;
+    // }
 
     completeOrder = (id) => {
         const itemsRef = firebase.database().ref("Form").child(id);
@@ -52,8 +52,11 @@ class CardInfo extends Component {
             }
         });
     }
+    unmounted  = false;
     componentDidMount() {
+        
         if (this.props.value !== "") {
+            this.unmounted = true;
             var self = this;
             const user = firebase.auth().currentUser;
             var ref = firebase
@@ -85,7 +88,7 @@ class CardInfo extends Component {
     }   
 }
 
-    isComplete = "";
+    // isComplete = "";
 
     completeOrder = (id) => {
         const itemsRef = firebase.database().ref("Form").child(id);
@@ -104,7 +107,9 @@ class CardInfo extends Component {
         });
     }
 
-
+    componentWillUnmount() {
+        this.unmounted = false;
+    }
     render() {
         return (
             <MyContext.Consumer>

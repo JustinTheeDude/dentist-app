@@ -3,6 +3,7 @@ import firebase from "firebase";
 import OrderList from "./OrderList";
 import Pagination from "./Pagination";
 
+
 const Card = () => {
     const [orders, setOrders] = useState([]);
     const [orderPerPage] = useState(10);
@@ -24,10 +25,7 @@ const Card = () => {
                     });
                 }
 
-                console.log("unmounted value: ", unmounted)
-                console.log("this is the new state:  ", newState)
                 if(!unmounted) {
-                    // debugger;
                     setOrders(newState);
                     newState = [];
                 }

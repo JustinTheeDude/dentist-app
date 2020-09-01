@@ -13,9 +13,9 @@ class AppProvider extends Component {
         address: "",
         orderView: false
     };
-
+    mounted = false;
     componentDidMount() {
-
+        this.mounted = true;
         const itemsRef = firebase.database().ref("Form");
         const self = this;
 
@@ -29,9 +29,6 @@ class AppProvider extends Component {
                 });
             }
         });
-    }
-    componentWillUnmount() {
-        console.log("App provider unmounted")
     }
 
     render() {

@@ -91,7 +91,6 @@ class MainInfo extends Component {
     }
 
     componentDidMount() {
-
         if(this.props.value !== "") {
             const ref = firebase.database().ref(`Dentist/${this.user.uid}/Info`)
             ref.on('value',(snap)=>{
@@ -127,6 +126,9 @@ class MainInfo extends Component {
                 });
            })
         }
+    }
+    componentWillUnmount() {
+        console.log("unmount name in mainInfo: ",this.state.patientName)
     }
     
     render() {

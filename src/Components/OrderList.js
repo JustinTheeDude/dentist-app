@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState,useEffect} from "react";
 import {MyContext} from "./Context/AppProvider";
 import CompleteOrder from "./CompleteOrder";
 import CardInfo from "../Components/CardInfo";
@@ -17,8 +17,17 @@ const OrderList = ({orders, pagination}) => {
     const goBack = () => {
         setOrderView(false);
     }
-  
- 
+
+    useEffect(() => {
+        let unmounted = false;
+
+        if(!unmounted) {
+            setOrder("");
+
+        }
+        return () => unmounted = true;
+
+    }, []); 
     const contentRender = (orderView, orderId, orders, context) => {
         if(orderView) {
             return  (
