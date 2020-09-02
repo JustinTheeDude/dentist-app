@@ -52,43 +52,42 @@ class CardInfo extends Component {
             }
         });
     }
-    unmounted  = false;
+
+
     componentDidMount() {
         
-        if (this.props.value !== "") {
-            this.unmounted = true;
-            var self = this;
-            const user = firebase.auth().currentUser;
-            var ref = firebase
-            .database()
-            .ref(`Dentist/${user.uid}/Form`)
-            .child(this.props.value);
-            ref.orderByKey().on("value", function(snapshot) {
-            let items = snapshot.val();
-                self.setState({
-                    doctorName: items["doctorName"],
-                    address: items["address"],
-                    zip: items["zip"],
-                    patientName: items["patientName"],
-                    patientID: items["patientID"],
-                    year: items["year"],
-                    month: items["month"],
-                    date: items["date"],
-                    deliveryDate: items["deliveryDate"],
-                    age: items["age"],
-                    gender: items["gender"],
-                    specs: items["specs"],
-                    paymentType: items["paymentType"],
-                    mainComplaint: items["mainComplaint"],
-                    deliveryTime: items["deliveryTime"],
-                    otherOption: items["otherOption"],
-                    complete: items["complete"],
+        if(this.props.value !== "") {            
+                    var self = this;
+                    const user = firebase.auth().currentUser;
+                    var ref = firebase
+                    .database()
+                    .ref(`Dentist/${user.uid}/Form`)
+                    .child(this.props.value);
+                    ref.orderByKey().on("value", function(snapshot) {
+                    let items = snapshot.val();
+                        self.setState({
+                            doctorName: items["doctorName"],
+                            address: items["address"],
+                            zip: items["zip"],
+                            patientName: items["patientName"],
+                            patientID: items["patientID"],
+                            date: items["date"],
+                            deliveryDate: items["deliveryDate"],
+                            age: items["age"],
+                            gender: items["gender"],
+                            specs: items["specs"],
+                            paymentType: items["paymentType"],
+                            mainComplaint: items["mainComplaint"],
+                            deliveryTime: items["deliveryTime"],
+                            otherOption: items["otherOption"],
+                            complete: items["complete"],
+                        });
                 });
-        });
-    }   
+                ref.off() 
+        }
 }
 
-    // isComplete = "";
+    isComplete = "";
 
     completeOrder = (id) => {
         const itemsRef = firebase.database().ref("Form").child(id);
@@ -108,8 +107,9 @@ class CardInfo extends Component {
     }
 
     componentWillUnmount() {
-        this.unmounted = false;
+
     }
+
     render() {
         return (
             <MyContext.Consumer>
@@ -135,7 +135,7 @@ class CardInfo extends Component {
                             <img src={mouth} alt="mouth diagram" />
                             <img src={chart} alt="zsigmondy diagram" />
                         </div>
-                        <Button ><Link className="btn btn-secondary"to={`/form/${this.props.value}/update`}>Edit</Link></Button>
+                        <Button><Link className="btn btn-secondary"to={`/form/${this.props.value}/update`}>Edit</Link></Button>
                         <PDF name={this.state.doctorName}
                              address={this.state.address}
                              zip={this.state.zip}

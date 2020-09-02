@@ -11,6 +11,7 @@ const Card = () => {
     useEffect(() => {
         const user = firebase.auth().currentUser;
         let unmounted = false;
+
         if(user) {
             const itemsRef = firebase.database().ref(`Dentist/${user.uid}/Form`);
             let newState = [];
@@ -28,6 +29,7 @@ const Card = () => {
                 if(!unmounted) {
                     setOrders(newState);
                     newState = [];
+
                 }
             });
         }
@@ -49,6 +51,7 @@ const Card = () => {
     };
 
     return (
+        
         <>
             <OrderList
                 orders={currentOrder}

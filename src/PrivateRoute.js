@@ -4,6 +4,8 @@ import {AuthContext} from "./Components/Context/Auth";
 
 
 export default ({ component: Component, ...rest }) => {
+ 
+
     const {currentUser} = useContext(AuthContext);
     return (
         <Route

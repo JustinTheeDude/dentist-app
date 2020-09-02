@@ -86,6 +86,8 @@ class MainInfo extends Component {
             deliveryTime: this.state.deliveryTime,
             otherOption: this.state.otherOption
         };
+       
+
         orderRef.update(items)
         this.props.history.push('/cards');
     }
@@ -111,8 +113,6 @@ class MainInfo extends Component {
                     zip: items["zip"],
                     patientName: items["patientName"],
                     patientID: items["patientID"],
-                    year: items["year"],
-                    month: items["month"],
                     date: items["date"],
                     deliveryDate: items["deliveryDate"],
                     age: items["age"],
@@ -124,13 +124,13 @@ class MainInfo extends Component {
                     otherOption: items["otherOption"],
                     complete: items["complete"],
                 });
+
            })
         }
     }
-    componentWillUnmount() {
-        console.log("unmount name in mainInfo: ",this.state.patientName)
-    }
-    
+// componentWillUnmount() {
+//    {<OrderList />}
+// }
     render() {
         const user = firebase.auth().currentUser
 

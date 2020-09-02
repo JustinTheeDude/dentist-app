@@ -17,8 +17,9 @@ const OrderList = ({orders, pagination}) => {
     const goBack = () => {
         setOrderView(false);
     }
-
     useEffect(() => {
+
+
         let unmounted = false;
 
         if(!unmounted) {
@@ -29,11 +30,12 @@ const OrderList = ({orders, pagination}) => {
 
     }, []); 
     const contentRender = (orderView, orderId, orders, context) => {
+ 
         if(orderView) {
             return  (
-                <>
+                <>  
                     <button className="back-button" onClick={goBack}></button>
-                        <CardInfo value={orderId}/>
+                    <CardInfo value={orderId}/>
                 </>
             )
         } else {
@@ -69,7 +71,7 @@ const OrderList = ({orders, pagination}) => {
             );
         }
     }
-
+   
     return (
         <MyContext.Consumer>
             {context => (
