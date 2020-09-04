@@ -204,12 +204,12 @@ class MainInfo extends Component {
                 <FormGroup className="age form-box">
                     <Label for="exampleNumber" >年令</Label>
                     <Input
-
                     onChange={this.handleChange}
                     type="number"
                     min="0"
                     name="age"
                     id="exampleNumber"
+                    value={this.state.age}
                     placeholder="才"
                     />
                 </FormGroup>
@@ -222,7 +222,7 @@ class MainInfo extends Component {
                 </FormGroup>
                 <FormGroup  className="product-specs-menu form-box">
                     <Label>製品仕様</Label>
-                    <Input type="select" name="specs" id="specs" onChange={this.handleChange} required>
+                    <Input type="select" name="specs" id="specs" value={this.state.specs} onChange={this.handleChange} required>
                         <option>レジン床</option>
                         <option>金属床(Co-Cr. Ti. Gold)</option>
                         <option>治療用義歯</option>
@@ -262,6 +262,7 @@ class MainInfo extends Component {
                     name="deliveryTime"
                     id="exampleTime"
                     placeholder="time placeholder"
+                    value={this.state.deliveryTime}
                     onChange={this.handleChange}
                     />
                 </FormGroup>

@@ -105,11 +105,7 @@ class CardInfo extends Component {
             });
         });
     }
-
-    componentWillUnmount() {
-
-    }
-
+    
     render() {
         return (
             <MyContext.Consumer>
