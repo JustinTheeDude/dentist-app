@@ -153,6 +153,7 @@ class CardInfo extends Component {
                             address={this.state.address}
                             zip={this.state.zip}
                             patientName={this.state.patientName}
+                            patientID={this.state.patientID}
                             age={this.state.age}
                             gender={this.state.gender}
                             paymentType={this.state.paymentType}

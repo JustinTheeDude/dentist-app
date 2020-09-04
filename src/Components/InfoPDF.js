@@ -55,15 +55,12 @@ class PDF extends React.Component{
                         <Text>住所: {this.props.address}</Text>
                         <Text>郵便番号: {this.props.zip}</Text>
                         <Text>患者名: {this.props.patientName}</Text>
+                        <Text>患者ID: {this.props.patientID}</Text>
                         <Text>年齢: {this.props.age}</Text>
                         <Text>性別: {this.props.gender}</Text>
                         <Text>製品仕様: {this.props.specs}</Text>
                         <Text>製品仕様 他: {this.props.otherOption}</Text>
                         <Text>支払い: {this.props.paymentType}</Text>
-                        <Text>主訴: {this.props.mainComplaint}</Text>
-                        <Text>発注日: {this.props.date}</Text>
-                        <Text>配送日: {this.props.deliveryDate}</Text>
-                        <Text>時間: {this.props.deliveryTime}</Text>
                         <Text>インレーとアンレー: {this.props.inlayOnlay}</Text>
                         <Text>補綴物インレー: {this.props.inlayMaterial}</Text>
                         <Text>シェード選択: {this.props.inlayShade}</Text>
@@ -72,6 +69,10 @@ class PDF extends React.Component{
                         <Text>接続選択: {this.props.connectionSelect}</Text>
                         <Text>シェード選択: {this.props.abutmentShade}</Text>
                         <Text>挿入グループ: {this.props.insertionGroup}</Text>
+                        <Text>主訴: {this.props.mainComplaint}</Text>
+                        <Text>時間: {this.props.deliveryTime}</Text>
+                        <Text>発注日: {this.props.date}</Text>
+                        <Text>配送日: {this.props.deliveryDate}</Text>
 
                     </View>
                     <View style={this.styles.section}>
