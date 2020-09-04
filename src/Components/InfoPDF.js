@@ -64,6 +64,15 @@ class PDF extends React.Component{
                         <Text>発注日: {this.props.date}</Text>
                         <Text>配送日: {this.props.deliveryDate}</Text>
                         <Text>時間: {this.props.deliveryTime}</Text>
+                        <Text>インレーとアンレー: {this.props.inlayOnlay}</Text>
+                        <Text>補綴物インレー: {this.props.inlayMaterial}</Text>
+                        <Text>シェード選択: {this.props.inlayShade}</Text>
+                        <Text>補綴物アバットメン: {this.props.abutmentType}</Text>
+                        <Text>システムTouareg: {this.props.touaregSystem}</Text>
+                        <Text>接続選択: {this.props.connectionSelect}</Text>
+                        <Text>シェード選択: {this.props.abutmentShade}</Text>
+                        <Text>挿入グループ: {this.props.insertionGroup}</Text>
+
                     </View>
                     <View style={this.styles.section}>
                         <Image src={mouth} />

@@ -22,6 +22,7 @@ class CardInfo extends Component {
         zip: "",
         specs: "",
         otherOption:"",
+        gender: "",
         complete: false,
     };
 
@@ -77,6 +78,14 @@ class CardInfo extends Component {
                             gender: items["gender"],
                             specs: items["specs"],
                             paymentType: items["paymentType"],
+                            inlayOnlay: items["inlayOnlay"],
+                            inlayMaterial:  items["inlayMaterial"],
+                            inlayShade: items["inlayShade"],
+                            abutmentType: items["abutmentType"],
+                            touaregSystem: items["touaregSystem"],
+                            connectionSelect: items["connectionSelect"],
+                            abutmentShade: items["abutmentShade"],
+                            insertionGroup: items["insertionGroup"],
                             mainComplaint: items["mainComplaint"],
                             deliveryTime: items["deliveryTime"],
                             otherOption: items["otherOption"],
@@ -122,7 +131,15 @@ class CardInfo extends Component {
                             {!this.state.otherOption && <h1>製品仕様: {this.state.specs}</h1>}
                             {this.state.otherOption && <h1>製品仕様 他: {this.state.otherOption}</h1>}
                             <h1>支払い: {this.state.paymentType}</h1>
-                            <h1>主訴: {this.state.mainComplaint}</h1>
+                            <h1>インレーとアンレー: {this.state.inlayOnlay}</h1>
+                            <h1>補綴物インレー: {this.state.inlayMaterial}</h1>
+                            <h1>シェード選択: {this.state.inlayShade}</h1>
+                            <h1>補綴物アバットメント: {this.state.abutmentType}</h1>
+                            <h1>システムTouareg: {this.state.touaregSystem}</h1>
+                            <h1>接続選択: {this.state.connectionSelect}</h1>
+                            <h1>シェード選択: {this.state.abutmentShade}</h1>
+                            <h1>挿入グループ: {this.state.insertionGroup}</h1>
+                            <h1>主訴: {this.state.mainComplaint }</h1>
                             <h1>発注日: {this.state.date}</h1>
                             <h1>配送日: {this.state.deliveryDate}</h1>
                             <h1>時間: {this.state.deliveryTime}</h1>
@@ -133,19 +150,27 @@ class CardInfo extends Component {
                         </div>
                         <Button><Link className="btn btn-secondary"to={`/form/${this.props.value}/update`}>Edit</Link></Button>
                         <PDF name={this.state.doctorName}
-                             address={this.state.address}
-                             zip={this.state.zip}
-                             patientName={this.state.patientName}
-                             age={this.state.age}
-                             gender={this.state.gender}
-                             paymentType={this.state.paymentType}
-                             mainComplaint={this.state.mainComplaint}
-                             date={this.state.date}
-                             deliveryDate={this.state.deliveryDate}
-                             deliveryTime={this.state.deliveryTime}
-                             specs={this.state.specs}
-                             otherOption={this.state.otherOption}
-                             filename={this.state.patientName}
+                            address={this.state.address}
+                            zip={this.state.zip}
+                            patientName={this.state.patientName}
+                            age={this.state.age}
+                            gender={this.state.gender}
+                            paymentType={this.state.paymentType}
+                            mainComplaint={this.state.mainComplaint}
+                            date={this.state.date}
+                            deliveryDate={this.state.deliveryDate}
+                            deliveryTime={this.state.deliveryTime}
+                            specs={this.state.specs}
+                            otherOption={this.state.otherOption}
+                            filename={this.state.patientName}
+                            inlayOnlay= {this.state.inlayOnlay}
+                            inlayMaterial= {this.state.inlayMaterial}
+                            inlayShade={this.state.inlayShade}
+                            abutmentType={this.state.abutmentType}
+                            touaregSystem={this.state.touaregSystem}
+                            connectionSelect={this.state.connectionSelect}
+                            abutmentShade={this.state.abutmentShade}
+                            insertionGroup={this.state.insertionGroup}
                         />
                     </div>
                 )}

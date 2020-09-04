@@ -20,6 +20,14 @@ class MainInfo extends Component {
         gender: "男",
         specs: "レジン床",
         paymentType: "保険",
+        inlayOnlay:"",
+        inlayMaterial: "",
+        inlayShade: "",
+        abutmentType: "",
+        touaregSystem: "なし",
+        connectionSelect: "なし",
+        abutmentShade: "",
+        insertionGroup: "",
         mainComplaint: "",
         deliveryTime: "",
         otherOption: "",
@@ -54,6 +62,14 @@ class MainInfo extends Component {
             gender: this.state.gender,
             specs: this.state.specs,
             paymentType: this.state.paymentType,
+            inlayOnlay: this.state.inlayOnlay,
+            inlayMaterial: this.state.inlayMaterial,
+            inlayShade: this.state.inlayShade,
+            abutmentType: this.state.abutmentType,
+            touaregSystem: this.state.touaregSystem,
+            connectionSelect: this.state.connectionSelect,
+            abutmentShade: this.state.abutmentShade,
+            insertionGroup: this.state.insertionGroup,
             mainComplaint: this.state.mainComplaint,
             deliveryTime: this.state.deliveryTime,
             otherOption: this.state.otherOption
@@ -82,6 +98,14 @@ class MainInfo extends Component {
             gender: this.state.gender,
             specs: this.state.specs,
             paymentType: this.state.paymentType,
+            inlayOnlay: this.state.inlayOnlay,
+            inlayMaterial: this.state.inlayMaterial,
+            inlayShade: this.state.inlayShade,
+            abutmentType: this.state.abutmentType,
+            touaregSystem: this.state.touaregSystem,
+            connectionSelect: this.state.connectionSelect,
+            abutmentShade: this.state.abutmentShade,
+            insertionGroup: this.state.insertionGroup,
             mainComplaint: this.state.mainComplaint,
             deliveryTime: this.state.deliveryTime,
             otherOption: this.state.otherOption
@@ -119,6 +143,14 @@ class MainInfo extends Component {
                     gender: items["gender"],
                     specs: items["specs"],
                     paymentType: items["paymentType"],
+                    inlayOnlay: items["inlayOnlay"],
+                    inlayMaterial:  items["inlayMaterial"],
+                    inlayShade: items["inlayShade"],
+                    abutmentType: items["abutmentType"],
+                    touaregSystem: items["touaregSystem"],
+                    connectionSelect: items["connectionSelect"],
+                    abutmentShade: items["abutmentShade"],
+                    insertionGroup: items["insertionGroup"],
                     mainComplaint: items["mainComplaint"],
                     deliveryTime: items["deliveryTime"],
                     otherOption: items["otherOption"],
@@ -128,9 +160,7 @@ class MainInfo extends Component {
            })
         }
     }
-// componentWillUnmount() {
-//    {<OrderList />}
-// }
+
     render() {
         const user = firebase.auth().currentUser
 
@@ -245,12 +275,94 @@ class MainInfo extends Component {
                     }
                 </FormGroup>
                 <FormGroup className="patient-payment-select form-box">
-                    <Label for="exampleSelect">支払い</Label>
-                    <Input type="select" name="paymentType" id="exampleSelect" onChange={this.handleChange} required>
+                    <Label for="paymentSelect">支払い</Label>
+                    <Input type="select" name="paymentType"  onChange={this.handleChange} required>
                         <option>保険</option>
                         <option>自費</option>
                     </Input>
                 </FormGroup>
+                <h2>Inlay and Onlay</h2>
+                <FormGroup className="inlay-onlay form-box">
+                    <Label for="inlayOnlay">インレーとアンレー</Label>
+                    <Input type="select" name="inlayOnlay"  onChange={this.handleChange} required>
+                        <option>クラウン</option>
+                        <option>クラウン&#8226;ポンティック</option>
+                        <option>インレーとアンレー</option>
+                        <option>べニア</option>
+                        <option>なし</option>        
+                    </Input>
+                    <Label for="inlay/onlay">補綴物インレー</Label>
+                    <Input type="select" name="inlayMaterial"  onChange={this.handleChange} required>
+                        <option>Emax</option>
+                        <option>Zirconia - monolithic</option>
+                        <option>Zirconia - veneered</option>       
+                    </Input>
+                    <Label for="inlay/onlay">シェード選択</Label>
+                    <Input type="select" name="inlayShade"  onChange={this.handleChange} required>
+                        <option>A 1</option>
+                        <option>A 2</option>
+                        <option>A 3</option>
+                        <option>A 3,5</option>
+                        <option>A 4</option>
+                        <option>B 1</option>
+                        <option>B 2</option>
+                        <option>B 3</option>
+                        <option>B 4</option>
+                        <option>C 1</option>
+                        <option>C 2</option>
+                        <option>C 3</option>
+                        <option>C 4</option>
+                    </Input>
+                </FormGroup>
+                <h2>アバットメント</h2>
+                <FormGroup className="abutment form-box">
+                    <Label for="abutment">補綴物アバットメント</Label>
+                    <Input type="select" name="abutmentType"  onChange={this.handleChange} required>
+                        <option>Adin</option>
+                        <option>Alfa Gate</option>
+                        <option>Alliance</option>
+                        <option>Alpha-Bio Tec</option>
+                        <option>Anthogyr</option>
+                        <option>Argon</option>
+                        <option>Avinent</option>
+                        <option>B&B Dental</option>         
+                    </Input>
+                    <Label for="touareg-system">システムTouareg</Label>
+                    <Input type="select" name="touaregSystem"  onChange={this.handleChange} required>
+                        <option>なし</option>         
+                        <option>Touareg</option>
+                    </Input>
+                    <Label for="connection-select">接続選択</Label>
+                    <Input type="select" name="connectionSelect"  onChange={this.handleChange} required>
+                        <option>なし</option> 
+                        <option>WP</option>
+                        <option>NP</option>
+                        <option>UNP</option>
+                        <option>RP</option>
+                    </Input>
+                    <Label for="abutment">シェード選択</Label>
+                    <Input type="select" name="abutmentShade"  onChange={this.handleChange} required>
+                        <option>A 1</option>
+                        <option>A 2</option>
+                        <option>A 3</option>
+                        <option>A 3,5</option>
+                        <option>A 4</option>
+                        <option>B 1</option>
+                        <option>B 2</option>
+                        <option>B 3</option>
+                        <option>B 4</option>
+                        <option>C 1</option>
+                        <option>C 2</option>
+                        <option>C 3</option>
+                        <option>C 4</option>
+                    </Input>
+                    <Label for="abutment">挿入グループ</Label>
+                    <Input type="select" name="insertionGroup"  onChange={this.handleChange} required>
+                        <option>グループ外</option>
+                        <option>グループを作成</option>
+                    </Input>
+                </FormGroup>
+
                 <FormGroup className="main-complaint form-box">
                     <Label className="main-complaint-label">主訴</Label>
                         <Input type="textarea" name="mainComplaint" placeholder="主訴" onChange={this.handleChange} value={this.state.mainComplaint || ""} required />
