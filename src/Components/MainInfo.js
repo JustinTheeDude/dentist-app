@@ -314,7 +314,7 @@ class MainInfo extends Component {
                 </FormGroup>
                 <FormGroup className="patient-payment-select form-box">
                     <Label for="paymentSelect">支払い</Label>
-                    <Input type="select" name="paymentType"  onChange={this.handleChange} required>
+                    <Input type="select" name="paymentType" value={this.state.paymentType} onChange={this.handleChange} required>
                         <option>保険</option>
                         <option>自費</option>
                     </Input>
@@ -322,7 +322,7 @@ class MainInfo extends Component {
                 <h2>Inlay and Onlay</h2>
                 <FormGroup className="inlay-onlay form-box">
                     <Label for="inlayOnlay">インレーとアンレー</Label>
-                    <Input type="select" name="inlayOnlay"  onChange={this.handleChange} required>
+                    <Input type="select" name="inlayOnlay" value={this.state.inlayOnlay} onChange={this.handleChange} required>
                         <option>クラウン</option>
                         <option>クラウン&#8226;ポンティック</option>
                         <option>インレーとアンレー</option>
@@ -330,13 +330,13 @@ class MainInfo extends Component {
                         <option>なし</option>        
                     </Input>
                     <Label for="inlayMaterial">補綴物インレー</Label>
-                    <Input type="select" name="inlayMaterial"  onChange={this.handleChange} required>
+                    <Input type="select" name="inlayMaterial"  value={this.state.inlayMaterial} onChange={this.handleChange} required>
                         <option>Emax</option>
                         <option>Zirconia - monolithic</option>
                         <option>Zirconia - veneered</option>       
                     </Input>
                     <Label for="inlayShade">シェード選択</Label>
-                    <Input type="select" name="inlayShade"  onChange={this.handleChange} required>
+                    <Input type="select" name="inlayShade" value={this.state.inlayShade} onChange={this.handleChange} required>
                         <option>なし</option>
                         <option>A 1</option>
                         <option>A 2</option>
@@ -356,7 +356,7 @@ class MainInfo extends Component {
                 <h2>アバットメント</h2>
                 <FormGroup className="abutment form-box">
                     <Label for="abutment">補綴物アバットメント</Label>
-                    <Input type="select" name="abutmentType"  onChange={this.handleChange} required>
+                    <Input type="select" name="abutmentType" value={this.state.abutmentType} onChange={this.handleChange} required>
                         <option>Adin</option>
                         <option>Alfa Gate</option>
                         <option>Alliance</option>
@@ -367,12 +367,12 @@ class MainInfo extends Component {
                         <option>B&B Dental</option>         
                     </Input>
                     <Label for="touareg-system">システムTouareg</Label>
-                    <Input type="select" name="touaregSystem"  onChange={this.handleChange} required>
+                    <Input type="select" name="touaregSystem"  value={this.state.touaregSystem} onChange={this.handleChange} required>
                         <option>なし</option>         
                         <option>Touareg</option>
                     </Input>
                     <Label for="connection-select">接続選択</Label>
-                    <Input type="select" name="connectionSelect"  onChange={this.handleChange} required>
+                    <Input type="select" name="connectionSelect" value={this.state.connectionSelect} onChange={this.handleChange} required>
                         <option>なし</option> 
                         <option>WP</option>
                         <option>NP</option>
@@ -380,7 +380,7 @@ class MainInfo extends Component {
                         <option>RP</option>
                     </Input>
                     <Label for="abutment">シェード選択</Label>
-                    <Input type="select" name="abutmentShade"  onChange={this.handleChange} required>
+                    <Input type="select" name="abutmentShade" value={this.state.abutmentShade} onChange={this.handleChange} required>
                         <option>なし</option>
                         <option>A 1</option>
                         <option>A 2</option>
@@ -397,7 +397,7 @@ class MainInfo extends Component {
                         <option>C 4</option>
                     </Input>
                     <Label for="abutment">挿入グループ</Label>
-                    <Input type="select" name="insertionGroup"  onChange={this.handleChange} required>
+                    <Input type="select" name="insertionGroup" value={this.state.insertionGroup} onChange={this.handleChange} required>
                         <option>グループ外</option>
                         <option>グループを作成</option>
                     </Input>
@@ -405,21 +405,21 @@ class MainInfo extends Component {
                 <h2>テレスコープ</h2>
                 <FormGroup>
                 <Label for="telescope">テレスコープ</Label>
-                    <Input type="select" name="telescope"  onChange={this.handleChange} required>
+                    <Input type="select" name="telescope" value={this.state.telescope} onChange={this.handleChange} required>
                         <option>ポストアンドコア</option>
                         <option>アナトミカルポストアンドコア</option>
                         <option>スクリュ－固定式クラウン&#8226;ポストアンドコア</option>
                         <option>なし</option>
                     </Input>
                     <Label for="telescopeMaterial">材料</Label>
-                    <Input type="select" name="telescopeMaterial"  onChange={this.handleChange} required>
+                    <Input type="select" name="telescopeMaterial" value={this.state.telescopeMaterial} onChange={this.handleChange} required>
                         <option>Chrome-Cobalt</option>
                         <option>Titanium</option>
                         <option>Precious</option>
                         <option>Zirconia</option>
                     </Input>
                     <Label for="telescopeShade">シェード選択</Label>
-                    <Input type="select" name="telescopeShade"  onChange={this.handleChange} required>
+                    <Input type="select" name="telescopeShade" value={this.state.telescopeShade} onChange={this.handleChange} required>
                         <option>なし</option>
                         <option>A 1</option>
                         <option>A 2</option>
@@ -439,7 +439,7 @@ class MainInfo extends Component {
                 <h2>ブリッジ</h2>
                 <FormGroup className="bridge form-box">
                     <Label for="bridge">インレータイプ</Label>
-                    <Input type="select" name="bridgeType"  onChange={this.handleChange} required>
+                    <Input type="select" name="bridgeType"  value={this.state.bridgeType} onChange={this.handleChange} required>
                         <option>ブリッジ</option>
                         <option>バーブリッジ</option>      
                     </Input>
@@ -451,12 +451,12 @@ class MainInfo extends Component {
                 <h2>局所義歯フレーム　CoCr - veneered</h2>
                 <FormGroup className="localDentureFrame form-box">
                     <Label for="localDentureFrame">補綴物 局所義歯フレーム</Label>
-                    <Input type="select" name="localDentureFrame"  onChange={this.handleChange} required>
+                    <Input type="select" name="localDentureFrame"  value={this.state.localDentureFrame} onChange={this.handleChange} required>
                         <option>なし</option>      
                         <option>局所義歯フレーム</option>
                     </Input>
                     <Label for="localDentureFrameMaterials">材料 CoCr - veneered</Label>
-                    <Input type="select" name="localDentureFrameMaterials"  onChange={this.handleChange} required>
+                    <Input type="select" name="localDentureFrameMaterials" value={this.state.localDentureFrameMaterials} onChange={this.handleChange} required>
                         <option>Zirconia with Ti-Base</option>      
                         <option>Titanium - monolithic</option>
                         <option>Titanium - veneered</option>      
@@ -471,12 +471,12 @@ class MainInfo extends Component {
                 <h2>スプリント</h2>
                 <FormGroup className="sprint form-box">
                     <Label for="sprint">補綴物 スプリント</Label>
-                    <Input type="select" name="sprint"  onChange={this.handleChange} required>
+                    <Input type="select" name="sprint" value={this.state.sprint} onChange={this.handleChange} required>
                         <option>なし</option>
                         <option>あり</option>       
                     </Input>
                     <Label for="sprintMaterials">材料 CoCr - monolithic</Label>
-                    <Input type="select" name="sprintMaterials"  onChange={this.handleChange} required>
+                    <Input type="select" name="sprintMaterials" value={this.state.sprintMaterials} onChange={this.handleChange} required>
                         <option>Zirconia with Ti-Base</option>      
                         <option>Titanium - monolithic</option>
                         <option>Titanium - veneered</option>      
@@ -489,7 +489,7 @@ class MainInfo extends Component {
                         <option>PFM - Semi-Precious</option>
                     </Input>
                     <Label for="sprintShade">シェード選択</Label>
-                    <Input type="select" name="sprintShade"  onChange={this.handleChange} required>
+                    <Input type="select" name="sprintShade" value={this.state.sprintShade} onChange={this.handleChange} required>
                         <option>なし</option>
                         <option>A 1</option>
                         <option>A 2</option>
@@ -508,7 +508,7 @@ class MainInfo extends Component {
                 </FormGroup>
                 <FormGroup className="main-complaint form-box">
                     <Label className="main-complaint-label">主訴</Label>
-                        <Input type="textarea" name="mainComplaint" placeholder="主訴" onChange={this.handleChange} value={this.state.mainComplaint || ""} required />
+                    <Input type="textarea" name="mainComplaint" placeholder="主訴" onChange={this.handleChange} value={this.state.mainComplaint || ""} required />
                 </FormGroup>
                 <FormGroup  className="delivery-time form-box" >
                     <Label for="exampleTime">時間</Label>
