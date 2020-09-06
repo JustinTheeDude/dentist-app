@@ -9,20 +9,38 @@ import { Button } from 'reactstrap';
 
 class CardInfo extends Component {
     state = {
+        date: "",
+        deliveryDate: "",
+        doctorName: "",
         address: "",
-        age: "",
+        zip: "",
         patientName: "",
         patientID: "", 
-        day: "",
-        doctorName: "",
-        info: "",
-        month: "",
-        mainComplaint: "",
-        year: "",
-        zip: "",
-        specs: "",
-        otherOption:"",
+        age: "",
         gender: "",
+        specs: "",
+        paymentType: "",
+        inlayOnlay:"",
+        inlayMaterial: "",
+        inlayShade: "",
+        abutmentType: "",
+        touaregSystem: "なし",
+        connectionSelect: "なし",
+        abutmentShade: "",
+        insertionGroup: "",
+        telescope: "",
+        telescopeMaterial: "",
+        telescopeShade: "",
+        bridge: "",
+        bridgeType: "",
+        localDentureFrame: "",
+        localDentureFrameMaterials: "",
+        sprint: "",
+        sprintMaterials: "",
+        sprintShade: "",
+        mainComplaint: "",
+        deliveryTime: "",
+        otherOption:"",
         complete: false,
     };
 
@@ -86,6 +104,16 @@ class CardInfo extends Component {
                             connectionSelect: items["connectionSelect"],
                             abutmentShade: items["abutmentShade"],
                             insertionGroup: items["insertionGroup"],
+                            telescope: items["telescope"],
+                            telescopeMaterial: items["telescopeMaterial"],
+                            telescopeShade: items["telescopeShade"],
+                            bridge: items["bridge"],
+                            bridgeType: items["bridgeType"],
+                            localDentureFrame: items["localDentureFrame"],
+                            localDentureFrameMaterials: items["localDentureFrameMaterials"],
+                            sprint: items["sprint"],
+                            sprintMaterials: items["sprintMaterials"],
+                            sprintShade: items["sprintShade"],
                             mainComplaint: items["mainComplaint"],
                             deliveryTime: items["deliveryTime"],
                             otherOption: items["otherOption"],
@@ -133,12 +161,21 @@ class CardInfo extends Component {
                             <h1>支払い: {this.state.paymentType}</h1>
                             <h1>インレーとアンレー: {this.state.inlayOnlay}</h1>
                             <h1>補綴物インレー: {this.state.inlayMaterial}</h1>
-                            <h1>シェード選択: {this.state.inlayShade}</h1>
+                            <h1>インレーシェード: {this.state.inlayShade}</h1>
                             <h1>補綴物アバットメント: {this.state.abutmentType}</h1>
                             <h1>システムTouareg: {this.state.touaregSystem}</h1>
                             <h1>接続選択: {this.state.connectionSelect}</h1>
                             <h1>シェード選択: {this.state.abutmentShade}</h1>
                             <h1>挿入グループ: {this.state.insertionGroup}</h1>
+                            <h1>テレスコープ: {this.state.telescope}</h1>
+                            <h1>テレスコープ材料: {this.state.telescopeMaterial}</h1>
+                            <h1>テレスコープシェード: {this.state.telescopeShade}</h1>
+                            <h1>ブリッジインレータイプ: {this.state.bridgeType}</h1>
+                            <h1>局所義歯フレーム: {this.state.localDentureFrame}</h1>
+                            <h1>局所義歯フレーム 材料 CoCr - veneered: {this.state.localDentureFrameMaterials}</h1>
+                            <h1>スプリント: {this.state.sprint}</h1>
+                            <h1>材料スプリント: {this.state.sprintMaterials}</h1>
+                            <h1>スプリント シェード: {this.state.sprintShade}</h1>
                             <h1>主訴: {this.state.mainComplaint }</h1>
                             <h1>発注日: {this.state.date}</h1>
                             <h1>配送日: {this.state.deliveryDate}</h1>
@@ -172,6 +209,16 @@ class CardInfo extends Component {
                             connectionSelect={this.state.connectionSelect}
                             abutmentShade={this.state.abutmentShade}
                             insertionGroup={this.state.insertionGroup}
+                            telescope={this.state.telescope}
+                            telescopeMaterial={this.state.telescopeMaterial}
+                            telescopeShade={this.state.telescopeShade}
+                            // bridge={this.state.bridge}
+                            bridgeType={this.state.bridgeType}
+                            localDentureFrame={this.state.localDentureFrame}
+                            localDentureFrameMaterials={this.state.localDentureFrameMaterials}
+                            sprint={this.state.sprint}
+                            sprintMaterials={this.state.sprintMaterials}
+                            sprintShade={this.state.sprintShade}
                         />
                     </div>
                 )}

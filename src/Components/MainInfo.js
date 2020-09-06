@@ -28,6 +28,16 @@ class MainInfo extends Component {
         connectionSelect: "なし",
         abutmentShade: "",
         insertionGroup: "",
+        telescope: "",
+        telescopeMaterial: "",
+        telescopeShade: "",
+        bridge: "",
+        bridgeType: "",
+        localDentureFrame: "",
+        localDentureFrameMaterials: "",
+        sprint: "",
+        sprintMaterials: "",
+        sprintShade: "",
         mainComplaint: "",
         deliveryTime: "",
         otherOption: "",
@@ -69,7 +79,17 @@ class MainInfo extends Component {
             touaregSystem: this.state.touaregSystem,
             connectionSelect: this.state.connectionSelect,
             abutmentShade: this.state.abutmentShade,
-            insertionGroup: this.state.insertionGroup,
+            insertionGroup: this.state.insertionGroup,        
+            telescope: this.state.telescope,
+            telescopeMaterial: this.state.telescopeMaterial,
+            telescopeShade: this.state.telescopeShade,
+            bridge: this.state.bridge,
+            bridgeType: this.state.bridgeType,
+            localDentureFrame: this.state.localDentureFrame,
+            localDentureFrameMaterials: this.state.localDentureFrameMaterials,
+            sprint: this.state.sprint,
+            sprintMaterials: this.state.sprintMaterials,
+            sprintShade: this.state.sprintShade,
             mainComplaint: this.state.mainComplaint,
             deliveryTime: this.state.deliveryTime,
             otherOption: this.state.otherOption
@@ -106,12 +126,20 @@ class MainInfo extends Component {
             connectionSelect: this.state.connectionSelect,
             abutmentShade: this.state.abutmentShade,
             insertionGroup: this.state.insertionGroup,
+            telescope: this.state.telescope,
+            telescopeMaterial: this.state.telescopeMaterial,
+            telescopeShade: this.state.telescopeShade,
+            bridge: this.state.bridge,
+            bridgeType: this.state.bridgeType,
+            localDentureFrame: this.state.localDentureFrame,
+            localDentureFrameMaterials: this.state.localDentureFrameMaterials,
+            sprint: this.state.sprint,
+            sprintMaterials: this.state.sprintMaterials,
+            sprintShade: this.state.sprintShade,
             mainComplaint: this.state.mainComplaint,
             deliveryTime: this.state.deliveryTime,
             otherOption: this.state.otherOption
         };
-       
-
         orderRef.update(items)
         this.props.history.push('/cards');
     }
@@ -151,6 +179,16 @@ class MainInfo extends Component {
                     connectionSelect: items["connectionSelect"],
                     abutmentShade: items["abutmentShade"],
                     insertionGroup: items["insertionGroup"],
+                    telescope: items["telescope"],
+                    telescopeMaterial: items["telescopeMaterial"],
+                    telescopeShade: items["telescopeShade"],
+                    bridge: items["bridge"],
+                    bridgeType: items["bridgeType"],
+                    localDentureFrame: items["localDentureFrame"],
+                    localDentureFrameMaterials: items["localDentureFrameMaterials"],
+                    sprint: items["sprint"],
+                    sprintMaterials: items["sprintMaterials"],
+                    sprintShade: items["sprintShade"],
                     mainComplaint: items["mainComplaint"],
                     deliveryTime: items["deliveryTime"],
                     otherOption: items["otherOption"],
@@ -291,14 +329,15 @@ class MainInfo extends Component {
                         <option>べニア</option>
                         <option>なし</option>        
                     </Input>
-                    <Label for="inlay/onlay">補綴物インレー</Label>
+                    <Label for="inlayMaterial">補綴物インレー</Label>
                     <Input type="select" name="inlayMaterial"  onChange={this.handleChange} required>
                         <option>Emax</option>
                         <option>Zirconia - monolithic</option>
                         <option>Zirconia - veneered</option>       
                     </Input>
-                    <Label for="inlay/onlay">シェード選択</Label>
+                    <Label for="inlayShade">シェード選択</Label>
                     <Input type="select" name="inlayShade"  onChange={this.handleChange} required>
+                        <option>なし</option>
                         <option>A 1</option>
                         <option>A 2</option>
                         <option>A 3</option>
@@ -342,6 +381,7 @@ class MainInfo extends Component {
                     </Input>
                     <Label for="abutment">シェード選択</Label>
                     <Input type="select" name="abutmentShade"  onChange={this.handleChange} required>
+                        <option>なし</option>
                         <option>A 1</option>
                         <option>A 2</option>
                         <option>A 3</option>
@@ -362,7 +402,110 @@ class MainInfo extends Component {
                         <option>グループを作成</option>
                     </Input>
                 </FormGroup>
-
+                <h2>テレスコープ</h2>
+                <FormGroup>
+                <Label for="telescope">テレスコープ</Label>
+                    <Input type="select" name="telescope"  onChange={this.handleChange} required>
+                        <option>ポストアンドコア</option>
+                        <option>アナトミカルポストアンドコア</option>
+                        <option>スクリュ－固定式クラウン&#8226;ポストアンドコア</option>
+                        <option>なし</option>
+                    </Input>
+                    <Label for="telescopeMaterial">材料</Label>
+                    <Input type="select" name="telescopeMaterial"  onChange={this.handleChange} required>
+                        <option>Chrome-Cobalt</option>
+                        <option>Titanium</option>
+                        <option>Precious</option>
+                        <option>Zirconia</option>
+                    </Input>
+                    <Label for="telescopeShade">シェード選択</Label>
+                    <Input type="select" name="telescopeShade"  onChange={this.handleChange} required>
+                        <option>なし</option>
+                        <option>A 1</option>
+                        <option>A 2</option>
+                        <option>A 3</option>
+                        <option>A 3,5</option>
+                        <option>A 4</option>
+                        <option>B 1</option>
+                        <option>B 2</option>
+                        <option>B 3</option>
+                        <option>B 4</option>
+                        <option>C 1</option>
+                        <option>C 2</option>
+                        <option>C 3</option>
+                        <option>C 4</option>
+                    </Input>
+                </FormGroup>
+                <h2>ブリッジ</h2>
+                <FormGroup className="bridge form-box">
+                    <Label for="bridge">インレータイプ</Label>
+                    <Input type="select" name="bridgeType"  onChange={this.handleChange} required>
+                        <option>ブリッジ</option>
+                        <option>バーブリッジ</option>      
+                    </Input>
+                    {/* <Label for="bridge">インレー</Label>
+                    <Input type="select" name="bridgeType"  onChange={this.handleChange} required>
+                        <option>none</option>  
+                    </Input> */}
+                </FormGroup>
+                <h2>局所義歯フレーム　CoCr - veneered</h2>
+                <FormGroup className="localDentureFrame form-box">
+                    <Label for="localDentureFrame">補綴物 局所義歯フレーム</Label>
+                    <Input type="select" name="localDentureFrame"  onChange={this.handleChange} required>
+                        <option>なし</option>      
+                        <option>局所義歯フレーム</option>
+                    </Input>
+                    <Label for="localDentureFrameMaterials">材料 CoCr - veneered</Label>
+                    <Input type="select" name="localDentureFrameMaterials"  onChange={this.handleChange} required>
+                        <option>Zirconia with Ti-Base</option>      
+                        <option>Titanium - monolithic</option>
+                        <option>Titanium - veneered</option>      
+                        <option>Co-Cr - monolithic</option>
+                        <option>Co-Cr - veneered</option>      
+                        <option>Emax  IPS e.max CAD</option>
+                        <option>Gold</option>
+                        <option>PFM - Precious Yellow</option>
+                        <option>PFM - Precious White</option>
+                    </Input>
+                </FormGroup>
+                <h2>スプリント</h2>
+                <FormGroup className="sprint form-box">
+                    <Label for="sprint">補綴物 スプリント</Label>
+                    <Input type="select" name="sprint"  onChange={this.handleChange} required>
+                        <option>なし</option>
+                        <option>あり</option>       
+                    </Input>
+                    <Label for="sprintMaterials">材料 CoCr - monolithic</Label>
+                    <Input type="select" name="sprintMaterials"  onChange={this.handleChange} required>
+                        <option>Zirconia with Ti-Base</option>      
+                        <option>Titanium - monolithic</option>
+                        <option>Titanium - veneered</option>      
+                        <option>Co-Cr - monolithic</option>
+                        <option>Co-Cr - veneered</option>      
+                        <option>Emax  IPS e.max CAD</option>
+                        <option>Gold</option>
+                        <option>PFM - Precious Yellow</option>
+                        <option>PFM - Precious White</option>
+                        <option>PFM - Semi-Precious</option>
+                    </Input>
+                    <Label for="sprintShade">シェード選択</Label>
+                    <Input type="select" name="sprintShade"  onChange={this.handleChange} required>
+                        <option>なし</option>
+                        <option>A 1</option>
+                        <option>A 2</option>
+                        <option>A 3</option>
+                        <option>A 3,5</option>
+                        <option>A 4</option>
+                        <option>B 1</option>
+                        <option>B 2</option>
+                        <option>B 3</option>
+                        <option>B 4</option>
+                        <option>C 1</option>
+                        <option>C 2</option>
+                        <option>C 3</option>
+                        <option>C 4</option>
+                    </Input>
+                </FormGroup>
                 <FormGroup className="main-complaint form-box">
                     <Label className="main-complaint-label">主訴</Label>
                         <Input type="textarea" name="mainComplaint" placeholder="主訴" onChange={this.handleChange} value={this.state.mainComplaint || ""} required />
