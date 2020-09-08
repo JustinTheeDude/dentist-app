@@ -38,9 +38,13 @@ class MainInfo extends Component {
         sprint: "",
         sprintMaterials: "",
         sprintShade: "",
+        implantTreatment: "",
+        surgicalGuide: "",
+        noTreatmentPlan: "",
         mainComplaint: "",
         deliveryTime: "",
         otherOption: "",
+        checked: true,
     };
     user = firebase.auth().currentUser;
     id = this.props.match.params.id
@@ -53,7 +57,10 @@ class MainInfo extends Component {
             [e.target.name]: e.target.value,
             value: e.target.value
         });
+        console.log("radio button value: ", e.target.name )
+        console.log("radio button value: ", e.target.value )
     };
+
 
     handleSubmit = e => {
  
@@ -90,6 +97,9 @@ class MainInfo extends Component {
             sprint: this.state.sprint,
             sprintMaterials: this.state.sprintMaterials,
             sprintShade: this.state.sprintShade,
+            implantTreatment: this.state.implantTreatment,
+            surgicalGuide: this.state.surgicalGuide,
+            noTreatmentPlan: this.state.noTreatmentPlan,
             mainComplaint: this.state.mainComplaint,
             deliveryTime: this.state.deliveryTime,
             otherOption: this.state.otherOption
@@ -136,6 +146,9 @@ class MainInfo extends Component {
             sprint: this.state.sprint,
             sprintMaterials: this.state.sprintMaterials,
             sprintShade: this.state.sprintShade,
+            implantTreatment: this.state.implantTreatment,
+            surgicalGuide: this.state.surgicalGuide,
+            noTreatmentPlan: this.state.noTreatmentPlan,
             mainComplaint: this.state.mainComplaint,
             deliveryTime: this.state.deliveryTime,
             otherOption: this.state.otherOption
@@ -189,6 +202,9 @@ class MainInfo extends Component {
                     sprint: items["sprint"],
                     sprintMaterials: items["sprintMaterials"],
                     sprintShade: items["sprintShade"],
+                    implantTreatment: items["implantTreatment"],
+                    surgicalGuide: items["surgicalGuide"],
+                    noTreatmentPlan: items["noTreatmentPlan"],
                     mainComplaint: items["mainComplaint"],
                     deliveryTime: items["deliveryTime"],
                     otherOption: items["otherOption"],
@@ -270,13 +286,13 @@ class MainInfo extends Component {
                         />
                 </FormGroup>
                 <FormGroup className="age form-box">
-                    <Label for="exampleNumber" >年令</Label>
+                    <Label for="age" >年令</Label>
                     <Input
                     onChange={this.handleChange}
                     type="number"
                     min="0"
                     name="age"
-                    id="exampleNumber"
+                    id="age"
                     value={this.state.age}
                     placeholder="才"
                     />
@@ -448,14 +464,14 @@ class MainInfo extends Component {
                         <option>none</option>  
                     </Input> */}
                 </FormGroup>
-                <h2>局所義歯フレーム　CoCr - veneered</h2>
+                <h2>局所義歯</h2>
                 <FormGroup className="localDentureFrame form-box">
                     <Label for="localDentureFrame">補綴物 局所義歯フレーム</Label>
                     <Input type="select" name="localDentureFrame"  value={this.state.localDentureFrame} onChange={this.handleChange} required>
                         <option>なし</option>      
                         <option>局所義歯フレーム</option>
                     </Input>
-                    <Label for="localDentureFrameMaterials">材料 CoCr - veneered</Label>
+                    <Label for="localDentureFrameMaterials">材料</Label>
                     <Input type="select" name="localDentureFrameMaterials" value={this.state.localDentureFrameMaterials} onChange={this.handleChange} required>
                         <option>Zirconia with Ti-Base</option>      
                         <option>Titanium - monolithic</option>
@@ -468,14 +484,14 @@ class MainInfo extends Component {
                         <option>PFM - Precious White</option>
                     </Input>
                 </FormGroup>
-                <h2>スプリント</h2>
+                <h2>装置</h2>
                 <FormGroup className="sprint form-box">
-                    <Label for="sprint">補綴物 スプリント</Label>
+                    <Label for="sprint">補綴物</Label>
                     <Input type="select" name="sprint" value={this.state.sprint} onChange={this.handleChange} required>
                         <option>なし</option>
-                        <option>あり</option>       
+                        <option>スプリント</option>       
                     </Input>
-                    <Label for="sprintMaterials">材料 CoCr - monolithic</Label>
+                    <Label for="sprintMaterials">材料</Label>
                     <Input type="select" name="sprintMaterials" value={this.state.sprintMaterials} onChange={this.handleChange} required>
                         <option>Zirconia with Ti-Base</option>      
                         <option>Titanium - monolithic</option>
@@ -490,7 +506,6 @@ class MainInfo extends Component {
                     </Input>
                     <Label for="sprintShade">シェード選択</Label>
                     <Input type="select" name="sprintShade" value={this.state.sprintShade} onChange={this.handleChange} required>
-                        <option>なし</option>
                         <option>A 1</option>
                         <option>A 2</option>
                         <option>A 3</option>
@@ -506,9 +521,42 @@ class MainInfo extends Component {
                         <option>C 4</option>
                     </Input>
                 </FormGroup>
-                <FormGroup className="main-complaint form-box">
+                <h2>インプラント</h2>
+                &nbsp;&nbsp;&nbsp;
+                <FormGroup check inline>
+                    <Label for="implantTreatment" >インプラント治療計画: </Label> &nbsp;&nbsp;
+                    <Input type="checkbox" name="treatmentPlan" value={this.state.implantTreatment} onChange={this.handleChange} /> 
+                </FormGroup>
+                    {console.log("implant treatment state: ", this.state.implantTreatment)}  
+                <FormGroup check inline>
+                    <Label for="surgicalGuide">サージカルガイド: </Label> &nbsp;&nbsp;
+                    <Input type="checkbox" name="surgicalGuide" value={this.state.surgicalGuide} onChange={this.handleChange}/>                    
+                </FormGroup>
+                <FormGroup check inline>
+                    <Label for="noTreatmentPlan">なし: </Label> &nbsp;&nbsp;
+                    <Input type="checkbox" name="noTreatmentPlan" value={this.state.noTreatmentPlan} onChange={this.handleChange}/>      
+                </FormGroup>
+                <FormGroup>
+                <Label for="treatmentPlanMaterials">材料</Label>
+                    <Input type="select" name="treatmentPlanMaterials" value={this.state.treatmentPlanMaterials} onChange={this.handleChange} required>
+                        <option>Zirconia with Ti-Base</option>      
+                        <option>Titanium - monolithic</option>
+                        <option>Titanium - veneered</option>      
+                        <option>Co-Cr - monolithic</option>
+                        <option>Co-Cr - veneered</option>      
+                        <option>Emax  IPS e.max CAD</option>
+                        <option>Gold</option>
+                        <option>PFM - Precious Yellow</option>
+                        <option>PFM - Precious White</option>
+                        <option>PFM - Semi-Precious</option>
+                        <option>PFM - Non-Precious</option>
+                        <option>PMMA</option>
+                    </Input>
+                </FormGroup>
+                {console.log("implant treatment materials state state: ", this.state.treatmentPlanMaterials)}  
+                <FormGroup className="main-complaint form-box">{' '}
                     <Label className="main-complaint-label">主訴</Label>
-                    <Input type="textarea" name="mainComplaint" placeholder="主訴" onChange={this.handleChange} value={this.state.mainComplaint || ""} required />
+                    <Input type="textarea" name="mainComplaint" placeholder="主訴" onChange={this.handleChange} value={this.state.mainComplaint || ""} />
                 </FormGroup>
                 <FormGroup  className="delivery-time form-box" >
                     <Label for="exampleTime">時間</Label>
