@@ -80,6 +80,10 @@ class PDF extends React.Component{
                         <Text>スプリント: {this.props.sprint}</Text>
                         <Text>材料スプリント: {this.props.sprintMaterials}</Text>
                         <Text>スプリント シェード: {this.props.sprintShade}</Text>
+                        {this.props.implantTreatment ? <Text>インプラント治療計画: あり</Text> : null}
+                        {this.props.surgicalGuide ? <Text>サージカルガイド: あり</Text> : null}
+                        {this.props.noTreatmentPlan ? <Text>インプラント治療計画なし</Text> : null}
+                        {this.props.treatmentPlanMaterials? <Text>インプラント治療計画材料: {this.props.treatmentPlanMaterials}</Text> : null}
                         <Text>主訴: {this.props.mainComplaint}</Text>
                         <Text>時間: {this.props.deliveryTime}</Text>
                         <Text>発注日: {this.props.date}</Text>

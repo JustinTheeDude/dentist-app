@@ -2,10 +2,10 @@ import React, {useState,useEffect} from "react";
 import {MyContext} from "./Context/AppProvider";
 import CompleteOrder from "./CompleteOrder";
 import CardInfo from "../Components/CardInfo";
-
+import { Link } from 'react-router-dom'
 
 const OrderList = ({orders, pagination}) => {
-
+    
     const [orderId, setOrder] = useState("");
     const [orderView, setOrderView] = useState(false);
 
@@ -13,6 +13,13 @@ const OrderList = ({orders, pagination}) => {
         setOrder(order);
         setOrderView(true);
     }
+    // let patientId;
+    // let patientNames = [];
+    // orders.map( order => { 
+    //     patientId = order.patientID
+    //     patientNames.push(order.patientName)
+    // });
+    // let names = [...new Set(patientNames)]
 
     const goBack = () => {
         setOrderView(false);
@@ -30,10 +37,9 @@ const OrderList = ({orders, pagination}) => {
 
     }, []); 
     const contentRender = (orderView, orderId, orders, context) => {
- 
         if(orderView) {
             return  (
-                <>  
+                <>
                     <button className="back-button" onClick={goBack}></button>
                     <CardInfo value={orderId}/>
                 </>

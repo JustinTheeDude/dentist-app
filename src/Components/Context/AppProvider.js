@@ -22,9 +22,10 @@ class AppProvider extends Component {
         itemsRef.on("value", snap => {
             let items = snap.val();
             for (let item in items) {
+
                 self.setState({
                     id: item,
-                    contactName: items[item].contactName,
+                    patientName: items[item].patientName,
                     address: items[item].address,
                 });
             }

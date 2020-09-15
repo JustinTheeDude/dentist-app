@@ -23,6 +23,7 @@ const Card = () => {
                         patientName: items[item].patientName,
                         address: items[item].address,
                         complete: items[item].complete,
+                        patientID: items[item].patientID
                     });
                 }
 

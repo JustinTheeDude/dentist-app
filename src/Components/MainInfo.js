@@ -38,35 +38,58 @@ class MainInfo extends Component {
         sprint: "",
         sprintMaterials: "",
         sprintShade: "",
-        implantTreatment: "",
-        surgicalGuide: "",
-        noTreatmentPlan: "",
+        implantTreatment: false,
+        surgicalGuide: false,
+        noTreatmentPlan: false,
+        treatmentPlanMaterials: "",
         mainComplaint: "",
         deliveryTime: "",
         otherOption: "",
-        checked: true,
     };
     user = firebase.auth().currentUser;
     id = this.props.match.params.id
+    
     onChange = deliveryDate => {
         this.setState({deliveryDate});
     };
 
     handleChange = e => {
-        this.setState({
-            [e.target.name]: e.target.value,
-            value: e.target.value
-        });
-        console.log("radio button value: ", e.target.name )
-        console.log("radio button value: ", e.target.value )
+        if( e.target.type === "checkbox") {
+            const implantTreatment = document.querySelector("#implantTreatment");
+            const surgicalGuide = document.querySelector("#surgicalGuide");
+            const noTreatmentPlan = document.querySelector("#noTreatmentPlan");
+            implantTreatment.disabled = false;
+            surgicalGuide.disabled = false;
+            noTreatmentPlan.disabled = false;
+            if(e.target.checked && e.target.name === "noTreatmentPlan" ) {
+                implantTreatment.disabled = true;
+                surgicalGuide.disabled = true ;                
+            } 
+            else if(implantTreatment.checked || surgicalGuide.checked ) {
+               noTreatmentPlan.disabled = true;
+            }
+                this.setState({
+                    [e.target.name]: e.target.checked
+                })
+        }else {
+            this.setState({
+                [e.target.name]: e.target.value,
+                value: e.target.value,
+            })
+        }
+     
     };
-
 
     handleSubmit = e => {
  
         e.preventDefault();
+        // let pId;
         const user = firebase.auth().currentUser;
         const itemsRef = firebase.database().ref(`Dentist/${user.uid}/Form`);
+        // const patientRef = firebase.database().ref(`Dentist/${user.uid}/Form`)
+        // patientRef.on("child_added",(snap) => {
+        //    pId =  snap.val().patientID
+        // })
         const item = {
             doctorName: this.user.displayName,
             address: this.state.address,
@@ -100,12 +123,16 @@ class MainInfo extends Component {
             implantTreatment: this.state.implantTreatment,
             surgicalGuide: this.state.surgicalGuide,
             noTreatmentPlan: this.state.noTreatmentPlan,
+            treatmentPlanMaterials: this.state.treatmentPlanMaterials,
             mainComplaint: this.state.mainComplaint,
             deliveryTime: this.state.deliveryTime,
             otherOption: this.state.otherOption
         };
-
-        itemsRef.push(item);
+        // if(pId) {
+        //     patientRef.push(item)
+        // }  else {
+            itemsRef.push(item);
+        // }
         const ref = firebase.database().ref(`Dentist/${user.uid}/Info`)
         ref.update({address: this.state.address, zip: this.state.zip})
 
@@ -149,6 +176,7 @@ class MainInfo extends Component {
             implantTreatment: this.state.implantTreatment,
             surgicalGuide: this.state.surgicalGuide,
             noTreatmentPlan: this.state.noTreatmentPlan,
+            treatmentPlanMaterials: this.state.treatmentPlanMaterials,
             mainComplaint: this.state.mainComplaint,
             deliveryTime: this.state.deliveryTime,
             otherOption: this.state.otherOption
@@ -167,11 +195,15 @@ class MainInfo extends Component {
                 })
             });
         }
+ 
 
+        
+    
         if(this.id) {
             const orderRef = firebase.database().ref(`Dentist/${this.user.uid}/Form`).child(this.id)
             orderRef.once("value", snap => {
                let items = snap.val();
+               
                this.setState({
                     doctorName: items["doctorName"],
                     address: items["address"],
@@ -206,6 +238,7 @@ class MainInfo extends Component {
                     surgicalGuide: items["surgicalGuide"],
                     noTreatmentPlan: items["noTreatmentPlan"],
                     mainComplaint: items["mainComplaint"],
+                    treatmentPlanMaterials: items["treatmentPlanMaterials"],
                     deliveryTime: items["deliveryTime"],
                     otherOption: items["otherOption"],
                     complete: items["complete"],
@@ -524,21 +557,21 @@ class MainInfo extends Component {
                 <h2>インプラント</h2>
                 &nbsp;&nbsp;&nbsp;
                 <FormGroup check inline>
-                    <Label for="implantTreatment" >インプラント治療計画: </Label> &nbsp;&nbsp;
-                    <Input type="checkbox" name="treatmentPlan" value={this.state.implantTreatment} onChange={this.handleChange} /> 
-                </FormGroup>
-                    {console.log("implant treatment state: ", this.state.implantTreatment)}  
-                <FormGroup check inline>
-                    <Label for="surgicalGuide">サージカルガイド: </Label> &nbsp;&nbsp;
-                    <Input type="checkbox" name="surgicalGuide" value={this.state.surgicalGuide} onChange={this.handleChange}/>                    
+                    <Label check for="implantTreatment" >インプラント治療計画: </Label> &nbsp;&nbsp;
+                    <Input type="checkbox" id="implantTreatment" name="implantTreatment"  checked={this.state.implantTreatment} onChange={this.handleChange} />    
                 </FormGroup>
                 <FormGroup check inline>
-                    <Label for="noTreatmentPlan">なし: </Label> &nbsp;&nbsp;
-                    <Input type="checkbox" name="noTreatmentPlan" value={this.state.noTreatmentPlan} onChange={this.handleChange}/>      
+                    <Label check for="surgicalGuide">サージカルガイド: </Label> &nbsp;&nbsp;
+                    <Input type="checkbox" id="surgicalGuide" name="surgicalGuide" checked={this.state.surgicalGuide} onChange={this.handleChange} />                   
+                </FormGroup>
+                <FormGroup check inline>
+                    <Label check for="noTreatmentPlan">なし: </Label> &nbsp;&nbsp;
+                    <Input type="checkbox" id="noTreatmentPlan" name="noTreatmentPlan"  checked={this.state.noTreatmentPlan} onChange={this.handleChange}/>      
                 </FormGroup>
                 <FormGroup>
                 <Label for="treatmentPlanMaterials">材料</Label>
                     <Input type="select" name="treatmentPlanMaterials" value={this.state.treatmentPlanMaterials} onChange={this.handleChange} required>
+                        <option>なし</option>  
                         <option>Zirconia with Ti-Base</option>      
                         <option>Titanium - monolithic</option>
                         <option>Titanium - veneered</option>      
@@ -552,9 +585,8 @@ class MainInfo extends Component {
                         <option>PFM - Non-Precious</option>
                         <option>PMMA</option>
                     </Input>
-                </FormGroup>
-                {console.log("implant treatment materials state state: ", this.state.treatmentPlanMaterials)}  
-                <FormGroup className="main-complaint form-box">{' '}
+                </FormGroup>    
+                <FormGroup className="main-complaint form-box">
                     <Label className="main-complaint-label">主訴</Label>
                     <Input type="textarea" name="mainComplaint" placeholder="主訴" onChange={this.handleChange} value={this.state.mainComplaint || ""} />
                 </FormGroup>

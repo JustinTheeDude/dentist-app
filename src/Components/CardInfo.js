@@ -38,6 +38,10 @@ class CardInfo extends Component {
         sprint: "",
         sprintMaterials: "",
         sprintShade: "",
+        implantTreatment: false,
+        surgicalGuide: false,
+        noTreatmentPlan: false,
+        treatmentPlanMaterials: "",
         mainComplaint: "",
         deliveryTime: "",
         otherOption:"",
@@ -114,6 +118,10 @@ class CardInfo extends Component {
                             sprint: items["sprint"],
                             sprintMaterials: items["sprintMaterials"],
                             sprintShade: items["sprintShade"],
+                            implantTreatment: items["implantTreatment"],
+                            surgicalGuide: items["surgicalGuide"],
+                            noTreatmentPlan: items["noTreatmentPlan"],
+                            treatmentPlanMaterials: items["treatmentPlanMaterials"],
                             mainComplaint: items["mainComplaint"],
                             deliveryTime: items["deliveryTime"],
                             otherOption: items["otherOption"],
@@ -159,23 +167,27 @@ class CardInfo extends Component {
                             {!this.state.otherOption && <h1>製品仕様: {this.state.specs}</h1>}
                             {this.state.otherOption && <h1>製品仕様 他: {this.state.otherOption}</h1>}
                             <h1>支払い: {this.state.paymentType}</h1>
-                            <h1>インレーとアンレー: {this.state.inlayOnlay}</h1>
-                            <h1>補綴物インレー: {this.state.inlayMaterial}</h1>
-                            <h1>インレーシェード: {this.state.inlayShade}</h1>
-                            <h1>補綴物アバットメント: {this.state.abutmentType}</h1>
-                            <h1>システムTouareg: {this.state.touaregSystem}</h1>
-                            <h1>接続選択: {this.state.connectionSelect}</h1>
-                            <h1>シェード選択: {this.state.abutmentShade}</h1>
-                            <h1>挿入グループ: {this.state.insertionGroup}</h1>
-                            <h1>テレスコープ: {this.state.telescope}</h1>
-                            <h1>テレスコープ材料: {this.state.telescopeMaterial}</h1>
-                            <h1>テレスコープシェード: {this.state.telescopeShade}</h1>
-                            <h1>ブリッジインレータイプ: {this.state.bridgeType}</h1>
-                            <h1>局所義歯フレーム: {this.state.localDentureFrame}</h1>
-                            <h1>局所義歯フレーム 材料 CoCr - veneered: {this.state.localDentureFrameMaterials}</h1>
-                            <h1>スプリント: {this.state.sprint}</h1>
-                            <h1>材料スプリント: {this.state.sprintMaterials}</h1>
-                            <h1>スプリント シェード: {this.state.sprintShade}</h1>
+                            {this.state.inlayOnlay && <h1>インレーとアンレー: {this.state.inlayOnlay}</h1>}
+                            {this.state.inlayMaterial && <h1>補綴物インレー: {this.state.inlayMaterial}</h1>}
+                            {this.state.inlayShade && <h1>インレーシェード: {this.state.inlayShade}</h1>}
+                            {this.state.abutmentShade && <h1>補綴物アバットメント: {this.state.abutmentType}</h1>}
+                            {this.state.touaregSystem !== "なし" && <h1>システムTouareg: {this.state.touaregSystem}</h1>}
+                            {this.state.connectionSelect !== "なし" && <h1>接続選択: {this.state.connectionSelect}</h1>}
+                            {this.state.abutmentShade && <h1>シェード選択: {this.state.abutmentShade}</h1>}
+                            {this.state.insertionGroup && <h1>挿入グループ: {this.state.insertionGroup}</h1>}
+                            {this.state.telescope && <h1>テレスコープ: {this.state.telescope}</h1>}
+                            {this.state.telescopeMaterial && <h1>テレスコープ材料: {this.state.telescopeMaterial}</h1>}
+                            {this.state.telescopeShade && <h1>テレスコープシェード: {this.state.telescopeShade}</h1>}
+                            {this.state.bridgeType && <h1>ブリッジインレータイプ: {this.state.bridgeType}</h1>}
+                            {this.state.localDentureFrame && <h1>局所義歯フレーム: {this.state.localDentureFrame}</h1>}
+                            {this.state.localDentureFrameMaterials && <h1>局所義歯フレーム 材料: {this.state.localDentureFrameMaterials}</h1>}
+                            {this.state.sprint && <h1>スプリント: {this.state.sprint}</h1>}
+                            {this.state.sprintMaterials && <h1>材料スプリント: {this.state.sprintMaterials}</h1>}
+                            {this.state.sprintShade && <h1>スプリント シェード: {this.state.sprintShade}</h1>}
+                            {this.state.implantTreatment && <h1>インプラント治療計画: あり</h1>}
+                            {this.state.surgicalGuide && <h1>サージカルガイド: あり</h1>}
+                            {this.state.noTreatmentPlan && <h1>インプラント治療計画なし</h1>}
+                            {this.state.treatmentPlanMaterials && <h1>インプラント治療計画材料: {this.state.treatmentPlanMaterials}</h1>}
                             <h1>主訴: {this.state.mainComplaint }</h1>
                             <h1>発注日: {this.state.date}</h1>
                             <h1>配送日: {this.state.deliveryDate}</h1>
@@ -212,13 +224,16 @@ class CardInfo extends Component {
                             telescope={this.state.telescope}
                             telescopeMaterial={this.state.telescopeMaterial}
                             telescopeShade={this.state.telescopeShade}
-                            // bridge={this.state.bridge}
                             bridgeType={this.state.bridgeType}
                             localDentureFrame={this.state.localDentureFrame}
                             localDentureFrameMaterials={this.state.localDentureFrameMaterials}
                             sprint={this.state.sprint}
                             sprintMaterials={this.state.sprintMaterials}
                             sprintShade={this.state.sprintShade}
+                            implantTreatment={this.state.implantTreatment}
+                            surgicalGuide={this.state.surgicalGuide}
+                            noTreatmentPlan={this.state.noTreatmentPlan}
+                            treatmentPlanMaterials={this.state.treatmentPlanMaterials}
                         />
                     </div>
                 )}
