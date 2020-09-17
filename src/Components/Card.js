@@ -9,28 +9,32 @@ const Card = () => {
     const [currentOrderPage, setCurrentOrderPage] = useState(1);
     useEffect(() => {
         const user = firebase.auth().currentUser;
-        let unmounted = false;
+        const itemsRef = firebase.database().ref(`Dentist/${user.uid}/Form`);
+        let newState = [];
+
         if(user) {
-            const itemsRef = firebase.database().ref(`Dentist/${user.uid}/Form`);
-            let newState = [];
-            itemsRef.on("value", snap => {
+            itemsRef.orderByChild("patientID").on("value", snap => {
                 let items = snap.val();
-                for (let item in items) {
+                let dbKeys = Object.keys(items);
+
+                snap.forEach(child => {
                     newState.push({
-                        id: item,
-                        patientName: items[item].patientName,
-                        address: items[item].address,
-                        complete: items[item].complete,
-                    });
-                }
-                if(!unmounted) {
-                    setOrders(newState);
-                }
+                        patientName: child.val().patientName,
+                        address: child.val().address,
+                        complete: child.val().complete,
+                        patientID: child.val().patientID
+                    })
+                })
+
+                newState.forEach((entry,i) => {
+                    entry["id"] = dbKeys[i]
+                })
+
+                setOrders(newState);
             });
         }
-
-        return () => unmounted = true;
     }, []);
+
 
     const indexOfLastOrder = currentOrderPage * orderPerPage;
     const indexOfFirstOrder = indexOfLastOrder - orderPerPage;

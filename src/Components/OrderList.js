@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {MyContext} from "./Context/AppProvider";
 import CompleteOrder from "./CompleteOrder";
 import CardInfo from "../Components/CardInfo";
+import ListItem from "../Components/ListItem";
 
 const OrderList = ({orders, pagination}) => {
 
@@ -38,18 +39,7 @@ const OrderList = ({orders, pagination}) => {
                 </div>
                 <div className="contact-cards">
                     {orders.map(order => {
-                        return (
-                            <ul className="card-info" key={order.id}>
-                                <li>{order.patientName}</li>
-                                <li>{order.address}</li>
-                                <CompleteOrder order={order.complete} />
-                                <li className="info-button" onClick={() => setUserOrder(order.id)}>
-                                    <span className="dot"></span>
-                                    <span className="dot"></span>
-                                    <span className="dot"></span>
-                                    </li>
-                                </ul>
-                        );
+                        return <ListItem order={order} key={order.id} setUserOrder={setUserOrder} />
                     })}
                 </div>
             {pagination}

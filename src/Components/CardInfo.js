@@ -12,7 +12,7 @@ class CardInfo extends Component {
         address: "",
         age: "",
         patientName: "",
-        patientID: "", 
+        patientID: "",
         day: "",
         doctorName: "",
         info: "",
@@ -53,11 +53,12 @@ class CardInfo extends Component {
             }
         });
     }
+
     componentDidMount() {
         if (this.props.value !== "") {
             var self = this;
             const user = firebase.auth().currentUser;
-            
+
             var ref = firebase
                 .database()
                 .ref(`Dentist/${user.uid}/Form`)
@@ -85,7 +86,7 @@ class CardInfo extends Component {
                     orderID: snapshot.key
                 });
             });
-        }   
+        }
     }
 
     isComplete = "";
