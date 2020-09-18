@@ -13,11 +13,14 @@ const Card = () => {
         let unmounted = false;
 
         if(user) {
+
             const itemsRef = firebase.database().ref(`Dentist/${user.uid}/Form`);
+
             let newState = [];
             itemsRef.on("value", snap => {
                 let items = snap.val();
                 for (let item in items) {
+                    console.log(items[item].patientID)
                     newState.push({
                         id: item,
                         patientName: items[item].patientName,
@@ -26,11 +29,9 @@ const Card = () => {
                         patientID: items[item].patientID
                     });
                 }
-
                 if(!unmounted) {
                     setOrders(newState);
                     newState = [];
-
                 }
             });
         }
