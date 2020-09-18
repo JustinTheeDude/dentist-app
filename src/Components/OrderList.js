@@ -1,11 +1,11 @@
-import React, {useState,useEffect} from "react";
+import React, {useState} from "react";
 import {MyContext} from "./Context/AppProvider";
 import CompleteOrder from "./CompleteOrder";
 import CardInfo from "../Components/CardInfo";
-
+import ListItem from "../Components/ListItem";
 
 const OrderList = ({orders, pagination}) => {
-    
+
     const [orderId, setOrder] = useState("");
     const [orderView, setOrderView] = useState(false);
 
@@ -17,19 +17,6 @@ const OrderList = ({orders, pagination}) => {
     const goBack = () => {
         setOrderView(false);
     }
-    useEffect(() => {
-
-
-        let unmounted = false;
-
-        if(!unmounted) {
-            setOrder("");
-
-        }
-        return () => unmounted = true;
-
-    }, []);     
-
 
     const contentRender = (orderView, orderId, orders, context) => {
         if(orderView) {
@@ -52,22 +39,7 @@ const OrderList = ({orders, pagination}) => {
                 </div>
                 <div className="contact-cards">
                     {orders.map(order => {
-                    
-                        return (
-                            <ul className="card-info" key={order.id}>
-                                <li>{order.patientName}</li>
-                                <li>{order.patientID}</li>
-                                <CompleteOrder order={order.complete} />
-                                <li className="info-button" onClick={() => setUserOrder(order.id)}>
-                                    <span className="dot"></span>
-                                    <span className="dot"></span>
-                                    <span className="dot"></span>
-                                    </li>
-                                </ul>
-                        );
-
-                    
-
+                        return <ListItem order={order} key={order.id} setUserOrder={setUserOrder} />
                     })}
                 </div>
             {pagination}
@@ -76,7 +48,7 @@ const OrderList = ({orders, pagination}) => {
             );
         }
     }
-   
+
     return (
         <MyContext.Consumer>
             {context => (

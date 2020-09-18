@@ -1,8 +1,8 @@
+  
 import React, {useEffect, useState} from "react";
 import firebase from "firebase";
 import OrderList from "./OrderList";
 import Pagination from "./Pagination";
-
 
 const Card = () => {
     const [orders, setOrders] = useState([]);
@@ -10,34 +10,33 @@ const Card = () => {
     const [currentOrderPage, setCurrentOrderPage] = useState(1);
     useEffect(() => {
         const user = firebase.auth().currentUser;
-        let unmounted = false;
-
+        const itemsRef = firebase.database().ref(`Dentist/${user.uid}/Form`);
+        let newState = [];
+       
         if(user) {
-
-            const itemsRef = firebase.database().ref(`Dentist/${user.uid}/Form`);
-
-            let newState = [];
-            itemsRef.on("value", snap => {
+            itemsRef.orderByChild("patientID").on("value", snap => {
                 let items = snap.val();
-                for (let item in items) {
-                    console.log(items[item].patientID)
+                let dbKeys = Object.keys(items);
+                snap.forEach(child => {
                     newState.push({
-                        id: item,
-                        patientName: items[item].patientName,
-                        address: items[item].address,
-                        complete: items[item].complete,
-                        patientID: items[item].patientID
-                    });
-                }
-                if(!unmounted) {
-                    setOrders(newState);
-                    newState = [];
-                }
+                        patientName: child.val().patientName,
+                        address: child.val().address,
+                        complete: child.val().complete,
+                        patientID: child.val().patientID
+                    })
+                })
+            
+
+                newState.forEach((entry,i) => {
+                    entry["id"] = dbKeys[i]
+                 
+                })
+                setOrders(newState);
             });
         }
-
-        return () => unmounted = true;
+      
     }, []);
+
 
     const indexOfLastOrder = currentOrderPage * orderPerPage;
     const indexOfFirstOrder = indexOfLastOrder - orderPerPage;
@@ -53,7 +52,6 @@ const Card = () => {
     };
 
     return (
-        
         <>
             <OrderList
                 orders={currentOrder}
