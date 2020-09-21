@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {MyContext} from "./Context/AppProvider";
-import CompleteOrder from "./CompleteOrder";
+// import CompleteOrder from "./CompleteOrder";
 import CardInfo from "../Components/CardInfo";
 import ListItem from "../Components/ListItem";
 

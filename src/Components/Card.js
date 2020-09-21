@@ -12,7 +12,6 @@ const Card = () => {
         const user = firebase.auth().currentUser;
         const itemsRef = firebase.database().ref(`Dentist/${user.uid}/Form`);
         let newState = [];
-       
         if(user) {
             itemsRef.orderByChild("patientID").on("value", snap => {
                 let items = snap.val();
@@ -20,16 +19,14 @@ const Card = () => {
                 snap.forEach(child => {
                     newState.push({
                         patientName: child.val().patientName,
-                        address: child.val().address,
                         complete: child.val().complete,
                         patientID: child.val().patientID
                     })
-                })
-            
 
+                })
+                // Assigns each order an id the id is the snapshot order key
                 newState.forEach((entry,i) => {
-                    entry["id"] = dbKeys[i]
-                 
+                   entry["id"] = dbKeys[i]
                 })
                 setOrders(newState);
             });
