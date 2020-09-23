@@ -1,3 +1,4 @@
+  
 import React, {useEffect, useState} from "react";
 import firebase from "firebase";
 import OrderList from "./OrderList";
@@ -9,23 +10,30 @@ const Card = () => {
     const [currentOrderPage, setCurrentOrderPage] = useState(1);
     useEffect(() => {
         const user = firebase.auth().currentUser;
+        const itemsRef = firebase.database().ref(`Dentist/${user.uid}/Form`);
+        let newState = [];
         if(user) {
-            const itemsRef = firebase.database().ref(`Dentist/${user.uid}/Form`);
-            let newState = [];
-            itemsRef.on("value", snap => {
+            itemsRef.orderByChild("patientID").on("value", snap => {
                 let items = snap.val();
-                for (let item in items) {
+                let dbKeys = Object.keys(items);
+                snap.forEach(child => {
                     newState.push({
-                        id: item,
-                        contactName: items[item].contactName,
-                        address: items[item].address,
-                        complete: items[item].complete,
-                    });
-                }
+                        patientName: child.val().patientName,
+                        complete: child.val().complete,
+                        patientID: child.val().patientID
+                    })
+
+                })
+                // Assigns each order an id the id is the snapshot order key
+                newState.forEach((entry,i) => {
+                   entry["id"] = dbKeys[i]
+                })
                 setOrders(newState);
             });
         }
+      
     }, []);
+
 
     const indexOfLastOrder = currentOrderPage * orderPerPage;
     const indexOfFirstOrder = indexOfLastOrder - orderPerPage;

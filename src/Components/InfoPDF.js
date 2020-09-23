@@ -2,6 +2,7 @@ import React from 'react';
 import {Button} from "reactstrap";
 import takao from '../assets/takao.ttf';
 import mouth from '../assets/mouth.png';
+import diagram from '../assets/420px-Ptnadult.svg.png'
 import {PDFDownloadLink, Document, Page, Text, View, StyleSheet, Font, Image } from '@react-pdf/renderer';
 
 class PDF extends React.Component{
@@ -12,16 +13,15 @@ class PDF extends React.Component{
     toggle = () => {
         this.setState((prevState) => ({
             ready: false
-        }), () => {     // THIS IS THE HACK
+        }), () => {     // THIS IS THE HACK 
             setTimeout(() => {
                 this.setState({ ready: true });
             }, 1);
         });
     }
 
+    
     componentDidMount() {
-        let filename = this.props.filename;
-        console.log(filename)
         Font.register({
             family: "takao",
             src: takao,
@@ -46,6 +46,7 @@ class PDF extends React.Component{
 
 
     render() {
+
         const doc = (
             <Document>
                 <Page size="A4" style={this.styles.page}>
@@ -53,19 +54,44 @@ class PDF extends React.Component{
                         <Text>歯科医名 :{this.props.name}</Text>
                         <Text>住所: {this.props.address}</Text>
                         <Text>郵便番号: {this.props.zip}</Text>
-                        <Text>患者名: {this.props.contactName}</Text>
+                        <Text>患者名: {this.props.patientName}</Text>
+                        <Text>患者ID: {this.props.patientID}</Text>
                         <Text>年齢: {this.props.age}</Text>
                         <Text>性別: {this.props.gender}</Text>
                         <Text>製品仕様: {this.props.specs}</Text>
-                        <Text>製品仕様 他: {this.props.otherOption}</Text>
+                        {
+                        this.props.otherOption ? <Text>製品仕様 他: {this.props.otherOption}</Text> : null
+                        }
                         <Text>支払い: {this.props.paymentType}</Text>
+                        <Text>インレーとアンレー: {this.props.inlayOnlay}</Text>
+                        <Text>補綴物インレー: {this.props.inlayMaterial}</Text>
+                        <Text>シェード選択: {this.props.inlayShade}</Text>
+                        <Text>補綴物アバットメン: {this.props.abutmentType}</Text>
+                        <Text>システムTouareg: {this.props.touaregSystem}</Text>
+                        <Text>接続選択: {this.props.connectionSelect}</Text>
+                        <Text>シェード選択: {this.props.abutmentShade}</Text>
+                        <Text>挿入グループ: {this.props.insertionGroup}</Text>
+                        <Text>テレスコープ: {this.props.telescope}</Text>
+                        <Text>テレスコープ材料: {this.props.telescopeMaterial}</Text>
+                        <Text>テレスコープシェード: {this.props.telescopeShade}</Text>
+                        <Text>ブリッジインレータイプ: {this.props.bridgeType}</Text>
+                        <Text>局所義歯フレーム: {this.props.localDentureFrame}</Text>
+                        <Text>局所義歯フレーム 材料 CoCr - veneered: {this.props.localDentureFrameMaterials}</Text>
+                        <Text>スプリント: {this.props.sprint}</Text>
+                        <Text>材料スプリント: {this.props.sprintMaterials}</Text>
+                        <Text>スプリント シェード: {this.props.sprintShade}</Text>
+                        {this.props.implantTreatment ? <Text>インプラント治療計画: あり</Text> : null}
+                        {this.props.surgicalGuide ? <Text>サージカルガイド: あり</Text> : null}
+                        {this.props.noTreatmentPlan ? <Text>インプラント治療計画なし</Text> : null}
+                        {this.props.treatmentPlanMaterials? <Text>インプラント治療計画材料: {this.props.treatmentPlanMaterials}</Text> : null}
                         <Text>主訴: {this.props.mainComplaint}</Text>
+                        <Text>時間: {this.props.deliveryTime}</Text>
                         <Text>発注日: {this.props.date}</Text>
                         <Text>配送日: {this.props.deliveryDate}</Text>
-                        <Text>時間: {this.props.deliveryTime}</Text>
                     </View>
                     <View style={this.styles.section}>
                         <Image src={mouth} />
+                        <Image src={diagram} />
                     </View>
                 </Page>
             </Document>

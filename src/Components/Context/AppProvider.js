@@ -15,15 +15,17 @@ class AppProvider extends Component {
     };
 
     componentDidMount() {
+
         const itemsRef = firebase.database().ref("Form");
         const self = this;
 
         itemsRef.on("value", snap => {
             let items = snap.val();
             for (let item in items) {
+
                 self.setState({
                     id: item,
-                    contactName: items[item].contactName,
+                    patientName: items[item].patientName,
                     address: items[item].address,
                 });
             }
