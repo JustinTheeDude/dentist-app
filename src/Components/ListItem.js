@@ -1,8 +1,7 @@
-
 import React from "react";
 import CompleteOrder from "./CompleteOrder";
 
-const ListItem = ({orders, order, setUserOrder}) => {
+const ListItem = ({ order, setUserOrder}) => {
 
     return (
         <ul className="card-info">
