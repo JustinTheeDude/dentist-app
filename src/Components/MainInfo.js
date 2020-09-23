@@ -83,13 +83,8 @@ class MainInfo extends Component {
     handleSubmit = e => {
  
         e.preventDefault();
-        // let pId;
         const user = firebase.auth().currentUser;
         const itemsRef = firebase.database().ref(`Dentist/${user.uid}/Form`);
-        // const patientRef = firebase.database().ref(`Dentist/${user.uid}/Form`)
-        // patientRef.on("child_added",(snap) => {
-        //    pId =  snap.val().patientID
-        // })
         const item = {
             doctorName: this.user.displayName,
             address: this.state.address,
@@ -128,11 +123,8 @@ class MainInfo extends Component {
             deliveryTime: this.state.deliveryTime,
             otherOption: this.state.otherOption
         };
-        // if(pId) {
-        //     patientRef.push(item)
-        // }  else {
-            itemsRef.push(item);
-        // }
+        itemsRef.push(item);
+
         const ref = firebase.database().ref(`Dentist/${user.uid}/Info`)
         ref.update({address: this.state.address, zip: this.state.zip})
 
@@ -612,9 +604,6 @@ class MainInfo extends Component {
                         date={this.state.date.toString().slice(0, 15)}
                         delivery={this.state.deliveryDate.toString().slice(0, 15)}
                     />
-                    {/* <div className="canvas form-box">
-                        <Canvas />
-                    </div> */}
                 </div>
                 {
                     !this.id ?

@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import {MyContext} from "./Context/AppProvider";
-// import CompleteOrder from "./CompleteOrder";
 import CardInfo from "../Components/CardInfo";
 import ListItem from "../Components/ListItem";
 
@@ -17,7 +16,7 @@ const OrderList = ({orders, pagination}) => {
     const goBack = () => {
         setOrderView(false);
     }
-
+    
     const contentRender = (orderView, orderId, orders, context) => {
         if(orderView) {
             return  (
@@ -38,9 +37,11 @@ const OrderList = ({orders, pagination}) => {
                     </ul>
                 </div>
                 <div className="contact-cards">
-                    {orders.map(order => {
-                        return <ListItem order={order} key={order.id} setUserOrder={setUserOrder} />
-                    })}
+                {
+                    orders.map(order => {
+                        return  <ListItem order={order} key={order.id} setUserOrder={setUserOrder} /> 
+                    }) 
+                } 
                 </div>
             {pagination}
         </>
