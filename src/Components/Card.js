@@ -19,6 +19,7 @@ const Card = () => {
 
                 snap.forEach(child => {
                     newState.push({
+                        id: child.key,
                         patientName: child.val().patientName,
                         address: child.val().address,
                         complete: child.val().complete,
@@ -26,13 +27,10 @@ const Card = () => {
                     })
                 })
 
-                newState.forEach((entry,i) => {
-                    entry["id"] = dbKeys[i]
-                })
-
                 setOrders(newState);
             });
         }
+
     }, []);
 
 
