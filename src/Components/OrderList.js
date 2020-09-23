@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {MyContext} from "./Context/AppProvider";
-import CompleteOrder from "./CompleteOrder";
 import CardInfo from "../Components/CardInfo";
+import ListItem from "../Components/ListItem";
 
 const OrderList = ({orders, pagination}) => {
 
@@ -16,7 +16,7 @@ const OrderList = ({orders, pagination}) => {
     const goBack = () => {
         setOrderView(false);
     }
-
+    
     const contentRender = (orderView, orderId, orders, context) => {
         if(orderView) {
             return  (
@@ -32,25 +32,16 @@ const OrderList = ({orders, pagination}) => {
                 <div className="table-titles">
                     <ul>
                         <li>Patient Name</li>
-                        <li>Hospital Address</li>
+                        <li>Patient ID</li>
                         <li>Order Status</li>
                     </ul>
                 </div>
                 <div className="contact-cards">
-                    {orders.map(order => {
-                        return (
-                            <ul className="card-info" key={order.id}>
-                                <li>{order.contactName}</li>
-                                <li>{order.address}</li>
-                                <CompleteOrder order={order.complete} />
-                                <li className="info-button" onClick={() => setUserOrder(order.id)}>
-                                    <span className="dot"></span>
-                                    <span className="dot"></span>
-                                    <span className="dot"></span>
-                                    </li>
-                                </ul>
-                        );
-                    })}
+                {
+                    orders.map(order => {
+                        return  <ListItem order={order} key={order.id} setUserOrder={setUserOrder} /> 
+                    }) 
+                } 
                 </div>
             {pagination}
         </>
