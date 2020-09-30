@@ -19,7 +19,7 @@ const Card = () => {
                     newState.push({
                         id: child.key,
                         patientName: child.val().patientName,
-                        address: child.val().address,
+                        date: child.val().date,
                         complete: child.val().complete,
                         patientID: child.val().patientID
                     })

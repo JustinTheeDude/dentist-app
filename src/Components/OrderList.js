@@ -36,12 +36,12 @@ let sortedObj = arr.reduce((c, v) => {
     
     const result = {};
     keys.forEach((key, i) => result[key] = values[i]);
-
-
  
     const [orderId, setOrder] = useState("");
     const [orderView, setOrderView] = useState(false);
 
+
+    Object.keys(result).map((k,i) =>  console.log(k,i))
 
     const setUserOrder = (order) => {
         setOrder(order);
@@ -70,36 +70,29 @@ let sortedObj = arr.reduce((c, v) => {
                     <ul>
                         <li>Patient Name</li>
                         <li>Patient ID</li>
-                        {/* <li>Order Date</li> */}
                     </ul>
-                </div>
-                <div className="table-titles">
+                </div>             
                 {
-                    Object.keys(result).map(k => 
-                    <ul>
-                        <li key={k} >{result[k]}</li>
-                        <li >{k}</li>
+                    Object.keys(result).map((k,i) =>
+                    <div className="table-titles">
+                        <ul >
+                            <li key={i} >{result[k]}</li>
+                            <li key={k}>{k}</li>
+                        </ul>
                         <div className="contact-cards">
-                        {
-                          Object.keys(sortedObj).map(key => Object.keys(sortedObj[key]).map(key2 =>
-                            key=== k &&
-                            <ListItem order={sortedObj[key][key2]} patientID={key} id={key2} key={key2} setUserOrder={setUserOrder} />
-                          ))  
-                        }
-                        </div>
-                    </ul>           
-                    )
-                       
-               } 
-                {/* { 
-                    Object.keys(sortedObj).map(key => Object.keys(sortedObj[key]).map(key2 =>
-                        <ListItem order={sortedObj[key][key2]} patientID={key} id={key2} key={key2} setUserOrder={setUserOrder} />
-
-                    ))
-
-                }           */}
-                
-                </div>
+                            {
+                                Object.keys(sortedObj).map(key => Object.keys(sortedObj[key]).map(key2 =>
+                                    key=== k &&
+                                    <ul>
+                                    <ListItem order={sortedObj[key][key2]} patientID={key} id={key2} key={key2} setUserOrder={setUserOrder} />
+                                    </ul>
+                                ))  
+                            }
+                        </div> 
+                    </div> 
+                    )      
+                }
+             
             {pagination}
         </>
 
@@ -119,5 +112,4 @@ let sortedObj = arr.reduce((c, v) => {
 };
 
 export default OrderList;
-
-{/* <ListItem order={sortedObj[key][key2]} patientID={key} id={key2} key={key2} setUserOrder={setUserOrder} />  */}
+{/* <ListItem order={sortedObj[key][key2]} patientID={key} id={key2} key={key2} setUserOrder={setUserOrder} /> */}
