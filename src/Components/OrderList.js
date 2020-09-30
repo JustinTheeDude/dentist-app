@@ -40,9 +40,6 @@ let sortedObj = arr.reduce((c, v) => {
     const [orderId, setOrder] = useState("");
     const [orderView, setOrderView] = useState(false);
 
-
-    Object.keys(result).map((k,i) =>  console.log(k,i))
-
     const setUserOrder = (order) => {
         setOrder(order);
         setOrderView(true);
@@ -74,16 +71,16 @@ let sortedObj = arr.reduce((c, v) => {
                 </div>             
                 {
                     Object.keys(result).map((k,i) =>
-                    <div className="table-titles">
-                        <ul >
-                            <li key={i} >{result[k]}</li>
-                            <li key={k}>{k}</li>
+                    <div className="table-titles" key={k}>
+                        <ul>
+                            <li>{result[k]}</li>
+                            <li>{k}</li>
                         </ul>
-                        <div className="contact-cards">
+                        <div className="contact-cards" key={k}>
                             {
                                 Object.keys(sortedObj).map(key => Object.keys(sortedObj[key]).map(key2 =>
-                                    key=== k &&
-                                    <ul>
+                                    key === k &&
+                                    <ul  key={key2} >
                                     <ListItem order={sortedObj[key][key2]} patientID={key} id={key2} key={key2} setUserOrder={setUserOrder} />
                                     </ul>
                                 ))  
@@ -112,4 +109,3 @@ let sortedObj = arr.reduce((c, v) => {
 };
 
 export default OrderList;
-{/* <ListItem order={sortedObj[key][key2]} patientID={key} id={key2} key={key2} setUserOrder={setUserOrder} /> */}
