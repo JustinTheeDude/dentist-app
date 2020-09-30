@@ -70,7 +70,7 @@ let sortedObj = arr.reduce((c, v) => {
                     </ul>
                 </div>             
                 {
-                    Object.keys(result).map((k,i) =>
+                    Object.keys(result).map(k  =>
                     <div className="table-titles" key={k}>
                         <ul>
                             <li>{result[k]}</li>
