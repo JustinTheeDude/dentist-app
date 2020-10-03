@@ -250,7 +250,6 @@ class MainInfo extends Component {
                     otherOption: items["otherOption"],
                     complete: items["complete"],
                 });
-
            })
         }
     }
