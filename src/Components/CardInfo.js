@@ -35,9 +35,9 @@ class CardInfo extends Component {
         bridgeType: "",
         localDentureFrame: "",
         localDentureFrameMaterials: "",
-        sprint: "",
-        sprintMaterials: "",
-        sprintShade: "",
+        splint: "",
+        splintMaterials: "",
+        splintShade: "",
         implantTreatment: false,
         surgicalGuide: false,
         noTreatmentPlan: false,
@@ -115,9 +115,9 @@ class CardInfo extends Component {
                             bridgeType: items["bridgeType"],
                             localDentureFrame: items["localDentureFrame"],
                             localDentureFrameMaterials: items["localDentureFrameMaterials"],
-                            sprint: items["sprint"],
-                            sprintMaterials: items["sprintMaterials"],
-                            sprintShade: items["sprintShade"],
+                            splint: items["splint"],
+                            splintMaterials: items["splintMaterials"],
+                            splintShade: items["splintShade"],
                             implantTreatment: items["implantTreatment"],
                             surgicalGuide: items["surgicalGuide"],
                             noTreatmentPlan: items["noTreatmentPlan"],
@@ -181,9 +181,9 @@ class CardInfo extends Component {
                             {this.state.bridgeType && <h1>ブリッジインレータイプ: {this.state.bridgeType}</h1>}
                             {this.state.localDentureFrame && <h1>局所義歯フレーム: {this.state.localDentureFrame}</h1>}
                             {this.state.localDentureFrameMaterials && <h1>局所義歯フレーム 材料: {this.state.localDentureFrameMaterials}</h1>}
-                            {this.state.sprint && <h1>スプリント: {this.state.sprint}</h1>}
-                            {this.state.sprintMaterials && <h1>材料スプリント: {this.state.sprintMaterials}</h1>}
-                            {this.state.sprintShade && <h1>スプリント シェード: {this.state.sprintShade}</h1>}
+                            {this.state.splint && <h1>スプリント: {this.state.splint}</h1>}
+                            {this.state.splintMaterials && <h1>材料スプリント: {this.state.splintMaterials}</h1>}
+                            {this.state.splintShade && <h1>スプリント シェード: {this.state.splintShade}</h1>}
                             {this.state.implantTreatment && <h1>インプラント治療計画: あり</h1>}
                             {this.state.surgicalGuide && <h1>サージカルガイド: あり</h1>}
                             {this.state.noTreatmentPlan && <h1>インプラント治療計画なし</h1>}
@@ -227,9 +227,9 @@ class CardInfo extends Component {
                             bridgeType={this.state.bridgeType}
                             localDentureFrame={this.state.localDentureFrame}
                             localDentureFrameMaterials={this.state.localDentureFrameMaterials}
-                            sprint={this.state.sprint}
-                            sprintMaterials={this.state.sprintMaterials}
-                            sprintShade={this.state.sprintShade}
+                            splint={this.state.splint}
+                            splintMaterials={this.state.splintMaterials}
+                            splintShade={this.state.splintShade}
                             implantTreatment={this.state.implantTreatment}
                             surgicalGuide={this.state.surgicalGuide}
                             noTreatmentPlan={this.state.noTreatmentPlan}

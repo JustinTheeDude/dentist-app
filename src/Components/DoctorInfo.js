@@ -1,13 +1,7 @@
-import React, { Component } from 'react';
+import React  from 'react';
 import  { FormGroup, Label, Input } from "reactstrap";
 
-class DoctorInfo extends Component {
-
-  render () {
-    const user = this.props.user
-    const address = this.props.address
-    const zip = this.props.zip
-    const handleChange = this.props.handleChange
+function DoctorInfo({user, address, zip, handleChange}) {
     return (
       <div>
           <FormGroup className="doc-name form-box">
@@ -55,8 +49,6 @@ class DoctorInfo extends Component {
           </FormGroup>
       </div>
     )
-  } 
-  
 }
 
 export default DoctorInfo;

@@ -77,9 +77,9 @@ class PDF extends React.Component{
                         <Text>ブリッジインレータイプ: {this.props.bridgeType}</Text>
                         <Text>局所義歯フレーム: {this.props.localDentureFrame}</Text>
                         <Text>局所義歯フレーム 材料 CoCr - veneered: {this.props.localDentureFrameMaterials}</Text>
-                        <Text>スプリント: {this.props.sprint}</Text>
-                        <Text>材料スプリント: {this.props.sprintMaterials}</Text>
-                        <Text>スプリント シェード: {this.props.sprintShade}</Text>
+                        <Text>スプリント: {this.props.splint}</Text>
+                        <Text>材料スプリント: {this.props.splintMaterials}</Text>
+                        <Text>スプリント シェード: {this.props.splintShade}</Text>
                         {this.props.implantTreatment ? <Text>インプラント治療計画: あり</Text> : null}
                         {this.props.surgicalGuide ? <Text>サージカルガイド: あり</Text> : null}
                         {this.props.noTreatmentPlan ? <Text>インプラント治療計画なし</Text> : null}

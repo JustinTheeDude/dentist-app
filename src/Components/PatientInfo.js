@@ -1,15 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import { FormGroup, Label, Input } from "reactstrap";
 
 
-class PatientInfo extends Component {
-
-  render() {
-    const handleChange = this.props.handleChange;
-    const patientName = this.props.patientName;
-    const patientID = this.props.patientID;
-    const age = this.props.age;
-    const gender = this.props.gender;
+function PatientInfo({ patientName,patientID,age,gender,handleChange }) {
     return (
         <div>
             <FormGroup className="patient-name form-box">
@@ -53,7 +46,6 @@ class PatientInfo extends Component {
             </FormGroup>
         </div>
     )
-  }
 }
 
 export default PatientInfo;
