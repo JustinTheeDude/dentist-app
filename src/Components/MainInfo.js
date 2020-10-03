@@ -4,7 +4,7 @@ import firebase from "./firebase.js";
 // Component import
 import Calendar from "react-calendar";
 import DeliveryDate from "./DeliveryDate";
-
+import Canvas from './Canvas'
 
 class MainInfo extends Component {
     state = {
@@ -600,6 +600,8 @@ class MainInfo extends Component {
                         onClickDay={this.onChange}
                         minDate={this.state.minDate}
                     />
+                    <Canvas />
+                    
                     <DeliveryDate
                         date={this.state.date.toString().slice(0, 15)}
                         delivery={this.state.deliveryDate.toString().slice(0, 15)}

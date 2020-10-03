@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import CanvasDraw from "react-canvas-draw";
 import mouth from '../assets/mouth.png';
 import firebase from "./firebase"
+import diagram from '../assets/420px-Ptnadult.svg.png'
 class Canvas extends Component {
   state = {
     color: "black",
@@ -71,7 +72,7 @@ class Canvas extends Component {
           lazyRadius={this.state.lazyRadius}
           height={this.state.height}
           width={this.state.width}
-          imgSrc={mouth}
+          imgSrc={diagram}
           />
         {/* <CanvasDraw 
          saveData={this.getDrawing()}

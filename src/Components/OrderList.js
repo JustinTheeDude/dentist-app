@@ -39,7 +39,19 @@ let sortedObj = arr.reduce((c, v) => {
  
     const [orderId, setOrder] = useState("");
     const [orderView, setOrderView] = useState(false);
+    const [hide, hideMe] = useState(true);
 
+   
+    // const hideList =  (e) => hideMe(!hide);
+   const toggleList = (e) => {
+        for( let i = 0; i < keys.length; i++) {
+            if(e.target.id === keys[i]) {
+                console.log(e.target.id)
+                console.log(keys[i])
+                hideMe(!hide)
+            }
+        }
+    }
     const setUserOrder = (order) => {
         setOrder(order);
         setOrderView(true);
@@ -70,21 +82,33 @@ let sortedObj = arr.reduce((c, v) => {
                     </ul>
                 </div>             
                 {
+                    
                     Object.keys(result).map(k  =>
                     <div className="table-titles" key={k}>
                         <ul>
                             <li>{result[k]}</li>
-                            <li>{k}</li>
+                            <li>{k}</li>                                  
+                            <button id={k} onClick={(e) => toggleList(e) } className="arrow down">v</button>
                         </ul>
                         <div className="contact-cards" key={k}>
-                            {
+                        {/* <div className="table-titles">
+                            <ul>
+                                <li>Patient Name</li>
+                                <li>Patient ID</li>
+                                <li>Date</li>
+                            </ul>
+                        </div> */}
+                    {
                                 Object.keys(sortedObj).map(key => Object.keys(sortedObj[key]).map(key2 =>
                                     key === k &&
+ 
+                             !hide &&
                                     <ul  key={key2} >
-                                    <ListItem order={sortedObj[key][key2]} patientID={key} id={key2} key={key2} setUserOrder={setUserOrder} />
+                                    <ListItem order={sortedObj[key][key2]}  patientID={key} id={key2} key={key2} setUserOrder={setUserOrder} />
                                     </ul>
-                                ))  
-                            }
+                                )) 
+                               
+                    }
                         </div> 
                     </div> 
                     )      
