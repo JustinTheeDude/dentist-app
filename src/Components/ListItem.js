@@ -1,5 +1,5 @@
 import React from "react";
-import CompleteOrder from "./CompleteOrder";
+// import CompleteOrder from "./CompleteOrder";
 
 const ListItem = ({patientID, order, setUserOrder, id}) => {
 
@@ -9,7 +9,7 @@ const ListItem = ({patientID, order, setUserOrder, id}) => {
             <li>{patientID}</li>
             <li>{order.date}</li>
             {/* <CompleteOrder order={order.complete} /> */}
-            <li className="info-button" onClick={() => setUserOrder(id)}>
+            <li className="info-button" onClick={() => setUserOrder(order.id)}>
                 <span className="dot"></span>
                 <span className="dot"></span>
                 <span className="dot"></span>
