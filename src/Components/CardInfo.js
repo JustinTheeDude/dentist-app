@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import firebase from "firebase";
 import {MyContext} from "./Context/AppProvider";
+import CanvasDraw from "react-canvas-draw";
+
 import mouth from '../assets/mouth.png';
 import PDF from "../Components/InfoPDF";
 import chart from '../assets/420px-Ptnadult.svg.png';
@@ -46,22 +48,11 @@ class CardInfo extends Component {
         deliveryTime: "",
         otherOption:"",
         complete: false,
+        drawing: "",
+        brushRadius: 0.1,
+        lazyRadius: 0.1,
     };
-
-    /**
-     * Function gets drawing stored as a string and returns the string
-     */
-    // getDrawing() {
-    //     const user = firebase.auth().currentUser
-    //     const ref = firebase.database().ref(`Dentist/${user.uid}/Form`)
-    //     let drawing;
-    //     ref.orderByChild("drawing").on("child_added", function(snap) {
-    //       drawing = snap.val().drawing;
-
-    //     })
-    //     return  drawing;
-    // }
-
+      
     completeOrder = (id) => {
         const itemsRef = firebase.database().ref("Form").child(id);
         itemsRef.once("value", (snapshot) => {
@@ -78,7 +69,6 @@ class CardInfo extends Component {
 
 
     componentDidMount() {
-        
         if(this.props.value !== "") {            
                     var self = this;
                     const user = firebase.auth().currentUser;
@@ -126,6 +116,7 @@ class CardInfo extends Component {
                             deliveryTime: items["deliveryTime"],
                             otherOption: items["otherOption"],
                             complete: items["complete"],
+                            drawing: items["drawing"],
                         });
                 });
                 ref.off() 
@@ -150,8 +141,18 @@ class CardInfo extends Component {
             });
         });
     }
-    
+
+
     render() {
+        const canvases = document.querySelectorAll('canvas')
+        let dataUrl = [];
+        canvases.forEach(canvas => {
+ 
+            dataUrl.push(canvas.toDataURL());
+            
+        })
+
+        console.log(dataUrl)
         return (
             <MyContext.Consumer>
                 {context => (
@@ -194,7 +195,13 @@ class CardInfo extends Component {
                             <h1>時間: {this.state.deliveryTime}</h1>
                         </div>
                         <div className="teeth">
-                            <img src={mouth} alt="mouth diagram" />
+                            <CanvasDraw 
+                                imgSrc={mouth} alt="mouth diagram" 
+                                saveData={this.state.drawing}  
+                                brushColor={this.state.color}
+                                brushRadius={this.state.brushRadius}
+                                lazyRadius={this.state.lazyRadius}
+                            />
                             <img src={chart} alt="zsigmondy diagram" />
                         </div>
                         <Button><Link className="btn btn-secondary"to={`/form/${this.props.value}/update`}>Edit</Link></Button>
@@ -234,6 +241,8 @@ class CardInfo extends Component {
                             surgicalGuide={this.state.surgicalGuide}
                             noTreatmentPlan={this.state.noTreatmentPlan}
                             treatmentPlanMaterials={this.state.treatmentPlanMaterials}
+                            // drawing={dataUrl}
+
                         />
                     </div>
                 )}

@@ -1,7 +1,7 @@
 import React from 'react'
 import { FormGroup, Label, Input } from "reactstrap";
 
-function InlayOnlay({inlayOnlay, inlayMaterial, inlayShade, handleChange }) {
+function InlayOnlay({inlayOnlay, inlayMaterial, inlayShade, paymentType,inlaySpecUninsured, inlaySpecInsurance, handleChange }) {
   return (
     <FormGroup className="inlay-onlay form-box">
       <Label for="inlayOnlay">インレーとアンレー</Label>
@@ -12,6 +12,27 @@ function InlayOnlay({inlayOnlay, inlayMaterial, inlayShade, handleChange }) {
           <option>べニア</option>
           <option>なし</option>        
         </Input>
+        {
+          paymentType === "保険" &&
+          <div>
+            <Label for="inlaySpecInsurance">Inlay Spec 保険 </Label>
+              <Input type="select" name="inlaySpecInsurance" value={inlaySpecInsurance} onChange={handleChange} required>
+                <option>金パラ</option>
+                <option>銀合金</option>
+                <option>レジン</option>      
+              </Input>
+          </div>
+        }
+        {
+          paymentType === "自費" &&
+          <div>
+          <Label for="inlaySpecUninsured">Inlay Spec 自費</Label>
+          <Input type="select" name="inlaySpecUninsured" value={inlaySpecUninsured} onChange={handleChange} required>
+            <option>ハイブリットインレー</option>
+            <option>ハイブリットアンレー</option>     
+          </Input>
+          </div>
+        }
       <Label for="inlayMaterial">補綴物インレー</Label>
         <Input type="select" name="inlayMaterial"  value={inlayMaterial} onChange={handleChange} required>
           <option>Emax</option>
