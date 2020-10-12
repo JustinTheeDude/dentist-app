@@ -3,7 +3,7 @@ import {Button} from "reactstrap";
 import takao from '../assets/takao.ttf';
 import mouth from '../assets/mouth.png';
 import diagram from '../assets/420px-Ptnadult.svg.png'
-import {PDFDownloadLink, Document, Page, Text, View, StyleSheet, Font, Image, Canvas } from '@react-pdf/renderer';
+import {PDFDownloadLink, Document, Page, Text, View, StyleSheet, Font, Image } from '@react-pdf/renderer';
 class PDF extends React.Component{
     state = {
         ready: false
@@ -45,7 +45,7 @@ class PDF extends React.Component{
 
 
     render() {
-            console.log(this.props.drawing)
+
         const doc = (
             <Document>
                 <Page size="A4" style={this.styles.page}>
@@ -90,9 +90,8 @@ class PDF extends React.Component{
                       
                     </View>
                     <View style={this.styles.section}>
-                        <Image src={this.props.drawing} alt="mouth diagram"  /> 
-                        <Image src={diagram} />
-                        
+                        <Image src={mouth} alt="teeth diagram" />
+                        <Image src={diagram} alt="ptnadult diagram"  /> 
                     </View>
                 </Page>
             </Document>

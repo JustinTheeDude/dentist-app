@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import firebase from "firebase";
 import {MyContext} from "./Context/AppProvider";
 import CanvasDraw from "react-canvas-draw";
@@ -51,8 +51,9 @@ class CardInfo extends Component {
         drawing: "",
         brushRadius: 0.1,
         lazyRadius: 0.1,
+        immediateLoading: true,
     };
-      
+
     completeOrder = (id) => {
         const itemsRef = firebase.database().ref("Form").child(id);
         itemsRef.once("value", (snapshot) => {
@@ -144,15 +145,7 @@ class CardInfo extends Component {
 
 
     render() {
-        const canvases = document.querySelectorAll('canvas')
-        let dataUrl = [];
-        canvases.forEach(canvas => {
- 
-            dataUrl.push(canvas.toDataURL());
-            
-        })
-
-        console.log(dataUrl)
+        
         return (
             <MyContext.Consumer>
                 {context => (
@@ -241,8 +234,7 @@ class CardInfo extends Component {
                             surgicalGuide={this.state.surgicalGuide}
                             noTreatmentPlan={this.state.noTreatmentPlan}
                             treatmentPlanMaterials={this.state.treatmentPlanMaterials}
-                            // drawing={dataUrl}
-
+                            drawing={this.state.drawing}
                         />
                     </div>
                 )}

@@ -19,7 +19,8 @@
     "react-dom": "^16.12.0",
     "react-pdf": "^4.1.0",
     "react-router-pagination": "^2.0.7",
-    "react-scripts": "^3.4.0",
+    "react-scripts": "^3.4.3",
+    "react-transition-group": "^4.4.1",
     "reactstrap": "^8.2.0",
     "serialize-javascript": "^2.1.1",
     "serve": "^11.3.2",
@@ -48,7 +49,7 @@
   },
   "devDependencies": {
     "@svgr/cli": "^5.4.0",
-    "firebase": "^7.17.2",
+    "firebase": "^7.23.0",
     "rc-calendar": "^9.15.9",
     "react-router-dom": "^5.1.2",
     "react-strap": "0.0.1"

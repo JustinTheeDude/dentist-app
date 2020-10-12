@@ -17,7 +17,6 @@ import Splint from './Splint';
 import Implant from './Implant';
 import MainComplaint from './MainComplaint';
 import DeliveryTime from './DeliveryTime';
-
 import Calendar from "react-calendar";
 import DeliveryDate from "./DeliveryDate";
 import Canvas from './Canvas';
@@ -64,6 +63,7 @@ class MainInfo extends Component {
         deliveryTime: "",
         otherOption: "",
         drawing: "",
+        // pic: ""
     };
     user = firebase.auth().currentUser;
     id = this.props.match.params.id
@@ -262,7 +262,7 @@ class MainInfo extends Component {
                     deliveryTime: items["deliveryTime"],
                     otherOption: items["otherOption"],
                     complete: items["complete"],
-                    drawing: items["drawing"]
+                    drawing: items["drawing"],
                 });
            })
         }

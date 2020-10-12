@@ -1,10 +1,11 @@
 import React from "react";
 // import CompleteOrder from "./CompleteOrder";
 
-const ListItem = ({patientID, id ,order, setUserOrder, }) => {
+const ListItem = ({ patientID, id ,order, setUserOrder }) => {
     
     return (
-        <ul className="card-info">
+       
+        <ul className="card-info" >
             <li  key={patientID}>{order.patientName}</li>
             <li key={id}>{patientID}</li>
             <li>{order.date}</li>
