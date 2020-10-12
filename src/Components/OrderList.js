@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import {MyContext} from "./Context/AppProvider";
 import CardInfo from "../Components/CardInfo";
 import ListItem from "../Components/ListItem";
-// import { Transition} from 'react-transition-group';
+
+import {SlideDown} from 'react-slidedown'
+import 'react-slidedown/lib/slidedown.css'
+
 
 const OrderList = ({orders, pagination}) => {
 
@@ -94,14 +97,16 @@ let sortedObj = arr.reduce((c, v) => {
                                 <li>Date</li>
                             </ul>
                         </div> */}
-                    {
+                    {   
                                 Object.keys(sortedObj).map(key => Object.keys(sortedObj[key]).map(key2 =>
                                     key === k &&
                                     hideOrder === key && hide &&
-                                    <ul  key={key2} > 
-                                        <ListItem order={sortedObj[key][key2]} patientID={key} id={key2} key={key2}  setUserOrder={setUserOrder} />
-                                    </ul>
-
+                                    <SlideDown className={'my-dropdown-slidedown'} key={key2}>
+                                        <ul  key={key2} > 
+                                            
+                                            <ListItem order={sortedObj[key][key2]} patientID={key} id={key2}   setUserOrder={setUserOrder} />
+                                        </ul>
+                                    </SlideDown>
                                 )) 
                                
                     }

@@ -17,7 +17,10 @@
     a {
         text-decoration: none;
     }
-
+    .react-slidedown.my-dropdown-slidedown {
+        transition-duration: .30s;
+        transition-timing-function: cubic-bezier(0.1, 0.7, 1.0, 0.1);
+    }
     .card-title {
         color: #172b4d;
         padding: 40px;
@@ -79,7 +82,19 @@
                 padding-left: 50px;
                 padding-right: 20px;
             }
-
+            .example-enter {
+                height: 0px;
+            }
+            
+            .example-enter.example-enter-active {
+                height: 100px;
+                -webkit-transition: height .3s ease;
+            }
+            
+            .example-leave.example-leave-active {
+                height: 0px;
+                -webkit-transition: height .3s ease;
+            }
             &:nth-child(even) {
                 background-color: #f7fafc;
 
