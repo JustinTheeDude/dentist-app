@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import {MyContext} from "./Context/AppProvider";
 import CardInfo from "../Components/CardInfo";
 import ListItem from "../Components/ListItem";
-
-import {SlideDown} from 'react-slidedown'
-import 'react-slidedown/lib/slidedown.css'
+import { Collapse } from 'reactstrap';
 
 
 const OrderList = ({orders, pagination}) => {
@@ -43,7 +41,8 @@ let sortedObj = arr.reduce((c, v) => {
     const [orderId, setOrder] = useState("");
     const [orderView, setOrderView] = useState(false);
     const [hideOrder, hiddenOrder] = useState("");
-    const [hide, hideMe] = useState(false)
+    const [isOpen, setIsOpen] = useState(false);
+
 
     const setUserOrder = (order) => {
         setOrder(order);
@@ -54,11 +53,11 @@ let sortedObj = arr.reduce((c, v) => {
         setOrderView(false);
     }
 
-    const showHideList = (id) => {
+    const toggle = (id) => { 
         hiddenOrder(id)
-        hideMe(!hide)
-    }
-    
+        setIsOpen(!isOpen);
+    };
+  
     const contentRender = (orderView, orderId, orders, context) => {
         if(orderView) {
        
@@ -86,27 +85,18 @@ let sortedObj = arr.reduce((c, v) => {
                         <ul>
                             <li>{result[k]}</li>
                             <li>{k}</li>                                  
-                            <button id={k} onClick={() => showHideList(k)} className="arrow down">v</button>
-                            {/* onClick={() => hiddenOrder(k)} */}
+                            <button id="toggler" onClick={() => toggle(k)} style={{ marginBottom: '1rem' }} className="arrow down" >v</button>
                         </ul>
                         <div className="contact-cards" key={k} id={k}>
-                        {/* <div className="table-titles">
-                            <ul>
-                                <li>Patient Name</li>
-                                <li>Patient ID</li>
-                                <li>Date</li>
-                            </ul>
-                        </div> */}
                     {   
                                 Object.keys(sortedObj).map(key => Object.keys(sortedObj[key]).map(key2 =>
                                     key === k &&
-                                    hideOrder === key && hide &&
-                                    <SlideDown className={'my-dropdown-slidedown'} key={key2}>
+                                    hideOrder === key && 
+                                    <Collapse isOpen={isOpen} key={key2}>
                                         <ul  key={key2} > 
-                                            
                                             <ListItem order={sortedObj[key][key2]} patientID={key} id={key2}   setUserOrder={setUserOrder} />
                                         </ul>
-                                    </SlideDown>
+                                    </Collapse>
                                 )) 
                                
                     }
@@ -134,3 +124,5 @@ let sortedObj = arr.reduce((c, v) => {
 };
 
 export default OrderList;
+
+
