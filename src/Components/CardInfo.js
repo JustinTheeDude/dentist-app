@@ -1,6 +1,8 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import firebase from "firebase";
 import {MyContext} from "./Context/AppProvider";
+import CanvasDraw from "react-canvas-draw";
+
 import mouth from '../assets/mouth.png';
 import PDF from "../Components/InfoPDF";
 import chart from '../assets/420px-Ptnadult.svg.png';
@@ -35,9 +37,9 @@ class CardInfo extends Component {
         bridgeType: "",
         localDentureFrame: "",
         localDentureFrameMaterials: "",
-        sprint: "",
-        sprintMaterials: "",
-        sprintShade: "",
+        splint: "",
+        splintMaterials: "",
+        splintShade: "",
         implantTreatment: false,
         surgicalGuide: false,
         noTreatmentPlan: false,
@@ -46,21 +48,11 @@ class CardInfo extends Component {
         deliveryTime: "",
         otherOption:"",
         complete: false,
+        drawing: "",
+        brushRadius: 0.1,
+        lazyRadius: 0.1,
+        immediateLoading: true,
     };
-
-    /**
-     * Function gets drawing stored as a string and returns the string
-     */
-    // getDrawing() {
-    //     const user = firebase.auth().currentUser
-    //     const ref = firebase.database().ref(`Dentist/${user.uid}/Form`)
-    //     let drawing;
-    //     ref.orderByChild("drawing").on("child_added", function(snap) {
-    //       drawing = snap.val().drawing;
-
-    //     })
-    //     return  drawing;
-    // }
 
     completeOrder = (id) => {
         const itemsRef = firebase.database().ref("Form").child(id);
@@ -78,7 +70,6 @@ class CardInfo extends Component {
 
 
     componentDidMount() {
-        
         if(this.props.value !== "") {            
                     var self = this;
                     const user = firebase.auth().currentUser;
@@ -115,9 +106,9 @@ class CardInfo extends Component {
                             bridgeType: items["bridgeType"],
                             localDentureFrame: items["localDentureFrame"],
                             localDentureFrameMaterials: items["localDentureFrameMaterials"],
-                            sprint: items["sprint"],
-                            sprintMaterials: items["sprintMaterials"],
-                            sprintShade: items["sprintShade"],
+                            splint: items["splint"],
+                            splintMaterials: items["splintMaterials"],
+                            splintShade: items["splintShade"],
                             implantTreatment: items["implantTreatment"],
                             surgicalGuide: items["surgicalGuide"],
                             noTreatmentPlan: items["noTreatmentPlan"],
@@ -126,6 +117,7 @@ class CardInfo extends Component {
                             deliveryTime: items["deliveryTime"],
                             otherOption: items["otherOption"],
                             complete: items["complete"],
+                            drawing: items["drawing"],
                         });
                 });
                 ref.off() 
@@ -150,8 +142,10 @@ class CardInfo extends Component {
             });
         });
     }
-    
+
+
     render() {
+        
         return (
             <MyContext.Consumer>
                 {context => (
@@ -181,9 +175,9 @@ class CardInfo extends Component {
                             {this.state.bridgeType && <h1>ブリッジインレータイプ: {this.state.bridgeType}</h1>}
                             {this.state.localDentureFrame && <h1>局所義歯フレーム: {this.state.localDentureFrame}</h1>}
                             {this.state.localDentureFrameMaterials && <h1>局所義歯フレーム 材料: {this.state.localDentureFrameMaterials}</h1>}
-                            {this.state.sprint && <h1>スプリント: {this.state.sprint}</h1>}
-                            {this.state.sprintMaterials && <h1>材料スプリント: {this.state.sprintMaterials}</h1>}
-                            {this.state.sprintShade && <h1>スプリント シェード: {this.state.sprintShade}</h1>}
+                            {this.state.splint && <h1>スプリント: {this.state.splint}</h1>}
+                            {this.state.splintMaterials && <h1>材料スプリント: {this.state.splintMaterials}</h1>}
+                            {this.state.splintShade && <h1>スプリント シェード: {this.state.splintShade}</h1>}
                             {this.state.implantTreatment && <h1>インプラント治療計画: あり</h1>}
                             {this.state.surgicalGuide && <h1>サージカルガイド: あり</h1>}
                             {this.state.noTreatmentPlan && <h1>インプラント治療計画なし</h1>}
@@ -194,7 +188,13 @@ class CardInfo extends Component {
                             <h1>時間: {this.state.deliveryTime}</h1>
                         </div>
                         <div className="teeth">
-                            <img src={mouth} alt="mouth diagram" />
+                            <CanvasDraw 
+                                imgSrc={mouth} alt="mouth diagram" 
+                                saveData={this.state.drawing}  
+                                brushColor={this.state.color}
+                                brushRadius={this.state.brushRadius}
+                                lazyRadius={this.state.lazyRadius}
+                            />
                             <img src={chart} alt="zsigmondy diagram" />
                         </div>
                         <Button><Link className="btn btn-secondary"to={`/form/${this.props.value}/update`}>Edit</Link></Button>
@@ -227,13 +227,14 @@ class CardInfo extends Component {
                             bridgeType={this.state.bridgeType}
                             localDentureFrame={this.state.localDentureFrame}
                             localDentureFrameMaterials={this.state.localDentureFrameMaterials}
-                            sprint={this.state.sprint}
-                            sprintMaterials={this.state.sprintMaterials}
-                            sprintShade={this.state.sprintShade}
+                            splint={this.state.splint}
+                            splintMaterials={this.state.splintMaterials}
+                            splintShade={this.state.splintShade}
                             implantTreatment={this.state.implantTreatment}
                             surgicalGuide={this.state.surgicalGuide}
                             noTreatmentPlan={this.state.noTreatmentPlan}
                             treatmentPlanMaterials={this.state.treatmentPlanMaterials}
+                            drawing={this.state.drawing}
                         />
                     </div>
                 )}

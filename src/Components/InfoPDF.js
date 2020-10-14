@@ -4,7 +4,6 @@ import takao from '../assets/takao.ttf';
 import mouth from '../assets/mouth.png';
 import diagram from '../assets/420px-Ptnadult.svg.png'
 import {PDFDownloadLink, Document, Page, Text, View, StyleSheet, Font, Image } from '@react-pdf/renderer';
-
 class PDF extends React.Component{
     state = {
         ready: false
@@ -77,9 +76,9 @@ class PDF extends React.Component{
                         <Text>ブリッジインレータイプ: {this.props.bridgeType}</Text>
                         <Text>局所義歯フレーム: {this.props.localDentureFrame}</Text>
                         <Text>局所義歯フレーム 材料 CoCr - veneered: {this.props.localDentureFrameMaterials}</Text>
-                        <Text>スプリント: {this.props.sprint}</Text>
-                        <Text>材料スプリント: {this.props.sprintMaterials}</Text>
-                        <Text>スプリント シェード: {this.props.sprintShade}</Text>
+                        <Text>スプリント: {this.props.splint}</Text>
+                        <Text>材料スプリント: {this.props.splintMaterials}</Text>
+                        <Text>スプリント シェード: {this.props.splintShade}</Text>
                         {this.props.implantTreatment ? <Text>インプラント治療計画: あり</Text> : null}
                         {this.props.surgicalGuide ? <Text>サージカルガイド: あり</Text> : null}
                         {this.props.noTreatmentPlan ? <Text>インプラント治療計画なし</Text> : null}
@@ -88,10 +87,11 @@ class PDF extends React.Component{
                         <Text>時間: {this.props.deliveryTime}</Text>
                         <Text>発注日: {this.props.date}</Text>
                         <Text>配送日: {this.props.deliveryDate}</Text>
+                      
                     </View>
                     <View style={this.styles.section}>
-                        <Image src={mouth} />
-                        <Image src={diagram} />
+                        <Image src={mouth} alt="teeth diagram" />
+                        <Image src={diagram} alt="ptnadult diagram"  /> 
                     </View>
                 </Page>
             </Document>
