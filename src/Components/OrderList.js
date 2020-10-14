@@ -6,7 +6,7 @@ import { Collapse } from 'reactstrap';
 
 
 const OrderList = ({orders, pagination}) => {
-
+ 
 let arr = orders
 
 let sortedObj = arr.reduce((c, v) => {
@@ -56,7 +56,9 @@ let sortedObj = arr.reduce((c, v) => {
     const toggle = (id) => { 
         hiddenOrder(id)
         setIsOpen(!isOpen);
+
     };
+
   
     const contentRender = (orderView, orderId, orders, context) => {
         if(orderView) {
@@ -92,7 +94,7 @@ let sortedObj = arr.reduce((c, v) => {
                                 Object.keys(sortedObj).map(key => Object.keys(sortedObj[key]).map(key2 =>
                                     key === k &&
                                     hideOrder === key && 
-                                    <Collapse isOpen={isOpen} key={key2}>
+                                    <Collapse isOpen={isOpen} key={key2} >
                                         <ul  key={key2} > 
                                             <ListItem order={sortedObj[key][key2]} patientID={key} id={key2}   setUserOrder={setUserOrder} />
                                         </ul>

@@ -82,19 +82,7 @@
                 padding-left: 50px;
                 padding-right: 20px;
             }
-            .example-enter {
-                height: 0px;
-            }
-            
-            .example-enter.example-enter-active {
-                height: 100px;
-                -webkit-transition: height .3s ease;
-            }
-            
-            .example-leave.example-leave-active {
-                height: 0px;
-                -webkit-transition: height .3s ease;
-            }
+
             &:nth-child(even) {
                 background-color: #f7fafc;
 
@@ -192,6 +180,7 @@
         }
     }
 }
+
 
 .pages {
     width: 100%;
