@@ -36,7 +36,7 @@ class MainInfo extends Component {
         gender: "男",
         specs: "レジン床",
         paymentType: "保険",
-        treatmentType: "インレー",
+        treatmentType: "",
         inlayOnlay:"",
         inlayMaterial: "",
         inlayShade: "",
@@ -128,9 +128,9 @@ class MainInfo extends Component {
             crownMaterialUninsured: this.state.crownMaterialUninsured,
             crownShadeUninsured: this.state.crownShadeUninsured,
             BrMaterialInsured: this.state.BrMaterialInsured,
-            BrShadeInsured: "" ,
-            BrMaterialUninsured: "",
-            BrShadeUninsured: "",         
+            BrShadeInsured: this.state.BrShadeInsured ,
+            BrMaterialUninsured: this.state.BrMaterialUninsured,
+            BrShadeUninsured: this.state.BrShadeUninsured,         
             bridge: this.state.bridge,
             bridgeType: this.state.bridgeType,
             localDentureFrame: this.state.localDentureFrame,
@@ -238,7 +238,7 @@ class MainInfo extends Component {
                     inlayOnlay: items["inlayOnlay"],
                     inlayMaterial:  items["inlayMaterial"],
                     inlayShade: items["inlayShade"],
-                    crownMaterialInsured:items["crownMaterialInsured"],
+                    crownMaterialInsured: items["crownMaterialInsured"],
                     crownShadeInsured: items["crownShadeInsured"],
                     crownMaterialUninsured: items["crownMaterialUninsured"], 
                     crownShadeUninsured: items["crownShadeUninsured"],
@@ -302,7 +302,7 @@ class MainInfo extends Component {
                 {
                     this.state.treatmentType === "クラウン" &&
                     <div>
-                        <h2>アバットメント</h2>
+                        <h2>クラウン</h2>
                             <Crown  
                                 handleChange={this.handleChange} 
                                 crownMaterialInsured={this.state.crownMaterialInsured} 
@@ -374,7 +374,7 @@ class MainInfo extends Component {
                                 treatmentPlanMaterials={this.state.treatmentPlanMaterials}
                             />
                     </div>
-                }
+                } 
                     <MainComplaint handleChange={this.handleChange} mainComplaint={this.state.mainComplaint} />
                     <DeliveryTime  handleChange={this.handleChange} deliveryTime={this.state.deliveryTime} />
                 <h3 className="order-heading">発注日/納期日</h3>

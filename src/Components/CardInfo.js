@@ -217,6 +217,7 @@ class CardInfo extends Component {
                             inlayMaterial= {this.state.inlayMaterial}
                             inlayShade={this.state.inlayShade}
                             crownShadeInsured={this.state.crownShadeInsured}
+                            crownMaterialInsured={this.state.crownMaterialInsured}
                             crownMaterialUninsured={this.state.crownMaterialUninsured}
                             crownShadeUninsured={this.state.crownShadeUninsured}
                             BrMaterialInsured={this.state.BrMaterialInsured}

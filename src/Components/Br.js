@@ -50,8 +50,8 @@ function Br({ paymentType,BrMaterialInsured, BrInsuredShade,BrMaterialUninsured,
             paymentType === "自費" ?
             BrMaterialUninsured !== "ゴールド" && BrMaterialUninsured !== ""  ?
             <div>
-                <Label for="crownShadeUninsured">Br シェード選択 自費</Label>
-                    <Input type="select" name="crownShadeUninsured" value={BrShadeUninsured} onChange={handleChange} required>
+                <Label for="BrShadeUninsured">Br シェード選択 自費</Label>
+                    <Input type="select" name="BrShadeUninsured" value={BrShadeUninsured} onChange={handleChange} required>
                         <option>なし</option>
                         <option>A 1</option>
                         <option>A 2</option>
@@ -73,21 +73,6 @@ function Br({ paymentType,BrMaterialInsured, BrInsuredShade,BrMaterialUninsured,
             :
             null
         }
-
-    {/* <Label for="telescope">テレスコープ</Label>
-        <Input type="select" name="telescope" value={telescope} onChange={handleChange} required>
-            <option>ポストアンドコア</option>
-            <option>アナトミカルポストアンドコア</option>
-            <option>スクリュ－固定式クラウン&#8226;ポストアンドコア</option>
-            <option>なし</option>
-        </Input>
-        <Label for="telescopeMaterial">材料</Label>
-        <Input type="select" name="telescopeMaterial" value={telescopeMaterial} onChange={handleChange} required>
-            <option>Chrome-Cobalt</option>
-            <option>Titanium</option>
-            <option>Precious</option>
-            <option>Zirconia</option>
-        </Input> */}
         
     </FormGroup>
   )
