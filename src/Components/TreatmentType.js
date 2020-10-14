@@ -7,9 +7,9 @@ function TreatmentType({treatmentType, handleChange}) {
     <FormGroup className="treatment-type form-box">
     <Label for="treatmentT">治療の種類</Label>
       <Input type="select" name="treatmentType"  value={treatmentType} onChange={handleChange} required>
-        <option>なし</option> 
         <option>インレー</option>
         <option>クラウン</option>
+        <option>Br</option>
         <option>口腔内装置</option>
         <option>義歯(保険)</option>
         <option>その他</option>

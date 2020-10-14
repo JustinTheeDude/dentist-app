@@ -25,14 +25,14 @@ class CardInfo extends Component {
         inlayOnlay:"",
         inlayMaterial: "",
         inlayShade: "",
-        abutmentType: "",
-        touaregSystem: "なし",
-        connectionSelect: "なし",
-        abutmentShade: "",
-        insertionGroup: "",
-        telescope: "",
-        telescopeMaterial: "",
-        telescopeShade: "",
+        crownMaterialInsured: "",
+        crownShadeInsured: "",
+        crownMaterialUninsured: "",
+        crownShadeUninsured: "",
+        BrMaterialInsured: "",
+        BrShadeInsured: "" ,
+        BrMaterialUninsured: "",
+        BrShadeUninsured: "",
         bridge: "",
         bridgeType: "",
         localDentureFrame: "",
@@ -94,14 +94,14 @@ class CardInfo extends Component {
                             inlayOnlay: items["inlayOnlay"],
                             inlayMaterial:  items["inlayMaterial"],
                             inlayShade: items["inlayShade"],
-                            abutmentType: items["abutmentType"],
-                            touaregSystem: items["touaregSystem"],
-                            connectionSelect: items["connectionSelect"],
-                            abutmentShade: items["abutmentShade"],
-                            insertionGroup: items["insertionGroup"],
-                            telescope: items["telescope"],
-                            telescopeMaterial: items["telescopeMaterial"],
-                            telescopeShade: items["telescopeShade"],
+                            crownMaterialInsured:items["crownMaterialInsured"],
+                            crownShadeInsured: items["crownShadeInsured"],
+                            crownMaterialUninsured: items["crownMaterialUninsured"], 
+                            crownShadeUninsured: items["crownShadeUninsured"],
+                            BrMaterialInsured: items["BrMaterialInsured"],
+                            BrShadeInsured: items["BrShadeInsured"] ,
+                            BrMaterialUninsured: items["BrMaterialUninsured"],
+                            BrShadeUninsured: items["BrShadeUninsured"],
                             bridge: items["bridge"],
                             bridgeType: items["bridgeType"],
                             localDentureFrame: items["localDentureFrame"],
@@ -164,14 +164,14 @@ class CardInfo extends Component {
                             {this.state.inlayOnlay && <h1>インレーとアンレー: {this.state.inlayOnlay}</h1>}
                             {this.state.inlayMaterial && <h1>補綴物インレー: {this.state.inlayMaterial}</h1>}
                             {this.state.inlayShade && <h1>インレーシェード: {this.state.inlayShade}</h1>}
-                            {this.state.abutmentShade && <h1>補綴物アバットメント: {this.state.abutmentType}</h1>}
-                            {this.state.touaregSystem !== "なし" && <h1>システムTouareg: {this.state.touaregSystem}</h1>}
-                            {this.state.connectionSelect !== "なし" && <h1>接続選択: {this.state.connectionSelect}</h1>}
-                            {this.state.abutmentShade && <h1>シェード選択: {this.state.abutmentShade}</h1>}
-                            {this.state.insertionGroup && <h1>挿入グループ: {this.state.insertionGroup}</h1>}
-                            {this.state.telescope && <h1>テレスコープ: {this.state.telescope}</h1>}
-                            {this.state.telescopeMaterial && <h1>テレスコープ材料: {this.state.telescopeMaterial}</h1>}
-                            {this.state.telescopeShade && <h1>テレスコープシェード: {this.state.telescopeShade}</h1>}
+                            {this.state.crownMaterialInsured && <h1>クラウン 保険: {this.state.crownMaterialInsured}</h1>}
+                            {this.state.crownShadeInsured && <h1>クラウン シェード選択 保険: {this.state.crownShadeInsured}</h1>}
+                            {this.state.crownMaterialUninsured && <h1>クラウン 自費: {this.state.crownMaterialUninsured}</h1>}
+                            {this.state.crownShadeUninsured && <h1>クラウン シェード選択 自費: {this.state.crownShadeUninsured}</h1>}
+                            {this.state.BrMaterialInsured && <h1>Br 保険: {this.state.BrMaterialInsured}</h1>}
+                            {this.state.BrShadeInsured && <h1>Br シェード選択 保険: {this.state.BrShadeInsured}</h1>}
+                            {this.state.BrMaterialUninsured && <h1>Br 自費: {this.BrMaterialUninsured}</h1>}
+                            {this.state.BrShadeUninsured && <h1>Br シェード選択 自費: {this.state.BrShadeUninsured}</h1>}
                             {this.state.bridgeType && <h1>ブリッジインレータイプ: {this.state.bridgeType}</h1>}
                             {this.state.localDentureFrame && <h1>局所義歯フレーム: {this.state.localDentureFrame}</h1>}
                             {this.state.localDentureFrameMaterials && <h1>局所義歯フレーム 材料: {this.state.localDentureFrameMaterials}</h1>}
@@ -216,14 +216,13 @@ class CardInfo extends Component {
                             inlayOnlay= {this.state.inlayOnlay}
                             inlayMaterial= {this.state.inlayMaterial}
                             inlayShade={this.state.inlayShade}
-                            abutmentType={this.state.abutmentType}
-                            touaregSystem={this.state.touaregSystem}
-                            connectionSelect={this.state.connectionSelect}
-                            abutmentShade={this.state.abutmentShade}
-                            insertionGroup={this.state.insertionGroup}
-                            telescope={this.state.telescope}
-                            telescopeMaterial={this.state.telescopeMaterial}
-                            telescopeShade={this.state.telescopeShade}
+                            crownShadeInsured={this.state.crownShadeInsured}
+                            crownMaterialUninsured={this.state.crownMaterialUninsured}
+                            crownShadeUninsured={this.state.crownShadeUninsured}
+                            BrMaterialInsured={this.state.BrMaterialInsured}
+                            BrShadeInsured={this.state.BrShadeInsured }
+                            BrMaterialUninsured={this.state.BrMaterialUninsured}
+                            BrShadeUninsured={this.state.BrShadeUninsured}
                             bridgeType={this.state.bridgeType}
                             localDentureFrame={this.state.localDentureFrame}
                             localDentureFrameMaterials={this.state.localDentureFrameMaterials}

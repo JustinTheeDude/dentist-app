@@ -2,7 +2,7 @@ import React from "react";
 // import CompleteOrder from "./CompleteOrder";
 
 const ListItem = ({ patientID, id ,order, setUserOrder }) => {
-    
+
     return (
        
         <ul className="card-info" >

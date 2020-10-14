@@ -9,8 +9,8 @@ import ProductsSpecs from './ProductsSpecs';
 import TreatmentType from './TreatmentType';
 import PaymentSelect from './PaymentSelect';
 import InlayOnlay from './InlayOnlay';
-import Abutment from './Abutment';
-import Telescope from './Telescope';
+import Crown from './Crown';
+import Br from './Br';
 import Bridge from './Bridge';
 import LocalDentFrame from './LocalDentFrame';
 import Splint from './Splint';
@@ -36,18 +36,18 @@ class MainInfo extends Component {
         gender: "男",
         specs: "レジン床",
         paymentType: "保険",
-        treatmentType: "なし",
+        treatmentType: "インレー",
         inlayOnlay:"",
         inlayMaterial: "",
         inlayShade: "",
-        abutmentType: "",
-        touaregSystem: "なし",
-        connectionSelect: "なし",
-        abutmentShade: "",
-        insertionGroup: "",
-        telescope: "",
-        telescopeMaterial: "",
-        telescopeShade: "",
+        crownMaterialInsured: "",
+        crownShadeInsured: "",
+        crownMaterialUninsured: "",
+        crownShadeUninsured: "",
+        BrMaterialInsured: "",
+        BrShadeInsured: "" ,
+        BrMaterialUninsured: "",
+        BrShadeUninsured: "", 
         bridge: "",
         bridgeType: "",
         localDentureFrame: "",
@@ -63,7 +63,6 @@ class MainInfo extends Component {
         deliveryTime: "",
         otherOption: "",
         drawing: "",
-        // pic: ""
     };
     user = firebase.auth().currentUser;
     id = this.props.match.params.id
@@ -124,14 +123,14 @@ class MainInfo extends Component {
             inlayOnlay: this.state.inlayOnlay,
             inlayMaterial: this.state.inlayMaterial,
             inlayShade: this.state.inlayShade,
-            abutmentType: this.state.abutmentType,
-            touaregSystem: this.state.touaregSystem,
-            connectionSelect: this.state.connectionSelect,
-            abutmentShade: this.state.abutmentShade,
-            insertionGroup: this.state.insertionGroup,        
-            telescope: this.state.telescope,
-            telescopeMaterial: this.state.telescopeMaterial,
-            telescopeShade: this.state.telescopeShade,
+            crownMaterialInsured: this.state.crownMaterialInsured,
+            crownShadeInsured: this.state.crownShadeInsured,
+            crownMaterialUninsured: this.state.crownMaterialUninsured,
+            crownShadeUninsured: this.state.crownShadeUninsured,
+            BrMaterialInsured: this.state.BrMaterialInsured,
+            BrShadeInsured: "" ,
+            BrMaterialUninsured: "",
+            BrShadeUninsured: "",         
             bridge: this.state.bridge,
             bridgeType: this.state.bridgeType,
             localDentureFrame: this.state.localDentureFrame,
@@ -176,14 +175,14 @@ class MainInfo extends Component {
             inlayOnlay: this.state.inlayOnlay,
             inlayMaterial: this.state.inlayMaterial,
             inlayShade: this.state.inlayShade,
-            abutmentType: this.state.abutmentType,
-            touaregSystem: this.state.touaregSystem,
-            connectionSelect: this.state.connectionSelect,
-            abutmentShade: this.state.abutmentShade,
-            insertionGroup: this.state.insertionGroup,
-            telescope: this.state.telescope,
-            telescopeMaterial: this.state.telescopeMaterial,
-            telescopeShade: this.state.telescopeShade,
+            crownMaterialInsured: this.state.crownMaterialInsured,
+            crownShadeInsured: this.state.crownShadeInsured,
+            crownMaterialUninsured: this.state.crownMaterialUninsured,
+            crownShadeUninsured: this.state.crownShadeUninsured,
+            BrMaterialInsured: this.state.BrMaterialInsured,
+            BrShadeInsured: this.state.BrShadeInsured ,
+            BrMaterialUninsured: this.state.BrMaterialUninsured,
+            BrShadeUninsured: this.state.BrShadeUninsured, 
             bridge: this.state.bridge,
             bridgeType: this.state.bridgeType,
             localDentureFrame: this.state.localDentureFrame,
@@ -239,14 +238,14 @@ class MainInfo extends Component {
                     inlayOnlay: items["inlayOnlay"],
                     inlayMaterial:  items["inlayMaterial"],
                     inlayShade: items["inlayShade"],
-                    abutmentType: items["abutmentType"],
-                    touaregSystem: items["touaregSystem"],
-                    connectionSelect: items["connectionSelect"],
-                    abutmentShade: items["abutmentShade"],
-                    insertionGroup: items["insertionGroup"],
-                    telescope: items["telescope"],
-                    telescopeMaterial: items["telescopeMaterial"],
-                    telescopeShade: items["telescopeShade"],
+                    crownMaterialInsured:items["crownMaterialInsured"],
+                    crownShadeInsured: items["crownShadeInsured"],
+                    crownMaterialUninsured: items["crownMaterialUninsured"], 
+                    crownShadeUninsured: items["crownShadeUninsured"],
+                    BrMaterialInsured: items["BrMaterialInsured"],
+                    BrShadeInsured: items["BrShadeInsured"] ,
+                    BrMaterialUninsured: items["BrMaterialUninsured"],
+                    BrShadeUninsured: items["BrShadeUninsured"],
                     bridge: items["bridge"],
                     bridgeType: items["bridgeType"],
                     localDentureFrame: items["localDentureFrame"],
@@ -301,28 +300,30 @@ class MainInfo extends Component {
 
                 }
                 {
-                    this.state.treatmentType === "アバットメント" &&
+                    this.state.treatmentType === "クラウン" &&
                     <div>
                         <h2>アバットメント</h2>
-                            <Abutment  
+                            <Crown  
                                 handleChange={this.handleChange} 
-                                abutmentType={this.state.abutmentType} 
-                                touaregSystem={this.state.touaregSystem} 
-                                connectionSelect={this.state.connectionSelect} 
-                                abutmentShade={this.state.abutmentType} 
-                                insertionGroup={this.state.insertionGroup}  
+                                crownMaterialInsured={this.state.crownMaterialInsured} 
+                                crownShadeInsured={this.state.crownShadeInsured}
+                                crownMaterialUninsured={this.state.crownMaterialUninsured}
+                                crownShadeUninsured={this.state.crownShadeUninsured}
+                                paymentType={this.state.paymentType}  
                             />
                     </div>
                 }
                 {
-                    this.state.treatmentType === "テレスコープ" &&
+                    this.state.treatmentType === "Br" &&
                     <div>
-                        <h2>テレスコープ</h2>
-                            <Telescope 
+                        <h2>Br</h2>
+                            <Br 
                                 handleChange={this.handleChange}
-                                telescope={this.state.telescope}
-                                telescopeMaterial={this.state.telescopeMaterial}
-                                telescopeShade={this.state.telescopeShade}              
+                                paymentType={this.state.paymentType}
+                                BrMaterialInsured={this.state.BrMaterialInsured} 
+                                BrShadeInsured={this.state.BrShadeInsured}
+                                BrMaterialUninsured={this.state.BrMaterialUninsured}
+                                BrShadeUninsured={this.state.BrShadeUninsured}              
                             />
                     </div>
                 }
