@@ -21,6 +21,7 @@ class CardInfo extends Component {
         age: "",
         gender: "",
         specs: "",
+        treatmentType:"",
         paymentType: "",
         inlayOnlay:"",
         inlayMaterial: "",
@@ -33,17 +34,16 @@ class CardInfo extends Component {
         BrShadeInsured: "" ,
         BrMaterialUninsured: "",
         BrShadeUninsured: "",
+        oralDeviceInsured: "",
+        oralDeviceUninsured: "",
+        otherOptionInsured: "",
+        otherOptionUninsured: "",
         bridge: "",
         bridgeType: "",
-        localDentureFrame: "",
-        localDentureFrameMaterials: "",
-        splint: "",
-        splintMaterials: "",
-        splintShade: "",
-        implantTreatment: false,
-        surgicalGuide: false,
-        noTreatmentPlan: false,
-        treatmentPlanMaterials: "",
+        // implantTreatment: false,
+        // surgicalGuide: false,
+        // noTreatmentPlan: false,
+        // treatmentPlanMaterials: "",
         mainComplaint: "",
         deliveryTime: "",
         otherOption:"",
@@ -90,6 +90,7 @@ class CardInfo extends Component {
                             age: items["age"],
                             gender: items["gender"],
                             specs: items["specs"],
+                            treatmentType: items["treatmentType"],
                             paymentType: items["paymentType"],
                             inlayOnlay: items["inlayOnlay"],
                             inlayMaterial:  items["inlayMaterial"],
@@ -104,15 +105,14 @@ class CardInfo extends Component {
                             BrShadeUninsured: items["BrShadeUninsured"],
                             bridge: items["bridge"],
                             bridgeType: items["bridgeType"],
-                            localDentureFrame: items["localDentureFrame"],
-                            localDentureFrameMaterials: items["localDentureFrameMaterials"],
-                            splint: items["splint"],
-                            splintMaterials: items["splintMaterials"],
-                            splintShade: items["splintShade"],
-                            implantTreatment: items["implantTreatment"],
-                            surgicalGuide: items["surgicalGuide"],
-                            noTreatmentPlan: items["noTreatmentPlan"],
-                            treatmentPlanMaterials: items["treatmentPlanMaterials"],
+                            otherOptionInsured: items["otherOptionInsured"],
+                            otherOptionUninsured: items["otherOptionUninsured"],
+                            oralDeviceInsured: items["oralDeviceInsured"],
+                            oralDeviceUninsured: items["oralDeviceUninsured"],
+                            // implantTreatment: items["implantTreatment"],
+                            // surgicalGuide: items["surgicalGuide"],
+                            // noTreatmentPlan: items["noTreatmentPlan"],
+                            // treatmentPlanMaterials: items["treatmentPlanMaterials"],
                             mainComplaint: items["mainComplaint"],
                             deliveryTime: items["deliveryTime"],
                             otherOption: items["otherOption"],
@@ -160,6 +160,7 @@ class CardInfo extends Component {
                             <h1>性別: {this.state.gender}</h1>
                             {!this.state.otherOption && <h1>製品仕様: {this.state.specs}</h1>}
                             {this.state.otherOption && <h1>製品仕様 他: {this.state.otherOption}</h1>}
+                            <h1>治療の種類: {this.state.treatmentType}</h1>
                             <h1>支払い: {this.state.paymentType}</h1>
                             {this.state.inlayOnlay && <h1>インレーとアンレー: {this.state.inlayOnlay}</h1>}
                             {this.state.inlayMaterial && <h1>補綴物インレー: {this.state.inlayMaterial}</h1>}
@@ -172,12 +173,12 @@ class CardInfo extends Component {
                             {this.state.BrShadeInsured && <h1>Br シェード選択 保険: {this.state.BrShadeInsured}</h1>}
                             {this.state.BrMaterialUninsured && <h1>Br 自費: {this.BrMaterialUninsured}</h1>}
                             {this.state.BrShadeUninsured && <h1>Br シェード選択 自費: {this.state.BrShadeUninsured}</h1>}
+                            {this.state.otherOptionInsured && <h1>その他 保険: {this.state.otherOptionInsured}</h1>}
+                            {this.state.otherOptionUninsured && <h1>その他 自費: {this.state.otherOptionUninsured}</h1>}
                             {this.state.bridgeType && <h1>ブリッジインレータイプ: {this.state.bridgeType}</h1>}
-                            {this.state.localDentureFrame && <h1>局所義歯フレーム: {this.state.localDentureFrame}</h1>}
-                            {this.state.localDentureFrameMaterials && <h1>局所義歯フレーム 材料: {this.state.localDentureFrameMaterials}</h1>}
-                            {this.state.splint && <h1>スプリント: {this.state.splint}</h1>}
-                            {this.state.splintMaterials && <h1>材料スプリント: {this.state.splintMaterials}</h1>}
-                            {this.state.splintShade && <h1>スプリント シェード: {this.state.splintShade}</h1>}
+                            {this.state.oralDeviceInsured && <h1>口腔内装置 保険: {this.state.oralDeviceInsured}</h1>}
+                            {this.state.oralDeviceUninsured && <h1>口腔内装置 自費: {this.state.oralDeviceUninsured}</h1>}
+                            {/* {this.state.oralDeviceInsuredShade && <h1>スプリント シェード: {this.state.oralDeviceInsuredShade}</h1>} */}
                             {this.state.implantTreatment && <h1>インプラント治療計画: あり</h1>}
                             {this.state.surgicalGuide && <h1>サージカルガイド: あり</h1>}
                             {this.state.noTreatmentPlan && <h1>インプラント治療計画なし</h1>}
@@ -224,12 +225,11 @@ class CardInfo extends Component {
                             BrShadeInsured={this.state.BrShadeInsured }
                             BrMaterialUninsured={this.state.BrMaterialUninsured}
                             BrShadeUninsured={this.state.BrShadeUninsured}
+                            oralDeviceInsured={this.state.oralDeviceInsured}
+                            oralDeviceUninsured={this.state.oralDeviceUninsured}
                             bridgeType={this.state.bridgeType}
-                            localDentureFrame={this.state.localDentureFrame}
-                            localDentureFrameMaterials={this.state.localDentureFrameMaterials}
-                            splint={this.state.splint}
-                            splintMaterials={this.state.splintMaterials}
-                            splintShade={this.state.splintShade}
+                            otherOptionInsured={this.state.otherOptionInsured}
+                            otherOptionUninsured={this.state.otherOptionUninsured}
                             implantTreatment={this.state.implantTreatment}
                             surgicalGuide={this.state.surgicalGuide}
                             noTreatmentPlan={this.state.noTreatmentPlan}

@@ -4,9 +4,10 @@ import { FormGroup, Label, Input } from "reactstrap";
 
 function TreatmentType({treatmentType, handleChange}) {
   return (
-    <FormGroup className="treatment-type form-box">
-    <Label for="treatmentT">治療の種類</Label>
-      <Input type="select" name="treatmentType"  value={treatmentType} onChange={handleChange} required>
+    <FormGroup className="treatmentType form-box">
+    <Label for="treatmentType">治療の種類</Label>
+      <Input type="select" name="treatmentType" id="treatmentType"  value={treatmentType} onChange={handleChange} required>
+        <option>なし</option>
         <option>インレー</option>
         <option>クラウン</option>
         <option>Br</option>
@@ -15,14 +16,6 @@ function TreatmentType({treatmentType, handleChange}) {
         <option>その他</option>
         <option>インプラント</option> 
         <option>義歯(自費)</option>   
-        {/* <option>なし</option>
-        <option>インレーとアンレー</option>
-        <option>アバットメント</option>
-        <option>テレスコープ</option>
-        <option>ブリッジ</option>
-        <option>局所義歯</option>
-        <option>装置</option> 
-        <option>インプラント</option>     */}
       </Input>
   </FormGroup>
   )

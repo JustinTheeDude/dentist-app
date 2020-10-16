@@ -7,6 +7,7 @@ function ProductSpecs ({ specs, value, otherOption,handleChange }) {
       <FormGroup  className="product-specs-menu form-box">
         <Label>製品仕様</Label>
           <Input type="select" name="specs" id="specs" value={specs} onChange={handleChange} required>
+          　<option>なし</option>
             <option>レジン床</option>
             <option>金属床(Co-Cr. Ti. Gold)</option>
             <option>治療用義歯</option>

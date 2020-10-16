@@ -12,8 +12,8 @@ import InlayOnlay from './InlayOnlay';
 import Crown from './Crown';
 import Br from './Br';
 import Bridge from './Bridge';
-import LocalDentFrame from './LocalDentFrame';
-import Splint from './Splint';
+import OtherOption from './OtherOption';
+import OralDevice from './OralDevice';
 import Implant from './Implant';
 import MainComplaint from './MainComplaint';
 import DeliveryTime from './DeliveryTime';
@@ -34,7 +34,7 @@ class MainInfo extends Component {
         patientID: "",
         age: "",
         gender: "男",
-        specs: "レジン床",
+        specs: "",
         paymentType: "保険",
         treatmentType: "",
         inlayOnlay:"",
@@ -48,20 +48,19 @@ class MainInfo extends Component {
         BrShadeInsured: "" ,
         BrMaterialUninsured: "",
         BrShadeUninsured: "", 
+        oralDeviceInsured: "",
+        oralDeviceUninsured: "",
+        otherOptionInsured: "",
+        otherOptionUninsured: "",
         bridge: "",
         bridgeType: "",
-        localDentureFrame: "",
-        localDentureFrameMaterials: "",
-        splint: "",
-        splintMaterials: "",
-        splintShade: "",
         implantTreatment: false,
         surgicalGuide: false,
         noTreatmentPlan: false,
         treatmentPlanMaterials: "",
         mainComplaint: "",
         deliveryTime: "",
-        otherOption: "",
+        OtherOption: "",
         drawing: "",
     };
     user = firebase.auth().currentUser;
@@ -72,30 +71,48 @@ class MainInfo extends Component {
     };
 
     handleChange = e => {
-        if( e.target.type === "checkbox") {
-            const implantTreatment = document.querySelector("#implantTreatment");
-            const surgicalGuide = document.querySelector("#surgicalGuide");
-            const noTreatmentPlan = document.querySelector("#noTreatmentPlan");
-            implantTreatment.disabled = false;
-            surgicalGuide.disabled = false;
-            noTreatmentPlan.disabled = false;
-            if(e.target.checked && e.target.name === "noTreatmentPlan" ) {
-                implantTreatment.disabled = true;
-                surgicalGuide.disabled = true ;                
-            } 
-            else if(implantTreatment.checked || surgicalGuide.checked ) {
-               noTreatmentPlan.disabled = true;
-            }
+        // if( e.target.type === "checkbox") {
+        //     const implantTreatment = document.querySelector("#implantTreatment");
+        //     const surgicalGuide = document.querySelector("#surgicalGuide");
+        //     const noTreatmentPlan = document.querySelector("#noTreatmentPlan");
+        //     implantTreatment.disabled = false;
+        //     surgicalGuide.disabled = false;
+        //     noTreatmentPlan.disabled = false;
+        //     if(e.target.checked && e.target.name === "noTreatmentPlan" ) {
+        //         implantTreatment.disabled = true;
+        //         surgicalGuide.disabled = true ;                
+        //     } 
+        //     else if(implantTreatment.checked || surgicalGuide.checked ) {
+        //        noTreatmentPlan.disabled = true;
+        //     }
+        //         this.setState({
+        //             [e.target.name]: e.target.checked
+        //         })
+        // }else {
+            if(e.target.value === "保険") {
                 this.setState({
-                    [e.target.name]: e.target.checked
+                    crownMaterialUninsured: "",
+                    crownShadeUninsured: "",
+                    BrMaterialUninsured: "",
+                    BrShadeUninsured: "", 
+                    oralDeviceUninsured: "",
+                    otherOptionUninsured: "",
                 })
-        }else {
+            }
+            if(e.target.value === "自費") {
+                this.setState({
+                    crownMaterialInsured: "",
+                    crownShadeInsured: "",
+                    BrMaterialInsured: "",
+                    BrShadeInsured: "" ,
+                    oralDeviceInsured: "",
+                    otherOptionInsured: "",
+                })
+            }
             this.setState({
                 [e.target.name]: e.target.value,
                 value: e.target.value,
             })
-        }
-     
     };
 
     getDrawing = (data) => {
@@ -131,20 +148,19 @@ class MainInfo extends Component {
             BrShadeInsured: this.state.BrShadeInsured ,
             BrMaterialUninsured: this.state.BrMaterialUninsured,
             BrShadeUninsured: this.state.BrShadeUninsured,         
+            oralDeviceInsured: this.state.oralDeviceInsured,
+            oralDeviceUninsured: this.state.oralDeviceUninsured,
             bridge: this.state.bridge,
             bridgeType: this.state.bridgeType,
-            localDentureFrame: this.state.localDentureFrame,
-            localDentureFrameMaterials: this.state.localDentureFrameMaterials,
-            splint: this.state.splint,
-            splintMaterials: this.state.splintMaterials,
-            splintShade: this.state.splintShade,
+            otherOptionInsured: this.state.otherOptionInsured,
+            otherOptionUninsured: this.state.otherOptionUninsured,
             implantTreatment: this.state.implantTreatment,
             surgicalGuide: this.state.surgicalGuide,
             noTreatmentPlan: this.state.noTreatmentPlan,
             treatmentPlanMaterials: this.state.treatmentPlanMaterials,
             mainComplaint: this.state.mainComplaint,
             deliveryTime: this.state.deliveryTime,
-            otherOption: this.state.otherOption,
+            OtherOption: this.state.OtherOption,
             drawing: this.state.drawing,
         };
         itemsRef.push(item);
@@ -183,20 +199,19 @@ class MainInfo extends Component {
             BrShadeInsured: this.state.BrShadeInsured ,
             BrMaterialUninsured: this.state.BrMaterialUninsured,
             BrShadeUninsured: this.state.BrShadeUninsured, 
+            oralDeviceInsured: this.state.oralDeviceInsured,
+            oralDeviceUninsured: this.state.oralDeviceUninsured,
             bridge: this.state.bridge,
             bridgeType: this.state.bridgeType,
-            localDentureFrame: this.state.localDentureFrame,
-            localDentureFrameMaterials: this.state.localDentureFrameMaterials,
-            splint: this.state.splint,
-            splintMaterials: this.state.splintMaterials,
-            splintShade: this.state.splintShade,
+            otherOptionInsured: this.state.otherOptionInsured,
+            otherOptionUninsured: this.state.otherOptionUninsured,
             implantTreatment: this.state.implantTreatment,
             surgicalGuide: this.state.surgicalGuide,
             noTreatmentPlan: this.state.noTreatmentPlan,
             treatmentPlanMaterials: this.state.treatmentPlanMaterials,
             mainComplaint: this.state.mainComplaint,
             deliveryTime: this.state.deliveryTime,
-            otherOption: this.state.otherOption,
+            OtherOption: this.state.OtherOption,
             drawing: this.state.drawing
         };
         orderRef.update(items)
@@ -221,7 +236,6 @@ class MainInfo extends Component {
             const orderRef = firebase.database().ref(`Dentist/${this.user.uid}/Form`).child(this.id)
             orderRef.once("value", snap => {
                let items = snap.val();
-               
                this.setState({
                     doctorName: items["doctorName"],
                     address: items["address"],
@@ -246,24 +260,24 @@ class MainInfo extends Component {
                     BrShadeInsured: items["BrShadeInsured"] ,
                     BrMaterialUninsured: items["BrMaterialUninsured"],
                     BrShadeUninsured: items["BrShadeUninsured"],
+                    oralDeviceInsured: items["oralDeviceInsured"],
+                    oralDeviceUninsured: items["oralDeviceUninsured"],
                     bridge: items["bridge"],
                     bridgeType: items["bridgeType"],
-                    localDentureFrame: items["localDentureFrame"],
-                    localDentureFrameMaterials: items["localDentureFrameMaterials"],
-                    splint: items["splint"],
-                    splintMaterials: items["splintMaterials"],
-                    splintShade: items["splintShade"],
+                    otherOptionInsured: items["otherOptionInsured"],
+                    otherOptionUninsured: items["otherOptionUninsured"],
                     implantTreatment: items["implantTreatment"],
                     surgicalGuide: items["surgicalGuide"],
                     noTreatmentPlan: items["noTreatmentPlan"],
                     mainComplaint: items["mainComplaint"],
                     treatmentPlanMaterials: items["treatmentPlanMaterials"],
                     deliveryTime: items["deliveryTime"],
-                    otherOption: items["otherOption"],
+                    OtherOption: items["OtherOption"],
                     complete: items["complete"],
                     drawing: items["drawing"],
                 });
-           })
+
+            })
         }
     }
 
@@ -282,13 +296,13 @@ class MainInfo extends Component {
                         age={this.state.age} 
                         gender={this.state.gender} 
                     />
-                    <ProductsSpecs handleChange={this.handleChange}  specs={this.state.specs} value={this.state.value} otherOption={this.state.otherOption}  />
-                    <TreatmentType   handleChange={this.handleChange} treatmentType={this.state.TreatmentType} />
+                    <ProductsSpecs handleChange={this.handleChange}  specs={this.state.specs} value={this.state.value} OtherOption={this.state.OtherOption}  />
+                    <TreatmentType   handleChange={this.handleChange} treatmentType={this.state.treatmentType} value={this.state.value}  />
                     <PaymentSelect handleChange={this.handleChange} paymentType={this.state.paymentType} />
                {
                   this.state.treatmentType === "インレー" &&
                    <div>
-                        <h2>インレーとアンレー</h2> 
+                        <h2><strong>インレーとアンレー</strong></h2> 
                             <InlayOnlay 
                                 handleChange={this.handleChange} 
                                 inlayOnlay={this.state.inlayOnlay} 
@@ -302,7 +316,7 @@ class MainInfo extends Component {
                 {
                     this.state.treatmentType === "クラウン" &&
                     <div>
-                        <h2>クラウン</h2>
+                        <h2><strong>クラウン</strong></h2>
                             <Crown  
                                 handleChange={this.handleChange} 
                                 crownMaterialInsured={this.state.crownMaterialInsured} 
@@ -316,7 +330,7 @@ class MainInfo extends Component {
                 {
                     this.state.treatmentType === "Br" &&
                     <div>
-                        <h2>Br</h2>
+                        <h2><strong>Br</strong></h2>
                             <Br 
                                 handleChange={this.handleChange}
                                 paymentType={this.state.paymentType}
@@ -328,36 +342,36 @@ class MainInfo extends Component {
                     </div>
                 }
                 {
+                    this.state.treatmentType === "口腔内装置" &&
+                    <div>
+                        <h2><strong>口腔内装置</strong></h2>
+                            <OralDevice
+                                handleChange={this.handleChange} 
+                                oralDeviceInsured={this.state.oralDeviceInsured}
+                                oralDeviceUninsured={this.state.oralDeviceUninsured}
+                                paymentType={this.state.paymentType}  
+                            />
+                    </div>
+                }
+                {
+                    this.state.treatmentType === "その他" &&
+                    <div>
+                        <h2><strong>その他</strong></h2>
+                            <OtherOption
+                                handleChange={this.handleChange}
+                                otherOptionInsured={this.state.otherOptionInsured}
+                                otherOptionUninsured={this.state.otherOptionUninsured}
+                                paymentType={this.state.paymentType}  
+                            />
+                    </div>
+                }
+                {
                     this.state.treatmentType === "ブリッジ" &&
                     <div>
                         <h2>ブリッジ</h2>
                             <Bridge 
                                 handleChange={this.handleChange}
                                 bridgeType={this.state.bridgeType}
-                            />
-                    </div>
-                }
-                {
-                    this.state.treatmentType === "局所義歯" &&
-                    <div>
-                        <h2>局所義歯</h2>
-                            <LocalDentFrame 
-                                handleChange={this.handleChange}
-                                localDentureFrame={this.state.localDentureFrame}
-                                localDentureFrameMaterials={this.state.localDentureFrameMaterials}
-                            />
-
-                    </div>
-                }
-                {
-                    this.state.treatmentType === "装置" &&
-                    <div>
-                        <h2>装置</h2>
-                            <Splint
-                                handleChange={this.handleChange} 
-                                splint={this.state.splint}
-                                splintMaterials={this.state.splintMaterials}
-                                splintShade={this.state.splintShade}
                             />
                     </div>
                 }

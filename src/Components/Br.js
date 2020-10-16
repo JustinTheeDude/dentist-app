@@ -9,6 +9,7 @@ function Br({ paymentType,BrMaterialInsured, BrInsuredShade,BrMaterialUninsured,
       <div>
         <Label for="BrMaterialInsured">Br 保険</Label>
           <Input type="select" name="BrMaterialInsured" value={BrMaterialInsured} onChange={handleChange} required>
+          　<option>なし</option>
             <option>BrBT(咬合床)</option>
             <option>金パラ</option>
             <option>銀合金</option>
