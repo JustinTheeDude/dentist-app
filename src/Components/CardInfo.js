@@ -17,7 +17,7 @@ class CardInfo extends Component {
         address: "",
         zip: "",
         patientName: "",
-        patientID: "", 
+        patientID: "",
         age: "",
         gender: "",
         specs: "",
@@ -70,7 +70,7 @@ class CardInfo extends Component {
 
 
     componentDidMount() {
-        if(this.props.value !== "") {            
+        if(this.props.value !== "") {
                     var self = this;
                     const user = firebase.auth().currentUser;
                     var ref = firebase
@@ -120,7 +120,7 @@ class CardInfo extends Component {
                             drawing: items["drawing"],
                         });
                 });
-                ref.off() 
+                ref.off()
         }
 }
 
@@ -145,7 +145,7 @@ class CardInfo extends Component {
 
 
     render() {
-        
+
         return (
             <MyContext.Consumer>
                 {context => (
@@ -188,9 +188,9 @@ class CardInfo extends Component {
                             <h1>時間: {this.state.deliveryTime}</h1>
                         </div>
                         <div className="teeth">
-                            <CanvasDraw 
-                                imgSrc={mouth} alt="mouth diagram" 
-                                saveData={this.state.drawing}  
+                            <CanvasDraw
+                                imgSrc={mouth} alt="mouth diagram"
+                                saveData={this.state.drawing}
                                 brushColor={this.state.color}
                                 brushRadius={this.state.brushRadius}
                                 lazyRadius={this.state.lazyRadius}
