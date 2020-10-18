@@ -119,11 +119,15 @@ class PDF extends React.Component{
                         { this.props.bridgeType ? <Text>ブリッジインレータイプ: {this.props.bridgeType}</Text> : null }
                         { this.props.oralDeviceInsured ? <Text>口腔内装置 保険: {this.props.oralDeviceInsured}</Text> : null }
                         { this.props.oralDeviceUninsured ? <Text>口腔内装置 自費: {this.props.oralDeviceUninsured}</Text> : null }
-                        {/* { this.props.splintShade ? <Text>スプリント シェード: {this.props.splintShade}</Text> : null } */}
-                        { this.props.implantTreatment ? <Text>インプラント治療計画: あり</Text> : null }
-                        { this.props.surgicalGuide ? <Text>サージカルガイド: あり</Text> : null }
-                        { this.props.noTreatmentPlan ? <Text>インプラント治療計画なし</Text> : null }
-                        { this.props.treatmentPlanMaterials? <Text>インプラント治療計画材料: {this.props.treatmentPlanMaterials}</Text> : null }
+                        { this.props.implantType ? <Text>インプラント: {this.props.implantType}</Text> : null }
+                        { this.props.implantMaker ? <Text>インプラント メーカー: {this.props.implantMaker}</Text> : null }
+                        {this.props.dentureInsured ? <Text>義歯 保険: {this.props.dentureInsured}</Text> : null}
+                        {this.props.dentureUninsured ? <Text>義歯 自費: {this.props.dentureUninsured}</Text> : null }
+                        {this.props.dentureArtificialInsured ? <Text>人工歯 保険: {this.props.dentureArtificialInsured}</Text> : null }
+                        {this.props.dentureBarInsured ? <Text>バー 保険: {this.props.dentureBarInsured}</Text> : null }
+                        {this.props.dentureFloorInsured ? <Text>床 保険: {this.props.dentureFloorInsured}</Text> : null }
+                        {this.props.dentureClaspInsured ? <Text>クラスプ 保険: {this.props.dentureClaspInsured}</Text> : null }
+                        {this.props.dentureOtherInsured ? <Text>その他 保険: {this.props.dentureOtherInsured}</Text> : null }
                         <Text>主訴: {this.props.mainComplaint}</Text>
                         <Text>時間: {this.props.deliveryTime}</Text>
                         <Text>発注日: {this.props.date}</Text>

@@ -38,12 +38,15 @@ class CardInfo extends Component {
         oralDeviceUninsured: "",
         otherOptionInsured: "",
         otherOptionUninsured: "",
-        bridge: "",
-        bridgeType: "",
-        // implantTreatment: false,
-        // surgicalGuide: false,
-        // noTreatmentPlan: false,
-        // treatmentPlanMaterials: "",
+        implantType: "",
+        implantMaker: "",
+        dentureInsured: "",
+        dentureUninsured: "",
+        dentureArtificialInsured: "",
+        dentureBarInsured: "",
+        dentureFloorInsured:"",
+        dentureClaspInsured: "",
+        dentureOtherInsured: "",
         mainComplaint: "",
         deliveryTime: "",
         otherOption:"",
@@ -103,16 +106,19 @@ class CardInfo extends Component {
                             BrShadeInsured: items["BrShadeInsured"] ,
                             BrMaterialUninsured: items["BrMaterialUninsured"],
                             BrShadeUninsured: items["BrShadeUninsured"],
-                            bridge: items["bridge"],
-                            bridgeType: items["bridgeType"],
                             otherOptionInsured: items["otherOptionInsured"],
                             otherOptionUninsured: items["otherOptionUninsured"],
                             oralDeviceInsured: items["oralDeviceInsured"],
                             oralDeviceUninsured: items["oralDeviceUninsured"],
-                            // implantTreatment: items["implantTreatment"],
-                            // surgicalGuide: items["surgicalGuide"],
-                            // noTreatmentPlan: items["noTreatmentPlan"],
-                            // treatmentPlanMaterials: items["treatmentPlanMaterials"],
+                            implantType: items["implantType"],
+                            implantMaker: items["implantMaker"],
+                            dentureInsured: items["dentureInsured"],
+                            dentureUninsured: items["dentureUninsured"],
+                            dentureArtificialInsured: items["dentureArtificialInsured"],
+                            dentureBarInsured: items["dentureBarInsured"],
+                            dentureFloorInsured: items["dentureFloorInsured"],
+                            dentureClaspInsured: items["dentureClaspInsured"],
+                            dentureOtherInsured: items["dentureOtherInsured"],
                             mainComplaint: items["mainComplaint"],
                             deliveryTime: items["deliveryTime"],
                             otherOption: items["otherOption"],
@@ -175,14 +181,17 @@ class CardInfo extends Component {
                             {this.state.BrShadeUninsured && <h1>Br シェード選択 自費: {this.state.BrShadeUninsured}</h1>}
                             {this.state.otherOptionInsured && <h1>その他 保険: {this.state.otherOptionInsured}</h1>}
                             {this.state.otherOptionUninsured && <h1>その他 自費: {this.state.otherOptionUninsured}</h1>}
-                            {this.state.bridgeType && <h1>ブリッジインレータイプ: {this.state.bridgeType}</h1>}
                             {this.state.oralDeviceInsured && <h1>口腔内装置 保険: {this.state.oralDeviceInsured}</h1>}
                             {this.state.oralDeviceUninsured && <h1>口腔内装置 自費: {this.state.oralDeviceUninsured}</h1>}
-                            {/* {this.state.oralDeviceInsuredShade && <h1>スプリント シェード: {this.state.oralDeviceInsuredShade}</h1>} */}
-                            {this.state.implantTreatment && <h1>インプラント治療計画: あり</h1>}
-                            {this.state.surgicalGuide && <h1>サージカルガイド: あり</h1>}
-                            {this.state.noTreatmentPlan && <h1>インプラント治療計画なし</h1>}
-                            {this.state.treatmentPlanMaterials && <h1>インプラント治療計画材料: {this.state.treatmentPlanMaterials}</h1>}
+                            {this.state.implantType && <h1>インプラント: {this.state.implantType}</h1>}
+                            {this.state.implantMaker && <h1>インプラント メーカー: {this.state.implantMaker}</h1>}
+                            {this.state.dentureInsured && <h1>義歯 保険: {this.state.dentureInsured}</h1>}
+                            {this.state.dentureUninsured && <h1>義歯 自費: {this.state.dentureUninsured}</h1>}
+                            {this.state.dentureArtificialInsured && <h1>人工歯 保険: {this.state.dentureArtificialInsured}</h1>}
+                            {this.state.dentureBarInsured && <h1>バー 保険: {this.state.dentureBarInsured}</h1>}
+                            {this.state.dentureFloorInsured && <h1>床 保険: {this.state.dentureFloorInsured}</h1>}
+                            {this.state.dentureClaspInsured && <h1>クラスプ 保険: {this.state.dentureClaspInsured}</h1>}
+                            {this.state.dentureOtherInsured && <h1>その他 保険: {this.state.dentureOtherInsured}</h1>}
                             <h1>主訴: {this.state.mainComplaint }</h1>
                             <h1>発注日: {this.state.date}</h1>
                             <h1>配送日: {this.state.deliveryDate}</h1>
@@ -195,6 +204,7 @@ class CardInfo extends Component {
                                 brushColor={this.state.color}
                                 brushRadius={this.state.brushRadius}
                                 lazyRadius={this.state.lazyRadius}
+                                immediateLoading={this.state.immediateLoading}
                             />
                             <img src={chart} alt="zsigmondy diagram" />
                         </div>
@@ -207,7 +217,6 @@ class CardInfo extends Component {
                             age={this.state.age}
                             gender={this.state.gender}
                             paymentType={this.state.paymentType}
-                            mainComplaint={this.state.mainComplaint}
                             date={this.state.date}
                             deliveryDate={this.state.deliveryDate}
                             deliveryTime={this.state.deliveryTime}
@@ -227,13 +236,19 @@ class CardInfo extends Component {
                             BrShadeUninsured={this.state.BrShadeUninsured}
                             oralDeviceInsured={this.state.oralDeviceInsured}
                             oralDeviceUninsured={this.state.oralDeviceUninsured}
-                            bridgeType={this.state.bridgeType}
+                            dentureInsuredType={this.state.dentureInsuredType}
                             otherOptionInsured={this.state.otherOptionInsured}
                             otherOptionUninsured={this.state.otherOptionUninsured}
-                            implantTreatment={this.state.implantTreatment}
-                            surgicalGuide={this.state.surgicalGuide}
-                            noTreatmentPlan={this.state.noTreatmentPlan}
-                            treatmentPlanMaterials={this.state.treatmentPlanMaterials}
+                            implantType={this.state.implantType}
+                            implantMaker={this.state.implantMaker}
+                            dentureInsured={this.state.dentureInsured}
+                            dentureUninsured={this.state.dentureInsured}
+                            dentureArtificialInsured={this.state.dentureArtificialInsured}
+                            dentureBarInsured={this.state.dentureBarInsured}
+                            dentureFloorInsured={this.state.dentureFloorInsured}
+                            dentureClaspInsured={this.state.dentureClaspInsured}
+                            dentureOtherInsured={this.state.dentureOtherInsured}
+                            mainComplaint={this.state.mainComplaint}
                             drawing={this.state.drawing}
                         />
                     </div>

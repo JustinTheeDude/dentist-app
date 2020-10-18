@@ -15,7 +15,7 @@ function TreatmentType({treatmentType, handleChange}) {
         <option>義歯(保険)</option>
         <option>その他</option>
         <option>インプラント</option> 
-        <option>義歯(自費)</option>   
+        <option>義歯</option>   
       </Input>
   </FormGroup>
   )

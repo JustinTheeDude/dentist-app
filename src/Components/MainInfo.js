@@ -5,13 +5,13 @@ import firebase from "./firebase.js";
 // Component import
 import DoctorInfo from './DoctorInfo';
 import PatientInfo from './PatientInfo';
-import ProductsSpecs from './ProductsSpecs';
+// import ProductsSpecs from './ProductsSpecs';
 import TreatmentType from './TreatmentType';
 import PaymentSelect from './PaymentSelect';
 import InlayOnlay from './InlayOnlay';
 import Crown from './Crown';
 import Br from './Br';
-import Bridge from './Bridge';
+import Denture from './Denture';
 import OtherOption from './OtherOption';
 import OralDevice from './OralDevice';
 import Implant from './Implant';
@@ -52,12 +52,15 @@ class MainInfo extends Component {
         oralDeviceUninsured: "",
         otherOptionInsured: "",
         otherOptionUninsured: "",
-        bridge: "",
-        bridgeType: "",
-        implantTreatment: false,
-        surgicalGuide: false,
-        noTreatmentPlan: false,
-        treatmentPlanMaterials: "",
+        implantType: "",
+        implantMaker: "",
+        dentureInsured: "",
+        dentureUninsured: "",
+        dentureArtificialInsured: "",
+        dentureFloorInsured: "",
+        dentureClaspInsured: "",
+        dentureBarInsured: "",
+        dentureOtherInsured: "",
         mainComplaint: "",
         deliveryTime: "",
         OtherOption: "",
@@ -71,24 +74,6 @@ class MainInfo extends Component {
     };
 
     handleChange = e => {
-        // if( e.target.type === "checkbox") {
-        //     const implantTreatment = document.querySelector("#implantTreatment");
-        //     const surgicalGuide = document.querySelector("#surgicalGuide");
-        //     const noTreatmentPlan = document.querySelector("#noTreatmentPlan");
-        //     implantTreatment.disabled = false;
-        //     surgicalGuide.disabled = false;
-        //     noTreatmentPlan.disabled = false;
-        //     if(e.target.checked && e.target.name === "noTreatmentPlan" ) {
-        //         implantTreatment.disabled = true;
-        //         surgicalGuide.disabled = true ;                
-        //     } 
-        //     else if(implantTreatment.checked || surgicalGuide.checked ) {
-        //        noTreatmentPlan.disabled = true;
-        //     }
-        //         this.setState({
-        //             [e.target.name]: e.target.checked
-        //         })
-        // }else {
             if(e.target.value === "保険") {
                 this.setState({
                     crownMaterialUninsured: "",
@@ -97,6 +82,7 @@ class MainInfo extends Component {
                     BrShadeUninsured: "", 
                     oralDeviceUninsured: "",
                     otherOptionUninsured: "",
+                    dentureUninsured: "",
                 })
             }
             if(e.target.value === "自費") {
@@ -107,6 +93,12 @@ class MainInfo extends Component {
                     BrShadeInsured: "" ,
                     oralDeviceInsured: "",
                     otherOptionInsured: "",
+                    dentureInsured: "",
+                    dentureArtificialInsured: "",
+                    dentureBarInsured: "",
+                    dentureFloorInsured: "",
+                    dentureClaspInsured: "",
+                    dentureOtherInsured: "",
                 })
             }
             this.setState({
@@ -150,14 +142,17 @@ class MainInfo extends Component {
             BrShadeUninsured: this.state.BrShadeUninsured,         
             oralDeviceInsured: this.state.oralDeviceInsured,
             oralDeviceUninsured: this.state.oralDeviceUninsured,
-            bridge: this.state.bridge,
-            bridgeType: this.state.bridgeType,
             otherOptionInsured: this.state.otherOptionInsured,
             otherOptionUninsured: this.state.otherOptionUninsured,
-            implantTreatment: this.state.implantTreatment,
-            surgicalGuide: this.state.surgicalGuide,
-            noTreatmentPlan: this.state.noTreatmentPlan,
-            treatmentPlanMaterials: this.state.treatmentPlanMaterials,
+            implantType: this.state.implantType,
+            implantMaker: this.state.implantMaker,
+            dentureInsured: this.state.dentureInsured,
+            dentureUninsured: this.state.dentureUninsured,
+            dentureArtificialInsured: this.state.dentureArtificialInsured,
+            dentureBarInsured: this.state.dentureBarInsured,
+            dentureFloorInsured: this.state.dentureFloorInsured,
+            dentureClaspInsured: this.state.dentureClaspInsured,
+            dentureOtherInsured: this.state.dentureOtherInsured,
             mainComplaint: this.state.mainComplaint,
             deliveryTime: this.state.deliveryTime,
             OtherOption: this.state.OtherOption,
@@ -201,14 +196,17 @@ class MainInfo extends Component {
             BrShadeUninsured: this.state.BrShadeUninsured, 
             oralDeviceInsured: this.state.oralDeviceInsured,
             oralDeviceUninsured: this.state.oralDeviceUninsured,
-            bridge: this.state.bridge,
-            bridgeType: this.state.bridgeType,
             otherOptionInsured: this.state.otherOptionInsured,
             otherOptionUninsured: this.state.otherOptionUninsured,
-            implantTreatment: this.state.implantTreatment,
-            surgicalGuide: this.state.surgicalGuide,
-            noTreatmentPlan: this.state.noTreatmentPlan,
-            treatmentPlanMaterials: this.state.treatmentPlanMaterials,
+            implantType: this.state.implantType,
+            implantMaker: this.state.implantMaker,
+            dentureInsured: this.state.dentureInsured,
+            dentureUninsured: this.state.dentureUninsured,
+            dentureArtificialInsured: this.state.dentureArtificialInsured,
+            dentureBarInsured: this.state.dentureBarInsured,
+            dentureFloorInsured: this.state.dentureFloorInsured,
+            dentureClaspInsured: this.state.dentureClaspInsured,
+            dentureOtherInsured: this.state.dentureOtherInsured,
             mainComplaint: this.state.mainComplaint,
             deliveryTime: this.state.deliveryTime,
             OtherOption: this.state.OtherOption,
@@ -262,15 +260,18 @@ class MainInfo extends Component {
                     BrShadeUninsured: items["BrShadeUninsured"],
                     oralDeviceInsured: items["oralDeviceInsured"],
                     oralDeviceUninsured: items["oralDeviceUninsured"],
-                    bridge: items["bridge"],
-                    bridgeType: items["bridgeType"],
                     otherOptionInsured: items["otherOptionInsured"],
                     otherOptionUninsured: items["otherOptionUninsured"],
-                    implantTreatment: items["implantTreatment"],
-                    surgicalGuide: items["surgicalGuide"],
-                    noTreatmentPlan: items["noTreatmentPlan"],
+                    implantType: items["implantType"],
+                    implantMaker: items["implantMaker"],
+                    dentureInsured: items["dentureInsured"],
+                    dentureUninsured: items["dentureUninsured"],
+                    dentureArtificialInsured: items["dentureArtificialInsured"],
+                    dentureBarInsured: items["dentureBarInsured"],
+                    dentureFloorInsured: items["dentureFloorInsured"],
+                    dentureClaspInsured: items["dentureClaspInsured"],
+                    dentureOtherInsured: items["dentureOtherInsured"],
                     mainComplaint: items["mainComplaint"],
-                    treatmentPlanMaterials: items["treatmentPlanMaterials"],
                     deliveryTime: items["deliveryTime"],
                     OtherOption: items["OtherOption"],
                     complete: items["complete"],
@@ -296,7 +297,7 @@ class MainInfo extends Component {
                         age={this.state.age} 
                         gender={this.state.gender} 
                     />
-                    <ProductsSpecs handleChange={this.handleChange}  specs={this.state.specs} value={this.state.value} OtherOption={this.state.OtherOption}  />
+                    {/* <ProductsSpecs handleChange={this.handleChange}  specs={this.state.specs} value={this.state.value} OtherOption={this.state.OtherOption}  /> */}
                     <TreatmentType   handleChange={this.handleChange} treatmentType={this.state.treatmentType} value={this.state.value}  />
                     <PaymentSelect handleChange={this.handleChange} paymentType={this.state.paymentType} />
                {
@@ -366,29 +367,36 @@ class MainInfo extends Component {
                     </div>
                 }
                 {
-                    this.state.treatmentType === "ブリッジ" &&
-                    <div>
-                        <h2>ブリッジ</h2>
-                            <Bridge 
-                                handleChange={this.handleChange}
-                                bridgeType={this.state.bridgeType}
-                            />
-                    </div>
-                }
-                {
                     this.state.treatmentType === "インプラント" &&
                     <div>
-                        <h2>インプラント</h2>
+                        <h2><strong>インプラント</strong></h2>
                         &nbsp;&nbsp;&nbsp;
                             <Implant 
                                 handleChange={this.handleChange} 
-                                implantTreatment={this.state.implantTreatment}
-                                surgicalGuide={this.state.surgicalGuide}
-                                noTreatmentPlan={this.state.noTreatmentPlan}
-                                treatmentPlanMaterials={this.state.treatmentPlanMaterials}
+                                implantType={this.state.implantType}
+                                implantMaker={this.state.implantMaker}
+                                paymentType={this.state.paymentType}
                             />
                     </div>
                 } 
+                {
+                    this.state.treatmentType === "義歯" &&
+                    <div>
+                        <h2><strong>義歯</strong></h2>
+                            <Denture
+                                handleChange={this.handleChange}
+                                paymentType={this.state.paymentType}
+                                dentureInsured={this.state.dentureInsured}
+                                dentureUninsured={this.state.dentureUninsured}
+                                dentureInsuredArtificial={this.state.dentureArtificialInsured}
+                                dentureBarInsured={this.state.dentureBarInsured}
+                                dentureFloorInsured={this.state.dentureFloorInsured}
+                                dentureClaspInsured={this.state.dentureClaspInsured}
+                                dentureOtherInsured={this.state.dentureOtherInsured}
+                            />
+                    </div>
+                }
+
                     <MainComplaint handleChange={this.handleChange} mainComplaint={this.state.mainComplaint} />
                     <DeliveryTime  handleChange={this.handleChange} deliveryTime={this.state.deliveryTime} />
                 <h3 className="order-heading">発注日/納期日</h3>

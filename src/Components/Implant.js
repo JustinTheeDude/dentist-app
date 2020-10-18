@@ -1,39 +1,37 @@
 import React from 'react'
 import { FormGroup, Label, Input } from 'reactstrap'
 
-function Implant({ handleChange, implantTreatment, surgicalGuide, noTreatmentPlan, treatmentPlanMaterials }) {
+function Implant({ handleChange, implantType, implantMaker }) {
   return (
   <div>
-    <FormGroup check inline>
-      <Label check for="implantTreatment" >インプラント治療計画: </Label> &nbsp;&nbsp;
-        <Input type="checkbox" id="implantTreatment" name="implantTreatment"  checked={implantTreatment} onChange={handleChange} />    
-    </FormGroup>
-    <FormGroup check inline>
-      <Label check for="surgicalGuide">サージカルガイド: </Label> &nbsp;&nbsp;
-        <Input type="checkbox" id="surgicalGuide" name="surgicalGuide" checked={surgicalGuide} onChange={handleChange} />                   
-    </FormGroup>
-      <FormGroup check inline>
-        <Label check for="noTreatmentPlan">なし: </Label> &nbsp;&nbsp;
-        <Input type="checkbox" id="noTreatmentPlan" name="noTreatmentPlan"  checked={noTreatmentPlan} onChange={handleChange}/>      
-    </FormGroup>
     <FormGroup>
-      <Label for="treatmentPlanMaterials">材料</Label>
-        <Input type="select" name="treatmentPlanMaterials" value={treatmentPlanMaterials} onChange={handleChange} required>
+      <Label for="implantType">インプラント</Label>
+        <Input type="select" name="implantType" value={implantType} onChange={handleChange} >
             <option>なし</option>  
-            <option>Zirconia with Ti-Base</option>      
-            <option>Titanium - monolithic</option>
-            <option>Titanium - veneered</option>      
-            <option>Co-Cr - monolithic</option>
-            <option>Co-Cr - veneered</option>      
-            <option>Emax  IPS e.max CAD</option>
-            <option>Gold</option>
-            <option>PFM - Precious Yellow</option>
-            <option>PFM - Precious White</option>
-            <option>PFM - Semi-Precious</option>
-            <option>PFM - Non-Precious</option>
-            <option>PMMA</option>
+            <option>サージカルガイドプレート</option>      
+            <option>各個トレー</option>
+            <option>インプラントTF</option>      
+            <option>インプラントset</option>
         </Input>
-    </FormGroup>   
+    </FormGroup>
+    {
+      implantType !== "サージカルガイドプレート" &&  implantType !== "" &&
+      <div>
+        <FormGroup>
+          <Label for="implantMaker">インプラント メーカー</Label>
+            <Input type="select" name="implantMaker" value={implantMaker} onChange={handleChange} >
+                <option>なし</option>  
+                <option>ノーベル</option>      
+                <option>カムログ</option>
+                <option>アンキロス</option>      
+                <option>ストローマン</option>
+                <option>バイオメット</option>
+                <option>京セラ</option>
+                <option>その他30種類以上</option>
+            </Input>
+        </FormGroup>   
+      </div>
+    }
   </div>
   )
 }
