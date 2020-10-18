@@ -6,7 +6,8 @@ import diagram from '../assets/420px-Ptnadult.svg.png'
 import {PDFDownloadLink, Document, Page, Text, View, StyleSheet, Font, Image } from '@react-pdf/renderer';
 class PDF extends React.Component{
     state = {
-        ready: false
+        ready: false,
+        images: []
     }
 
     toggle = () => {
@@ -17,6 +18,24 @@ class PDF extends React.Component{
                 this.setState({ ready: true });
             }, 1);
         });
+    }
+
+    updateImages = () => {
+        let canvas = document.getElementsByTagName('canvas');
+        let localImages = []
+
+        for(let c of canvas) {
+            localImages.push(c.toDataURL())
+        }
+
+        this.setState({
+            images : localImages
+        })
+    }
+
+    handlePdf = () => {
+        this.toggle();
+        this.updateImages();
     }
 
     
@@ -40,6 +59,28 @@ class PDF extends React.Component{
             margin: 10,
             padding: 10
         },
+        imageSection: {
+            fontFamily: "takao",
+            fontWeight: 400,
+            position: 'relative',
+            margin: 10,
+            padding: 10,
+        },
+        image: {
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            height: 400,
+            width: "80%",
+        },
+        drawing: {
+            top: 0,
+            left: 0,
+            right: 0,
+            height: 400,
+            width: "80%",
+        }
     });
 
 
@@ -89,9 +130,12 @@ class PDF extends React.Component{
                         <Text>配送日: {this.props.deliveryDate}</Text>
                       
                     </View>
+                    <View style={this.styles.imageSection}>
+                        <Image style={this.styles.image} src={mouth} alt="ptnadult diagram"  />
+                        <Image style={this.styles.drawing} src={this.state.images[1]} alt="ptnadult diagram"  />
+                    </View>
                     <View style={this.styles.section}>
-                        <Image src={mouth} alt="teeth diagram" />
-                        <Image src={diagram} alt="ptnadult diagram"  /> 
+                        <Image src={diagram} alt="ptnadult diagram"  />
                     </View>
                 </Page>
             </Document>
@@ -110,7 +154,7 @@ class PDF extends React.Component{
             )}
 
                 {!this.state.ready && (
-                    <Button onClick={() => this.toggle()}>
+                    <Button onClick={() => this.handlePdf()}>
                         Create pdf
                     </Button>
                 )}
