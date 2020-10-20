@@ -16,11 +16,12 @@ import OtherOption from './OtherOption';
 import OralDevice from './OralDevice';
 import Implant from './Implant';
 import MainComplaint from './MainComplaint';
+
 import DeliveryTime from './DeliveryTime';
 import Calendar from "react-calendar";
 import DeliveryDate from "./DeliveryDate";
 import Canvas from './Canvas';
-
+import PtnadultCanvas from './PtnadultCanvas'
 
 class MainInfo extends Component {
     state = {
@@ -65,6 +66,7 @@ class MainInfo extends Component {
         deliveryTime: "",
         OtherOption: "",
         drawing: "",
+        diagram: "",
     };
     user = firebase.auth().currentUser;
     id = this.props.match.params.id
@@ -110,7 +112,9 @@ class MainInfo extends Component {
     getDrawing = (data) => {
         this.setState({drawing: data})
     }
-
+    getDiagram = (data) => {
+        this.setState({diagram: data})
+    }
     handleSubmit = e => {
  
         e.preventDefault();
@@ -157,6 +161,7 @@ class MainInfo extends Component {
             deliveryTime: this.state.deliveryTime,
             OtherOption: this.state.OtherOption,
             drawing: this.state.drawing,
+            diagram: this.state.diagram
         };
         itemsRef.push(item);
 
@@ -210,7 +215,8 @@ class MainInfo extends Component {
             mainComplaint: this.state.mainComplaint,
             deliveryTime: this.state.deliveryTime,
             OtherOption: this.state.OtherOption,
-            drawing: this.state.drawing
+            drawing: this.state.drawing,
+            diagram: this.state.diagram
         };
         orderRef.update(items)
         this.props.history.push('/cards');
@@ -276,6 +282,7 @@ class MainInfo extends Component {
                     OtherOption: items["OtherOption"],
                     complete: items["complete"],
                     drawing: items["drawing"],
+                    diagram: items["diagram"],
                 });
 
             })
@@ -413,6 +420,7 @@ class MainInfo extends Component {
                 </div>
                 <div className="canvas form-box">
                     <Canvas drawing={this.state.drawing} id={this.id} getDrawing={this.getDrawing} />
+                    <PtnadultCanvas diagram={this.state.diagram} id={this.id} getDiagram={this.getDiagram} />
                 </div>
                 {
                     !this.id ?

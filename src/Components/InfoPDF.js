@@ -2,7 +2,7 @@ import React from 'react';
 import {Button} from "reactstrap";
 import takao from '../assets/takao.ttf';
 import mouth from '../assets/mouth.png';
-import diagram from '../assets/420px-Ptnadult.svg.png'
+import diagram from '../assets/Ptnadult.svg.png'
 import {PDFDownloadLink, Document, Page, Text, View, StyleSheet, Font, Image } from '@react-pdf/renderer';
 class PDF extends React.Component{
     state = {
@@ -80,6 +80,13 @@ class PDF extends React.Component{
             right: 0,
             height: 400,
             width: "80%",
+        },
+        diagram: {
+            top: 0,
+            left: 0,
+            right: 0,
+            height: 400,
+            width: "80%",
         }
     });
 
@@ -135,11 +142,12 @@ class PDF extends React.Component{
                       
                     </View>
                     <View style={this.styles.imageSection}>
-                        <Image style={this.styles.image} src={mouth} alt="ptnadult diagram"  />
-                        <Image style={this.styles.drawing} src={this.state.images[1]} alt="ptnadult diagram"  />
+                        <Image style={this.styles.image} src={mouth} alt="teeth diagram"  />
+                        <Image style={this.styles.drawing} src={this.state.images[1]} alt="teeth diagram"  />
                     </View>
                     <View style={this.styles.section}>
-                        <Image src={diagram} alt="ptnadult diagram"  />
+                    <Image style={this.styles.image} src={diagram} alt="ptnadult diagram"  />
+                        <Image style={this.styles.diagram} src={this.state.images[5]} alt="ptnadult diagram"  />
                     </View>
                 </Page>
             </Document>

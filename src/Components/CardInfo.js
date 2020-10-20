@@ -5,7 +5,7 @@ import CanvasDraw from "react-canvas-draw";
 
 import mouth from '../assets/mouth.png';
 import PDF from "../Components/InfoPDF";
-import chart from '../assets/420px-Ptnadult.svg.png';
+import diagram from '../assets/Ptnadult.svg.png';
 import { Link } from 'react-router-dom';
 import { Button } from 'reactstrap';
 
@@ -52,8 +52,11 @@ class CardInfo extends Component {
         otherOption:"",
         complete: false,
         drawing: "",
+        diagram: "",
         brushRadius: 0.1,
         lazyRadius: 0.1,
+        height: 200,
+        width: 400,
         immediateLoading: true,
     };
 
@@ -124,6 +127,7 @@ class CardInfo extends Component {
                             otherOption: items["otherOption"],
                             complete: items["complete"],
                             drawing: items["drawing"],
+                            diagram: items["diagram"]
                         });
                 });
                 ref.off() 
@@ -206,7 +210,16 @@ class CardInfo extends Component {
                                 lazyRadius={this.state.lazyRadius}
                                 immediateLoading={this.state.immediateLoading}
                             />
-                            <img src={chart} alt="zsigmondy diagram" />
+                              <CanvasDraw 
+                                imgSrc={diagram} alt="Ptnadult diagram" 
+                                saveData={this.state.diagram}  
+                                brushColor={this.state.color}
+                                brushRadius={this.state.brushRadius}
+                                lazyRadius={this.state.lazyRadius}
+                                canvasHeight={this.state.height}
+                                canvasWidth={this.state.width}
+                                immediateLoading={this.state.immediateLoading}
+                            />
                         </div>
                         <Button><Link className="btn btn-secondary"to={`/form/${this.props.value}/update`}>Edit</Link></Button>
                         <PDF name={this.state.doctorName}
@@ -250,6 +263,7 @@ class CardInfo extends Component {
                             dentureOtherInsured={this.state.dentureOtherInsured}
                             mainComplaint={this.state.mainComplaint}
                             drawing={this.state.drawing}
+                            diagram={this.state.diagram}
                         />
                     </div>
                 )}

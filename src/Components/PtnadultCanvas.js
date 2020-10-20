@@ -1,11 +1,11 @@
-  
 import React, { Component } from "react"; import CanvasDraw from "react-canvas-draw";
-import mouth from '../assets/mouth.png';
+import ptnadult from '../assets/Ptnadult.svg.png';
 
-
-class Canvas extends Component {
+class PtnadultCanvas extends Component {
   state = {
     color: "black",
+    height: 200,
+    width: 400,
     brushRadius: 2,
     lazyRadius: 2,
   };
@@ -18,11 +18,11 @@ class Canvas extends Component {
 
 
   sendData = () => {
-    this.props.getDrawing(this.saveableCanvas.getSaveData());
+    this.props.getDiagram(this.saveableCanvas.getSaveData());
   }
 
   render() {
-    const drawing = this.props.drawing
+    const diagram = this.props.diagram
 
     return (
       <div>
@@ -55,18 +55,22 @@ class Canvas extends Component {
         >
           Undo
         </button>
-        <CanvasDraw
-          ref={canvasDraw => (this.saveableCanvas = canvasDraw)}
-          brushColor={this.state.color}
-          brushRadius={this.state.brushRadius}
-          lazyRadius={this.state.lazyRadius}
-          imgSrc={mouth}
-          saveData={drawing}
-        />
+
+          <CanvasDraw
+            ref={canvasDraw => (this.saveableCanvas = canvasDraw)}
+            brushColor={this.state.color}
+            brushRadius={this.state.brushRadius}
+            lazyRadius={this.state.lazyRadius}
+            canvasHeight={this.state.height}
+            canvasWidth={this.state.width}
+            imgSrc={ptnadult}
+            saveData={diagram}
+          />
+        
       </div>
     );
   }
 
 }
 
-export default Canvas;
+export default PtnadultCanvas;
