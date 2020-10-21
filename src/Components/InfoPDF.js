@@ -48,7 +48,7 @@ class PDF extends React.Component{
 
     }
 
-    styles = StyleSheet.create({
+    MouthStyles = StyleSheet.create({
         page: {
             flexDirection: 'Column',
             backgroundColor: '#E4E4E4'
@@ -71,12 +71,23 @@ class PDF extends React.Component{
             top: 0,
             left: 0,
             right: 0,
-            height: 400,
-            width: "80%",
+            height: 423,
+            width: 418.5,
         },
         drawing: {
             top: 0,
             left: 0,
+            right: 0,
+            height: 400,
+            width: 400,
+        }
+    });
+
+    DiagramStyles = StyleSheet.create({
+        image: {
+            position: 'absolute',
+            top: 0,
+            left: 10,
             right: 0,
             height: 400,
             width: "80%",
@@ -91,13 +102,12 @@ class PDF extends React.Component{
     });
 
 
-
     render() {
 
         const doc = (
             <Document>
-                <Page size="A4" style={this.styles.page}>
-                    <View style={this.styles.section}>
+                <Page size="A4" style={this.MouthStyles.page}>
+                    <View style={this.MouthStyles.section}>
                         <Text>歯科医名 :{this.props.name}</Text>
                         <Text>住所: {this.props.address}</Text>
                         <Text>郵便番号: {this.props.zip}</Text>
@@ -141,13 +151,13 @@ class PDF extends React.Component{
                         <Text>配送日: {this.props.deliveryDate}</Text>
                       
                     </View>
-                    <View style={this.styles.imageSection}>
-                        <Image style={this.styles.image} src={mouth} alt="teeth diagram"  />
-                        <Image style={this.styles.drawing} src={this.state.images[1]} alt="teeth diagram"  />
+                    <View style={this.MouthStyles.imageSection}>
+                        <Image style={this.MouthStyles.image} src={mouth} alt="teeth diagram"  />
+                        <Image style={this.MouthStyles.drawing} src={this.state.images[1]} alt="teeth diagram"  />
                     </View>
-                    <View style={this.styles.section}>
-                    <Image style={this.styles.image} src={diagram} alt="ptnadult diagram"  />
-                        <Image style={this.styles.diagram} src={this.state.images[5]} alt="ptnadult diagram"  />
+                    <View style={this.MouthStyles.imageSection}>
+                    <Image style={this.DiagramStyles.image} src={diagram} alt="ptnadult diagram"  />
+                        <Image style={this.DiagramStyles.diagram} src={this.state.images[5]} alt="ptnadult diagram"  />
                     </View>
                 </Page>
             </Document>
