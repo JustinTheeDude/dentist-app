@@ -51,11 +51,22 @@ let sortedObj = arr.reduce((c, v) => {
     const goBack = () => {
         setOrderView(false);
     }
-
+    
     const toggle = (id) => { 
+        // const carets = document.querySelectorAll(".arrow")
+        // carets.forEach((caret, index) => {
+        //     caret.addEventListener('click', (e) => {
+        //       for (let i = 0; i < index; i++) {
+        //         carets[i].classList.remove('down');
+        //       }
+        //       for (let i = index; i < carets.length; i++) {
+        //         carets[i].classList.add('up');
+        //       }
+        //     });
+        //   })
+
         hiddenOrder(id)
         setIsOpen(!isOpen);
-
     };
 
   
@@ -86,7 +97,7 @@ let sortedObj = arr.reduce((c, v) => {
                         <ul>
                             <li>{result[k]}</li>
                             <li>{k}</li>                                  
-                            <button id="toggler" onClick={() => toggle(k)} style={{ marginBottom: '1rem' }} className="arrow down" >v</button>
+                            <button id="toggler" onClick={() => toggle(k)} style={{ marginBottom: '1rem' }} className="arrow down" ></button>
                         </ul>
                         <div className="contact-cards" key={k} id={k}>
                     {   
