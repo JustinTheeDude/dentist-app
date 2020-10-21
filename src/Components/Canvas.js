@@ -31,7 +31,6 @@ class Canvas extends Component {
           onClick={(e) => {
             e.preventDefault()
             this.sendData()
-            this.updateImages();
           }}
         >
           Save

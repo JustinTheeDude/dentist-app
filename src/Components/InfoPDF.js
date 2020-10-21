@@ -72,14 +72,14 @@ class PDF extends React.Component{
             left: 0,
             right: 0,
             height: 400,
-            width: "80%",
+            width: 400,
         },
         drawing: {
             top: 0,
             left: 0,
             right: 0,
             height: 400,
-            width: "80%",
+            width: 400,
         }
     });
 
