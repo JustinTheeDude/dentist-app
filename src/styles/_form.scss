@@ -39,12 +39,7 @@
         font-size: xx-large;
         text-align: center;
     }
-    [type^=checkbox] {  
-        // display: flex;
-        width: 15px;
-        height: 15px;
-        appearance: checkbox;
-    }
+
 }
 
 
@@ -90,7 +85,9 @@
 }
 
 .canvas {
+    display: flex;
     flex: 1;
+
 }
 
 #btn-canvas {
@@ -103,6 +100,7 @@
     max-width: 800px;
     margin-top: 30px;
     text-align: center;
+    padding-bottom: 7px;
 }
 
 

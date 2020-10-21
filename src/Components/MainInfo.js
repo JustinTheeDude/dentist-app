@@ -5,22 +5,23 @@ import firebase from "./firebase.js";
 // Component import
 import DoctorInfo from './DoctorInfo';
 import PatientInfo from './PatientInfo';
-import ProductsSpecs from './ProductsSpecs';
+// import ProductsSpecs from './ProductsSpecs';
 import TreatmentType from './TreatmentType';
 import PaymentSelect from './PaymentSelect';
 import InlayOnlay from './InlayOnlay';
-import Abutment from './Abutment';
-import Telescope from './Telescope';
-import Bridge from './Bridge';
-import LocalDentFrame from './LocalDentFrame';
-import Splint from './Splint';
+import Crown from './Crown';
+import Br from './Br';
+import Denture from './Denture';
+import OtherOption from './OtherOption';
+import OralDevice from './OralDevice';
 import Implant from './Implant';
 import MainComplaint from './MainComplaint';
+
 import DeliveryTime from './DeliveryTime';
 import Calendar from "react-calendar";
 import DeliveryDate from "./DeliveryDate";
-import Canvas from './Canvas';
-
+import MouthCanvas from './MouthCanvas';
+import PtnadultCanvas from './PtnadultCanvas'
 
 class MainInfo extends Component {
     state = {
@@ -34,36 +35,38 @@ class MainInfo extends Component {
         patientID: "",
         age: "",
         gender: "男",
-        specs: "レジン床",
+        specs: "",
         paymentType: "保険",
-        treatmentType: "なし",
+        treatmentType: "",
         inlayOnlay:"",
         inlayMaterial: "",
         inlayShade: "",
-        abutmentType: "",
-        touaregSystem: "なし",
-        connectionSelect: "なし",
-        abutmentShade: "",
-        insertionGroup: "",
-        telescope: "",
-        telescopeMaterial: "",
-        telescopeShade: "",
-        bridge: "",
-        bridgeType: "",
-        localDentureFrame: "",
-        localDentureFrameMaterials: "",
-        splint: "",
-        splintMaterials: "",
-        splintShade: "",
-        implantTreatment: false,
-        surgicalGuide: false,
-        noTreatmentPlan: false,
-        treatmentPlanMaterials: "",
+        crownMaterialInsured: "",
+        crownShadeInsured: "",
+        crownMaterialUninsured: "",
+        crownShadeUninsured: "",
+        BrMaterialInsured: "",
+        BrShadeInsured: "" ,
+        BrMaterialUninsured: "",
+        BrShadeUninsured: "", 
+        oralDeviceInsured: "",
+        oralDeviceUninsured: "",
+        otherOptionInsured: "",
+        otherOptionUninsured: "",
+        implantType: "",
+        implantMaker: "",
+        dentureInsured: "",
+        dentureUninsured: "",
+        dentureArtificialInsured: "",
+        dentureFloorInsured: "",
+        dentureClaspInsured: "",
+        dentureBarInsured: "",
+        dentureOtherInsured: "",
         mainComplaint: "",
         deliveryTime: "",
-        otherOption: "",
+        OtherOption: "",
         drawing: "",
-        // pic: ""
+        diagram: "",
     };
     user = firebase.auth().currentUser;
     id = this.props.match.params.id
@@ -73,36 +76,45 @@ class MainInfo extends Component {
     };
 
     handleChange = e => {
-        if( e.target.type === "checkbox") {
-            const implantTreatment = document.querySelector("#implantTreatment");
-            const surgicalGuide = document.querySelector("#surgicalGuide");
-            const noTreatmentPlan = document.querySelector("#noTreatmentPlan");
-            implantTreatment.disabled = false;
-            surgicalGuide.disabled = false;
-            noTreatmentPlan.disabled = false;
-            if(e.target.checked && e.target.name === "noTreatmentPlan" ) {
-                implantTreatment.disabled = true;
-                surgicalGuide.disabled = true ;                
-            } 
-            else if(implantTreatment.checked || surgicalGuide.checked ) {
-               noTreatmentPlan.disabled = true;
-            }
+            if(e.target.value === "保険") {
                 this.setState({
-                    [e.target.name]: e.target.checked
+                    crownMaterialUninsured: "",
+                    crownShadeUninsured: "",
+                    BrMaterialUninsured: "",
+                    BrShadeUninsured: "", 
+                    oralDeviceUninsured: "",
+                    otherOptionUninsured: "",
+                    dentureUninsured: "",
                 })
-        }else {
+            }
+            if(e.target.value === "自費") {
+                this.setState({
+                    crownMaterialInsured: "",
+                    crownShadeInsured: "",
+                    BrMaterialInsured: "",
+                    BrShadeInsured: "" ,
+                    oralDeviceInsured: "",
+                    otherOptionInsured: "",
+                    dentureInsured: "",
+                    dentureArtificialInsured: "",
+                    dentureBarInsured: "",
+                    dentureFloorInsured: "",
+                    dentureClaspInsured: "",
+                    dentureOtherInsured: "",
+                })
+            }
             this.setState({
                 [e.target.name]: e.target.value,
                 value: e.target.value,
             })
-        }
-     
     };
 
     getDrawing = (data) => {
         this.setState({drawing: data})
     }
-
+    getDiagram = (data) => {
+        this.setState({diagram: data})
+    }
     handleSubmit = e => {
  
         e.preventDefault();
@@ -124,29 +136,32 @@ class MainInfo extends Component {
             inlayOnlay: this.state.inlayOnlay,
             inlayMaterial: this.state.inlayMaterial,
             inlayShade: this.state.inlayShade,
-            abutmentType: this.state.abutmentType,
-            touaregSystem: this.state.touaregSystem,
-            connectionSelect: this.state.connectionSelect,
-            abutmentShade: this.state.abutmentShade,
-            insertionGroup: this.state.insertionGroup,        
-            telescope: this.state.telescope,
-            telescopeMaterial: this.state.telescopeMaterial,
-            telescopeShade: this.state.telescopeShade,
-            bridge: this.state.bridge,
-            bridgeType: this.state.bridgeType,
-            localDentureFrame: this.state.localDentureFrame,
-            localDentureFrameMaterials: this.state.localDentureFrameMaterials,
-            splint: this.state.splint,
-            splintMaterials: this.state.splintMaterials,
-            splintShade: this.state.splintShade,
-            implantTreatment: this.state.implantTreatment,
-            surgicalGuide: this.state.surgicalGuide,
-            noTreatmentPlan: this.state.noTreatmentPlan,
-            treatmentPlanMaterials: this.state.treatmentPlanMaterials,
+            crownMaterialInsured: this.state.crownMaterialInsured,
+            crownShadeInsured: this.state.crownShadeInsured,
+            crownMaterialUninsured: this.state.crownMaterialUninsured,
+            crownShadeUninsured: this.state.crownShadeUninsured,
+            BrMaterialInsured: this.state.BrMaterialInsured,
+            BrShadeInsured: this.state.BrShadeInsured ,
+            BrMaterialUninsured: this.state.BrMaterialUninsured,
+            BrShadeUninsured: this.state.BrShadeUninsured,         
+            oralDeviceInsured: this.state.oralDeviceInsured,
+            oralDeviceUninsured: this.state.oralDeviceUninsured,
+            otherOptionInsured: this.state.otherOptionInsured,
+            otherOptionUninsured: this.state.otherOptionUninsured,
+            implantType: this.state.implantType,
+            implantMaker: this.state.implantMaker,
+            dentureInsured: this.state.dentureInsured,
+            dentureUninsured: this.state.dentureUninsured,
+            dentureArtificialInsured: this.state.dentureArtificialInsured,
+            dentureBarInsured: this.state.dentureBarInsured,
+            dentureFloorInsured: this.state.dentureFloorInsured,
+            dentureClaspInsured: this.state.dentureClaspInsured,
+            dentureOtherInsured: this.state.dentureOtherInsured,
             mainComplaint: this.state.mainComplaint,
             deliveryTime: this.state.deliveryTime,
-            otherOption: this.state.otherOption,
+            OtherOption: this.state.OtherOption,
             drawing: this.state.drawing,
+            diagram: this.state.diagram
         };
         itemsRef.push(item);
 
@@ -176,29 +191,32 @@ class MainInfo extends Component {
             inlayOnlay: this.state.inlayOnlay,
             inlayMaterial: this.state.inlayMaterial,
             inlayShade: this.state.inlayShade,
-            abutmentType: this.state.abutmentType,
-            touaregSystem: this.state.touaregSystem,
-            connectionSelect: this.state.connectionSelect,
-            abutmentShade: this.state.abutmentShade,
-            insertionGroup: this.state.insertionGroup,
-            telescope: this.state.telescope,
-            telescopeMaterial: this.state.telescopeMaterial,
-            telescopeShade: this.state.telescopeShade,
-            bridge: this.state.bridge,
-            bridgeType: this.state.bridgeType,
-            localDentureFrame: this.state.localDentureFrame,
-            localDentureFrameMaterials: this.state.localDentureFrameMaterials,
-            splint: this.state.splint,
-            splintMaterials: this.state.splintMaterials,
-            splintShade: this.state.splintShade,
-            implantTreatment: this.state.implantTreatment,
-            surgicalGuide: this.state.surgicalGuide,
-            noTreatmentPlan: this.state.noTreatmentPlan,
-            treatmentPlanMaterials: this.state.treatmentPlanMaterials,
+            crownMaterialInsured: this.state.crownMaterialInsured,
+            crownShadeInsured: this.state.crownShadeInsured,
+            crownMaterialUninsured: this.state.crownMaterialUninsured,
+            crownShadeUninsured: this.state.crownShadeUninsured,
+            BrMaterialInsured: this.state.BrMaterialInsured,
+            BrShadeInsured: this.state.BrShadeInsured ,
+            BrMaterialUninsured: this.state.BrMaterialUninsured,
+            BrShadeUninsured: this.state.BrShadeUninsured, 
+            oralDeviceInsured: this.state.oralDeviceInsured,
+            oralDeviceUninsured: this.state.oralDeviceUninsured,
+            otherOptionInsured: this.state.otherOptionInsured,
+            otherOptionUninsured: this.state.otherOptionUninsured,
+            implantType: this.state.implantType,
+            implantMaker: this.state.implantMaker,
+            dentureInsured: this.state.dentureInsured,
+            dentureUninsured: this.state.dentureUninsured,
+            dentureArtificialInsured: this.state.dentureArtificialInsured,
+            dentureBarInsured: this.state.dentureBarInsured,
+            dentureFloorInsured: this.state.dentureFloorInsured,
+            dentureClaspInsured: this.state.dentureClaspInsured,
+            dentureOtherInsured: this.state.dentureOtherInsured,
             mainComplaint: this.state.mainComplaint,
             deliveryTime: this.state.deliveryTime,
-            otherOption: this.state.otherOption,
-            drawing: this.state.drawing
+            OtherOption: this.state.OtherOption,
+            drawing: this.state.drawing,
+            diagram: this.state.diagram
         };
         orderRef.update(items)
         this.props.history.push('/cards');
@@ -222,7 +240,6 @@ class MainInfo extends Component {
             const orderRef = firebase.database().ref(`Dentist/${this.user.uid}/Form`).child(this.id)
             orderRef.once("value", snap => {
                let items = snap.val();
-               
                this.setState({
                     doctorName: items["doctorName"],
                     address: items["address"],
@@ -239,32 +256,36 @@ class MainInfo extends Component {
                     inlayOnlay: items["inlayOnlay"],
                     inlayMaterial:  items["inlayMaterial"],
                     inlayShade: items["inlayShade"],
-                    abutmentType: items["abutmentType"],
-                    touaregSystem: items["touaregSystem"],
-                    connectionSelect: items["connectionSelect"],
-                    abutmentShade: items["abutmentShade"],
-                    insertionGroup: items["insertionGroup"],
-                    telescope: items["telescope"],
-                    telescopeMaterial: items["telescopeMaterial"],
-                    telescopeShade: items["telescopeShade"],
-                    bridge: items["bridge"],
-                    bridgeType: items["bridgeType"],
-                    localDentureFrame: items["localDentureFrame"],
-                    localDentureFrameMaterials: items["localDentureFrameMaterials"],
-                    splint: items["splint"],
-                    splintMaterials: items["splintMaterials"],
-                    splintShade: items["splintShade"],
-                    implantTreatment: items["implantTreatment"],
-                    surgicalGuide: items["surgicalGuide"],
-                    noTreatmentPlan: items["noTreatmentPlan"],
+                    crownMaterialInsured: items["crownMaterialInsured"],
+                    crownShadeInsured: items["crownShadeInsured"],
+                    crownMaterialUninsured: items["crownMaterialUninsured"], 
+                    crownShadeUninsured: items["crownShadeUninsured"],
+                    BrMaterialInsured: items["BrMaterialInsured"],
+                    BrShadeInsured: items["BrShadeInsured"] ,
+                    BrMaterialUninsured: items["BrMaterialUninsured"],
+                    BrShadeUninsured: items["BrShadeUninsured"],
+                    oralDeviceInsured: items["oralDeviceInsured"],
+                    oralDeviceUninsured: items["oralDeviceUninsured"],
+                    otherOptionInsured: items["otherOptionInsured"],
+                    otherOptionUninsured: items["otherOptionUninsured"],
+                    implantType: items["implantType"],
+                    implantMaker: items["implantMaker"],
+                    dentureInsured: items["dentureInsured"],
+                    dentureUninsured: items["dentureUninsured"],
+                    dentureArtificialInsured: items["dentureArtificialInsured"],
+                    dentureBarInsured: items["dentureBarInsured"],
+                    dentureFloorInsured: items["dentureFloorInsured"],
+                    dentureClaspInsured: items["dentureClaspInsured"],
+                    dentureOtherInsured: items["dentureOtherInsured"],
                     mainComplaint: items["mainComplaint"],
-                    treatmentPlanMaterials: items["treatmentPlanMaterials"],
                     deliveryTime: items["deliveryTime"],
-                    otherOption: items["otherOption"],
+                    OtherOption: items["OtherOption"],
                     complete: items["complete"],
                     drawing: items["drawing"],
+                    diagram: items["diagram"],
                 });
-           })
+
+            })
         }
     }
 
@@ -283,13 +304,13 @@ class MainInfo extends Component {
                         age={this.state.age} 
                         gender={this.state.gender} 
                     />
-                    <ProductsSpecs handleChange={this.handleChange}  specs={this.state.specs} value={this.state.value} otherOption={this.state.otherOption}  />
-                    <TreatmentType   handleChange={this.handleChange} treatmentType={this.state.TreatmentType} />
+                    {/* <ProductsSpecs handleChange={this.handleChange}  specs={this.state.specs} value={this.state.value} OtherOption={this.state.OtherOption}  /> */}
+                    <TreatmentType   handleChange={this.handleChange} treatmentType={this.state.treatmentType} value={this.state.value}  />
                     <PaymentSelect handleChange={this.handleChange} paymentType={this.state.paymentType} />
                {
                   this.state.treatmentType === "インレー" &&
                    <div>
-                        <h2>インレーとアンレー</h2> 
+                        <h2><strong>インレーとアンレー</strong></h2> 
                             <InlayOnlay 
                                 handleChange={this.handleChange} 
                                 inlayOnlay={this.state.inlayOnlay} 
@@ -301,79 +322,88 @@ class MainInfo extends Component {
 
                 }
                 {
-                    this.state.treatmentType === "アバットメント" &&
+                    this.state.treatmentType === "クラウン" &&
                     <div>
-                        <h2>アバットメント</h2>
-                            <Abutment  
+                        <h2><strong>クラウン</strong></h2>
+                            <Crown  
                                 handleChange={this.handleChange} 
-                                abutmentType={this.state.abutmentType} 
-                                touaregSystem={this.state.touaregSystem} 
-                                connectionSelect={this.state.connectionSelect} 
-                                abutmentShade={this.state.abutmentType} 
-                                insertionGroup={this.state.insertionGroup}  
+                                crownMaterialInsured={this.state.crownMaterialInsured} 
+                                crownShadeInsured={this.state.crownShadeInsured}
+                                crownMaterialUninsured={this.state.crownMaterialUninsured}
+                                crownShadeUninsured={this.state.crownShadeUninsured}
+                                paymentType={this.state.paymentType}  
                             />
                     </div>
                 }
                 {
-                    this.state.treatmentType === "テレスコープ" &&
+                    this.state.treatmentType === "Br" &&
                     <div>
-                        <h2>テレスコープ</h2>
-                            <Telescope 
+                        <h2><strong>Br</strong></h2>
+                            <Br 
                                 handleChange={this.handleChange}
-                                telescope={this.state.telescope}
-                                telescopeMaterial={this.state.telescopeMaterial}
-                                telescopeShade={this.state.telescopeShade}              
+                                paymentType={this.state.paymentType}
+                                BrMaterialInsured={this.state.BrMaterialInsured} 
+                                BrShadeInsured={this.state.BrShadeInsured}
+                                BrMaterialUninsured={this.state.BrMaterialUninsured}
+                                BrShadeUninsured={this.state.BrShadeUninsured}              
                             />
                     </div>
                 }
                 {
-                    this.state.treatmentType === "ブリッジ" &&
+                    this.state.treatmentType === "口腔内装置" &&
                     <div>
-                        <h2>ブリッジ</h2>
-                            <Bridge 
-                                handleChange={this.handleChange}
-                                bridgeType={this.state.bridgeType}
-                            />
-                    </div>
-                }
-                {
-                    this.state.treatmentType === "局所義歯" &&
-                    <div>
-                        <h2>局所義歯</h2>
-                            <LocalDentFrame 
-                                handleChange={this.handleChange}
-                                localDentureFrame={this.state.localDentureFrame}
-                                localDentureFrameMaterials={this.state.localDentureFrameMaterials}
-                            />
-
-                    </div>
-                }
-                {
-                    this.state.treatmentType === "装置" &&
-                    <div>
-                        <h2>装置</h2>
-                            <Splint
+                        <h2><strong>口腔内装置</strong></h2>
+                            <OralDevice
                                 handleChange={this.handleChange} 
-                                splint={this.state.splint}
-                                splintMaterials={this.state.splintMaterials}
-                                splintShade={this.state.splintShade}
+                                oralDeviceInsured={this.state.oralDeviceInsured}
+                                oralDeviceUninsured={this.state.oralDeviceUninsured}
+                                paymentType={this.state.paymentType}  
+                            />
+                    </div>
+                }
+                {
+                    this.state.treatmentType === "その他" &&
+                    <div>
+                        <h2><strong>その他</strong></h2>
+                            <OtherOption
+                                handleChange={this.handleChange}
+                                otherOptionInsured={this.state.otherOptionInsured}
+                                otherOptionUninsured={this.state.otherOptionUninsured}
+                                paymentType={this.state.paymentType}  
                             />
                     </div>
                 }
                 {
                     this.state.treatmentType === "インプラント" &&
                     <div>
-                        <h2>インプラント</h2>
+                        <h2><strong>インプラント</strong></h2>
                         &nbsp;&nbsp;&nbsp;
                             <Implant 
                                 handleChange={this.handleChange} 
-                                implantTreatment={this.state.implantTreatment}
-                                surgicalGuide={this.state.surgicalGuide}
-                                noTreatmentPlan={this.state.noTreatmentPlan}
-                                treatmentPlanMaterials={this.state.treatmentPlanMaterials}
+                                implantType={this.state.implantType}
+                                implantMaker={this.state.implantMaker}
+                                paymentType={this.state.paymentType}
+                            />
+                    </div>
+                } 
+                {
+                    this.state.treatmentType === "義歯" &&
+                    <div>
+                        <h2><strong>義歯</strong></h2>
+                            <Denture
+                                handleChange={this.handleChange}
+                                paymentType={this.state.paymentType}
+                                dentureInsured={this.state.dentureInsured}
+                                dentureUninsured={this.state.dentureUninsured}
+                                dentureInsuredArtificial={this.state.dentureArtificialInsured}
+                                dentureBarInsured={this.state.dentureBarInsured}
+                                dentureFloorInsured={this.state.dentureFloorInsured}
+                                dentureClaspInsured={this.state.dentureClaspInsured}
+                                dentureOtherInsured={this.state.dentureOtherInsured}
                             />
                     </div>
                 }
+
                     <MainComplaint handleChange={this.handleChange} mainComplaint={this.state.mainComplaint} />
                     <DeliveryTime  handleChange={this.handleChange} deliveryTime={this.state.deliveryTime} />
                 <h3 className="order-heading">発注日/納期日</h3>
@@ -389,7 +419,9 @@ class MainInfo extends Component {
                     />
                 </div>
                 <div className="canvas form-box">
-                    <Canvas drawing={this.state.drawing} id={this.id} getDrawing={this.getDrawing} />
+                    <MouthCanvas  drawing={this.state.drawing} id={this.id} getDrawing={this.getDrawing} />
+                    &nbsp;&nbsp;
+                    <PtnadultCanvas  diagram={this.state.diagram} id={this.id} getDiagram={this.getDiagram} />
                 </div>
                 {
                     !this.id ?

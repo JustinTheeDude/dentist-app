@@ -20,7 +20,6 @@ let sortedObj = arr.reduce((c, v) => {
   return c;
 }, {});
 
-
     let arr1 = [];
     let arr2 = [];
     Object.keys(orders).map(key => arr1.push(orders[key].patientName));
@@ -96,7 +95,7 @@ let sortedObj = arr.reduce((c, v) => {
                                     hideOrder === key && 
                                     <Collapse isOpen={isOpen} key={key2} >
                                         <ul  key={key2} > 
-                                            <ListItem order={sortedObj[key][key2]} patientID={key} id={key2}   setUserOrder={setUserOrder} />
+                                            <ListItem order={sortedObj[key][key2]} patientID={key} id={key2}  setUserOrder={setUserOrder} />
                                         </ul>
                                     </Collapse>
                                 )) 

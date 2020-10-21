@@ -6,6 +6,7 @@ function InlayOnlay({inlayOnlay, inlayMaterial, inlayShade, paymentType,inlaySpe
     <FormGroup className="inlay-onlay form-box">
       <Label for="inlayOnlay">インレーとアンレー</Label>
         <Input type="select" name="inlayOnlay" value={inlayOnlay} onChange={handleChange} required>
+        　<option>なし</option>
           <option>クラウン</option>
           <option>クラウン&#8226;ポンティック</option>
           <option>インレーとアンレー</option>
@@ -17,6 +18,7 @@ function InlayOnlay({inlayOnlay, inlayMaterial, inlayShade, paymentType,inlaySpe
           <div>
             <Label for="inlaySpecInsurance">Inlay Spec 保険 </Label>
               <Input type="select" name="inlaySpecInsurance" value={inlaySpecInsurance} onChange={handleChange} required>
+              　<option>なし</option>
                 <option>金パラ</option>
                 <option>銀合金</option>
                 <option>レジン</option>      
@@ -28,6 +30,7 @@ function InlayOnlay({inlayOnlay, inlayMaterial, inlayShade, paymentType,inlaySpe
           <div>
           <Label for="inlaySpecUninsured">Inlay Spec 自費</Label>
           <Input type="select" name="inlaySpecUninsured" value={inlaySpecUninsured} onChange={handleChange} required>
+          　<option>なし</option>
             <option>ハイブリットインレー</option>
             <option>ハイブリットアンレー</option>     
           </Input>
@@ -35,12 +38,14 @@ function InlayOnlay({inlayOnlay, inlayMaterial, inlayShade, paymentType,inlaySpe
         }
       <Label for="inlayMaterial">補綴物インレー</Label>
         <Input type="select" name="inlayMaterial"  value={inlayMaterial} onChange={handleChange} required>
+        　<option>なし</option>
           <option>Emax</option>
           <option>Zirconia - monolithic</option>
           <option>Zirconia - veneered</option>       
         </Input>
       <Label for="inlayShade">シェード選択</Label>
         <Input type="select" name="inlayShade" value={inlayShade} onChange={handleChange} required>
+        　<option>なし</option>　
           <option>なし</option>
           <option>A 1</option>
           <option>A 2</option>
