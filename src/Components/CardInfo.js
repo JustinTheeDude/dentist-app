@@ -230,6 +230,7 @@ class CardInfo extends Component {
                             age={this.state.age}
                             gender={this.state.gender}
                             paymentType={this.state.paymentType}
+                            treatmentType={this.state.treatmentType}
                             date={this.state.date}
                             deliveryDate={this.state.deliveryDate}
                             deliveryTime={this.state.deliveryTime}

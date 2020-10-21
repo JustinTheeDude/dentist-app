@@ -3,7 +3,7 @@ import React, { Component } from "react"; import CanvasDraw from "react-canvas-d
 import mouth from '../assets/mouth.png';
 
 
-class Canvas extends Component {
+class MouthCanvas extends Component {
   state = {
     color: "black",
     brushRadius: 2,
@@ -35,7 +35,7 @@ class Canvas extends Component {
         >
           Save
         </button>
-        {/* &nbsp; */}
+        &nbsp;
         <button
           id="btn-canvas"
           onClick={(e) => {
@@ -45,7 +45,7 @@ class Canvas extends Component {
         >
           Clear
         </button>
-        {/* &nbsp; */}
+        &nbsp;
         <button
           id="btn-canvas"
           onClick={(e) => {
@@ -69,4 +69,4 @@ class Canvas extends Component {
 
 }
 
-export default Canvas;
+export default MouthCanvas;

@@ -20,7 +20,7 @@ import MainComplaint from './MainComplaint';
 import DeliveryTime from './DeliveryTime';
 import Calendar from "react-calendar";
 import DeliveryDate from "./DeliveryDate";
-import Canvas from './Canvas';
+import MouthCanvas from './MouthCanvas';
 import PtnadultCanvas from './PtnadultCanvas'
 
 class MainInfo extends Component {
@@ -419,8 +419,9 @@ class MainInfo extends Component {
                     />
                 </div>
                 <div className="canvas form-box">
-                    <Canvas drawing={this.state.drawing} id={this.id} getDrawing={this.getDrawing} />
-                    <PtnadultCanvas diagram={this.state.diagram} id={this.id} getDiagram={this.getDiagram} />
+                    <MouthCanvas  drawing={this.state.drawing} id={this.id} getDrawing={this.getDrawing} />
+                    &nbsp;&nbsp;
+                    <PtnadultCanvas  diagram={this.state.diagram} id={this.id} getDiagram={this.getDiagram} />
                 </div>
                 {
                     !this.id ?

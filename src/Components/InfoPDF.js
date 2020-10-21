@@ -119,6 +119,7 @@ class PDF extends React.Component{
                         {
                         this.props.otherOption ? <Text>製品仕様 他: {this.props.otherOption}</Text> : null
                         }
+                        <Text>治療の種類: {this.props.treatmentType}</Text>
                         <Text>支払い: {this.props.paymentType}</Text>
                         { this.props.inlayOnlay ? <Text>インレーとアンレー: {this.props.inlayOnlay}</Text> : null }
                         { this.props.inlayMaterial ? <Text>補綴物インレー: {this.props.inlayMaterial}</Text> : null }
@@ -146,9 +147,9 @@ class PDF extends React.Component{
                         {this.props.dentureClaspInsured ? <Text>クラスプ 保険: {this.props.dentureClaspInsured}</Text> : null }
                         {this.props.dentureOtherInsured ? <Text>その他 保険: {this.props.dentureOtherInsured}</Text> : null }
                         <Text>主訴: {this.props.mainComplaint}</Text>
-                        <Text>時間: {this.props.deliveryTime}</Text>
                         <Text>発注日: {this.props.date}</Text>
                         <Text>配送日: {this.props.deliveryDate}</Text>
+                        <Text>時間: {this.props.deliveryTime}</Text>
                       
                     </View>
                     <View style={this.MouthStyles.imageSection}>
