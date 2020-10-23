@@ -12,7 +12,7 @@ function TreatmentType({treatmentType, handleChange}) {
         <option>クラウン</option>
         <option>Br</option>
         <option>口腔内装置</option>
-        <option>義歯(保険)</option>
+        {/* <option>義歯(保険)</option> */}
         <option>その他</option>
         <option>インプラント</option> 
         <option>義歯</option>   

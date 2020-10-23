@@ -10,6 +10,7 @@ function Denture({
    dentureFloorInsured,
    dentureClaspInsured,
    dentureOtherInsured,
+   dentureClaspInsuredNum,
    handleChange 
   }) {
 
@@ -62,13 +63,6 @@ function Denture({
           <option>スルフォン</option>
           <option>陶器</option>
         </Input>
-        <Label for="dentureBarInsured">バー 保険</Label>
-        <Input type="select" name="dentureBarInsured"  value={dentureBarInsured} onChange={handleChange} >
-          <option>なし</option> 
-          <option>金パラ</option>
-          <option>コバルト</option>
-          <option>スルフォン</option>
-        </Input>
         <Label for="dentureFloorInsured">床 保険</Label>
         <Input type="select" name="dentureFloorInsured"  value={dentureFloorInsured} onChange={handleChange} >
           <option>なし</option> 
@@ -77,23 +71,51 @@ function Denture({
           <option>金属</option>
         </Input>
         <Label for="dentureClaspInsured">クラスプ 保険</Label>
-        <Input type="select" name="dentureClaspInsured"  value={dentureClaspInsured} onChange={handleChange} >
-          <option>なし</option> 
-          <option>エーカース(金パラ)</option>
-          <option>エーカース(コバルト)</option>
-          <option>エーカース(14K)</option>
-          <option>Wエーカース(金パラ)</option>
-          <option>Wエーカース(コバルト)</option>
-          <option>Wエーカース(14K)</option>
-          <option>コンビネーション金パラ</option>
-          <option>コンビネーションコバルト</option>
-        </Input>
+
         <Label for="dentureOtherInsured">その他 保険</Label>
         <Input type="select" name="dentureOtherInsured"  value={dentureOtherInsured} onChange={handleChange} >
           <option>なし</option> 
           <option>ケラター</option>
         </Input>
       </div>
+    }
+    {
+      dentureInsured.includes("PD") && 
+      <div>
+          <Label for="dentureBarInsured">バー 保険</Label>
+          <Input type="select" name="dentureBarInsured"  value={dentureBarInsured} onChange={handleChange} >
+            <option>なし</option> 
+            <option>金パラ</option>
+            <option>コバルト</option>
+            <option>スルフォン</option>
+          </Input>
+          <Label check for="dentureClaspInsured">Clasp 保険</Label>
+            <Input type="select" name="dentureClaspInsured"  value={dentureClaspInsured} onChange={handleChange} >
+              <option>なし</option> 
+              <option>エーカース(金パラ)</option>
+              <option>エーカース(コバルト)</option>
+              <option>エーカース(14K)</option>
+              <option>Wエーカース(金パラ)</option>
+              <option>Wエーカース(コバルト)</option>
+              <option>Wエーカース(14K)</option>
+              <option>コンビネーション金パラ</option>
+              <option>コンビネーションコバルト</option>
+              <option>wire clasp</option>
+          </Input>
+        </div>
+    }
+    {
+      dentureClaspInsured && 
+      <div>
+      <Label for="dentureClaspInsuredNum">Clasp number 保険</Label>
+            <Input type="select" name="dentureClaspInsuredNum"  value={dentureClaspInsuredNum} onChange={handleChange} >
+              <option>なし</option> 
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+          </Input>
+        </div>
     }
     </FormGroup>
   )
