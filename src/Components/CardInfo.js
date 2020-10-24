@@ -20,7 +20,6 @@ class CardInfo extends Component {
         patientID: "", 
         age: "",
         gender: "",
-        specs: "",
         treatmentType:"",
         paymentType: "",
         inlayInvolution: "", 
@@ -111,7 +110,6 @@ class CardInfo extends Component {
                             deliveryDate: items["deliveryDate"],
                             age: items["age"],
                             gender: items["gender"],
-                            specs: items["specs"],
                             treatmentType: items["treatmentType"],
                             paymentType: items["paymentType"],
                             inlayInvolution: items["inlayInvolution"], 
@@ -200,7 +198,6 @@ class CardInfo extends Component {
                             <h1>患者ID: {this.state.patientID}</h1>
                             <h1>年齢: {this.state.age}</h1>
                             <h1>性別: {this.state.gender}</h1>
-                            {!this.state.otherOption && <h1>製品仕様: {this.state.specs}</h1>}
                             {this.state.otherOption && <h1>製品仕様 他: {this.state.otherOption}</h1>}
                             <h1>治療の種類: {this.state.treatmentType}</h1>
                             <h1>支払い: {this.state.paymentType}</h1>
@@ -220,7 +217,7 @@ class CardInfo extends Component {
                             {this.state.BrInvolutionBT && <h1>対合 BT: {this.state.BrInvolutionBT}</h1>}
                             {this.state.BrMaterialInsured && <h1>Br 保険: {this.state.BrMaterialInsured}</h1>}
                             {this.state.BrShadeInsured && <h1>Br シェード選択 保険: {this.state.BrShadeInsured}</h1>}
-                            {this.state.BrMaterialUninsured && <h1>Br 自費: {this.BrMaterialUninsured}</h1>}
+                            {this.state.BrMaterialUninsured && <h1>Br 自費: {this.state.BrMaterialUninsured}</h1>}
                             {this.state.BrShadeUninsured && <h1>Br シェード選択 自費: {this.state.BrShadeUninsured}</h1>}
                             {this.state.otherOptionInsured && <h1>その他 保険: {this.state.otherOptionInsured}</h1>}
                             {this.state.otherOptionUninsured && <h1>その他 自費: {this.state.otherOptionUninsured}</h1>}
@@ -282,7 +279,6 @@ class CardInfo extends Component {
                             date={this.state.date}
                             deliveryDate={this.state.deliveryDate}
                             deliveryTime={this.state.deliveryTime}
-                            specs={this.state.specs}
                             otherOption={this.state.otherOption}
                             filename={this.state.patientName}
                             inlayInvolution={this.state.inlayInvolution}

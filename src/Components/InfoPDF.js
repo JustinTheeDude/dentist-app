@@ -115,7 +115,6 @@ class PDF extends React.Component{
                         <Text>患者ID: {this.props.patientID}</Text>
                         <Text>年齢: {this.props.age}</Text>
                         <Text>性別: {this.props.gender}</Text>
-                        <Text>製品仕様: {this.props.specs}</Text>
                         {
                         this.props.otherOption ? <Text>製品仕様 他: {this.props.otherOption}</Text> : null
                         }
