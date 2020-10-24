@@ -1,22 +1,48 @@
 import React from 'react'
 import { FormGroup,Label,Input } from 'reactstrap';
 
-function Br({ paymentType,BrMaterialInsured, BrInsuredShade,BrMaterialUninsured, BrShadeUninsured, handleChange }) {
+function Br({ 
+  paymentType,
+  BrInvolution,
+  BrInvolutionBT,
+  BrMaterialInsured, 
+  BrShadeInsured,
+  BrMaterialUninsured, 
+  BrShadeUninsured, 
+  handleChange 
+}) {
   return (
     <FormGroup>
+    <Label for="BrInvolution">対合</Label>
+        <Input type="select" name="BrInvolution" value={BrInvolution} onChange={handleChange} required>
+          　<option>Please Select a choice</option>
+            <option>なし</option>
+            <option>あり</option>     
+          </Input>
+        {
+          BrInvolution === "あり" &&
+          <div>
+            <Label for="BrInvolutionBT">BT</Label>
+            <Input type="select" name="BrInvolutionBT" value={BrInvolutionBT} onChange={handleChange} required>
+            　<option>Please Select a choice</option>
+              <option>なし</option>
+              <option>あり</option>     
+            </Input>
+          </div> 
+        }
       {
       paymentType === "保険" &&
       <div>
         <Label for="BrMaterialInsured">Br 保険</Label>
           <Input type="select" name="BrMaterialInsured" value={BrMaterialInsured} onChange={handleChange} required>
           　<option>なし</option>
-            <option>BrBT(咬合床)</option>
+            <option>Br BT(咬合床)</option>
             <option>金パラ</option>
             <option>銀合金</option>
             <option>14K</option>
             <option>高強度硬質レジン</option>         
-          </Input><Label for="BrInsuredShade">Br シェード選択 保険</Label>
-          <Input type="select" name="BrInsuredShade" value={BrInsuredShade} onChange={handleChange} required>
+          </Input><Label for="BrShadeInsured">Br シェード選択 保険</Label>
+          <Input type="select" name="BrShadeInsured" value={BrShadeInsured} onChange={handleChange} required>
             <option>なし</option>
             <option>A 1</option>
             <option>A 2</option>

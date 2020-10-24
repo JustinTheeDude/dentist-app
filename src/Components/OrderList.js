@@ -54,7 +54,7 @@ let sortedObj = arr.reduce((c, v) => {
     
     const toggle = (id,e) => { 
 
-        const carets = document.querySelectorAll(".arrow")
+        // const carets = document.querySelectorAll(".arrow")
         if(e.target.className === "arrow up") {  
             e.target.classList.remove("up")
             e.target.classList.add("down")

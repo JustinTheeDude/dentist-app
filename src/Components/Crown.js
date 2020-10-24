@@ -1,10 +1,36 @@
 import React from 'react'
 import { FormGroup, Label, Input } from "reactstrap";
 
-function Crown({ paymentType, crownMaterialInsured, crownShadeInsured, crownMaterialUninsured, crownShadeUninsured, handleChange}) {
+function Crown({ 
+    paymentType,
+    crownInvolution,
+    crownInvolutionBT,
+    crownMaterialInsured, 
+    crownShadeInsured, 
+    crownMaterialUninsured, 
+    crownShadeUninsured, 
+    handleChange
+}) {
 
   return (
     <FormGroup className="Crown form-box">
+        <Label for="crownInvolution">対合</Label>
+          <Input type="select" name="crownInvolution" value={crownInvolution} onChange={handleChange} required>
+          　<option>Please Select a choice</option>
+            <option>なし</option>
+            <option>あり</option>     
+          </Input>
+        {
+          crownInvolution === "あり" &&
+          <div>
+            <Label for="crownInvolutionBT">BT</Label>
+            <Input type="select" name="crownInvolutionBT" value={crownInvolutionBT} onChange={handleChange} required>
+            　<option>Please Select a choice</option>
+              <option>なし</option>
+              <option>あり</option>     
+            </Input>
+          </div> 
+        }
         {
             paymentType === "保険" &&
             <div>

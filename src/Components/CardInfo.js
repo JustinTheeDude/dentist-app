@@ -23,13 +23,20 @@ class CardInfo extends Component {
         specs: "",
         treatmentType:"",
         paymentType: "",
-        inlayOnlay:"",
+        inlayInvolution: "", 
+        inlayInvolutionBT: "",
+        inlaySpecInsured:"",
+        inlaySpecUninsured: "",
         inlayMaterial: "",
         inlayShade: "",
+        crownInvolution: "", 
+        crownInvolutionBT: "",
         crownMaterialInsured: "",
         crownShadeInsured: "",
         crownMaterialUninsured: "",
         crownShadeUninsured: "",
+        BrInvolution: "",
+        BrInvolutionBT: "",
         BrMaterialInsured: "",
         BrShadeInsured: "" ,
         BrMaterialUninsured: "",
@@ -39,13 +46,22 @@ class CardInfo extends Component {
         otherOptionInsured: "",
         otherOptionUninsured: "",
         implantType: "",
+        implantMaterial: "", 
+        implantTray: "",
         implantMaker: "",
+        implantMakerNobelOption: "",
+        implantMakerCamlogOption: "",
+        implantAnkylosCamlogOption: "",
+        implantMakerAstraTechOption: "",
+        implantShade: "", 
+        dentureInvolution: "",
+        dentureInvolutionBT: "",
         dentureInsured: "",
         dentureUninsured: "",
         dentureArtificialInsured: "",
+        dentureFloorInsured: "",
         dentureBarInsured: "",
-        dentureFloorInsured:"",
-        dentureClaspInsured: "",
+        dentureBarUninsured:"",
         dentureOtherInsured: "",
         mainComplaint: "",
         deliveryTime: "",
@@ -98,13 +114,20 @@ class CardInfo extends Component {
                             specs: items["specs"],
                             treatmentType: items["treatmentType"],
                             paymentType: items["paymentType"],
-                            inlayOnlay: items["inlayOnlay"],
-                            inlayMaterial:  items["inlayMaterial"],
+                            inlayInvolution: items["inlayInvolution"], 
+                            inlayInvolutionBT: items["inlayInvolutionBT"],
+                            inlaySpecInsured: items["inlaySpecInsured"],
+                            inlaySpecUninsured: items["inlaySpecUninsured"],
+                            inlayMaterial: items["inlayMaterial"],
                             inlayShade: items["inlayShade"],
+                            crownInvolution: items["crownInvolution"], 
+                            crownInvolutionBT: items["crownInvolutionBT"],
                             crownMaterialInsured:items["crownMaterialInsured"],
                             crownShadeInsured: items["crownShadeInsured"],
                             crownMaterialUninsured: items["crownMaterialUninsured"], 
                             crownShadeUninsured: items["crownShadeUninsured"],
+                            BrInvolution: items["BrInvolution"], 
+                            BrInvolutionBT: items["BrInvolutionBT"],
                             BrMaterialInsured: items["BrMaterialInsured"],
                             BrShadeInsured: items["BrShadeInsured"] ,
                             BrMaterialUninsured: items["BrMaterialUninsured"],
@@ -114,13 +137,22 @@ class CardInfo extends Component {
                             oralDeviceInsured: items["oralDeviceInsured"],
                             oralDeviceUninsured: items["oralDeviceUninsured"],
                             implantType: items["implantType"],
+                            implantMaterial: items["implantMaterial"],
+                            implantTray: items["implantTray"],
                             implantMaker: items["implantMaker"],
+                            implantMakerNobelOption: items["implantMakerNobelOption"],
+                            implantMakerCamlogOption: items["implantMakerCamlogOption"],
+                            implantAnkylosCamlogOption: items["implantAnkylosCamlogOption"],
+                            implantMakerAstraTechOption: items["implantMakerAstraTechOption"],
+                            implantShade: items["implantShade"],
+                            dentureInvolution: items["dentureInvolution"],
+                            dentureInvolutionBT: items["dentureInvolutionBT"], 
                             dentureInsured: items["dentureInsured"],
                             dentureUninsured: items["dentureUninsured"],
                             dentureArtificialInsured: items["dentureArtificialInsured"],
                             dentureBarInsured: items["dentureBarInsured"],
+                            dentureBarUninsured: items["dentureBarUninsured"],
                             dentureFloorInsured: items["dentureFloorInsured"],
-                            dentureClaspInsured: items["dentureClaspInsured"],
                             dentureOtherInsured: items["dentureOtherInsured"],
                             mainComplaint: items["mainComplaint"],
                             deliveryTime: items["deliveryTime"],
@@ -172,13 +204,20 @@ class CardInfo extends Component {
                             {this.state.otherOption && <h1>製品仕様 他: {this.state.otherOption}</h1>}
                             <h1>治療の種類: {this.state.treatmentType}</h1>
                             <h1>支払い: {this.state.paymentType}</h1>
-                            {this.state.inlayOnlay && <h1>インレーとアンレー: {this.state.inlayOnlay}</h1>}
+                            {this.state.inlayInvolution && <h1>対合 : {this.state.inlayInvolution}</h1>}
+                            {this.state.inlayInvolutionBT && <h1>対合 BT: {this.state.inlayInvolutionBT}</h1>}
+                            {this.state.inlaySpecInsured && <h1>Inlay Spec 保険 : {this.state.inlaySpecInsured}</h1>}
+                            {this.state.inlaySpecUninsured && <h1>Inlay Spec 自費 : {this.state.inlaySpecUninsured}</h1>}
                             {this.state.inlayMaterial && <h1>補綴物インレー: {this.state.inlayMaterial}</h1>}
                             {this.state.inlayShade && <h1>インレーシェード: {this.state.inlayShade}</h1>}
+                            {this.state.crownInvolution && <h1>対合: {this.state.crownInvolution}</h1>}
+                            {this.state.crownInvolutionBT && <h1>対合 BT: {this.state.crownInvolutionBT}</h1>}
                             {this.state.crownMaterialInsured && <h1>クラウン 保険: {this.state.crownMaterialInsured}</h1>}
                             {this.state.crownShadeInsured && <h1>クラウン シェード選択 保険: {this.state.crownShadeInsured}</h1>}
                             {this.state.crownMaterialUninsured && <h1>クラウン 自費: {this.state.crownMaterialUninsured}</h1>}
                             {this.state.crownShadeUninsured && <h1>クラウン シェード選択 自費: {this.state.crownShadeUninsured}</h1>}
+                            {this.state.BrInvolution && <h1>対合: {this.state.BrInvolution}</h1>}
+                            {this.state.BrInvolutionBT && <h1>対合 BT: {this.state.BrInvolutionBT}</h1>}
                             {this.state.BrMaterialInsured && <h1>Br 保険: {this.state.BrMaterialInsured}</h1>}
                             {this.state.BrShadeInsured && <h1>Br シェード選択 保険: {this.state.BrShadeInsured}</h1>}
                             {this.state.BrMaterialUninsured && <h1>Br 自費: {this.BrMaterialUninsured}</h1>}
@@ -188,13 +227,22 @@ class CardInfo extends Component {
                             {this.state.oralDeviceInsured && <h1>口腔内装置 保険: {this.state.oralDeviceInsured}</h1>}
                             {this.state.oralDeviceUninsured && <h1>口腔内装置 自費: {this.state.oralDeviceUninsured}</h1>}
                             {this.state.implantType && <h1>インプラント: {this.state.implantType}</h1>}
+                            {this.state.implantMaterial && <h1>インプラントタイプ: {this.state.implantMaterial}</h1>}
+                            {this.state.implantTray && <h1>各個トレー: {this.state.implantTray}</h1>}
                             {this.state.implantMaker && <h1>インプラント メーカー: {this.state.implantMaker}</h1>}
+                            {this.state.implantMakerNobelOption && <h1>ノーベル Option: {this.state.implantMakerNobelOption}</h1>}
+                            {this.state.implantMakerCamlogOption && <h1>カムログ Option: {this.state.implantMakerCamlogOption}</h1>}
+                            {this.state.implantMakerAnkylosOption && <h1>アンキロス Option: {this.state.implantMakerAnkylosOption}</h1>}
+                            {this.state.implantMakerAstraTechOption && <h1>アストラテック Option: {this.state.implantMakerAstraTechOption}</h1>}
+                            {this.state.implantShade && <h1>インプラント シェード選択: {this.state.implantShade}</h1>}
+                            {this.state.dentureInvolution && <h1>対合: {this.state.dentureInvolution}</h1>}
+                            {this.state.dentureInvolutionBT && <h1>対合 BT: {this.state.dentureInvolutionBT}</h1>}
                             {this.state.dentureInsured && <h1>義歯 保険: {this.state.dentureInsured}</h1>}
                             {this.state.dentureUninsured && <h1>義歯 自費: {this.state.dentureUninsured}</h1>}
                             {this.state.dentureArtificialInsured && <h1>人工歯 保険: {this.state.dentureArtificialInsured}</h1>}
                             {this.state.dentureBarInsured && <h1>バー 保険: {this.state.dentureBarInsured}</h1>}
                             {this.state.dentureFloorInsured && <h1>床 保険: {this.state.dentureFloorInsured}</h1>}
-                            {this.state.dentureClaspInsured && <h1>クラスプ 保険: {this.state.dentureClaspInsured}</h1>}
+                            {this.state.dentureBarUninsured && <h1>バー 自費: {this.state.dentureBarUninsured}</h1>}
                             {this.state.dentureOtherInsured && <h1>その他 保険: {this.state.dentureOtherInsured}</h1>}
                             <h1>主訴: {this.state.mainComplaint }</h1>
                             <h1>発注日: {this.state.date}</h1>
@@ -237,13 +285,20 @@ class CardInfo extends Component {
                             specs={this.state.specs}
                             otherOption={this.state.otherOption}
                             filename={this.state.patientName}
-                            inlayOnlay= {this.state.inlayOnlay}
+                            inlayInvolution={this.state.inlayInvolution}
+                            inlayInvolutionBT={this.state.inlayInvolutionBT}
+                            inlaySpecInsured={this.state.inlaySpecInsured}
+                            inlaySpecUninsured={this.state.inlaySpecUninsured}
                             inlayMaterial= {this.state.inlayMaterial}
                             inlayShade={this.state.inlayShade}
+                            crownInvolution={this.state.crownInvolution}
+                            crownInvolutionBT={this.state.crownInvolutionBT}
                             crownShadeInsured={this.state.crownShadeInsured}
                             crownMaterialInsured={this.state.crownMaterialInsured}
                             crownMaterialUninsured={this.state.crownMaterialUninsured}
                             crownShadeUninsured={this.state.crownShadeUninsured}
+                            BrInvolution={this.state.BrInvolution}
+                            BrInvolutionBT={this.state.BrInvolutionBT}
                             BrMaterialInsured={this.state.BrMaterialInsured}
                             BrShadeInsured={this.state.BrShadeInsured }
                             BrMaterialUninsured={this.state.BrMaterialUninsured}
@@ -254,13 +309,22 @@ class CardInfo extends Component {
                             otherOptionInsured={this.state.otherOptionInsured}
                             otherOptionUninsured={this.state.otherOptionUninsured}
                             implantType={this.state.implantType}
+                            implantMaterial={this.state.implantMateria}
+                            implantTray={this.state.implantTray}
                             implantMaker={this.state.implantMaker}
+                            implantMakerNobelOption={this.state.implantMakerNobelOption}
+                            implantMakerCamlogOption={this.state.implantMakerCamlogOption}
+                            implantMakerAnkylosOption={this.state.implantMakerAnkylosOption}
+                            implantMakerAstraTechOption={this.state.implantMakerAstraTechOption}
+                            implantShade={this.state.implantShade}
+                            dentureInvolution={this.state.dentureInvolution}
+                            dentureInvolutionBT={this.state.dentureInvolutionBT}
                             dentureInsured={this.state.dentureInsured}
-                            dentureUninsured={this.state.dentureInsured}
+                            dentureUninsured={this.state.dentureUninsured}
                             dentureArtificialInsured={this.state.dentureArtificialInsured}
                             dentureBarInsured={this.state.dentureBarInsured}
+                            dentureBarUninsured={this.state.dentureBarUninsured}
                             dentureFloorInsured={this.state.dentureFloorInsured}
-                            dentureClaspInsured={this.state.dentureClaspInsured}
                             dentureOtherInsured={this.state.dentureOtherInsured}
                             mainComplaint={this.state.mainComplaint}
                             drawing={this.state.drawing}
