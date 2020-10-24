@@ -13,6 +13,7 @@ function Denture({
    dentureFloorInsured,
    dentureBarUninsured,
    dentureOtherInsured,
+   dentureClaspInsuredNum,
    handleChange 
   }) {
 
