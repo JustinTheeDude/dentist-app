@@ -51,11 +51,35 @@ let sortedObj = arr.reduce((c, v) => {
     const goBack = () => {
         setOrderView(false);
     }
+    
+    const toggle = (id,e) => { 
 
-    const toggle = (id) => { 
+        // const carets = document.querySelectorAll(".arrow")
+        if(e.target.className === "arrow up") {  
+            e.target.classList.remove("up")
+            e.target.classList.add("down")
+        } else {
+            e.target.classList.remove("down")
+            e.target.classList.add("up")
+        }
+
+        
+        // for(let i = 0;i < carets.length;i++) {
+        //     if(carets[i] === e.target) {
+        //         // e.target.classList.remove("down")
+        //         e.target.classList.add("up")
+        //         if(carets[i] !== e.target && carets[i].className === "up") {
+        //             carets[i].classList.remove("up")
+        //             carets[i].classList.add("down")
+        //         }
+        //     }  else {
+        //         e.target.classList.remove("up")
+        //         e.target.classList.add("down")
+        //     }
+
+        // }
         hiddenOrder(id)
         setIsOpen(!isOpen);
-
     };
 
   
@@ -86,7 +110,7 @@ let sortedObj = arr.reduce((c, v) => {
                         <ul>
                             <li>{result[k]}</li>
                             <li>{k}</li>                                  
-                            <button id="toggler" onClick={() => toggle(k)} style={{ marginBottom: '1rem' }} className="arrow down" >v</button>
+                            <button id="toggler" onClick={(e) => toggle(k,e)} style={{ marginBottom: '1rem' }} className="arrow up" ></button>
                         </ul>
                         <div className="contact-cards" key={k} id={k}>
                     {   

@@ -5,10 +5,9 @@ import firebase from "./firebase.js";
 // Component import
 import DoctorInfo from './DoctorInfo';
 import PatientInfo from './PatientInfo';
-// import ProductsSpecs from './ProductsSpecs';
 import TreatmentType from './TreatmentType';
 import PaymentSelect from './PaymentSelect';
-import InlayOnlay from './InlayOnlay';
+import Inlay  from './Inlay';
 import Crown from './Crown';
 import Br from './Br';
 import Denture from './Denture';
@@ -16,7 +15,6 @@ import OtherOption from './OtherOption';
 import OralDevice from './OralDevice';
 import Implant from './Implant';
 import MainComplaint from './MainComplaint';
-
 import DeliveryTime from './DeliveryTime';
 import Calendar from "react-calendar";
 import DeliveryDate from "./DeliveryDate";
@@ -35,16 +33,22 @@ class MainInfo extends Component {
         patientID: "",
         age: "",
         gender: "男",
-        specs: "",
         paymentType: "保険",
         treatmentType: "",
-        inlayOnlay:"",
+        inlayInvolution: "", 
+        inlayInvolutionBT: "",
+        inlaySpecInsured:"",
+        inlaySpecUninsured: "",
         inlayMaterial: "",
         inlayShade: "",
+        crownInvolution: "", 
+        crownInvolutionBT: "",
         crownMaterialInsured: "",
         crownShadeInsured: "",
         crownMaterialUninsured: "",
         crownShadeUninsured: "",
+        BrInvolution: "",
+        BrInvolutionBT: "",
         BrMaterialInsured: "",
         BrShadeInsured: "" ,
         BrMaterialUninsured: "",
@@ -54,13 +58,22 @@ class MainInfo extends Component {
         otherOptionInsured: "",
         otherOptionUninsured: "",
         implantType: "",
+        implantMaterial: "", 
+        implantTray: "",
         implantMaker: "",
+        implantMakerNobelOption: "",
+        implantMakerCamlogOption: "",
+        implantMakerAnkylosOption: "",
+        implantMakerAstraTechOption: "",
+        implantShade: "", 
+        dentureInvolution: "",
+        dentureInvolutionBT: "",
         dentureInsured: "",
         dentureUninsured: "",
         dentureArtificialInsured: "",
         dentureFloorInsured: "",
-        dentureClaspInsured: "",
         dentureBarInsured: "",
+        dentureBarUninsured:"",
         dentureOtherInsured: "",
         mainComplaint: "",
         deliveryTime: "",
@@ -85,6 +98,8 @@ class MainInfo extends Component {
                     oralDeviceUninsured: "",
                     otherOptionUninsured: "",
                     dentureUninsured: "",
+                    dentureBarUninsured: "",
+                    inlaySpecUninsured: "",
                 })
             }
             if(e.target.value === "自費") {
@@ -101,6 +116,7 @@ class MainInfo extends Component {
                     dentureFloorInsured: "",
                     dentureClaspInsured: "",
                     dentureOtherInsured: "",
+                    inlaySpecInsured:"",
                 })
             }
             this.setState({
@@ -130,16 +146,22 @@ class MainInfo extends Component {
             deliveryDate: this.state.deliveryDate.toString().slice(0, 15),  
             age: this.state.age,
             gender: this.state.gender,
-            specs: this.state.specs,
             paymentType: this.state.paymentType,
             treatmentType: this.state.treatmentType,
-            inlayOnlay: this.state.inlayOnlay,
+            inlayInvolution: this.state.inlayInvolution, 
+            inlayInvolutionBT: this.state.inlayInvolutionBT,
+            inlaySpecInsured: this.state.inlaySpecInsured,
+            inlaySpecUninsured: this.state.inlaySpecUninsured,
             inlayMaterial: this.state.inlayMaterial,
             inlayShade: this.state.inlayShade,
+            crownInvolution: this.state.crownInvolution, 
+            crownInvolutionBT: this.state.crownInvolutionBT,
             crownMaterialInsured: this.state.crownMaterialInsured,
             crownShadeInsured: this.state.crownShadeInsured,
             crownMaterialUninsured: this.state.crownMaterialUninsured,
             crownShadeUninsured: this.state.crownShadeUninsured,
+            BrInvolution: this.state.BrInvolution, 
+            BrInvolutionBT: this.state.BrInvolutionBT,
             BrMaterialInsured: this.state.BrMaterialInsured,
             BrShadeInsured: this.state.BrShadeInsured ,
             BrMaterialUninsured: this.state.BrMaterialUninsured,
@@ -149,13 +171,22 @@ class MainInfo extends Component {
             otherOptionInsured: this.state.otherOptionInsured,
             otherOptionUninsured: this.state.otherOptionUninsured,
             implantType: this.state.implantType,
+            implantMaterial: this.state.implantMaterial,
+            implantTray:this.state.implantTray,
             implantMaker: this.state.implantMaker,
+            implantMakerNobelOption: this.state.implantMakerNobelOption,
+            implantMakerCamlogOption:this.state.implantMakerCamlogOption,
+            implantMakerAnkylosOption: this.state.implantMakerAnkylosOption,
+            implantMakerAstraTechOption: this.state.implantMakerAstraTechOption,
+            implantShade:this.state.implantShade,
+            dentureInvolution: this.state.dentureInvolution,
+            dentureInvolutionBT: this.state.dentureInvolutionBT, 
             dentureInsured: this.state.dentureInsured,
             dentureUninsured: this.state.dentureUninsured,
             dentureArtificialInsured: this.state.dentureArtificialInsured,
             dentureBarInsured: this.state.dentureBarInsured,
+            dentureBarUninsured: this.state.dentureBarUninsured,
             dentureFloorInsured: this.state.dentureFloorInsured,
-            dentureClaspInsured: this.state.dentureClaspInsured,
             dentureOtherInsured: this.state.dentureOtherInsured,
             mainComplaint: this.state.mainComplaint,
             deliveryTime: this.state.deliveryTime,
@@ -185,16 +216,22 @@ class MainInfo extends Component {
             deliveryDate: this.state.deliveryDate.toString().slice(0, 15),  
             age: this.state.age,
             gender: this.state.gender,
-            specs: this.state.specs,
             paymentType: this.state.paymentType,
             treatmentType: this.state.treatmentType,
-            inlayOnlay: this.state.inlayOnlay,
+            inlayInvolution: this.state.inlayInvolution, 
+            inlayInvolutionBT: this.state.inlayInvolutionBT,
+            inlaySpecInsured: this.state.inlaySpecInsured,
+            inlaySpecUninsured: this.state.inlaySpecUninsured,
             inlayMaterial: this.state.inlayMaterial,
             inlayShade: this.state.inlayShade,
+            crownInvolution: this.state.crownInvolution, 
+            crownInvolutionBT: this.state.crownInvolutionBT,
             crownMaterialInsured: this.state.crownMaterialInsured,
             crownShadeInsured: this.state.crownShadeInsured,
             crownMaterialUninsured: this.state.crownMaterialUninsured,
             crownShadeUninsured: this.state.crownShadeUninsured,
+            BrInvolution: this.state.BrInvolution, 
+            BrInvolutionBT: this.state.BrInvolutionBT,
             BrMaterialInsured: this.state.BrMaterialInsured,
             BrShadeInsured: this.state.BrShadeInsured ,
             BrMaterialUninsured: this.state.BrMaterialUninsured,
@@ -204,13 +241,22 @@ class MainInfo extends Component {
             otherOptionInsured: this.state.otherOptionInsured,
             otherOptionUninsured: this.state.otherOptionUninsured,
             implantType: this.state.implantType,
+            implantMaterial: this.state.implantMaterial,
+            implantTray:this.state.implantTray,
             implantMaker: this.state.implantMaker,
+            implantMakerNobelOption: this.state.implantMakerNobelOption,
+            implantMakerCamlogOption:this.state.implantMakerCamlogOption,
+            implantMakerAnkylosOption: this.state.implantMakerAnkylosOption,
+            implantMakerAstraTechOption: this.state.implantMakerAstraTechOption,
+            implantShade:this.state.implantShade,
+            dentureInvolution: this.state.dentureInvolution,
+            dentureInvolutionBT: this.state.dentureInvolutionBT, 
             dentureInsured: this.state.dentureInsured,
             dentureUninsured: this.state.dentureUninsured,
             dentureArtificialInsured: this.state.dentureArtificialInsured,
             dentureBarInsured: this.state.dentureBarInsured,
+            dentureBarUninsured: this.state.dentureBarUninsured,
             dentureFloorInsured: this.state.dentureFloorInsured,
-            dentureClaspInsured: this.state.dentureClaspInsured,
             dentureOtherInsured: this.state.dentureOtherInsured,
             mainComplaint: this.state.mainComplaint,
             deliveryTime: this.state.deliveryTime,
@@ -250,16 +296,22 @@ class MainInfo extends Component {
                     deliveryDate: items["deliveryDate"],
                     age: items["age"],
                     gender: items["gender"],
-                    specs: items["specs"],
                     paymentType: items["paymentType"],
                     treatmentType: items["treatmentType"],
-                    inlayOnlay: items["inlayOnlay"],
+                    inlayInvolution: items["inlayInvolution"], 
+                    inlayInvolutionBT: items["inlayInvolutionBT"],
+                    inlaySpecInsured: items["inlaySpecInsured"],
+                    inlaySpecUninsured: items["inlaySpecUninsured"],
                     inlayMaterial:  items["inlayMaterial"],
                     inlayShade: items["inlayShade"],
+                    crownInvolution: items["crownInvolution"], 
+                    crownInvolutionBT: items["crownInvolutionBT"],
                     crownMaterialInsured: items["crownMaterialInsured"],
                     crownShadeInsured: items["crownShadeInsured"],
                     crownMaterialUninsured: items["crownMaterialUninsured"], 
                     crownShadeUninsured: items["crownShadeUninsured"],
+                    BrInvolution: items["BrInvolution"], 
+                    BrInvolutionBT: items["BrInvolutionBT"],
                     BrMaterialInsured: items["BrMaterialInsured"],
                     BrShadeInsured: items["BrShadeInsured"] ,
                     BrMaterialUninsured: items["BrMaterialUninsured"],
@@ -269,13 +321,22 @@ class MainInfo extends Component {
                     otherOptionInsured: items["otherOptionInsured"],
                     otherOptionUninsured: items["otherOptionUninsured"],
                     implantType: items["implantType"],
+                    implantMaterial: items["implantMaterial"],
+                    implantTray: items["implantTray"],
                     implantMaker: items["implantMaker"],
+                    implantMakerNobelOption: items["implantMakerNobelOption"],
+                    implantMakerCamlogOption: items["implantMakerCamlogOption"],
+                    implantMakerAnkylosOption: items["implantMakerAnkylosOption"],
+                    implantMakerAstraTechOption: items["implantMakerAstraTechOption"],
+                    implantShade: items["implantShade"],
+                    dentureInvolution: items["dentureInvolution"],
+                    dentureInvolutionBT: items["dentureInvolutionBT"], 
                     dentureInsured: items["dentureInsured"],
                     dentureUninsured: items["dentureUninsured"],
                     dentureArtificialInsured: items["dentureArtificialInsured"],
                     dentureBarInsured: items["dentureBarInsured"],
+                    dentureBarUninsured: items["dentureBarUninsured"],
                     dentureFloorInsured: items["dentureFloorInsured"],
-                    dentureClaspInsured: items["dentureClaspInsured"],
                     dentureOtherInsured: items["dentureOtherInsured"],
                     mainComplaint: items["mainComplaint"],
                     deliveryTime: items["deliveryTime"],
@@ -304,19 +365,21 @@ class MainInfo extends Component {
                         age={this.state.age} 
                         gender={this.state.gender} 
                     />
-                    {/* <ProductsSpecs handleChange={this.handleChange}  specs={this.state.specs} value={this.state.value} OtherOption={this.state.OtherOption}  /> */}
                     <TreatmentType   handleChange={this.handleChange} treatmentType={this.state.treatmentType} value={this.state.value}  />
                     <PaymentSelect handleChange={this.handleChange} paymentType={this.state.paymentType} />
                {
                   this.state.treatmentType === "インレー" &&
                    <div>
-                        <h2><strong>インレーとアンレー</strong></h2> 
-                            <InlayOnlay 
+                        <h2><strong>インレー</strong></h2> 
+                            <Inlay
                                 handleChange={this.handleChange} 
-                                inlayOnlay={this.state.inlayOnlay} 
                                 inlayMaterial={this.state.inlayMaterial} 
                                 inlayShade={this.state.inlayShade} 
-                                paymentType={this.state.paymentType}                          
+                                inlaySpecInsured={this.state.inlaySpecInsured}
+                                inlaySpecUninsured={this.state.inlaySpecUninsured}
+                                paymentType={this.state.paymentType}
+                                inlayInvolution={this.state.inlayInvolution}
+                                inlayInvolutionBT={this.state.inlayInvolutionBT}                          
                             /> 
                    </div>
 
@@ -331,6 +394,8 @@ class MainInfo extends Component {
                                 crownShadeInsured={this.state.crownShadeInsured}
                                 crownMaterialUninsured={this.state.crownMaterialUninsured}
                                 crownShadeUninsured={this.state.crownShadeUninsured}
+                                crownInvolution={this.state.crownInvolution}
+                                crownInvolutionBT={this.state.crownInvolutionBT}    
                                 paymentType={this.state.paymentType}  
                             />
                     </div>
@@ -345,7 +410,9 @@ class MainInfo extends Component {
                                 BrMaterialInsured={this.state.BrMaterialInsured} 
                                 BrShadeInsured={this.state.BrShadeInsured}
                                 BrMaterialUninsured={this.state.BrMaterialUninsured}
-                                BrShadeUninsured={this.state.BrShadeUninsured}              
+                                BrInvolution={this.state.BrInvolution}
+                                BrInvolutionBT={this.state.BrInvolutionBT} 
+                                BrShadeUninsured={this.state.BrShadeUninsured}           
                             />
                     </div>
                 }
@@ -381,8 +448,14 @@ class MainInfo extends Component {
                             <Implant 
                                 handleChange={this.handleChange} 
                                 implantType={this.state.implantType}
+                                implantMaterial={this.state.implantMaterial}
+                                implantTray={this.state.implantTray}
                                 implantMaker={this.state.implantMaker}
-                                paymentType={this.state.paymentType}
+                                implantMakerNobelOption={this.state.implantMakerNobelOption}
+                                implantMakerCamlogOption={this.state.implantMakerCamlogOption}
+                                implantMakerAnkylosOption={this.state.implantMakerAnkylosOption}
+                                implantMakerAstraTechOption={this.state.implantMakerAstraTechOption}
+                                implantShade={this.state.implantShade}
                             />
                     </div>
                 } 
@@ -390,16 +463,20 @@ class MainInfo extends Component {
                     this.state.treatmentType === "義歯" &&
                     <div>
                         <h2><strong>義歯</strong></h2>
+                            {/* need to connect checkbox options to teeth */}
                             <Denture
                                 handleChange={this.handleChange}
                                 paymentType={this.state.paymentType}
+                                dentureInvolution={this.state.dentureInvolution}
+                                dentureInvolutionBT={this.state.dentureInvolutionBT} 
                                 dentureInsured={this.state.dentureInsured}
                                 dentureUninsured={this.state.dentureUninsured}
-                                dentureInsuredArtificial={this.state.dentureArtificialInsured}
+                                dentureArtificialInsured={this.state.dentureArtificialInsured}
                                 dentureBarInsured={this.state.dentureBarInsured}
+                                dentureBarUninsured={this.state.dentureBarUninsured}
                                 dentureFloorInsured={this.state.dentureFloorInsured}
-                                dentureClaspInsured={this.state.dentureClaspInsured}
                                 dentureOtherInsured={this.state.dentureOtherInsured}
+                                
                             />
                     </div>
                 }
