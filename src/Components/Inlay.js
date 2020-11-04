@@ -13,6 +13,8 @@ function InlayOnlay({
 }) {
 
   return (
+    <div>
+    <h2><strong>インレー</strong></h2> 
     <FormGroup className="inlay-onlay form-box">
         <Label for="inlayInvolution">対合</Label>
           <Input type="select" name="inlayInvolution" value={inlayInvolution} onChange={handleChange} required>
@@ -86,6 +88,7 @@ function InlayOnlay({
       }
 
     </FormGroup>
+    </div>
   )
 }
 

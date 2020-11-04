@@ -1,10 +1,20 @@
 import React from "react";
-import { FormGroup, Label, Input } from "reactstrap";
+import { FormGroup, Label, Input, Button } from "reactstrap";
 
 
-function PatientInfo({ patientName,patientID,age,gender,handleChange }) {
+function PatientInfo({ patientName, patientID, age, gender, handleChange, nextStep, prevStep }) {
+   const next = e => {
+        e.preventDefault();
+         nextStep();
+      };
+    
+     const back = e => {
+        e.preventDefault();
+         prevStep();
+      };
     return (
         <div>
+            <h3 className="hospital-info-header">医院情報</h3>
             <FormGroup className="patient-name form-box">
               <Label className="patient-name-label">患者名</Label>
                   <Input
@@ -44,6 +54,15 @@ function PatientInfo({ patientName,patientID,age,gender,handleChange }) {
                       <option>女</option>
                   </Input>
             </FormGroup>
+            <Button
+             color="primary"
+              onClick={back}
+            >Back</Button>
+             &nbsp;&nbsp; &nbsp;&nbsp;
+            <Button
+             color="primary"
+              onClick={next}
+            >next</Button>
         </div>
     )
 }

@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import { Form, Button} from "reactstrap";
 import firebase from "./firebase.js";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 // Component import
 import DoctorInfo from './DoctorInfo';
@@ -80,6 +81,19 @@ class MainInfo extends Component {
         OtherOption: "",
         drawing: "",
         diagram: "",
+        step: 1,
+        docInfo: true,
+        patientInfo: false,
+        paymentSelect: false,
+        treatmentInfo: false,
+        inlay: "",
+        crown: "",
+        br: "",
+        oralDevice: "",
+        implant: "",
+        denture: "",
+        other: ""
+
     };
     user = firebase.auth().currentUser;
     id = this.props.match.params.id
@@ -124,12 +138,31 @@ class MainInfo extends Component {
                 value: e.target.value,
             })
     };
+    // Proceed to next step
+    nextStep = () => {
+        const { step } = this.state;
+        this.setState({
+        step: step + 1
+        });
+        const { match } = this.props
+    }; 
 
+    // Go back to prev step
+    prevStep = () => {
+        const { step } = this.state;
+        this.setState({
+        step: step - 1
+        });
+    };
     getDrawing = (data) => {
         this.setState({drawing: data})
     }
     getDiagram = (data) => {
         this.setState({diagram: data})
+    }
+    getTreatmentOptions = (inlay,crown,br,oralDevice,implant,denture,other) => {
+       
+        this.setState({inlay:inlay,crown:crown,br:br,oralDevice:oralDevice,implant:implant,denture:denture,other:other})
     }
     handleSubmit = e => {
  
@@ -352,25 +385,44 @@ class MainInfo extends Component {
 
     render() {
         const user = firebase.auth().currentUser
+        const { step } = this.state;
+        const { match } = this.props
 
         return (
-            <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
-                <h3 className="hospital-info-header">医院情報</h3>
-                    <DoctorInfo user={user}  address={this.state.address} zip={this.state.zip} handleChange={this.handleChange} />
-                <h3 className="patient-info-header">患者情報</h3>
-                    <PatientInfo 
+            <div>
+                <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
+                    <Route path={`${match.url}/doctor`} component={ () =>
+                    <DoctorInfo 
+                        user={user.displayName} 
+                        nextStep={this.nextStep}  
+                        address={this.state.address} 
+                        zip={this.state.zip} 
                         handleChange={this.handleChange} 
-                        patientName={this.state.patientName} 
-                        patientID={this.state.patientID} 
-                        age={this.state.age} 
-                        gender={this.state.gender} 
-                    />
-                    <TreatmentType   handleChange={this.handleChange} treatmentType={this.state.treatmentType} value={this.state.value}  />
-                    <PaymentSelect handleChange={this.handleChange} paymentType={this.state.paymentType} />
-               {
-                  this.state.treatmentType === "インレー" &&
-                   <div>
-                        <h2><strong>インレー</strong></h2> 
+                        match={match}                      
+                        />
+                    }/>
+                    <Route path={`${match.url}/patient`} component={ () =>
+                            <PatientInfo 
+                            handleChange={this.handleChange} 
+                            nextStep={this.nextStep}  
+                            patientName={this.state.patientName} 
+                            patientID={this.state.patientID} 
+                            age={this.state.age} 
+                            gender={this.state.gender} 
+                            prevStep={this.prevStep}
+                                                    
+                        />
+                    }/>
+    
+                 <Route path={`${match.url}/treatment`} component={ () =>
+                        <div>
+                         <PaymentSelect handleChange={this.handleChange} paymentType={this.state.paymentType}  />
+                        <TreatmentType   
+                              getTreatmentOptions={this.getTreatmentOptions}
+                            nextStep={this.nextStep} prevStep={this.prevStep} />
+                        </div>
+                }/>
+                <Route path={`${match.url}/inlay`} component={ () =>
                             <Inlay
                                 handleChange={this.handleChange} 
                                 inlayMaterial={this.state.inlayMaterial} 
@@ -381,71 +433,48 @@ class MainInfo extends Component {
                                 inlayInvolution={this.state.inlayInvolution}
                                 inlayInvolutionBT={this.state.inlayInvolutionBT}                          
                             /> 
-                   </div>
-
-                }
-                {
-                    this.state.treatmentType === "クラウン" &&
-                    <div>
-                        <h2><strong>クラウン</strong></h2>
-                            <Crown  
-                                handleChange={this.handleChange} 
-                                crownMaterialInsured={this.state.crownMaterialInsured} 
-                                crownShadeInsured={this.state.crownShadeInsured}
-                                crownMaterialUninsured={this.state.crownMaterialUninsured}
-                                crownShadeUninsured={this.state.crownShadeUninsured}
-                                crownInvolution={this.state.crownInvolution}
-                                crownInvolutionBT={this.state.crownInvolutionBT}    
-                                paymentType={this.state.paymentType}  
-                            />
-                    </div>
-                }
-                {
-                    this.state.treatmentType === "Br" &&
-                    <div>
-                        <h2><strong>Br</strong></h2>
-                            <Br 
-                                handleChange={this.handleChange}
-                                paymentType={this.state.paymentType}
-                                BrMaterialInsured={this.state.BrMaterialInsured} 
-                                BrShadeInsured={this.state.BrShadeInsured}
-                                BrMaterialUninsured={this.state.BrMaterialUninsured}
-                                BrInvolution={this.state.BrInvolution}
-                                BrInvolutionBT={this.state.BrInvolutionBT} 
-                                BrShadeUninsured={this.state.BrShadeUninsured}           
-                            />
-                    </div>
-                }
-                {
-                    this.state.treatmentType === "口腔内装置" &&
+                
+                }/>
+                <Route path={`${match.url}/crown`} component={ () =>
+                    <Crown  
+                        handleChange={this.handleChange} 
+                        crownMaterialInsured={this.state.crownMaterialInsured} 
+                        crownShadeInsured={this.state.crownShadeInsured}
+                        crownMaterialUninsured={this.state.crownMaterialUninsured}
+                        crownShadeUninsured={this.state.crownShadeUninsured}
+                        crownInvolution={this.state.crownInvolution}
+                        crownInvolutionBT={this.state.crownInvolutionBT}    
+                        paymentType={this.state.paymentType}  
+                    />
+                }/>
+                <Route path={`${match.url}/br`} component={ () =>
+                    <Br 
+                        handleChange={this.handleChange}
+                        paymentType={this.state.paymentType}
+                        BrMaterialInsured={this.state.BrMaterialInsured} 
+                        BrShadeInsured={this.state.BrShadeInsured}
+                        BrMaterialUninsured={this.state.BrMaterialUninsured}
+                        BrInvolution={this.state.BrInvolution}
+                        BrInvolutionBT={this.state.BrInvolutionBT} 
+                    />
+                               
+                }/>
+                <Route path={`${match.url}/oral-device`} component={ () =>
                     <div>
                         <h2><strong>口腔内装置</strong></h2>
-                            <OralDevice
-                                handleChange={this.handleChange} 
-                                oralDeviceInsured={this.state.oralDeviceInsured}
-                                oralDeviceUninsured={this.state.oralDeviceUninsured}
-                                paymentType={this.state.paymentType}  
-                            />
+                        <OralDevice
+                            handleChange={this.handleChange} 
+                            oralDeviceInsured={this.state.oralDeviceInsured}
+                            oralDeviceUninsured={this.state.oralDeviceUninsured}
+                            paymentType={this.state.paymentType}  
+                        />
                     </div>
-                }
-                {
-                    this.state.treatmentType === "その他" &&
-                    <div>
-                        <h2><strong>その他</strong></h2>
-                            <OtherOption
-                                handleChange={this.handleChange}
-                                otherOptionInsured={this.state.otherOptionInsured}
-                                otherOptionUninsured={this.state.otherOptionUninsured}
-                                paymentType={this.state.paymentType}  
-                            />
-                    </div>
-                }
-                {
-                    this.state.treatmentType === "インプラント" &&
+                               
+                }/>        
+                <Route path={`${match.url}/implant`} component={ () =>
                     <div>
                         <h2><strong>インプラント</strong></h2>
-                        &nbsp;&nbsp;&nbsp;
-                            <Implant 
+                        <Implant 
                                 handleChange={this.handleChange} 
                                 implantType={this.state.implantType}
                                 implantMaterial={this.state.implantMaterial}
@@ -458,13 +487,13 @@ class MainInfo extends Component {
                                 implantShade={this.state.implantShade}
                             />
                     </div>
-                } 
-                {
-                    this.state.treatmentType === "義歯" &&
+                               
+                }/>
+                <Route path={`${match.url}/denture`} component={ () =>
                     <div>
                         <h2><strong>義歯</strong></h2>
                             {/* need to connect checkbox options to teeth */}
-                            <Denture
+                             <Denture
                                 handleChange={this.handleChange}
                                 paymentType={this.state.paymentType}
                                 dentureInvolution={this.state.dentureInvolution}
@@ -476,39 +505,50 @@ class MainInfo extends Component {
                                 dentureBarUninsured={this.state.dentureBarUninsured}
                                 dentureFloorInsured={this.state.dentureFloorInsured}
                                 dentureOtherInsured={this.state.dentureOtherInsured}
-                                
                             />
-                    </div>
-                }
-
+                    </div>        
+                }/>
+                <Route path={`${match.url}/delivery-time`} component={ () =>
+                    <div>
                     <MainComplaint handleChange={this.handleChange} mainComplaint={this.state.mainComplaint} />
                     <DeliveryTime  handleChange={this.handleChange} deliveryTime={this.state.deliveryTime} />
-                <h3 className="order-heading">発注日/納期日</h3>
-                <div className="calendar form-box">
-                    <Calendar
+                    </div>        
+                }/>
+                <Route path={`${match.url}/delivery-date`} component={ () =>
+                    <div>
+                         <h3 className="order-heading">発注日/納期日</h3>
+                        <div className="calendar form-box">
+                        <Calendar
                         calendarType="US"
                         onClickDay={this.onChange}
                         minDate={this.state.minDate}
-                    />
-                    <DeliveryDate
+                         />
+                        <DeliveryDate
                         date={this.state.date.toString().slice(0, 15)}
                         delivery={this.state.deliveryDate.toString().slice(0, 15)}
-                    />
-                </div>
-                <div className="canvas form-box">
-                    <MouthCanvas  drawing={this.state.drawing} id={this.id} getDrawing={this.getDrawing} />
-                    &nbsp;&nbsp;
-                    <PtnadultCanvas  diagram={this.state.diagram} id={this.id} getDiagram={this.getDiagram} />
-                </div>
-                {
-                    !this.id ?
-                    <Button id="btn" className="form-box">Submit</Button> :
-                    <Button id="btn" className="form-box" onClick={this.handleUpdate}>Update</Button> 
-                    
-                }
-            </Form>
-        );
-    }
+                        />
+                        </div>  
+                    </div>        
+                }/>
+                <Route path={`${match.url}/diagrams`} component={ () =>
+                    <div className="canvas form-box">
+                     <MouthCanvas  drawing={this.state.drawing} id={this.id} getDrawing={this.getDrawing} />
+                      &nbsp;&nbsp;
+                     <PtnadultCanvas  diagram={this.state.diagram} id={this.id} getDiagram={this.getDiagram} />
+                
+                    </div>        
+                }/>
+                 <Route path={`${match.url}/confirmation`} component={ () =>
+                      <Button id="btn" className="form-box">Submit</Button>         
+                }/>
+                </Form>
+            </div>
+
+
+   
+        )
+    }     
 }
+
 
 export default MainInfo;

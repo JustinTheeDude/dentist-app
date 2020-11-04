@@ -1,8 +1,10 @@
 import React from 'react';
 import { FormGroup,Label, Input } from "reactstrap";
 
-function PaymentSelect({ paymentType, handleChange }) {
+function PaymentSelect({ paymentType, handleChange, }) {
+
   return (
+    <div>
     <FormGroup className="patient-payment-select form-box">
       <Label for="paymentSelect">支払い</Label>
         <Input type="select" name="paymentType" value={paymentType} onChange={handleChange} required>
@@ -15,6 +17,8 @@ function PaymentSelect({ paymentType, handleChange }) {
           <option>自費</option>
         </Input>
     </FormGroup>
+  
+    </div>
   )
 };
 

@@ -14,7 +14,7 @@ import Layout from "./Components/Layout";
 import Login from "./Components/Login";
 import DentistSingup from './Components/DentistSingup';
 import Logout from './Components/Logout';
-
+import DoctorInfo from './Components/DoctorInfo'
 //import Provider
 import AppProvider from "./Components/Context/AppProvider";
 import {AuthProvider} from "./Components/Context/Auth";
@@ -38,7 +38,8 @@ class App extends Component {
                             <Route path="/signup"> <DentistSingup /> </Route>
                             <Layout>
                                 <PrivateRoute path="/cards" component={Card} />
-                                <PrivateRoute path="/form"  component={Maininfo} />
+                                <PrivateRoute path="/form/"  component={Maininfo} />
+                                {/* <PrivateRoute path="/form/doctor"  component={DoctorInfo} /> */}
                                 <PrivateRoute path="/form/:id/update" component={Maininfo} />
                                 <Route path="/signout"> <Logout /> </Route>
                             </Layout>
