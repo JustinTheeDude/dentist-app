@@ -1,17 +1,18 @@
 import React from "react";
 import { FormGroup, Label, Input, Button } from "reactstrap";
+import { useHistory } from 'react-router-dom';
 
-
-function PatientInfo({ patientName, patientID, age, gender, handleChange, nextStep, prevStep }) {
-   const next = e => {
-        e.preventDefault();
-         nextStep();
-      };
+function PatientInfo({ patientName, patientID, age, gender, handleChange, page, prevStep }) {
+//    const next = e => {
+//         e.preventDefault();
+//          nextStep();
+//       };
     
-     const back = e => {
-        e.preventDefault();
-         prevStep();
-      };
+//      const back = e => {
+//         e.preventDefault();
+//          prevStep();
+//       };
+const history = useHistory();
     return (
         <div>
             <h3 className="hospital-info-header">医院情報</h3>
@@ -56,12 +57,12 @@ function PatientInfo({ patientName, patientID, age, gender, handleChange, nextSt
             </FormGroup>
             <Button
              color="primary"
-              onClick={back}
+            onClick={() => history.goBack()}
             >Back</Button>
              &nbsp;&nbsp; &nbsp;&nbsp;
             <Button
              color="primary"
-              onClick={next}
+             onClick={() => history.push(`/form/treatment`)}
             >next</Button>
         </div>
     )

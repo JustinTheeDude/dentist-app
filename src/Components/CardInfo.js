@@ -266,7 +266,7 @@ class CardInfo extends Component {
                                 immediateLoading={this.state.immediateLoading}
                             />
                         </div>
-                        <Button><Link className="btn btn-secondary"to={`/form/${this.props.value}/update`}>Edit</Link></Button>
+                        <Button><Link className="btn btn-secondary" to={`/form/${this.props.value}/update`}>Edit</Link></Button>
                         <PDF name={this.state.doctorName}
                             address={this.state.address}
                             zip={this.state.zip}

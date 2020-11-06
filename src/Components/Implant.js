@@ -1,6 +1,6 @@
 import React from 'react'
-import { FormGroup, Label, Input } from 'reactstrap'
-
+import { FormGroup, Label, Input, Button } from 'reactstrap'
+import { useHistory } from 'react-router-dom';
 function Implant({ 
   handleChange, 
   implantType,
@@ -13,6 +13,7 @@ function Implant({
   implantMakerAstraTechOption,
   implantShade, 
 }) {
+  const history = useHistory();
   return (
   <div>
     <FormGroup>
@@ -182,6 +183,8 @@ function Implant({
             <option>C 4</option>
           </Input>
     </FormGroup>
+    <Button color="primary" variant="contained" onClick={() => history.push(`/form/patient`)}>  finish </Button>
+    <Button color="primary" variant="contained" onClick={() => history.push(`/form/treatment`)}>  add order</Button>
   </div>
   )
 }

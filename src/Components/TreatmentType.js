@@ -1,100 +1,76 @@
-import React, {useState} from 'react'
-import { FormGroup, Label,Button } from "reactstrap";
+import React from 'react'
+import { FormGroup,Button } from "reactstrap";
+import { useHistory } from 'react-router-dom';
 
+function TreatmentType() {
 
-function TreatmentType({nextStep, prevStep , getTreatmentOptions,}) {
-  const [inlay, setInlay] = useState(false)
-  const [crown, setCrown] = useState(false)
-  const [br, setBr] = useState(false)
-  const [oralDevice, setOralDevice] = useState(false)
-  const [implant, setImplant] = useState(false)
-  const [denture, setDenture] = useState(false)
-  const [other, setOther] = useState(false)
+  const history = useHistory();
 
-  const next = e => {
-    e.preventDefault();
-    nextStep();
-  };
-  const back = e => {
-    e.preventDefault();
-     prevStep();
-  };
-  const sendData = () => {
-
-    getTreatmentOptions(inlay,crown,br,oralDevice,implant,denture,other)
-  } 
-  return (
+  return ( 
     <div >
-    <h3><strong>Treatment and Payment</strong></h3>
+    <h3><strong>治療の種類</strong></h3>
     <FormGroup className="treatmentType form-box">
-    <Label for="treatmentType">治療の種類</Label>
+    {/* <Label for="treatmentType">治療の種類</Label> */}
 
         <Button
           className="treatment-btn"
-          onClick={(e) => {
-            e.preventDefault()
-            setInlay(true)
-            sendData()
+          onClick={(e) => { 
+            history.push(`/form/inlay`)
           }}
         >インレー</Button>
         <Button
             className="treatment-btn"
             onClick={(e) => {
-            e.preventDefault()
-            setCrown(true)
-            sendData()
+              history.push(`/form/crown`)
           }}
         >クラウン</Button>
         <Button
             className="treatment-btn"
             onClick={(e) => {
             e.preventDefault()
-            setBr(true)
-            sendData()
+            history.push(`/form/br`)
           }}
         >Br</Button>
         <Button
             className="treatment-btn"
             onClick={(e) => {
             e.preventDefault()
-            setOralDevice(true)
-            sendData()
+            history.push(`/form/oral-device`)
           }}
         >口腔内装置</Button>
         <Button
             className="treatment-btn"
             onClick={(e) => {
             e.preventDefault()
-            setImplant(true)
-            sendData()
+            history.push(`/form/implant`)
           }}
         >インプラント</Button> 
         <Button
             className="treatment-btn"
             onClick={(e) => {
             e.preventDefault()
-            setDenture(true)
-            sendData()
+            history.push(`/form/denture`)
           }}
         >義歯</Button>   
         <Button
            className="treatment-btn"
             onClick={(e) => {
             e.preventDefault()
-            sendData(setOther(true))
-            sendData()
+            history.push("/form/other")
           }}
-        >その他</Button>
+        >その他</Button> 
   </FormGroup>
   <Button
       color="primary"
-      onClick={back}
+      onClick={() => history.goBack()}
       >Back
     </Button>
       &nbsp;&nbsp; &nbsp;&nbsp;
     <Button
       color="primary"
-      onClick={next}
+      onClick={()=> {
+        history.push(`/form/delivery-time`) 
+        }}
       >next
     </Button>
     </div>

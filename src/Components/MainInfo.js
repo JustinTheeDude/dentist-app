@@ -81,19 +81,6 @@ class MainInfo extends Component {
         OtherOption: "",
         drawing: "",
         diagram: "",
-        step: 1,
-        docInfo: true,
-        patientInfo: false,
-        paymentSelect: false,
-        treatmentInfo: false,
-        inlay: "",
-        crown: "",
-        br: "",
-        oralDevice: "",
-        implant: "",
-        denture: "",
-        other: ""
-
     };
     user = firebase.auth().currentUser;
     id = this.props.match.params.id
@@ -138,32 +125,17 @@ class MainInfo extends Component {
                 value: e.target.value,
             })
     };
-    // Proceed to next step
-    nextStep = () => {
-        const { step } = this.state;
-        this.setState({
-        step: step + 1
-        });
-        const { match } = this.props
-    }; 
 
-    // Go back to prev step
-    prevStep = () => {
-        const { step } = this.state;
-        this.setState({
-        step: step - 1
-        });
-    };
     getDrawing = (data) => {
         this.setState({drawing: data})
     }
     getDiagram = (data) => {
         this.setState({diagram: data})
     }
-    getTreatmentOptions = (inlay,crown,br,oralDevice,implant,denture,other) => {
+    // getTreatmentOptions = (inlay,crown,br,oralDevice,implant,denture,other) => {
        
-        this.setState({inlay:inlay,crown:crown,br:br,oralDevice:oralDevice,implant:implant,denture:denture,other:other})
-    }
+    //     this.setState({inlay: inlay,crown:crown,br:br,oralDevice:oralDevice,implant:implant,denture:denture,other:other})
+    // }
     handleSubmit = e => {
  
         e.preventDefault();
@@ -385,168 +357,200 @@ class MainInfo extends Component {
 
     render() {
         const user = firebase.auth().currentUser
-        const { step } = this.state;
-        const { match } = this.props
-
-        return (
-            <div>
-                <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
-                    <Route path={`${match.url}/doctor`} component={ () =>
+        let { page } = this.props.match.params
+        
+        // const { step, inlay, br,crown, oralDevice, implant, denture,other} = this.state;
+        switch(page) {
+            case "doctor" :
+                
+                return (
+                    <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
                     <DoctorInfo 
                         user={user.displayName} 
                         nextStep={this.nextStep}  
                         address={this.state.address} 
                         zip={this.state.zip} 
-                        handleChange={this.handleChange} 
-                        match={match}                      
+                        handleChange={this.handleChange}                   
                         />
-                    }/>
-                    <Route path={`${match.url}/patient`} component={ () =>
-                            <PatientInfo 
+                    </Form>
+                )
+                case "patient" :
+                    return (
+                        <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
+                        <PatientInfo 
                             handleChange={this.handleChange} 
                             nextStep={this.nextStep}  
                             patientName={this.state.patientName} 
                             patientID={this.state.patientID} 
                             age={this.state.age} 
-                            gender={this.state.gender} 
-                            prevStep={this.prevStep}
-                                                    
+                            gender={this.state.gender}                                                
                         />
-                    }/>
-    
-                 <Route path={`${match.url}/treatment`} component={ () =>
-                        <div>
-                         <PaymentSelect handleChange={this.handleChange} paymentType={this.state.paymentType}  />
-                        <TreatmentType   
-                              getTreatmentOptions={this.getTreatmentOptions}
-                            nextStep={this.nextStep} prevStep={this.prevStep} />
-                        </div>
-                }/>
-                <Route path={`${match.url}/inlay`} component={ () =>
-                            <Inlay
-                                handleChange={this.handleChange} 
-                                inlayMaterial={this.state.inlayMaterial} 
-                                inlayShade={this.state.inlayShade} 
-                                inlaySpecInsured={this.state.inlaySpecInsured}
-                                inlaySpecUninsured={this.state.inlaySpecUninsured}
-                                paymentType={this.state.paymentType}
-                                inlayInvolution={this.state.inlayInvolution}
-                                inlayInvolutionBT={this.state.inlayInvolutionBT}                          
-                            /> 
-                
-                }/>
-                <Route path={`${match.url}/crown`} component={ () =>
-                    <Crown  
-                        handleChange={this.handleChange} 
-                        crownMaterialInsured={this.state.crownMaterialInsured} 
-                        crownShadeInsured={this.state.crownShadeInsured}
-                        crownMaterialUninsured={this.state.crownMaterialUninsured}
-                        crownShadeUninsured={this.state.crownShadeUninsured}
-                        crownInvolution={this.state.crownInvolution}
-                        crownInvolutionBT={this.state.crownInvolutionBT}    
-                        paymentType={this.state.paymentType}  
-                    />
-                }/>
-                <Route path={`${match.url}/br`} component={ () =>
-                    <Br 
-                        handleChange={this.handleChange}
-                        paymentType={this.state.paymentType}
-                        BrMaterialInsured={this.state.BrMaterialInsured} 
-                        BrShadeInsured={this.state.BrShadeInsured}
-                        BrMaterialUninsured={this.state.BrMaterialUninsured}
-                        BrInvolution={this.state.BrInvolution}
-                        BrInvolutionBT={this.state.BrInvolutionBT} 
-                    />
-                               
-                }/>
-                <Route path={`${match.url}/oral-device`} component={ () =>
-                    <div>
-                        <h2><strong>口腔内装置</strong></h2>
-                        <OralDevice
-                            handleChange={this.handleChange} 
-                            oralDeviceInsured={this.state.oralDeviceInsured}
-                            oralDeviceUninsured={this.state.oralDeviceUninsured}
-                            paymentType={this.state.paymentType}  
-                        />
-                    </div>
-                               
-                }/>        
-                <Route path={`${match.url}/implant`} component={ () =>
-                    <div>
-                        <h2><strong>インプラント</strong></h2>
-                        <Implant 
-                                handleChange={this.handleChange} 
-                                implantType={this.state.implantType}
-                                implantMaterial={this.state.implantMaterial}
-                                implantTray={this.state.implantTray}
-                                implantMaker={this.state.implantMaker}
-                                implantMakerNobelOption={this.state.implantMakerNobelOption}
-                                implantMakerCamlogOption={this.state.implantMakerCamlogOption}
-                                implantMakerAnkylosOption={this.state.implantMakerAnkylosOption}
-                                implantMakerAstraTechOption={this.state.implantMakerAstraTechOption}
-                                implantShade={this.state.implantShade}
-                            />
-                    </div>
-                               
-                }/>
-                <Route path={`${match.url}/denture`} component={ () =>
-                    <div>
-                        <h2><strong>義歯</strong></h2>
-                            {/* need to connect checkbox options to teeth */}
-                             <Denture
-                                handleChange={this.handleChange}
-                                paymentType={this.state.paymentType}
-                                dentureInvolution={this.state.dentureInvolution}
-                                dentureInvolutionBT={this.state.dentureInvolutionBT} 
-                                dentureInsured={this.state.dentureInsured}
-                                dentureUninsured={this.state.dentureUninsured}
-                                dentureArtificialInsured={this.state.dentureArtificialInsured}
-                                dentureBarInsured={this.state.dentureBarInsured}
-                                dentureBarUninsured={this.state.dentureBarUninsured}
-                                dentureFloorInsured={this.state.dentureFloorInsured}
-                                dentureOtherInsured={this.state.dentureOtherInsured}
-                            />
-                    </div>        
-                }/>
-                <Route path={`${match.url}/delivery-time`} component={ () =>
-                    <div>
-                    <MainComplaint handleChange={this.handleChange} mainComplaint={this.state.mainComplaint} />
-                    <DeliveryTime  handleChange={this.handleChange} deliveryTime={this.state.deliveryTime} />
-                    </div>        
-                }/>
-                <Route path={`${match.url}/delivery-date`} component={ () =>
-                    <div>
-                         <h3 className="order-heading">発注日/納期日</h3>
-                        <div className="calendar form-box">
-                        <Calendar
-                        calendarType="US"
-                        onClickDay={this.onChange}
-                        minDate={this.state.minDate}
-                         />
-                        <DeliveryDate
-                        date={this.state.date.toString().slice(0, 15)}
-                        delivery={this.state.deliveryDate.toString().slice(0, 15)}
-                        />
-                        </div>  
-                    </div>        
-                }/>
-                <Route path={`${match.url}/diagrams`} component={ () =>
-                    <div className="canvas form-box">
-                     <MouthCanvas  drawing={this.state.drawing} id={this.id} getDrawing={this.getDrawing} />
-                      &nbsp;&nbsp;
-                     <PtnadultCanvas  diagram={this.state.diagram} id={this.id} getDiagram={this.getDiagram} />
-                
-                    </div>        
-                }/>
-                 <Route path={`${match.url}/confirmation`} component={ () =>
-                      <Button id="btn" className="form-box">Submit</Button>         
-                }/>
-                </Form>
-            </div>
+                        </Form>
+                    )
+                    case "treatment" :
+                        return (
+                        <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
+                            <div>
+                                <PaymentSelect handleChange={this.handleChange} paymentType={this.state.paymentType}  />
+                                <TreatmentType   
+                                    getTreatmentOptions={this.getTreatmentOptions}
+                                />
+                            </div>
+                        </Form>
+                        )
+                        case "inlay" :
+                            return (
+                                <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
+                                    <Inlay
+                                        handleChange={this.handleChange} 
+                                        inlayMaterial={this.state.inlayMaterial} 
+                                        inlayShade={this.state.inlayShade} 
+                                        inlaySpecInsured={this.state.inlaySpecInsured}
+                                        inlaySpecUninsured={this.state.inlaySpecUninsured}
+                                        paymentType={this.state.paymentType}
+                                        inlayInvolution={this.state.inlayInvolution}
+                                        inlayInvolutionBT={this.state.inlayInvolutionBT}                          
+                                    /> 
+                                </Form> 
+                            )
+                            case "crown" :
+                                return (
+                                    <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
+                                        <Crown  
+                                            handleChange={this.handleChange} 
+                                            crownMaterialInsured={this.state.crownMaterialInsured} 
+                                            crownShadeInsured={this.state.crownShadeInsured}
+                                            crownMaterialUninsured={this.state.crownMaterialUninsured}
+                                            crownShadeUninsured={this.state.crownShadeUninsured}
+                                            crownInvolution={this.state.crownInvolution}
+                                            crownInvolutionBT={this.state.crownInvolutionBT}    
+                                            paymentType={this.state.paymentType}  
+                                        />
+                                    </Form> 
+                                )
+                                case "br" :
+                                    return (
+                                        <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
+                                            <Br 
+                                                handleChange={this.handleChange}
+                                                paymentType={this.state.paymentType}
+                                                BrMaterialInsured={this.state.BrMaterialInsured} 
+                                                BrShadeInsured={this.state.BrShadeInsured}
+                                                BrMaterialUninsured={this.state.BrMaterialUninsured}
+                                                BrInvolution={this.state.BrInvolution}
+                                                BrInvolutionBT={this.state.BrInvolutionBT} 
+                                            />
+                                        </Form> 
+                                    ) 
+                                case "oral-device" :
+                                    return (
+                                        <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
+                                            <h2><strong>口腔内装置</strong></h2>
+                                                <OralDevice
+                                                    handleChange={this.handleChange} 
+                                                    oralDeviceInsured={this.state.oralDeviceInsured}
+                                                    oralDeviceUninsured={this.state.oralDeviceUninsured}
+                                                    paymentType={this.state.paymentType}  
+                                                />
+                                        </Form> 
+                                    )  
+                                case "implant" :
+                                    return (
+                                        <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
+                                            <h2><strong>口腔内装置</strong></h2>
+                                         <Implant 
+                                            handleChange={this.handleChange} 
+                                            implantType={this.state.implantType}
+                                            implantMaterial={this.state.implantMaterial}
+                                            implantTray={this.state.implantTray}
+                                            implantMaker={this.state.implantMaker}
+                                            implantMakerNobelOption={this.state.implantMakerNobelOption}
+                                            implantMakerCamlogOption={this.state.implantMakerCamlogOption}
+                                            implantMakerAnkylosOption={this.state.implantMakerAnkylosOption}
+                                            implantMakerAstraTechOption={this.state.implantMakerAstraTechOption}
+                                            implantShade={this.state.implantShade}
+                                            />
+                                        </Form> 
+                                    )
+                                    case "denture" :
+                                        return (
+                                            <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
+                                               <h2><strong>義歯</strong></h2>
+                                                 {/* need to connect checkbox options to teeth */}
+                                                <Denture
+                                                    handleChange={this.handleChange}
+                                                    paymentType={this.state.paymentType}
+                                                    dentureInvolution={this.state.dentureInvolution}
+                                                    dentureInvolutionBT={this.state.dentureInvolutionBT} 
+                                                    dentureInsured={this.state.dentureInsured}
+                                                    dentureUninsured={this.state.dentureUninsured}
+                                                    dentureArtificialInsured={this.state.dentureArtificialInsured}
+                                                    dentureBarInsured={this.state.dentureBarInsured}
+                                                    dentureBarUninsured={this.state.dentureBarUninsured}
+                                                    dentureFloorInsured={this.state.dentureFloorInsured}
+                                                    dentureOtherInsured={this.state.dentureOtherInsured}
+                                                />
+                                            </Form> 
+                                        ) 
+                                    case "delivery-time" :
+                                        return (
+                                            <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
+                                                <div>
+                                                    <MainComplaint handleChange={this.handleChange} mainComplaint={this.state.mainComplaint} />
+                                                    <DeliveryTime  handleChange={this.handleChange} deliveryTime={this.state.deliveryTime} />
+                                                </div>
+                                            </Form> 
+                                        )
+                                    case "delivery-date" :
+                                        return (
+                                            <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
+                                                <div>
+                                                    <h3 className="order-heading">発注日/納期日</h3>
+                                                    <div className="calendar form-box">
+                                                    <Calendar
+                                                calendarType="US"
+                                                onClickDay={this.onChange}
+                                                minDate={this.state.minDate}
+                                                    />
+                                                <DeliveryDate
+                                                date={this.state.date.toString().slice(0, 15)}
+                                                delivery={this.state.deliveryDate.toString().slice(0, 15)}
+                                                />
+                                                </div>  
+                                            </div>  
+                                            </Form> 
+                                    )
+                                    case "diagram" :
+                                        return (
+                                        <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
+                                            <div className="canvas form-box">
+                                              <MouthCanvas  drawing={this.state.drawing} id={this.id} getDrawing={this.getDrawing} />
+                                                   &nbsp;&nbsp;
+                                              <PtnadultCanvas  diagram={this.state.diagram} id={this.id} getDiagram={this.getDiagram} />
+                                             </div>  
+                                        </Form> 
+                                    )
+       
+            default: return ""
+
+        }
+
+        //         <Route path={`${match.url}/diagrams`} component={ () =>
+        //             <div className="canvas form-box">
+        //              <MouthCanvas  drawing={this.state.drawing} id={this.id} getDrawing={this.getDrawing} />
+        //               &nbsp;&nbsp;
+        //              <PtnadultCanvas  diagram={this.state.diagram} id={this.id} getDiagram={this.getDiagram} />
+        //             </div>        
+        //         }/>
+        //          <Route path={`${match.url}/confirmation`} component={ () =>
+        //               <Button id="btn" className="form-box">Submit</Button>         
+        //         }/>
+        //         </Form>
+        //     </div>
 
 
    
-        )
+        // )
     }     
 }
 

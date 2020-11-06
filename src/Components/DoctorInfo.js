@@ -1,13 +1,9 @@
 import React  from 'react';
 import  { FormGroup, Label, Input, Button } from "reactstrap";
-import { BrowserRouter as  Link } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
+function DoctorInfo({user, address, zip, handleChange, page,}) {
 
-function DoctorInfo({user, address, zip, handleChange, nextStep, match}) {
-   const next = e => {
-        e.preventDefault();
-        nextStep();
-      };
-  
+    const history = useHistory();
     return (
       <div>
         <h3 className="hospital-info-header">医院情報</h3>
@@ -55,7 +51,7 @@ function DoctorInfo({user, address, zip, handleChange, nextStep, match}) {
           }
           </FormGroup>
           
-          <Button color="primary" variant="contained" > <Link to ="/form/patient"> Next </Link></Button>
+          <Button color="primary" variant="contained" onClick={() => history.push(`/form/patient`)}>  Next </Button>
          
       </div>
     )

@@ -1,7 +1,8 @@
 import React from 'react'
-import { FormGroup,Label, Input  } from "reactstrap";
-
+import { FormGroup,Label, Input, Button  } from "reactstrap";
+import { useHistory } from 'react-router-dom';
 function OralDevice({ handleChange, oralDeviceInsured, oralDeviceUninsured, paymentType }) {
+  const history = useHistory();
   return(
     <FormGroup className="OralDevice form-box">
      {
@@ -31,8 +32,9 @@ function OralDevice({ handleChange, oralDeviceInsured, oralDeviceUninsured, paym
           </Input>
       </div>
      }
+    <Button color="primary" variant="contained" onClick={() => history.push(`/form/patient`)}>  finish </Button>
+    <Button color="primary" variant="contained" onClick={() => history.push(`/form/treatment`)}>  add order</Button>
     </FormGroup>
-
   )
 }
 

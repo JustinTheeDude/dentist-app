@@ -1,6 +1,6 @@
 import React from 'react';
-import  { FormGroup, Label, Input  } from 'reactstrap';
-
+import  { FormGroup, Label, Input, Button  } from 'reactstrap';
+import { useHistory } from 'react-router-dom';
 /* Need to add logic to the checkboxes or find a new way to do them with the svg teeth */
 function Denture({ 
    paymentType, 
@@ -16,7 +16,7 @@ function Denture({
    dentureClaspInsuredNum,
    handleChange 
   }) {
-
+  const history = useHistory();
   return (
     <FormGroup className="denture form-box">
         <Label for="dentureInvolution">対合</Label>
@@ -262,8 +262,11 @@ function Denture({
                 </FormGroup>
       </div>
     } 
+    <Button color="primary" variant="contained" onClick={() => history.push(`/form/patient`)}>  finish </Button>
+    <Button color="primary" variant="contained" onClick={() => history.push(`/form/treatment`)}>  add order</Button>
     </FormGroup>
   )
+
 }
 
 export default Denture;
