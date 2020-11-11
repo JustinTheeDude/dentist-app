@@ -37,9 +37,8 @@ class App extends Component {
                             </Route>
                             <Route path="/signup"> <DentistSingup /> </Route>
                             <Layout>
+                                <PrivateRoute path="/form/doctor"  component={Maininfo} />
                                 <PrivateRoute path="/cards" component={Card} />
-                                <PrivateRoute path="/form"  component={Maininfo} />
-                                <Redirect to={`/form/doctor`} /> 
                                 <PrivateRoute path="/form/:page" component={Maininfo} />
                                 <PrivateRoute path="/form/:id/update" component={Maininfo} />
                                 <Route path="/signout"> <Logout /> </Route>

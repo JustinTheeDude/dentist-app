@@ -19,7 +19,6 @@ let sortedObj = arr.reduce((c, v) => {
   c[v.patientID][v.id][Object.keys(v)[2]] = v.date // add the value to the date property
   return c;
 }, {});
-
     let arr1 = [];
     let arr2 = [];
     Object.keys(orders).map(key => arr1.push(orders[key].patientName));
@@ -36,7 +35,7 @@ let sortedObj = arr.reduce((c, v) => {
     
     const result = {};
     keys.forEach((key, i) => result[key] = values[i]);
- 
+    
     const [orderId, setOrder] = useState("");
     const [orderView, setOrderView] = useState(false);
     const [hideOrder, hiddenOrder] = useState("");
@@ -64,24 +63,10 @@ let sortedObj = arr.reduce((c, v) => {
         }
 
         
-        // for(let i = 0;i < carets.length;i++) {
-        //     if(carets[i] === e.target) {
-        //         // e.target.classList.remove("down")
-        //         e.target.classList.add("up")
-        //         if(carets[i] !== e.target && carets[i].className === "up") {
-        //             carets[i].classList.remove("up")
-        //             carets[i].classList.add("down")
-        //         }
-        //     }  else {
-        //         e.target.classList.remove("up")
-        //         e.target.classList.add("down")
-        //     }
-
-        // }
         hiddenOrder(id)
         setIsOpen(!isOpen);
     };
-
+    
   
     const contentRender = (orderView, orderId, orders, context) => {
         if(orderView) {

@@ -33,7 +33,7 @@ const Card = () => {
             });
         }
          
-    return () =>{itemsRef.off() }   
+    return () =>{ itemsRef.off() }   
     //   return () => { unmounted = true };
     }, []);
 

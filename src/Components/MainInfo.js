@@ -1,7 +1,6 @@
 import React, {Component} from "react";
-import { Form, Button} from "reactstrap";
+import { Form } from "reactstrap";
 import firebase from "./firebase.js";
-import { BrowserRouter as Router, Route } from "react-router-dom";
 
 // Component import
 import DoctorInfo from './DoctorInfo';
@@ -12,7 +11,7 @@ import Inlay  from './Inlay';
 import Crown from './Crown';
 import Br from './Br';
 import Denture from './Denture';
-import OtherOption from './OtherOption';
+// import OtherOption from './OtherOption';
 import OralDevice from './OralDevice';
 import Implant from './Implant';
 import MainComplaint from './MainComplaint';
@@ -21,6 +20,7 @@ import Calendar from "react-calendar";
 import DeliveryDate from "./DeliveryDate";
 import MouthCanvas from './MouthCanvas';
 import PtnadultCanvas from './PtnadultCanvas'
+import Confirmation from "./Confirmation";
 
 class MainInfo extends Component {
     state = {
@@ -132,10 +132,7 @@ class MainInfo extends Component {
     getDiagram = (data) => {
         this.setState({diagram: data})
     }
-    // getTreatmentOptions = (inlay,crown,br,oralDevice,implant,denture,other) => {
-       
-    //     this.setState({inlay: inlay,crown:crown,br:br,oralDevice:oralDevice,implant:implant,denture:denture,other:other})
-    // }
+
     handleSubmit = e => {
  
         e.preventDefault();
@@ -358,7 +355,6 @@ class MainInfo extends Component {
     render() {
         const user = firebase.auth().currentUser
         let { page } = this.props.match.params
-        
         // const { step, inlay, br,crown, oralDevice, implant, denture,other} = this.state;
         switch(page) {
             case "doctor" :
@@ -530,27 +526,18 @@ class MainInfo extends Component {
                                              </div>  
                                         </Form> 
                                     )
+                                    case "confirm" :
+                                        return (
+                                        <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
+                                            <div className="canvas form-box">
+                                                <Confirmation data={this.state} user={user.displayName} onSubmit={this.handleSubmit} />
+                                            </div>  
+                                        </Form> 
+                                    )
        
             default: return ""
 
         }
-
-        //         <Route path={`${match.url}/diagrams`} component={ () =>
-        //             <div className="canvas form-box">
-        //              <MouthCanvas  drawing={this.state.drawing} id={this.id} getDrawing={this.getDrawing} />
-        //               &nbsp;&nbsp;
-        //              <PtnadultCanvas  diagram={this.state.diagram} id={this.id} getDiagram={this.getDiagram} />
-        //             </div>        
-        //         }/>
-        //          <Route path={`${match.url}/confirmation`} component={ () =>
-        //               <Button id="btn" className="form-box">Submit</Button>         
-        //         }/>
-        //         </Form>
-        //     </div>
-
-
-   
-        // )
     }     
 }
 

@@ -12,6 +12,7 @@ function Inlay({
   handleChange 
 }) {
   const history = useHistory();
+
   return (
     <div>
     <h2><strong>インレー</strong></h2> 
@@ -88,7 +89,12 @@ function Inlay({
       }
 
     </FormGroup>
-    <Button color="primary" variant="contained" onClick={() => history.push(`/form/patient`)}>  finish </Button>
+    {
+      inlaySpecInsured || inlaySpecUninsured ?
+      <Button color="primary" variant="contained" onClick={() => history.push(`/form/delivery-time`)}>finish</Button>
+      :
+      <Button color="primary" variant="contained" onClick={() => history.push(`/form/confirm`)}>finish</Button>
+    }
     <Button color="primary" variant="contained" onClick={() => history.push(`/form/treatment`)}>  add order</Button>
     </div>
   )

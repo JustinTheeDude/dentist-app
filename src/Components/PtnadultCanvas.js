@@ -1,4 +1,5 @@
-import React, { Component } from "react"; import CanvasDraw from "react-canvas-draw";
+import React, { Component } from "react";
+import CanvasDraw from "react-canvas-draw";
 import {  withRouter } from 'react-router';
 import { Button } from "reactstrap";
 

@@ -118,7 +118,7 @@ function Crown({
               null
           }
       </FormGroup>
-      <Button color="primary" variant="contained" onClick={() => history.push(`/form/patient`)}>  finish </Button>
+      <Button color="primary" variant="contained" onClick={() => history.push(`/form/delivery-time`)}>  finish </Button>
       <Button color="primary" variant="contained" onClick={() => history.push(`/form/treatment`)}>  add order</Button>
     </div>
 
