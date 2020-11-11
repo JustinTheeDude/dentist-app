@@ -183,8 +183,8 @@ function Implant({
             <option>C 4</option>
           </Input>
     </FormGroup>
-    <Button color="primary" variant="contained" onClick={() => history.push(`/form/delivery-time`)}>  finish </Button>
-    <Button color="primary" variant="contained" onClick={() => history.push(`/form/treatment`)}>  add order</Button>
+    <Button className="nav-btn" onClick={() => history.push(`/form/delivery-time`)}>  finish </Button>
+    <Button className="nav-btn" variant="contained" onClick={() => history.push(`/form/treatment`)}>  add order</Button>
   </div>
   )
 }
