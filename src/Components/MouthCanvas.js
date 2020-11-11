@@ -1,8 +1,8 @@
   
 import React, { Component } from "react"; import CanvasDraw from "react-canvas-draw";
 import mouth from '../assets/mouth.png';
-
-
+import { Button } from "reactstrap";
+import {  withRouter } from 'react-router';
 class MouthCanvas extends Component {
   state = {
     color: "black",
@@ -63,10 +63,23 @@ class MouthCanvas extends Component {
           imgSrc={mouth}
           saveData={drawing}
         />
+              <Button
+          className="nav-btn"
+          onClick={() => this.props.history.goBack()}
+          >Back
+        </Button>
+          &nbsp;&nbsp; &nbsp;&nbsp;
+        <Button
+          className="nav-btn"
+          onClick={()=> {
+            this.props.history.push(`/form/confirm`) 
+            }}
+          >next
+        </Button>
       </div>
     );
   }
 
 }
 
-export default MouthCanvas;
+export default withRouter(MouthCanvas);

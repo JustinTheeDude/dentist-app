@@ -1,6 +1,6 @@
 // React imports
 import React, { Component } from "react";
-import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
 // CSS imports
 import "bootstrap/dist/css/bootstrap.css";

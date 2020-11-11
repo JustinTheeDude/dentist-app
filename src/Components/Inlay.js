@@ -91,11 +91,11 @@ function Inlay({
     </FormGroup>
     {
       inlaySpecInsured || inlaySpecUninsured ?
-      <Button color="primary" variant="contained" onClick={() => history.push(`/form/delivery-time`)}>finish</Button>
+      <Button className="nav-btn"  onClick={() => history.push(`/form/delivery-time`)}>finish</Button>
       :
-      <Button color="primary" variant="contained" onClick={() => history.push(`/form/confirm`)}>finish</Button>
+      <Button className="nav-btn" onClick={() => history.push(`/form/confirm`)}>finish</Button>
     }
-    <Button color="primary" variant="contained" onClick={() => history.push(`/form/treatment`)}>  add order</Button>
+    <Button className="nav-btn"  onClick={() => history.push(`/form/treatment`)}>add order</Button>
     </div>
   )
 }

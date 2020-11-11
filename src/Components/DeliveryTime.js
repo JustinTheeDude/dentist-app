@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 function DeliveryTime({ handleChange, deliveryTime}) {
   const history = useHistory();
     return(
+      <div>
       <FormGroup  className="delivery-time form-box" >
         <Label for="exampleTime">時間</Label>
           <Input
@@ -15,20 +16,21 @@ function DeliveryTime({ handleChange, deliveryTime}) {
           value={deliveryTime}
           onChange={handleChange}
           />
+      </FormGroup>
         <Button
-        color="primary"
+        className="nav-btn"
         onClick={() => history.goBack()}
         >Back
-      </Button>
-        &nbsp;&nbsp; &nbsp;&nbsp;
-      <Button
-        color="primary"
-        onClick={()=> {
-          history.push(`/form/delivery-date`) 
-          }}
-        >next
-      </Button>
-      </FormGroup>
+        </Button>
+          &nbsp;&nbsp; &nbsp;&nbsp;
+        <Button
+          className="nav-btn"
+          onClick={()=> {
+            history.push(`/form/delivery-date`) 
+            }}
+          >next
+        </Button>
+      </div>
     )
 }
 

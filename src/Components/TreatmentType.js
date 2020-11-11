@@ -11,7 +11,7 @@ function TreatmentType() {
     <h3><strong>治療の種類</strong></h3>
     <FormGroup className="treatmentType form-box">
     {/* <Label for="treatmentType">治療の種類</Label> */}
-
+      <div className="treatment-btn-container">
         <Button
           className="treatment-btn"
           onClick={(e) => { 
@@ -59,15 +59,17 @@ function TreatmentType() {
             history.push("/form/other")
           }}
         >その他</Button> 
+
+      </div>
   </FormGroup>
   <Button
-      color="primary"
+      className="nav-btn"
       onClick={() => history.goBack()}
       >Back
     </Button>
       &nbsp;&nbsp; &nbsp;&nbsp;
     <Button
-      color="primary"
+     className="nav-btn"
       onClick={()=> {
         history.push(`/form/delivery-time`) 
         }}

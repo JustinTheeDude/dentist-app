@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-import CanvasDraw from "react-canvas-draw";
-import {  withRouter } from 'react-router';
-import { Button } from "reactstrap";
-
+import CanvasDraw from "react-canvas-draw"
 import ptnadult from '../assets/Ptnadult.svg.png';
 
 class PtnadultCanvas extends Component {
@@ -61,7 +58,6 @@ class PtnadultCanvas extends Component {
           >
             Undo
           </button>
-
             <CanvasDraw
               ref={canvasDraw => (this.saveableCanvas = canvasDraw)}
               brushColor={this.state.color}
@@ -74,25 +70,12 @@ class PtnadultCanvas extends Component {
             />
 
         </div>
-        <div>
-        <Button
-          color="primary"
-          onClick={() => this.props.history.goBack()}
-          >Back
-        </Button>
-          &nbsp;&nbsp; &nbsp;&nbsp;
-        <Button
-          color="primary"
-          onClick={()=> {
-            this.props.history.push(`/form/confirm`) 
-            }}
-          >next
-        </Button>
-        </div>
+
       </div>
+
     );
   }
 
 }
 
-export default withRouter(PtnadultCanvas);
+export default PtnadultCanvas;

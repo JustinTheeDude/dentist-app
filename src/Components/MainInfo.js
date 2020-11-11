@@ -373,24 +373,24 @@ class MainInfo extends Component {
                 case "patient" :
                     return (
                         <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
-                        <PatientInfo 
-                            handleChange={this.handleChange} 
-                            nextStep={this.nextStep}  
-                            patientName={this.state.patientName} 
-                            patientID={this.state.patientID} 
-                            age={this.state.age} 
-                            gender={this.state.gender}                                                
-                        />
+                        <div>
+                            <PatientInfo 
+                                handleChange={this.handleChange} 
+                                nextStep={this.nextStep}  
+                                patientName={this.state.patientName} 
+                                patientID={this.state.patientID} 
+                                age={this.state.age} 
+                                gender={this.state.gender}                                                
+                            />
+                            <PaymentSelect handleChange={this.handleChange} paymentType={this.state.paymentType}  />
+                        </div>
                         </Form>
                     )
                     case "treatment" :
                         return (
                         <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
-                            <div>
-                                <PaymentSelect handleChange={this.handleChange} paymentType={this.state.paymentType}  />
-                                <TreatmentType   
-                                    getTreatmentOptions={this.getTreatmentOptions}
-                                />
+                            <div> 
+                                <TreatmentType  getTreatmentOptions={this.getTreatmentOptions} />
                             </div>
                         </Form>
                         )
@@ -492,6 +492,7 @@ class MainInfo extends Component {
                                         return (
                                             <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
                                                 <div>
+                                                <h3 className="order-heading">主訴/時間</h3>
                                                     <MainComplaint handleChange={this.handleChange} mainComplaint={this.state.mainComplaint} />
                                                     <DeliveryTime  handleChange={this.handleChange} deliveryTime={this.state.deliveryTime} />
                                                 </div>
@@ -501,17 +502,17 @@ class MainInfo extends Component {
                                         return (
                                             <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
                                                 <div>
-                                                    <h3 className="order-heading">発注日/納期日</h3>
-                                                    <div className="calendar form-box">
+                                                <h3 className="order-heading">発注日/納期日</h3>
+                                                <div className="calendar form-box">
                                                     <Calendar
-                                                calendarType="US"
-                                                onClickDay={this.onChange}
-                                                minDate={this.state.minDate}
+                                                        calendarType="US"
+                                                        onClickDay={this.onChange}
+                                                        minDate={this.state.minDate}
                                                     />
-                                                <DeliveryDate
-                                                date={this.state.date.toString().slice(0, 15)}
-                                                delivery={this.state.deliveryDate.toString().slice(0, 15)}
-                                                />
+                                                    <DeliveryDate
+                                                        date={this.state.date.toString().slice(0, 15)}
+                                                        delivery={this.state.deliveryDate.toString().slice(0, 15)}
+                                                    />
                                                 </div>  
                                             </div>  
                                             </Form> 
@@ -521,7 +522,7 @@ class MainInfo extends Component {
                                         <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
                                             <div className="canvas form-box">
                                               <MouthCanvas  drawing={this.state.drawing} id={this.id} getDrawing={this.getDrawing} />
-                                                   &nbsp;&nbsp;
+                                                   &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
                                               <PtnadultCanvas  diagram={this.state.diagram} id={this.id} getDiagram={this.getDiagram} />
                                              </div>  
                                         </Form> 

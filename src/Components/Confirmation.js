@@ -18,16 +18,18 @@ function Confirmation({data, user}) {
     <div>
         <div className="order-container">
                         <div className="order-info">
+                            <h1><strong>Doctor</strong></h1>
                             <h1>歯科医名: {user}</h1>
                             <h1>住所: {data.address}</h1>
                             <h1>郵便番号: {data.zip}</h1>
+                            <h1><strong>Patient</strong></h1>
                             <h1>患者名: {data.patientName}</h1>
                             <h1>患者ID: {data.patientID}</h1>
                             <h1>年齢: {data.age}</h1>
                             <h1>性別: {data.gender}</h1>
-                            {data.otherOption && <h1>製品仕様 他: {data.otherOption}</h1>}
-                            <h1>治療の種類: {data.treatmentType}</h1>
                             <h1>支払い: {data.paymentType}</h1>
+                            <Button onClick={() => history.push("/form/patient")}>Edit</Button>
+                            {data.otherOption && <h1>製品仕様 他: {data.otherOption}</h1>}
                             {data.inlaySpecInsured || data.inlaySpecUninsured ? <h1><strong>Inlay</strong></h1> : null}          
                             {data.inlayInvolution && <h1>対合 : {data.inlayInvolution}</h1>}
                             {data.inlayInvolutionBT && <h1>対合 BT: {data.inlayInvolutionBT}</h1>}
@@ -107,8 +109,8 @@ function Confirmation({data, user}) {
         </div>
         <div>
           {/* <Button color="primary" variant="contained" onClick={() => history.push(`/form/patient`)}>  finish </Button> */}
-          <Button id="btn" className="form-box">Submit</Button>  
-          <Button color="primary" variant="contained" onClick={() => history.push(`/form/treatment`)}>  add order</Button>
+          <Button className="nav-btn">Submit</Button>  
+          <Button className="nav-btn" onClick={() => history.push(`/form/treatment`)}> add order</Button>
         </div>
     </div>
   )

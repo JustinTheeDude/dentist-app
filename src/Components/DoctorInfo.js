@@ -51,7 +51,7 @@ function DoctorInfo({user, address, zip, handleChange, page,}) {
           }
           </FormGroup>
           
-          <Button color="primary" variant="contained" onClick={() => history.push(`/form/patient`)}>  Next </Button>
+          <Button className="nav-btn" onClick={() => history.push(`/form/patient`)}>  Next </Button>
          
       </div>
     )

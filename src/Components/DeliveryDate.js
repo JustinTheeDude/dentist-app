@@ -12,13 +12,13 @@ function DeliveryDate ({ delivery, date }) {
         </div>
         <div>
             <Button
-            color="primary"
+            className="nav-btn"
             onClick={() => history.goBack()}
             >Back
             </Button>
             &nbsp;&nbsp; &nbsp;&nbsp;
             <Button
-            color="primary"
+            className="nav-btn"
             onClick={()=> {
                 history.push(`/form/diagram`) 
                 }}
