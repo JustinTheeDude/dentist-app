@@ -11,7 +11,7 @@ import Inlay  from './Inlay';
 import Crown from './Crown';
 import Br from './Br';
 import Denture from './Denture';
-// import OtherOption from './OtherOption';
+import OtherOption from './OtherOption';
 import OralDevice from './OralDevice';
 import Implant from './Implant';
 import MainComplaint from './MainComplaint';
@@ -487,7 +487,19 @@ class MainInfo extends Component {
                                                     dentureOtherInsured={this.state.dentureOtherInsured}
                                                 />
                                             </Form> 
-                                        ) 
+                                        )
+                                        case "other" :
+                                            return (
+                                                <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
+                                                   <h2><strong>その他</strong></h2>
+                                                    <OtherOption
+                                                        handleChange={this.handleChange}
+                                                        otherOptionInsured={this.state.otherOptionInsured}
+                                                        otherOptionUninsured={this.state.otherOptionUninsured} 
+                                                        paymentType={this.state.paymentType}
+                                                    />
+                                                </Form> 
+                                            )  
                                     case "delivery-time" :
                                         return (
                                             <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>

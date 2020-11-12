@@ -28,7 +28,7 @@ function Confirmation({data, user}) {
                             <h1>年齢: {data.age}</h1>
                             <h1>性別: {data.gender}</h1>
                             <h1>支払い: {data.paymentType}</h1>
-                            <Button onClick={() => history.push("/form/patient")}>Edit</Button>
+                            <Button className="edit-btn" onClick={() => history.push("/form/patient")}>Edit</Button>
                             {data.otherOption && <h1>製品仕様 他: {data.otherOption}</h1>}
                             {data.inlaySpecInsured || data.inlaySpecUninsured ? <h1><strong>Inlay</strong></h1> : null}          
                             {data.inlayInvolution && <h1>対合 : {data.inlayInvolution}</h1>}
@@ -38,14 +38,14 @@ function Confirmation({data, user}) {
                             {data.inlayMaterial && <h1>補綴物インレー: {data.inlayMaterial}</h1>}
                             {data.inlayShade && <h1>インレーシェード: {data.inlayShade}</h1>}
                             {data.crownInvolution && <h1>対合: {data.crownInvolution}</h1>}
-                            {data.inlaySpecInsured || data.inlaySpecUninsured  ? <Button onClick={() => history.push("/form/inlay")}>Edit</Button> : null}
+                            {data.inlaySpecInsured || data.inlaySpecUninsured  ? <Button className="edit-btn" onClick={() => history.push("/form/inlay")}>Edit</Button> : null}
                             {data.crownMaterialInsured || data.crownMaterialUninsured ? <h1><strong>Crown</strong></h1> : null}  
                             {data.crownInvolutionBT && <h1>対合 BT: {data.crownInvolutionBT}</h1>}
                             {data.crownMaterialInsured && <h1>クラウン 保険: {data.crownMaterialInsured}</h1>}
                             {data.crownShadeInsured && <h1>クラウン シェード選択 保険: {data.crownShadeInsured}</h1>}
                             {data.crownMaterialUninsured && <h1>クラウン 自費: {data.crownMaterialUninsured}</h1>}
                             {data.crownShadeUninsured && <h1>クラウン シェード選択 自費: {data.crownShadeUninsured}</h1>}
-                            {data.crownMaterialInsured || data.crownMaterialUninsured  ? <Button onClick={() => history.push("/form/crown")}>Edit</Button> : null}
+                            {data.crownMaterialInsured || data.crownMaterialUninsured  ? <Button className="edit-btn" onClick={() => history.push("/form/crown")}>Edit</Button> : null}
                             {data.BrMaterialInsured || data.BrMaterialUninsured ? <h1><strong>Br</strong></h1> : null}       
                             {data.BrInvolution && <h1>対合: {data.BrInvolution}</h1>}
                             {data.BrInvolutionBT && <h1>対合 BT: {data.BrInvolutionBT}</h1>}
@@ -58,7 +58,7 @@ function Confirmation({data, user}) {
                             {data.otherOptionUninsured && <h1>その他 自費: {data.otherOptionUninsured}</h1>}
                             {data.oralDeviceInsured && <h1>口腔内装置 保険: {data.oralDeviceInsured}</h1>}
                             {data.oralDeviceUninsured && <h1>口腔内装置 自費: {data.oralDeviceUninsured}</h1>}
-                            {data.BrMaterialInsured || data.BrMaterialUninsured  ? <Button onClick={() => history.push("/form/br")}>Edit</Button> : null}
+                            {data.BrMaterialInsured || data.BrMaterialUninsured  ? <Button className="edit-btn" onClick={() => history.push("/form/br")}>Edit</Button> : null}
                             {data.implantType  && <h1><strong>Implant</strong></h1> }
                             {data.implantType && <h1>インプラント: {data.implantType}</h1>} 
                             {data.implantMaterial && <h1>インプラントタイプ: {data.implantMaterial}</h1>}
@@ -69,7 +69,7 @@ function Confirmation({data, user}) {
                             {data.implantMakerAnkylosOption && <h1>アンキロス Option: {data.implantMakerAnkylosOption}</h1>}
                             {data.implantMakerAstraTechOption && <h1>アストラテック Option: {data.implantMakerAstraTechOption}</h1>}
                             {data.implantShade && <h1>インプラント シェード選択: {data.implantShade}</h1>}
-                            {data.implantType ? <Button onClick={() => history.push("/form/implant")}>Edit</Button> : null}
+                            {data.implantType ? <Button className="edit-btn" onClick={() => history.push("/form/implant")}>Edit</Button> : null}
                             {data.dentureInsured || data.dentureUninsured ?<h1><strong>Denture</strong></h1> : null}
                             {data.dentureInvolution && <h1>対合: {data.dentureInvolution}</h1>}
                             {data.dentureInvolutionBT && <h1>対合 BT: {data.dentureInvolutionBT}</h1>}
@@ -80,14 +80,17 @@ function Confirmation({data, user}) {
                             {data.dentureFloorInsured && <h1>床 保険: {data.dentureFloorInsured}</h1>}
                             {data.dentureBarUninsured && <h1>バー 自費: {data.dentureBarUninsured}</h1>}
                             {data.dentureOtherInsured && <h1>その他 保険: {data.dentureOtherInsured}</h1>}
-                            {data.dentureInsured || data.dentureUninsured  ? <Button onClick={() => history.push("/form/denture")}>Edit</Button> : null}
-                             <h1>主訴: {data.mainComplaint }</h1>
-                            <h1>発注日: {date}</h1> 
-                            <h1>配送日: {deliveryDate}</h1> 
-                            <h1>時間: {deliveryTime}</h1> 
+                            {data.dentureInsured || data.dentureUninsured  ? <Button className="edit-btn" onClick={() => history.push("/form/denture")}>Edit</Button> : null}
+                            <h1>主訴: {data.mainComplaint }</h1>
+                            <h1>発注日: {date}</h1>
+                            <h1>時間: {deliveryTime}</h1>
+                            <Button className="edit-btn" onClick={() => history.push("/form/delivery-time")}>Edit</Button> 
+                            <h1>配送日: {deliveryDate}</h1>
+                            <Button className="edit-btn" onClick={() => history.push("/form/delivery-date")}>Edit</Button> 
                         </div>
                         <div className="teeth">
                             <CanvasDraw 
+                                className="teeth-mouth"
                                 imgSrc={mouth} alt="mouth diagram" 
                                 saveData={data.drawing}  
                                 brushColor={data.color}
@@ -98,19 +101,19 @@ function Confirmation({data, user}) {
                               <CanvasDraw 
                                 imgSrc={diagram} alt="Ptnadult diagram" 
                                 saveData={data.diagram}  
-                                // brushColor={color}
                                 brushRadius={brushRadius}
                                 lazyRadius={lazyRadius}
                                 canvasHeight={height}
                                 canvasWidth={width}
                                 immediateLoading={immediateLoading}
                             />
+                            <Button className="edit-btn" onClick={() => history.push("/form/diagram")}>Edit</Button>
                          </div> 
         </div>
         <div>
           {/* <Button color="primary" variant="contained" onClick={() => history.push(`/form/patient`)}>  finish </Button> */}
-          <Button className="nav-btn">Submit</Button>  
           <Button className="nav-btn" onClick={() => history.push(`/form/treatment`)}> add order</Button>
+          <Button className="nav-btn">Submit</Button>  
         </div>
     </div>
   )

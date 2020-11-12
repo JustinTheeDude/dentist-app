@@ -18,6 +18,7 @@ function Denture({
   }) {
   const history = useHistory();
   return (
+    <div>
     <FormGroup className="denture form-box">
         <Label for="dentureInvolution">対合</Label>
         <Input type="select" name="dentureInvolution" value={dentureInvolution} onChange={handleChange} required>
@@ -262,9 +263,11 @@ function Denture({
                 </FormGroup>
       </div>
     } 
-    <Button color="primary" variant="contained" onClick={() => history.push(`/form/delivery-time`)}>  finish </Button>
-    <Button color="primary" variant="contained" onClick={() => history.push(`/form/treatment`)}>  add order</Button>
     </FormGroup>
+    <Button className="nav-btn"  onClick={() => history.push(`/form/delivery-time`)}>finish</Button>
+    <Button className="nav-btn"  onClick={() => history.push(`/form/treatment`)}>add order</Button>
+    <Button className="nav-btn"  onClick={() => history.push(`/form/confirm`)}>check order</Button>
+    </div>
   )
 
 }
