@@ -2,7 +2,7 @@ import React from 'react'
 import { FormGroup, Label, Input, Button } from "reactstrap";
 import { useHistory } from 'react-router-dom';
 
-function OtherOption({ paymentType, otherOptionInsured, otherOptionUninsured,handleChange }) {
+function OtherOption({ paymentType, otherOptionInsured, otherOptionUninsured,handleChange, id }) {
 
   const history = useHistory();
 
@@ -33,9 +33,14 @@ function OtherOption({ paymentType, otherOptionInsured, otherOptionUninsured,han
       </div>
     }
     </FormGroup>
-    <Button className="nav-btn"  onClick={() => history.push(`/form/delivery-time`)}>finish</Button>
-    <Button className="nav-btn"  onClick={() => history.push(`/form/treatment`)}> add order</Button>
-    <Button className="nav-btn"  onClick={() => history.push(`/form/confirm`)}>check order</Button>
+    {!id && <Button className="nav-btn"  onClick={() => history.push(`/form/delivery-time`)}>finish</Button>}
+    { !id && <Button className="nav-btn"  onClick={() => history.push(`/form/treatment`)}> add order</Button>}
+    {
+      id ?
+      <Button className="nav-btn"  onClick={() => history.push(`/form/${id}/confirm`)}>check order</Button>
+      :
+      <Button className="nav-btn"  onClick={() => history.push(`/form/confirm`)}>check order</Button>
+    }
     </div>
   )
 }

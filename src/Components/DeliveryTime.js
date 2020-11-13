@@ -2,7 +2,7 @@ import React from 'react'
 import { FormGroup, Label, Input, Button } from "reactstrap";
 import { useHistory } from 'react-router-dom';
 
-function DeliveryTime({ handleChange, deliveryTime}) {
+function DeliveryTime({ handleChange, deliveryTime, id}) {
   const history = useHistory();
     return(
       <div>
@@ -19,17 +19,13 @@ function DeliveryTime({ handleChange, deliveryTime}) {
       </FormGroup>
         <Button
         className="nav-btn"
-        onClick={() => history.goBack()}
-        >Back
-        </Button>
-          &nbsp;&nbsp; &nbsp;&nbsp;
-        <Button
-          className="nav-btn"
-          onClick={()=> {
-            history.push(`/form/delivery-date`) 
-            }}
-          >next
-        </Button>
+        onClick={() => history.goBack()}>Back</Button>
+        {
+          id ?
+          <Button className="nav-btn" onClick={()=> { history.push(`/form/${id}/confirm`) }}>next</Button>
+          :
+          <Button className="nav-btn" onClick={()=> { history.push(`/form/delivery-date`) }}>next</Button>
+          }
       </div>
     )
 }

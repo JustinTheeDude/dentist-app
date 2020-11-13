@@ -40,7 +40,7 @@ class App extends Component {
                                 <PrivateRoute path="/form/doctor"  component={Maininfo} />
                                 <PrivateRoute path="/cards" component={Card} />
                                 <PrivateRoute path="/form/:page" component={Maininfo} />
-                                <PrivateRoute path="/form/:id/update" component={Maininfo} />
+                                <PrivateRoute path="/form/:id/:page" component={Maininfo} />
                                 <Route path="/signout"> <Logout /> </Route>
                             </Layout>
                         </Switch>

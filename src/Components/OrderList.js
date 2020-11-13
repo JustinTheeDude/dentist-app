@@ -6,7 +6,6 @@ import { Collapse } from 'reactstrap';
 
 
 const OrderList = ({orders, pagination}) => {
- console.log(orders)
 let arr = orders
 
 let sortedObj = arr.reduce((c, v) => {
@@ -40,7 +39,6 @@ let sortedObj = arr.reduce((c, v) => {
     const [orderView, setOrderView] = useState(false);
     const [hideOrder, hiddenOrder] = useState("");
     const [isOpen, setIsOpen] = useState(false);
-    console.log(result)
     const setUserOrder = (order) => {
         setOrder(order);
         setOrderView(true);

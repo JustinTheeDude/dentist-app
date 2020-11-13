@@ -11,7 +11,8 @@ function Implant({
   implantMakerCamlogOption,
   implantMakerAnkylosOption,
   implantMakerAstraTechOption,
-  implantShade, 
+  implantShade,
+  id 
 }) {
   const history = useHistory();
   return (
@@ -183,9 +184,14 @@ function Implant({
             <option>C 4</option>
           </Input>
     </FormGroup>
-    <Button className="nav-btn" onClick={() => history.push(`/form/delivery-time`)}>finish</Button>
-    <Button className="nav-btn" variant="contained" onClick={() => history.push(`/form/treatment`)}> add order</Button>
-    <Button className="nav-btn"  onClick={() => history.push(`/form/confirm`)}>check order</Button>
+    {!id && <Button className="nav-btn" onClick={() => history.push(`/form/delivery-time`)}>finish</Button>}
+    {!id && <Button className="nav-btn" variant="contained" onClick={() => history.push(`/form/treatment`)}>add order</Button>}
+    {
+      id ?
+      <Button className="nav-btn"  onClick={() => history.push(`/form/${id}/confirm`)}>check order</Button>
+      :
+      <Button className="nav-btn"  onClick={() => history.push(`/form/confirm`)}>check order</Button>
+    }
   </div>
   )
 }

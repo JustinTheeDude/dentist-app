@@ -2,7 +2,7 @@ import React from 'react';
 import { FormGroup,Label, Input, Button } from "reactstrap";
 import { useHistory } from 'react-router-dom';
 
-function PaymentSelect({ paymentType, handleChange, }) {
+function PaymentSelect({ paymentType, handleChange, id }) {
   const history = useHistory();
   return (
     <div>
@@ -19,6 +19,16 @@ function PaymentSelect({ paymentType, handleChange, }) {
       >Back
     </Button>
       &nbsp;&nbsp; &nbsp;&nbsp;
+    {
+    id ?
+    <Button
+      className="nav-btn"
+      onClick={()=> {
+        history.push(`/form/${id}/confirm`) 
+        }}
+      >next
+    </Button>
+    :
     <Button
       className="nav-btn"
       onClick={()=> {
@@ -26,6 +36,7 @@ function PaymentSelect({ paymentType, handleChange, }) {
         }}
       >next
     </Button>
+    }
     </div>
   )
 };

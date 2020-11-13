@@ -23,7 +23,7 @@ class MouthCanvas extends Component {
 
   render() {
     const drawing = this.props.drawing
-
+    const id = this.props.id
     return (
       <div>
         <button
@@ -63,19 +63,13 @@ class MouthCanvas extends Component {
           imgSrc={mouth}
           saveData={drawing}
         />
-              <Button
-          className="nav-btn"
-          onClick={() => this.props.history.goBack()}
-          >Back
-        </Button>
-          &nbsp;&nbsp; &nbsp;&nbsp;
-        <Button
-          className="nav-btn"
-          onClick={()=> {
-            this.props.history.push(`/form/confirm`) 
-            }}
-          >next
-        </Button>
+        <Button className="nav-btn" onClick={() => this.props.history.goBack()}>Back</Button>
+        {
+          id ?
+         <Button className="nav-btn" onClick={()=> {this.props.history.push(`/form/${id}/confirm`)}}>next</Button>
+         :
+         <Button className="nav-btn" onClick={()=> {this.props.history.push(`/form/confirm`)}}>next</Button>
+        }
       </div>
     );
   }

@@ -9,7 +9,8 @@ function Br({
   BrShadeInsured,
   BrMaterialUninsured, 
   BrShadeUninsured, 
-  handleChange 
+  handleChange,
+  id 
 }) {
   const history = useHistory();
   return (
@@ -105,9 +106,14 @@ function Br({
             }
             
         </FormGroup>
-        <Button className="nav-btn"  onClick={() => history.push(`/form/delivery-time`)}>finish </Button>
-        <Button className="nav-btn"  onClick={() => history.push(`/form/treatment`)}>add order</Button>
-        <Button className="nav-btn"  onClick={() => history.push(`/form/confirm`)}>check order</Button>
+       { !id && <Button className="nav-btn"  onClick={() => history.push(`/form/delivery-time`)}>finish </Button>}
+        { !id && <Button className="nav-btn"  onClick={() => history.push(`/form/treatment`)}>add order</Button> }
+        {
+          id ?
+          <Button className="nav-btn"  onClick={() => history.push(`/form/${id}/confirm`)}>check order</Button>
+          :
+          <Button className="nav-btn"  onClick={() => history.push(`/form/confirm`)}>check order</Button>
+        }
     </div>
   )
 }

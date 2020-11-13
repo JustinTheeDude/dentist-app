@@ -204,9 +204,9 @@ class MainInfo extends Component {
         this.props.history.push('/cards');
     }
 
-    handleUpdate = (e) => {
+    handleUpdate = () => {
 
-        e.preventDefault()
+        // e.preventDefault()
         const orderRef = firebase.database().ref(`Dentist/${this.user.uid}/Form`).child(this.id)
         const items = {
             doctorName: this.user.displayName,
@@ -355,8 +355,8 @@ class MainInfo extends Component {
     render() {
         const user = firebase.auth().currentUser
         let { page } = this.props.match.params
-        // const { step, inlay, br,crown, oralDevice, implant, denture,other} = this.state;
-        switch(page) {
+        const id = this.props.match.params.id
+        switch( page) {
             case "doctor" :
                 
                 return (
@@ -382,7 +382,7 @@ class MainInfo extends Component {
                                 age={this.state.age} 
                                 gender={this.state.gender}                                                
                             />
-                            <PaymentSelect handleChange={this.handleChange} paymentType={this.state.paymentType}  />
+                            <PaymentSelect handleChange={this.handleChange} paymentType={this.state.paymentType}  id={id} />
                         </div>
                         </Form>
                     )
@@ -405,7 +405,8 @@ class MainInfo extends Component {
                                         inlaySpecUninsured={this.state.inlaySpecUninsured}
                                         paymentType={this.state.paymentType}
                                         inlayInvolution={this.state.inlayInvolution}
-                                        inlayInvolutionBT={this.state.inlayInvolutionBT}                          
+                                        inlayInvolutionBT={this.state.inlayInvolutionBT}
+                                        id={id}                          
                                     /> 
                                 </Form> 
                             )
@@ -420,7 +421,8 @@ class MainInfo extends Component {
                                             crownShadeUninsured={this.state.crownShadeUninsured}
                                             crownInvolution={this.state.crownInvolution}
                                             crownInvolutionBT={this.state.crownInvolutionBT}    
-                                            paymentType={this.state.paymentType}  
+                                            paymentType={this.state.paymentType}
+                                            id={id}  
                                         />
                                     </Form> 
                                 )
@@ -434,7 +436,8 @@ class MainInfo extends Component {
                                                 BrShadeInsured={this.state.BrShadeInsured}
                                                 BrMaterialUninsured={this.state.BrMaterialUninsured}
                                                 BrInvolution={this.state.BrInvolution}
-                                                BrInvolutionBT={this.state.BrInvolutionBT} 
+                                                BrInvolutionBT={this.state.BrInvolutionBT}
+                                                id={id}
                                             />
                                         </Form> 
                                     ) 
@@ -446,7 +449,8 @@ class MainInfo extends Component {
                                                     handleChange={this.handleChange} 
                                                     oralDeviceInsured={this.state.oralDeviceInsured}
                                                     oralDeviceUninsured={this.state.oralDeviceUninsured}
-                                                    paymentType={this.state.paymentType}  
+                                                    paymentType={this.state.paymentType}
+                                                    id={id}  
                                                 />
                                         </Form> 
                                     )  
@@ -465,10 +469,11 @@ class MainInfo extends Component {
                                             implantMakerAnkylosOption={this.state.implantMakerAnkylosOption}
                                             implantMakerAstraTechOption={this.state.implantMakerAstraTechOption}
                                             implantShade={this.state.implantShade}
+                                            id={id}
                                             />
                                         </Form> 
                                     )
-                                    case "denture" :
+                                    case "denture":                                 
                                         return (
                                             <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
                                                <h2><strong>義歯</strong></h2>
@@ -485,6 +490,7 @@ class MainInfo extends Component {
                                                     dentureBarUninsured={this.state.dentureBarUninsured}
                                                     dentureFloorInsured={this.state.dentureFloorInsured}
                                                     dentureOtherInsured={this.state.dentureOtherInsured}
+                                                    id={id}
                                                 />
                                             </Form> 
                                         )
@@ -497,6 +503,7 @@ class MainInfo extends Component {
                                                         otherOptionInsured={this.state.otherOptionInsured}
                                                         otherOptionUninsured={this.state.otherOptionUninsured} 
                                                         paymentType={this.state.paymentType}
+                                                        id={id}
                                                     />
                                                 </Form> 
                                             )  
@@ -506,11 +513,12 @@ class MainInfo extends Component {
                                                 <div>
                                                 <h3 className="order-heading">主訴/時間</h3>
                                                     <MainComplaint handleChange={this.handleChange} mainComplaint={this.state.mainComplaint} />
-                                                    <DeliveryTime  handleChange={this.handleChange} deliveryTime={this.state.deliveryTime} />
+                                                    <DeliveryTime  handleChange={this.handleChange} deliveryTime={this.state.deliveryTime} id={id}/>
                                                 </div>
                                             </Form> 
                                         )
                                     case "delivery-date" :
+                                    
                                         return (
                                             <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
                                                 <div>
@@ -524,6 +532,7 @@ class MainInfo extends Component {
                                                     <DeliveryDate
                                                         date={this.state.date.toString().slice(0, 15)}
                                                         delivery={this.state.deliveryDate.toString().slice(0, 15)}
+                                                        id={id}
                                                     />
                                                 </div>  
                                             </div>  
@@ -534,7 +543,7 @@ class MainInfo extends Component {
                                         <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
                                             <div className="canvas form-box">
                                               <MouthCanvas  drawing={this.state.drawing} id={this.id} getDrawing={this.getDrawing} />
-                                                   &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+                                                   {/* &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; */}
                                               <PtnadultCanvas  diagram={this.state.diagram} id={this.id} getDiagram={this.getDiagram} />
                                              </div>  
                                         </Form> 
@@ -543,7 +552,7 @@ class MainInfo extends Component {
                                         return (
                                         <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
                                             <div className="canvas form-box">
-                                                <Confirmation data={this.state} user={user.displayName} onSubmit={this.handleSubmit} />
+                                                <Confirmation data={this.state} user={user.displayName} onSubmit={this.handleSubmit} update={this.handleUpdate} id={id} />
                                             </div>  
                                         </Form> 
                                     )
