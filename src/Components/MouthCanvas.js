@@ -26,16 +26,14 @@ class MouthCanvas extends Component {
     const id = this.props.id
     return (
       <div>
-        <button
-          id="btn-canvas"
-          onClick={(e) => {
+        <button id="btn-canvas" onClick={(e) => {
             e.preventDefault()
             this.sendData()
           }}
         >
           Save
         </button>
-        &nbsp;
+
         <button
           id="btn-canvas"
           onClick={(e) => {
@@ -45,7 +43,7 @@ class MouthCanvas extends Component {
         >
           Clear
         </button>
-        &nbsp;
+       
         <button
           id="btn-canvas"
           onClick={(e) => {

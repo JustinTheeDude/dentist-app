@@ -547,8 +547,8 @@ class MainInfo extends Component {
                                         return (
                                         <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
                                             <div className="canvas form-box">
-                                              <MouthCanvas  className="mouth" drawing={this.state.drawing} id={this.id} getDrawing={this.getDrawing} />
-                                              <PtnadultCanvas className="ptnadult" diagram={this.state.diagram} id={this.id} getDiagram={this.getDiagram} />
+                                              <MouthCanvas  drawing={this.state.drawing} id={this.id} getDrawing={this.getDrawing} />
+                                              <PtnadultCanvas diagram={this.state.diagram} id={this.id} getDiagram={this.getDiagram} />
                                              </div>  
                                         </Form> 
                                     )
