@@ -120,6 +120,11 @@ class MainInfo extends Component {
                     inlaySpecInsured:"",
                 })
             }
+            if(this.state.implantType) {
+                this.setState({
+                    paymentType: "自費"
+                })
+            }
             this.setState({
                 [e.target.name]: e.target.value,
                 value: e.target.value,
@@ -542,9 +547,8 @@ class MainInfo extends Component {
                                         return (
                                         <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
                                             <div className="canvas form-box">
-                                              <MouthCanvas  drawing={this.state.drawing} id={this.id} getDrawing={this.getDrawing} />
-                                                   {/* &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; */}
-                                              <PtnadultCanvas  diagram={this.state.diagram} id={this.id} getDiagram={this.getDiagram} />
+                                              <MouthCanvas  className="mouth" drawing={this.state.drawing} id={this.id} getDrawing={this.getDrawing} />
+                                              <PtnadultCanvas className="ptnadult" diagram={this.state.diagram} id={this.id} getDiagram={this.getDiagram} />
                                              </div>  
                                         </Form> 
                                     )

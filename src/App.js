@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "./styles/main.scss";
 
 // Component imports
-import Maininfo from "./Components/MainInfo";
+import MainForm from "./Components/MainForm";
 import Card from "./Components/Card";
 import PrivateRoute from './PrivateRoute';
 import Layout from "./Components/Layout";
@@ -37,10 +37,10 @@ class App extends Component {
                             </Route>
                             <Route path="/signup"> <DentistSingup /> </Route>
                             <Layout>
-                                <PrivateRoute path="/form/doctor"  component={Maininfo} />
+                                <PrivateRoute path="/form/doctor"  component={MainForm} />
                                 <PrivateRoute path="/cards" component={Card} />
-                                <PrivateRoute path="/form/:page" component={Maininfo} />
-                                <PrivateRoute path="/form/:id/:page" component={Maininfo} />
+                                <PrivateRoute path="/form/:page" component={MainForm} />
+                                <PrivateRoute path="/form/:id/:page" component={MainForm} />
                                 <Route path="/signout"> <Logout /> </Route>
                             </Layout>
                         </Switch>

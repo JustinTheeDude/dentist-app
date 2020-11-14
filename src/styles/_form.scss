@@ -96,20 +96,20 @@
 .canvas {
     display: flex;
     flex: 1;
-
+    justify-content: space-around;
 }
 
 #btn-canvas {
     border: 2px solid darkblue;
     background-color:dodgerblue;
     border-radius: 5px;
+    margin: 0.2em;
 }
 .treatment-btn-container {
     display: flex;
     flex-wrap: wrap;
-
-    
 }
+
 .treatment-btn{
     flex: 1 0 22%; 
     border: 2px solid black;
