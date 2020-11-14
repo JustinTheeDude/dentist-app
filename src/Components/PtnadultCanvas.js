@@ -38,7 +38,7 @@ class PtnadultCanvas extends Component {
           >
             Save
           </button>
-          &nbsp;
+          
           <button
             id="btn-canvas"
             onClick={(e) => {
@@ -48,7 +48,7 @@ class PtnadultCanvas extends Component {
           >
             Clear
           </button>
-          &nbsp;
+
           <button
             id="btn-canvas"
             onClick={(e) => {
