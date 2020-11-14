@@ -12,7 +12,7 @@ import Card from "./Components/Card";
 import PrivateRoute from './PrivateRoute';
 import Layout from "./Components/Layout";
 import Login from "./Components/Login";
-import DentistSingup from './Components/DentistSingup';
+import Singup from './Components/Singup';
 import Logout from './Components/Logout';
 
 //import Provider
@@ -35,7 +35,7 @@ class App extends Component {
                             <Route exact path="/">
                                 <Login />
                             </Route>
-                            <Route path="/signup"> <DentistSingup /> </Route>
+                            <Route path="/signup"> <Singup /> </Route>
                             <Layout>
                                 <PrivateRoute path="/form/doctor"  component={MainForm} />
                                 <PrivateRoute path="/cards" component={Card} />

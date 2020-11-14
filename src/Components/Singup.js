@@ -4,13 +4,12 @@ import firebase from './firebase';
 import { withRouter, Link } from 'react-router-dom'
 
 
-class TechSignup extends Component {
+class Signup extends Component {
 
     state = {
-        tech_name: "",
         displayName: "",
-        tech_office: "",
-        tech_id: "",
+        dentist_office: "",
+        dentist_id: "",
         email: "",
         password: "",
         confirmPassword: "",
@@ -35,24 +34,23 @@ class TechSignup extends Component {
                 .auth().createUserWithEmailAndPassword(email, password)
                 .then( user => {
                     user = firebase.auth().currentUser
-                    const techRef = firebase.database().ref(`Technician/${user.uid}/Info`)
-                    const  tech = {
+                    const dentistRef = firebase.database().ref(`Dentist/${user.uid}/Info`)
+                    const  dentist = {
                         displayName: this.state.displayName,
-                        tech_office: this.state.tech_office,
-                        tech_id: user.uid,
+                        dentist_office: this.state.dentist_office,
+                        dentist_id: user.uid,
                         email: this.state.email,
                     }
-                    techRef.set(tech)
+                    dentistRef.set(dentist)
                     if(user) {
                         user.updateProfile({
                             displayName
                         })
                         this.props.history.push('/cards')
                     }
-                    // console.log("this is the user object after name input: ", user)
                     this.setState({
                         displayName: "",
-                        tech_office:"",
+                        dentist_office:"",
                         email: "",
                         password: "",
                         confirmPassword: "",
@@ -73,12 +71,12 @@ class TechSignup extends Component {
     }
 
     cancel = () => {
-        this.props.history.push('/form');
+        this.props.history.push('/');
     }
     render() {
         const {
             displayName,
-            tech_office,
+            dentist_office,
             email,
             password,
             confirmPassword,
@@ -88,7 +86,7 @@ class TechSignup extends Component {
         } = this.state;
         return (
             <Form className="signup" onSubmit={this.signUp} >
-                <h1>技術者登録</h1>
+                <h1>歯科医の登録</h1>
                 <FormGroup>
                     <Label for="displayName">名前</Label>
                     <Input
@@ -107,14 +105,14 @@ class TechSignup extends Component {
                     }
                 </FormGroup>
                 <FormGroup>
-                    <Label for="tech_office">会社名</Label>
+                    <Label for="dentist_office">病院名</Label>
                     <Input
                         type="text"
-                        name="tech_office"
-                        id="tech_office"
-                        placeholder="会社名"
+                        name="dentist_office"
+                        id="dentist_office"
+                        placeholder="病院名"
                         onChange={this.handleChange}
-                        value={tech_office}
+                        value={dentist_office}
                     />
                     {
                         nameError ?
@@ -155,9 +153,9 @@ class TechSignup extends Component {
                         />
                         {
                             firebaseErr.code === "auth/weak-password" ?
-                                <p style={{color: 'firebrick', fontSize: '15px' }}>パスワードが 間 違って います</p>
-                                :
-                                null
+                            <p style={{color: 'firebrick', fontSize: '15px' }}>パスワードが 間 違って います</p>
+                            :
+                            null
                         }
                     </FormGroup>
                     <FormGroup>
@@ -177,11 +175,10 @@ class TechSignup extends Component {
                                 null
                         }
                     </FormGroup>
-                    <Button>Submit</Button>
-                    {/* margin property */}
-                    &nbsp;&nbsp;&nbsp;
-                    <Button onClick={this.cancel}>Cancel</Button>
-                    <p>
+                    <Button className="btn-singup">Submit</Button>
+                    <Button className="btn-singup" onClick={this.cancel}>Cancel</Button>
+                    
+                    <p style={{color: 'black', fontSize: '20px' }}>
                         会員の方はこちら <Link to="/">クリック</Link> 下さい！
                     </p>
                     {
@@ -196,4 +193,4 @@ class TechSignup extends Component {
     }
 }
 
-export default withRouter(TechSignup);
+export default withRouter(Signup);
