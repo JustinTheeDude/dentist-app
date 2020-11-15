@@ -28,7 +28,7 @@ function Br({
               <div>
                 <Label for="BrInvolutionBT">BT</Label>
                 <Input type="select" name="BrInvolutionBT" value={BrInvolutionBT} onChange={handleChange} required>
-                　<option>Please Select a choice</option>
+                　<option>Please Select one</option>
                   <option>なし</option>
                   <option>あり</option>     
                 </Input>
@@ -106,7 +106,7 @@ function Br({
             }
             
         </FormGroup>
-       { !id && <Button className="nav-btn"  onClick={() => history.push(`/form/delivery-time`)}>finish </Button>}
+       { !id && <Button className="nav-btn"  onClick={() => history.push(`/form/delivery-time`)}>次</Button>}
         { !id && <Button className="nav-btn"  onClick={() => history.push(`/form/treatment`)}>add order</Button> }
         {
           id ?

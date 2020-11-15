@@ -11,12 +11,12 @@ function DeliveryDate ({ delivery, date,id }) {
             Order date: {date}. Delivery date: {delivery}
         </div>
         <div>
-            <Button className="nav-btn" onClick={() => history.goBack()}>Back</Button>
+            <Button className="nav-btn" onClick={() => history.goBack()}>戻る</Button>
             {
                 id ?
-                <Button className="nav-btn" onClick={()=> { history.push(`/form/${id}/confirm`) }} >next</Button>
+                <Button className="nav-btn" onClick={()=> { history.push(`/form/${id}/confirm`) }} >次</Button>
                 :
-                <Button className="nav-btn" onClick={()=> { history.push(`/form/diagram`) }} >next</Button>
+                <Button className="nav-btn" onClick={()=> { history.push(`/form/diagram`) }} >次</Button>
             }
         </div>
     </div>

@@ -65,7 +65,7 @@ function TreatmentType() {
   <Button
       className="nav-btn"
       onClick={() => history.goBack()}
-      >Back
+      >戻る
     </Button>
       &nbsp;&nbsp; &nbsp;&nbsp;
     <Button
@@ -73,7 +73,7 @@ function TreatmentType() {
       onClick={()=> {
         history.push(`/form/delivery-time`) 
         }}
-      >next
+      >次
     </Button>
     </div>
   )

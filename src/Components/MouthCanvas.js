@@ -31,7 +31,7 @@ class MouthCanvas extends Component {
             this.sendData()
           }}
         >
-          Save
+          セーブ
         </button>
 
         <button
@@ -41,7 +41,7 @@ class MouthCanvas extends Component {
             this.saveableCanvas.clear();
           }}
         >
-          Clear
+          クリアー
         </button>
        
         <button
@@ -51,7 +51,7 @@ class MouthCanvas extends Component {
             this.saveableCanvas.undo();
           }}
         >
-          Undo
+          アンドゥ
         </button>
         <CanvasDraw
           ref={canvasDraw => (this.saveableCanvas = canvasDraw)}
@@ -61,12 +61,12 @@ class MouthCanvas extends Component {
           imgSrc={mouth}
           saveData={drawing}
         />
-        <Button className="nav-btn" onClick={() => this.props.history.goBack()}>Back</Button>
+        <Button className="nav-btn" onClick={() => this.props.history.goBack()}>戻る</Button>
         {
           id ?
-         <Button className="nav-btn" onClick={()=> {this.props.history.push(`/form/${id}/confirm`)}}>next</Button>
+         <Button className="nav-btn" onClick={()=> {this.props.history.push(`/form/${id}/confirm`)}}>次</Button>
          :
-         <Button className="nav-btn" onClick={()=> {this.props.history.push(`/form/confirm`)}}>next</Button>
+         <Button className="nav-btn" onClick={()=> {this.props.history.push(`/form/confirm`)}}>次</Button>
         }
       </div>
     );

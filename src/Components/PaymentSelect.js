@@ -16,7 +16,7 @@ function PaymentSelect({ paymentType, handleChange, id }) {
     <Button
       className="nav-btn"
       onClick={() => history.goBack()}
-      >Back
+      >戻る
     </Button>
       &nbsp;&nbsp; &nbsp;&nbsp;
     {
@@ -26,7 +26,7 @@ function PaymentSelect({ paymentType, handleChange, id }) {
       onClick={()=> {
         history.push(`/form/${id}/confirm`) 
         }}
-      >next
+      >次
     </Button>
     :
     <Button
@@ -34,7 +34,7 @@ function PaymentSelect({ paymentType, handleChange, id }) {
       onClick={()=> {
         history.push(`/form/treatment`) 
         }}
-      >next
+      >次
     </Button>
     }
     </div>

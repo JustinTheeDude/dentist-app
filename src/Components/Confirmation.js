@@ -149,7 +149,7 @@ function Confirmation({data, user, id, update}) {
           <Button className="nav-btn">Submit</Button>  
 
           }
-          <Button className="nav-btn" onClick={()=> history.push("/cards")}>Orders</Button>
+          <Button className="nav-btn" onClick={()=> history.push("/cards")}>Order List</Button>
         </div>
     </div>
   )

@@ -92,13 +92,13 @@ function Inlay({
     </FormGroup>
     
 
-   {!id && <Button className="nav-btn"  onClick={() => history.push(`/form/delivery-time`)}>finish</Button>}
+   {!id && <Button className="nav-btn"  onClick={() => history.push(`/form/delivery-time`)}>次</Button>}
     { !id && <Button className="nav-btn"  onClick={() => history.push(`/form/treatment`)}>add order</Button>}
     {
       id ?
-      <Button className="nav-btn"  onClick={() => history.push(`/form/${id}/confirm`)}>check order</Button>
+      <Button className="nav-btn"  onClick={() => history.push(`/form/${id}/confirm`)}>view order</Button>
       :
-      <Button className="nav-btn"  onClick={() => history.push(`/form/confirm`)}>check order</Button>
+      <Button className="nav-btn"  onClick={() => history.push(`/form/confirm`)}>view order</Button>
     }
 
     </div>

@@ -205,7 +205,7 @@ class MainInfo extends Component {
 
         const ref = firebase.database().ref(`Dentist/${user.uid}/Info`)
         ref.update({address: this.state.address, zip: this.state.zip})
-
+        itemsRef.off()
         this.props.history.push('/cards');
     }
 

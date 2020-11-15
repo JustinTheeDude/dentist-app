@@ -51,7 +51,7 @@ function DoctorInfo({user, address, zip, handleChange, page,}) {
           }
           </FormGroup>
           
-          <Button className="nav-btn" onClick={() => history.push(`/form/patient`)}>  Next </Button>
+          <Button className="nav-btn" onClick={() => history.push(`/form/patient`)}>次</Button>
          
       </div>
     )
