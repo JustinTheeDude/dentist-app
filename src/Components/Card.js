@@ -7,16 +7,14 @@ const Card = () => {
     const [orders, setOrders] = useState([]);
     const [orderPerPage] = useState(10);
     const [currentOrderPage, setCurrentOrderPage] = useState(1);
+
     useEffect(() => {
-        // let unmounted = false;
 
         const user = firebase.auth().currentUser;
-        const itemsRef = firebase.database().ref(`Dentist/${user.uid}/Form`);
         let newState = [];
-       
+        let itemsRef;
         if(user) {
-            
-
+            itemsRef = firebase.database().ref(`Dentist/${user.uid}/Form`);
             itemsRef.orderByChild("patientID").on("value", snap => {
 
                 snap.forEach(child => {
@@ -32,9 +30,7 @@ const Card = () => {
                 setOrders(newState);
             });
         }
-         
-    return () =>{itemsRef.off() }   
-    //   return () => { unmounted = true };
+        return () =>{ itemsRef && itemsRef.off() }   
     }, []);
 
 

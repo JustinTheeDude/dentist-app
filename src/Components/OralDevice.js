@@ -1,8 +1,11 @@
 import React from 'react'
-import { FormGroup,Label, Input  } from "reactstrap";
+import { FormGroup,Label, Input, Button  } from "reactstrap";
+import { useHistory } from 'react-router-dom';
 
-function OralDevice({ handleChange, oralDeviceInsured, oralDeviceUninsured, paymentType }) {
+function OralDevice({ handleChange, oralDeviceInsured, oralDeviceUninsured, paymentType, id }) {
+  const history = useHistory();
   return(
+    <div>
     <FormGroup className="OralDevice form-box">
      {
       paymentType === "保険" &&
@@ -32,8 +35,16 @@ function OralDevice({ handleChange, oralDeviceInsured, oralDeviceUninsured, paym
       </div>
      }
     </FormGroup>
-
+    {!id && <Button className="nav-btn"  onClick={() => history.push(`/form/delivery-time`)}>次</Button>}
+    { !id && <Button className="nav-btn"  onClick={() => history.push(`/form/treatment`)}>別の注文を追加</Button> }
+    {
+      id ?
+      <Button className="nav-btn"  onClick={() => history.push(`/form/${id}/confirm`)}>注文詳細</Button>
+      :
+      <Button className="nav-btn"  onClick={() => history.push(`/form/confirm`)}>注文詳細</Button>
+    }
+    </div>
   )
-}
+} 
 
 export default OralDevice;

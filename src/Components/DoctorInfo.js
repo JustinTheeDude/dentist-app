@@ -1,19 +1,22 @@
 import React  from 'react';
-import  { FormGroup, Label, Input } from "reactstrap";
+import  { FormGroup, Label, Input, Button } from "reactstrap";
+import { useHistory } from 'react-router-dom';
+function DoctorInfo({user, address, zip, handleChange, page,}) {
 
-function DoctorInfo({user, address, zip, handleChange}) {
+    const history = useHistory();
     return (
       <div>
+        <h3 className="hospital-info-header">医院情報</h3>
           <FormGroup className="doc-name form-box">
           <Label >担当名</Label>
-          { user.displayName ?
-              <h1>{user.displayName}</h1> :
+          { user?
+              <h1>{user}</h1> :
               <Input
                   type="text"
                   name="doctorName"
                   placeholder="名前"
                   onChange={handleChange}
-                  value={user.displayName}
+                  value={user}
               />  
           }
           </FormGroup>
@@ -47,6 +50,9 @@ function DoctorInfo({user, address, zip, handleChange}) {
           /> 
           }
           </FormGroup>
+          
+          <Button className="nav-btn" onClick={() => history.push(`/form/patient`)}>次</Button>
+         
       </div>
     )
 }

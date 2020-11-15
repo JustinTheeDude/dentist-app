@@ -1,7 +1,7 @@
 import React from 'react'
-import { FormGroup, Label, Input } from "reactstrap";
-
-function InlayOnlay({
+import { FormGroup, Label, Input, Button } from "reactstrap";
+import { useHistory } from 'react-router-dom';
+function Inlay({
   inlayInvolution, 
   inlayInvolutionBT, 
   inlayMaterial, 
@@ -9,10 +9,14 @@ function InlayOnlay({
   paymentType,
   inlaySpecUninsured, 
   inlaySpecInsured, 
-  handleChange 
+  handleChange,
+  id
 }) {
+  const history = useHistory();
 
   return (
+    <div>
+    <h2><strong>インレー</strong></h2> 
     <FormGroup className="inlay-onlay form-box">
         <Label for="inlayInvolution">対合</Label>
           <Input type="select" name="inlayInvolution" value={inlayInvolution} onChange={handleChange} required>
@@ -86,7 +90,19 @@ function InlayOnlay({
       }
 
     </FormGroup>
+    
+
+   {!id && <Button className="nav-btn"  onClick={() => history.push(`/form/delivery-time`)}>次</Button>}
+    { !id && <Button className="nav-btn"  onClick={() => history.push(`/form/treatment`)}>add order</Button>}
+    {
+      id ?
+      <Button className="nav-btn"  onClick={() => history.push(`/form/${id}/confirm`)}>view order</Button>
+      :
+      <Button className="nav-btn"  onClick={() => history.push(`/form/confirm`)}>view order</Button>
+    }
+
+    </div>
   )
 }
 
-export default InlayOnlay
+export default Inlay;

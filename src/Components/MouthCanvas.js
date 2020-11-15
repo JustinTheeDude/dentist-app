@@ -1,8 +1,8 @@
   
 import React, { Component } from "react"; import CanvasDraw from "react-canvas-draw";
 import mouth from '../assets/mouth.png';
-
-
+import { Button } from "reactstrap";
+import {  withRouter } from 'react-router';
 class MouthCanvas extends Component {
   state = {
     color: "black",
@@ -23,19 +23,17 @@ class MouthCanvas extends Component {
 
   render() {
     const drawing = this.props.drawing
-
+    const id = this.props.id
     return (
       <div>
-        <button
-          id="btn-canvas"
-          onClick={(e) => {
+        <button id="btn-canvas" onClick={(e) => {
             e.preventDefault()
             this.sendData()
           }}
         >
-          Save
+          セーブ
         </button>
-        &nbsp;
+
         <button
           id="btn-canvas"
           onClick={(e) => {
@@ -43,9 +41,9 @@ class MouthCanvas extends Component {
             this.saveableCanvas.clear();
           }}
         >
-          Clear
+          クリアー
         </button>
-        &nbsp;
+       
         <button
           id="btn-canvas"
           onClick={(e) => {
@@ -53,7 +51,7 @@ class MouthCanvas extends Component {
             this.saveableCanvas.undo();
           }}
         >
-          Undo
+          アンドゥ
         </button>
         <CanvasDraw
           ref={canvasDraw => (this.saveableCanvas = canvasDraw)}
@@ -63,10 +61,17 @@ class MouthCanvas extends Component {
           imgSrc={mouth}
           saveData={drawing}
         />
+        <Button className="nav-btn" onClick={() => this.props.history.goBack()}>戻る</Button>
+        {
+          id ?
+         <Button className="nav-btn" onClick={()=> {this.props.history.push(`/form/${id}/confirm`)}}>次</Button>
+         :
+         <Button className="nav-btn" onClick={()=> {this.props.history.push(`/form/confirm`)}}>次</Button>
+        }
       </div>
     );
   }
 
 }
 
-export default MouthCanvas;
+export default withRouter(MouthCanvas);

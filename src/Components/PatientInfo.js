@@ -1,10 +1,11 @@
 import React from "react";
 import { FormGroup, Label, Input } from "reactstrap";
 
+function PatientInfo({ patientName, patientID, age, gender, handleChange, page, prevStep }) {
 
-function PatientInfo({ patientName,patientID,age,gender,handleChange }) {
     return (
         <div>
+            <h3 className="hospital-info-header">医院情報</h3>
             <FormGroup className="patient-name form-box">
               <Label className="patient-name-label">患者名</Label>
                   <Input

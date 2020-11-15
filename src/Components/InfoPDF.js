@@ -108,41 +108,44 @@ class PDF extends React.Component{
             <Document>
                 <Page size="A4" style={this.MouthStyles.page}>
                     <View style={this.MouthStyles.section}>
+                        <Text>DOCTOR INFO</Text>
                         <Text>歯科医名 :{this.props.name}</Text>
                         <Text>住所: {this.props.address}</Text>
                         <Text>郵便番号: {this.props.zip}</Text>
+                        <Text>PATIENT INFO</Text>
                         <Text>患者名: {this.props.patientName}</Text>
                         <Text>患者ID: {this.props.patientID}</Text>
                         <Text>年齢: {this.props.age}</Text>
                         <Text>性別: {this.props.gender}</Text>
-                        {
-                        this.props.otherOption ? <Text>製品仕様 他: {this.props.otherOption}</Text> : null
-                        }
-                        <Text>治療の種類: {this.props.treatmentType}</Text>
                         <Text>支払い: {this.props.paymentType}</Text>
+                        { this.props.inlaySpecInsured || this.props.inlaySpecUninsured  ? <Text>INLAY</Text> : null }
                         { this.props.inlayInvolution ? <Text>対合: {this.props.inlayInvolution }</Text> : null }
                         { this.props.inlayInvolutionBT ? <Text>対合 BT: {this.props.inlayInvolutionBT }</Text> : null }
                         { this.props.inlaySpecInsured ? <Text>Inlay Spec 保険 : {this.props.inlaySpecInsured }</Text> : null }
                         { this.props.inlaySpecUninsured ? <Text>Inlay Spec 自費  : {this.props.inlaySpecUninsured  }</Text> : null }
                         { this.props.inlayMaterial ? <Text>補綴物インレー: {this.props.inlayMaterial}</Text> : null }
                         { this.props.inlayShade ? <Text>シェード選択: {this.props.inlayShade}</Text> : null }
+                        { this.props.crownMaterialInsured || this.props.crownMaterialUninsured ? <Text>Crown</Text> : null }
                         { this.props.crownInvolution ? <Text>対合 : {this.props.crownInvolution }</Text> : null }
                         { this.props.crownInvolutionBT ? <Text>対合 BT : {this.props.crownInvolutionBT }</Text> : null }
                         { this.props.crownMaterialInsured ? <Text>クラウン 保険: {this.props.crownMaterialInsured}</Text> : null }
                         { this.props.crownShadeInsured ? <Text>クラウン シェード選択 保険: {this.props.crownShadeInsured}</Text> : null }
                         { this.props.crownMaterialUninsured ?  <Text>クラウン 自費: {this.props.crownMaterialUninsured}</Text> : null }
                         { this.props.crownShadeUninsured ? <Text>クラウン シェード選択 自費: {this.props.crownShadeUninsured}</Text> : null }
+                        { this.props.BrMaterialInsured || this.props.BrMaterialUninsured ? <Text>Br</Text> : null }
                         { this.props.BrInvolution ? <Text>対合: {this.props.BrInvolution }</Text> : null }
                         { this.props.BrInvolutionBT ? <Text>対合 BT: {this.props.BrInvolutionBT }</Text> : null }
                         { this.props.BrMaterialInsured ? <Text>Br 保険: {this.props.BrMaterialInsured}</Text> : null }
                         { this.props.BrShadeInsured ? <Text>Br シェード選択 保険: {this.props.BrShadeInsured}</Text> : null }
                         { this.props.BrMaterialUninsured ? <Text>Br 自費: {this.props.BrMaterialUninsured}</Text> : null }
                         { this.props.BrShadeUninsured ? <Text>Br シェード選択 自費: {this.props.BrShadeUninsured}</Text> : null }
+                        { this.props.otherOptionInsured || this.props.otherOptionUninsured   ? <Text>OTHER</Text> : null }
                         { this.props.otherOptionInsured ? <Text>その他 保険: {this.props.otherOptionInsured}</Text> : null }
                         { this.props.otherOptionUninsured ? <Text>その他 自費: {this.props.otherOptionUninsured}</Text> : null }
-                        { this.props.bridgeType ? <Text>ブリッジインレータイプ: {this.props.bridgeType}</Text> : null }
+                        { this.props.oralDeviceInsured || this.props.oralDeviceUninsured ? <Text>口腔内装置</Text> : null }
                         { this.props.oralDeviceInsured ? <Text>口腔内装置 保険: {this.props.oralDeviceInsured}</Text> : null }
                         { this.props.oralDeviceUninsured ? <Text>口腔内装置 自費: {this.props.oralDeviceUninsured}</Text> : null }
+                        { this.props.implantType ? <Text>IMPLANT</Text> : null }
                         { this.props.implantType ? <Text>インプラント: {this.props.implantType}</Text> : null }
                         { this.props.implantMaterial ? <Text>インプラントタイプ: {this.props.implantMaterial}</Text> : null }
                         { this.props.implantTray ? <Text>各個トレー: {this.props.implantTray}</Text> : null }
@@ -152,6 +155,7 @@ class PDF extends React.Component{
                         { this.props.implantMakerAnkylosOption ? <Text>アンキロス Option: {this.props.implantMakerAnkylosOption}</Text> : null }
                         { this.props.implantMakerAstraTechOption ? <Text>アストラテック Option: {this.props.implantMakerAstraTechOption}</Text> : null }
                         { this.props.implantShade? <Text>インプラント シェード選択:  {this.props.implantShade}</Text> : null }
+                        { this.props.dentureInsured || this.props.dentureUninsured  ? <Text>DENTURE</Text> : null}
                         { this.props.dentureInvolution  ? <Text>対合: {this.props.dentureInvolution}</Text> : null}
                         { this.props.dentureInvolutionBT? <Text>対合 BT: {this.props.dentureInvolutionBT}</Text> : null }
                         { this.props.dentureInsured ? <Text>義歯 保険: {this.props.dentureInsured}</Text> : null}
@@ -161,10 +165,12 @@ class PDF extends React.Component{
                         { this.props.BarUninsured ? <Text>バー 自費: {this.props.BarUninsured}</Text> : null }
                         { this.props.dentureFloorInsured ? <Text>床 保険: {this.props.dentureFloorInsured}</Text> : null }
                         { this.props.dentureOtherInsured ? <Text>その他 保険: {this.props.dentureOtherInsured}</Text> : null }
+                        <Text>ORDER DATE</Text>
                         <Text>主訴: {this.props.mainComplaint}</Text>
                         <Text>発注日: {this.props.date}</Text>
-                        <Text>配送日: {this.props.deliveryDate}</Text>
                         <Text>時間: {this.props.deliveryTime}</Text>
+                        <Text>DELIVERY DATE</Text>
+                        <Text>配送日: {this.props.deliveryDate}</Text>
                       
                     </View>
                     <View style={this.MouthStyles.imageSection}>

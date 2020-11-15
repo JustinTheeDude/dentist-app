@@ -1,7 +1,9 @@
-import React, { Component } from "react"; import CanvasDraw from "react-canvas-draw";
+import React, { Component } from "react";
+import CanvasDraw from "react-canvas-draw"
 import ptnadult from '../assets/Ptnadult.svg.png';
 
 class PtnadultCanvas extends Component {
+ 
   state = {
     color: "black",
     height: 200,
@@ -26,48 +28,51 @@ class PtnadultCanvas extends Component {
 
     return (
       <div>
-        <button
-          id="btn-canvas"
-          onClick={(e) => {
-            e.preventDefault()
-            this.sendData()
-          }}
-        >
-          Save
-        </button>
-        &nbsp;
-        <button
-          id="btn-canvas"
-          onClick={(e) => {
-            e.preventDefault()
-            this.saveableCanvas.clear();
-          }}
-        >
-          Clear
-        </button>
-        &nbsp;
-        <button
-          id="btn-canvas"
-          onClick={(e) => {
-            e.preventDefault()
-            this.saveableCanvas.undo();
-          }}
-        >
-          Undo
-        </button>
+        <div>
+          <button
+            id="btn-canvas"
+            onClick={(e) => {
+              e.preventDefault()
+              this.sendData()
+            }}
+          >
+            Save
+          </button>
+          
+          <button
+            id="btn-canvas"
+            onClick={(e) => {
+              e.preventDefault()
+              this.saveableCanvas.clear();
+            }}
+          >
+            Clear
+          </button>
 
-          <CanvasDraw
-            ref={canvasDraw => (this.saveableCanvas = canvasDraw)}
-            brushColor={this.state.color}
-            brushRadius={this.state.brushRadius}
-            lazyRadius={this.state.lazyRadius}
-            canvasHeight={this.state.height}
-            canvasWidth={this.state.width}
-            imgSrc={ptnadult}
-            saveData={diagram}
-          />
-        
+          <button
+            id="btn-canvas"
+            onClick={(e) => {
+              e.preventDefault()
+              this.saveableCanvas.undo();
+            }}
+          >
+            Undo
+          </button>
+            <CanvasDraw
+              ref={canvasDraw => (this.saveableCanvas = canvasDraw)}
+              brushColor={this.state.color}
+              brushRadius={this.state.brushRadius}
+              lazyRadius={this.state.lazyRadius}
+              canvasHeight={this.state.height}
+              canvasWidth={this.state.width}
+              imgSrc={ptnadult}
+              saveData={diagram}
+            />
+
+        </div>
+
       </div>
+
     );
   }
 
