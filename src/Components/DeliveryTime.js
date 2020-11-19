@@ -17,14 +17,12 @@ function DeliveryTime({ handleChange, deliveryTime, id}) {
           onChange={handleChange}
           />
       </FormGroup>
-        <Button
-        className="nav-btn"
-        onClick={() => history.goBack()}>戻る</Button>
+        <Button className="nav-btn" onClick={() => history.goBack()}>戻る</Button>
         {
           id ?
           <Button className="nav-btn" onClick={()=> { history.push(`/form/${id}/confirm`) }}>次</Button>
           :
-          <Button className="nav-btn" onClick={()=> { history.push(`/form/delivery-date`) }}>次</Button>
+          <Button className="nav-btn" onClick={()=> { history.push(`/form/diagram`) }}>次</Button>
           }
       </div>
     )

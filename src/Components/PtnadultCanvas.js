@@ -1,18 +1,18 @@
 import React, { Component } from "react";
 import CanvasDraw from "react-canvas-draw"
-import ptnadult from '../assets/Ptnadult.svg.png';
+import ptnadult from '../assets/toothNotation.png';
 
 class PtnadultCanvas extends Component {
  
   state = {
     color: "black",
-    height: 200,
+    height: 300,
     width: 400,
     brushRadius: 2,
     lazyRadius: 2,
   };
 
-  constructor(props) {
+  constructor() {
     super();
     this.canvasRef = React.createRef();
   }
@@ -36,7 +36,7 @@ class PtnadultCanvas extends Component {
               this.sendData()
             }}
           >
-            Save
+            保存
           </button>
           
           <button
@@ -46,7 +46,7 @@ class PtnadultCanvas extends Component {
               this.saveableCanvas.clear();
             }}
           >
-            Clear
+            全消去
           </button>
 
           <button
@@ -56,7 +56,7 @@ class PtnadultCanvas extends Component {
               this.saveableCanvas.undo();
             }}
           >
-            Undo
+           消去
           </button>
             <CanvasDraw
               ref={canvasDraw => (this.saveableCanvas = canvasDraw)}
@@ -67,6 +67,7 @@ class PtnadultCanvas extends Component {
               canvasWidth={this.state.width}
               imgSrc={ptnadult}
               saveData={diagram}
+              className="diagram"
             />
 
         </div>

@@ -20,7 +20,8 @@ const Card = () => {
                 snap.forEach(child => {
                     newState.push({
                         id: child.key,
-                        patientName: child.val().patientName,
+                        lNameKanji: child.val().lNameKanji,
+                        fNameKanji: child.val().fNameKanji,
                         date: child.val().date,
                         complete: child.val().complete,
                         patientID: child.val().patientID

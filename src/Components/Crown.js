@@ -19,7 +19,7 @@ function Crown({
       <FormGroup className="Crown form-box">
           <Label for="crownInvolution">対合</Label>
             <Input type="select" name="crownInvolution" value={crownInvolution} onChange={handleChange} required>
-            　<option>Please Select a choice</option>
+            　<option>オプションを1つ選択してください</option>
               <option>なし</option>
               <option>あり</option>     
             </Input>
@@ -119,13 +119,13 @@ function Crown({
               null
           }
       </FormGroup>
-      { !id && <Button className="nav-btn"  onClick={() => history.push(`/form/delivery-time`)}>次</Button>}
-      { !id && <Button className="nav-btn"  onClick={() => history.push(`/form/treatment`)}>add order</Button>}
+      { !id && <Button className="nav-btn"  onClick={() => history.push(`/form/delivery`)}>次</Button>}
+      { !id && <Button className="nav-btn"  onClick={() => history.push(`/form/treatment`)}>別の注文を追加</Button>}
       { 
         id ?
-        <Button className="nav-btn"  onClick={() => history.push(`/form/${id}/confirm`)}>check order</Button>
+        <Button className="nav-btn"  onClick={() => history.push(`/form/${id}/confirm`)}>注文詳細</Button>
         :
-        <Button className="nav-btn"  onClick={() => history.push(`/form/confirm`)}>check order</Button>
+        <Button className="nav-btn"  onClick={() => history.push(`/form/confirm`)}>注文詳細</Button>
       }
     </div>
 

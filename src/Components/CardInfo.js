@@ -6,7 +6,7 @@ import { Button } from 'reactstrap';
 import mouth from '../assets/mouth.png';
 import CanvasDraw from "react-canvas-draw";
 import PDF from "../Components/InfoPDF";
-import diagram from '../assets/Ptnadult.svg.png';
+import diagram from '../assets/toothNotation.png';
 
 class CardInfo extends Component {
     state = {
@@ -15,8 +15,11 @@ class CardInfo extends Component {
         doctorName: "",
         address: "",
         zip: "",
-        patientName: "",
-        patientID: "", 
+        patientID: "",
+        lNameKanji: "",
+        fNameKanji: "",
+        lNameKana: "",
+        fNameKana: "", 
         age: "",
         gender: "",
         treatmentType:"",
@@ -69,7 +72,7 @@ class CardInfo extends Component {
         diagram: "",
         brushRadius: 0.1,
         lazyRadius: 0.1,
-        height: 200,
+        height: 300,
         width: 400,
         immediateLoading: true,
     };
@@ -103,8 +106,11 @@ class CardInfo extends Component {
                             doctorName: items["doctorName"],
                             address: items["address"],
                             zip: items["zip"],
-                            patientName: items["patientName"],
                             patientID: items["patientID"],
+                            lNameKanji: items["lNameKanji"],
+                            fNameKanji: items["fNameKanji"],
+                            lNameKana: items["lNameKana"],
+                            fNameKana: items["fNameKana"],
                             date: items["date"],
                             deliveryDate: items["deliveryDate"],
                             age: items["age"],
@@ -186,23 +192,30 @@ class CardInfo extends Component {
     render() {
         const id = this.props.value
         const history = this.props.history;
+        const fileName = `${this.state.lNameKanji}${this.state.fNameKanji}${this.state.patientID}`
+        const fontObj = {
+            fontSize: 28,
+            fontWeight: "bold",
+            color: "#2A2A72"
+          }
         return (
             <MyContext.Consumer>
                 {context => (
                     <div className="order-container">
                         <div className="order-info">
-                            <h1><strong>Doctor</strong></h1>
+                            <h1 style={fontObj}>病院情報</h1>
                             <h1>歯科医名: {this.state.doctorName}</h1>
                             <h1>住所: {this.state.address}</h1>
                             <h1>郵便番号: {this.state.zip}</h1>
-                            <h1><strong>Patient</strong></h1>
-                            <h1>患者名: {this.state.patientName}</h1>
+                            <h1 style={fontObj}>患者情報</h1>
                             <h1>患者ID: {this.state.patientID}</h1>
+                            <h1>患者名: {this.state.lNameKanji} {this.state.fNameKanji}</h1>
+                            <h1>患者名 (フリガナ): {this.state.lNameKana} {this.state.fNameKana}</h1>
                             <h1>年齢: {this.state.age}</h1>
                             <h1>性別: {this.state.gender}</h1>
                             <h1>支払い: {this.state.paymentType}</h1>
                             <Button className="edit-btn" onClick={() => history.push(`/form/${id}/patient`)}>Edit</Button>
-                            {this.state.inlaySpecInsured || this.state.inlaySpecUninsured ? <h1><strong>Inlay</strong></h1> : null}   
+                            {this.state.inlaySpecInsured || this.state.inlaySpecUninsured ? <h1 style={fontObj}>インレー</h1> : null}   
                             {this.state.inlayInvolution && <h1>対合 : {this.state.inlayInvolution}</h1>}
                             {this.state.inlayInvolutionBT && <h1>対合 BT: {this.state.inlayInvolutionBT}</h1>}
                             {this.state.inlaySpecInsured && <h1>Inlay Spec 保険 : {this.state.inlaySpecInsured}</h1>}
@@ -210,7 +223,7 @@ class CardInfo extends Component {
                             {this.state.inlayMaterial && <h1>補綴物インレー: {this.state.inlayMaterial}</h1>}
                             {this.state.inlayShade && <h1>インレーシェード: {this.state.inlayShade}</h1>}
                             {this.state.inlaySpecInsured || this.state.inlaySpecUninsured  ? <Button className="edit-btn" onClick={() => history.push(`/form/${id}/inlay`)}>Edit</Button> : null}
-                            {this.state.crownMaterialInsured || this.state.crownMaterialUninsured ? <h1><strong>Crown</strong></h1> : null}
+                            {this.state.crownMaterialInsured || this.state.crownMaterialUninsured ? <h1 style={fontObj}>クラウン</h1> : null}
                             {this.state.crownInvolution && <h1>対合: {this.state.crownInvolution}</h1>}
                             {this.state.crownInvolutionBT && <h1>対合 BT: {this.state.crownInvolutionBT}</h1>}
                             {this.state.crownMaterialInsured && <h1>クラウン 保険: {this.state.crownMaterialInsured}</h1>}
@@ -218,7 +231,7 @@ class CardInfo extends Component {
                             {this.state.crownMaterialUninsured && <h1>クラウン 自費: {this.state.crownMaterialUninsured}</h1>}
                             {this.state.crownShadeUninsured && <h1>クラウン シェード選択 自費: {this.state.crownShadeUninsured}</h1>}
                             {this.state.crownMaterialInsured || this.state.crownMaterialUninsured  ? <Button className="edit-btn" onClick={() => history.push(`/form/${id}/crown`)}>Edit</Button> : null}
-                            {this.state.BrMaterialInsured || this.state.BrMaterialUninsured ? <h1><strong>Br</strong></h1> : null} 
+                            {this.state.BrMaterialInsured || this.state.BrMaterialUninsured ? <h1 style={fontObj}>Br</h1> : null} 
                             {this.state.BrInvolution && <h1>対合: {this.state.BrInvolution}</h1>}
                             {this.state.BrInvolutionBT && <h1>対合 BT: {this.state.BrInvolutionBT}</h1>}
                             {this.state.BrMaterialInsured && <h1>Br 保険: {this.state.BrMaterialInsured}</h1>}
@@ -226,15 +239,15 @@ class CardInfo extends Component {
                             {this.state.BrMaterialUninsured && <h1>Br 自費: {this.state.BrMaterialUninsured}</h1>}
                             {this.state.BrShadeUninsured && <h1>Br シェード選択 自費: {this.state.BrShadeUninsured}</h1>}
                             {this.state.BrMaterialInsured || this.state.BrMaterialUninsured  ? <Button className="edit-btn" onClick={() => history.push(`/form/${id}/br`)}>Edit</Button> : null}
-                            {this.state.otherOptionInsured || this.state.otherOptionUninsured ? <h1><strong>その他</strong></h1> : null}
+                            {this.state.otherOptionInsured || this.state.otherOptionUninsured ? <h1 style={fontObj}>その他</h1> : null}
                             {this.state.otherOptionInsured && <h1>その他 保険: {this.state.otherOptionInsured}</h1>}
                             {this.state.otherOptionUninsured && <h1>その他 自費: {this.state.otherOptionUninsured}</h1>}
                             {this.state.otherOptionInsured || this.state.otherOptionUninsured  ? <Button className="edit-btn" onClick={() => history.push(`/form/${id}/other`)}>Edit</Button> : null}
-                            {this.state.oralDeviceInsured || this.state.oralDeviceUninsured ? <h1><strong>口腔内装置</strong></h1> : null}
+                            {this.state.oralDeviceInsured || this.state.oralDeviceUninsured ? <h1 style={fontObj}>口腔内装置</h1> : null}
                             {this.state.oralDeviceInsured && <h1>口腔内装置 保険: {this.state.oralDeviceInsured}</h1>}
                             {this.state.oralDeviceUninsured && <h1>口腔内装置 自費: {this.state.oralDeviceUninsured}</h1>}
                             {this.state.oralDeviceInsured || this.state.oralDeviceUninsured  ? <Button className="edit-btn" onClick={() => history.push(`/form/${id}/other`)}>Edit</Button> : null}
-                            {this.state.implantType  && <h1><strong>Implant</strong></h1> }
+                            {this.state.implantType  && <h1 style={fontObj}>インプラント</h1> }
                             {this.state.implantType && <h1>インプラント: {this.state.implantType}</h1>}
                             {this.state.implantMaterial && <h1>インプラントタイプ: {this.state.implantMaterial}</h1>}
                             {this.state.implantTray && <h1>各個トレー: {this.state.implantTray}</h1>}
@@ -245,7 +258,7 @@ class CardInfo extends Component {
                             {this.state.implantMakerAstraTechOption && <h1>アストラテック Option: {this.state.implantMakerAstraTechOption}</h1>}
                             {this.state.implantShade && <h1>インプラント シェード選択: {this.state.implantShade}</h1>}
                             {this.state.implantType ? <Button className="edit-btn" onClick={() => history.push(`/form/${id}/implant`)}>Edit</Button> : null}
-                            {this.state.dentureInsured || this.state.dentureUninsured ?<h1><strong>Denture</strong></h1> : null}
+                            {this.state.dentureInsured || this.state.dentureUninsured ?<h1 style={fontObj}>義歯</h1> : null}
                             {this.state.dentureInvolution && <h1>対合: {this.state.dentureInvolution}</h1>}
                             {this.state.dentureInvolutionBT && <h1>対合 BT: {this.state.dentureInvolutionBT}</h1>}
                             {this.state.dentureInsured && <h1>義歯 保険: {this.state.dentureInsured}</h1>}
@@ -256,17 +269,16 @@ class CardInfo extends Component {
                             {this.state.dentureBarUninsured && <h1>バー 自費: {this.state.dentureBarUninsured}</h1>}
                             {this.state.dentureOtherInsured && <h1>その他 保険: {this.state.dentureOtherInsured}</h1>}
                             {this.state.dentureInsured || this.state.dentureUninsured  ? <Button className="edit-btn" onClick={() => history.push(`/form/${id}/denture`)}>Edit</Button> : null}
-                            <h1><strong>Order Date</strong></h1>
-                            <h1>主訴: {this.state.mainComplaint }</h1>
+                            <h1 style={fontObj}>注文日</h1>
                             <h1>発注日: {this.state.date}</h1>
                             <h1>時間: {this.state.deliveryTime}</h1>
                             <Button className="edit-btn" onClick={() => history.push(`/form/${id}/delivery-time`)}>Edit</Button> 
-                            <h1><strong>Delivery Date</strong></h1>
+                            <h1 style={fontObj}>納品日</h1>
                             <h1>配送日: {this.state.deliveryDate}</h1>
                             <Button className="edit-btn" onClick={() => history.push(`/form/${id}/delivery-date`)}>Edit</Button> 
                         </div>
                         <div className="teeth">
-                        <h1><strong>Diagrams</strong></h1>
+                        <h1 style={fontObj}>図面</h1>
                             <CanvasDraw
                                 className="teeth-mouth" 
                                 imgSrc={mouth} alt="mouth diagram" 
@@ -286,12 +298,17 @@ class CardInfo extends Component {
                                 canvasWidth={this.state.width}
                                 immediateLoading={this.state.immediateLoading}
                             />
+                            <h1 style={fontObj}>主訴:</h1>
+                            <h1>{this.state.mainComplaint}</h1>
                             <Button className="edit-btn" onClick={() => history.push(`/form/${id}/diagram`)}>Edit</Button>
                         </div>
                         <PDF name={this.state.doctorName}
                             address={this.state.address}
                             zip={this.state.zip}
-                            patientName={this.state.patientName}
+                            lNameKanji={this.state.lNameKanji}
+                            fNameKanji={this.state.fNameKanji}
+                            lNameKana={this.state.lNameKana}
+                            fNameKana={this.state.fNameKana} 
                             patientID={this.state.patientID}
                             age={this.state.age}
                             gender={this.state.gender}
@@ -301,7 +318,7 @@ class CardInfo extends Component {
                             deliveryDate={this.state.deliveryDate}
                             deliveryTime={this.state.deliveryTime}
                             otherOption={this.state.otherOption}
-                            filename={this.state.patientName}
+                            filename={fileName}
                             inlayInvolution={this.state.inlayInvolution}
                             inlayInvolutionBT={this.state.inlayInvolutionBT}
                             inlaySpecInsured={this.state.inlaySpecInsured}

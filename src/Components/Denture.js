@@ -23,7 +23,7 @@ function Denture({
     <FormGroup className="denture form-box">
         <Label for="dentureInvolution">対合</Label>
         <Input type="select" name="dentureInvolution" value={dentureInvolution} onChange={handleChange} required>
-          　<option>Please Select a choice</option>
+          　<option>オプションを1つ選択してください</option>
             <option>なし</option>
             <option>あり</option>     
           </Input>
@@ -32,7 +32,7 @@ function Denture({
           <div>
             <Label for="dentureInvolutionBT">BT</Label>
             <Input type="select" name="dentureInvolutionBT" value={dentureInvolutionBT} onChange={handleChange} required>
-            　<option>Please Select a choice</option>
+            　<option>オプションを1つ選択してください</option>
               <option>なし</option>
               <option>あり</option>     
             </Input>
@@ -265,13 +265,13 @@ function Denture({
       </div>
     } 
     </FormGroup>
-    { !id && <Button className="nav-btn"  onClick={() => history.push(`/form/delivery-time`)}>次</Button>}
-    { !id && <Button className="nav-btn"  onClick={() => history.push(`/form/treatment`)}>add order</Button> }
+    { !id && <Button className="nav-btn"  onClick={() => history.push(`/form/delivery`)}>次</Button>}
+    { !id && <Button className="nav-btn"  onClick={() => history.push(`/form/treatment`)}>別の注文を追加</Button> }
     {
       id ?
-      <Button className="nav-btn"  onClick={() => history.push(`/form/${id}/confirm`)}>check order</Button>
+      <Button className="nav-btn"  onClick={() => history.push(`/form/${id}/confirm`)}>注文詳細</Button>
       :
-      <Button className="nav-btn"  onClick={() => history.push(`/form/confirm`)}>check order</Button>
+      <Button className="nav-btn"  onClick={() => history.push(`/form/confirm`)}>注文詳細</Button>
     }
     </div>
   )

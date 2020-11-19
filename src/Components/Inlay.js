@@ -20,7 +20,7 @@ function Inlay({
     <FormGroup className="inlay-onlay form-box">
         <Label for="inlayInvolution">対合</Label>
           <Input type="select" name="inlayInvolution" value={inlayInvolution} onChange={handleChange} required>
-          　<option>Please Select a choice</option>
+          　<option>オプションを1つ選択してください</option>
             <option>なし</option>
             <option>あり</option>     
           </Input>
@@ -29,7 +29,7 @@ function Inlay({
           <div>
             <Label for="inlayInvolutionBT">BT</Label>
             <Input type="select" name="inlayInvolutionBT" value={inlayInvolutionBT} onChange={handleChange} required>
-            　<option>Please Select a choice</option>
+            　<option>オプションを1つ選択してください</option>
               <option>なし</option>
               <option>あり</option>     
             </Input>
@@ -92,13 +92,13 @@ function Inlay({
     </FormGroup>
     
 
-   {!id && <Button className="nav-btn"  onClick={() => history.push(`/form/delivery-time`)}>次</Button>}
-    { !id && <Button className="nav-btn"  onClick={() => history.push(`/form/treatment`)}>add order</Button>}
+   {!id && <Button className="nav-btn"  onClick={() => history.push(`/form/delivery`)}>次</Button>}
+    { !id && <Button className="nav-btn"  onClick={() => history.push(`/form/treatment`)}>別の注文を追加</Button>}
     {
       id ?
-      <Button className="nav-btn"  onClick={() => history.push(`/form/${id}/confirm`)}>view order</Button>
+      <Button className="nav-btn"  onClick={() => history.push(`/form/${id}/confirm`)}>注文詳細</Button>
       :
-      <Button className="nav-btn"  onClick={() => history.push(`/form/confirm`)}>view order</Button>
+      <Button className="nav-btn"  onClick={() => history.push(`/form/confirm`)}>注文詳細</Button>
     }
 
     </div>
