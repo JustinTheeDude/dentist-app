@@ -1,12 +1,23 @@
 import React from 'react'
-import { FormGroup, Label, Input } from "reactstrap";
+import { FormGroup, Label, Input, Button } from "reactstrap";
+import { useHistory } from 'react-router-dom';
 
-function MainComplaint({ handleChange, mainComplaint}) {
+function MainComplaint({ handleChange, mainComplaint, id}) {
+  const history = useHistory()
   return (
-    <FormGroup className="main-complaint form-box">
-      <Label className="main-complaint-label">主訴</Label>
-      <Input type="textarea" name="mainComplaint" placeholder="主訴" onChange={handleChange} value={mainComplaint || ""} />
-    </FormGroup>
+    <div className="diagram diagram-text">
+      <FormGroup >
+        <Label className="main-complaint-label">特機事項</Label>
+        <Input type="textarea" name="mainComplaint" placeholder="特機事項" onChange={handleChange} value={mainComplaint || ""} />
+      </FormGroup>
+      <Button className="nav-btn" onClick={() => history.goBack()}>戻る</Button>
+      {
+            id ?
+          <Button className="nav-btn" onClick={()=> {history.push(`/form/${id}/confirm`)}}>次</Button>
+          :
+          <Button className="nav-btn" onClick={()=> {history.push(`/form/confirm`)}}>次</Button>
+          }
+    </div>
   )
 };
 

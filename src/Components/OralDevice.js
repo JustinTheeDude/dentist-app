@@ -35,7 +35,7 @@ function OralDevice({ handleChange, oralDeviceInsured, oralDeviceUninsured, paym
       </div>
      }
     </FormGroup>
-    {!id && <Button className="nav-btn"  onClick={() => history.push(`/form/delivery-time`)}>次</Button>}
+    {!id && <Button className="nav-btn"  onClick={() => history.push(`/form/delivery`)}>次</Button>}
     { !id && <Button className="nav-btn"  onClick={() => history.push(`/form/treatment`)}>別の注文を追加</Button> }
     {
       id ?

@@ -9,32 +9,29 @@ const OrderList = ({orders, pagination}) => {
 let arr = orders
 
 let sortedObj = arr.reduce((c, v) => {
-
   c[v.patientID] = c[v.patientID] || {}; //initializes an empty object
   c[v.patientID][v.id] = c[v.patientID][v.id] || {}; //initialize if the patientID property doesn't exist
   c[v.patientID][v.id][Object.keys(v)[1]] = c[v.patientID][v.id][Object.keys(v)[1]] || {}; // add the name property 
-  c[v.patientID][v.id][Object.keys(v)[1]][Object.keys(v)[2]] = c[v.patientID][v.id][Object.keys(v)[1]][Object.keys(v)[2]]  || {}; // add the date property
-  c[v.patientID][v.id][Object.keys(v)[1]] = v.patientName // add the value of the patientName property
-  c[v.patientID][v.id][Object.keys(v)[2]] = v.date // add the value to the date property
+  c[v.patientID][v.id][Object.keys(v)[1]][Object.keys(v)[3]] = c[v.patientID][v.id][Object.keys(v)[1]][Object.keys(v)[3]]  || {}; // add the date property
+  c[v.patientID][v.id][Object.keys(v)[1]] = `${v.lNameKanji}${v.fNameKanji}` // add the value of the patientName property
+  c[v.patientID][v.id][Object.keys(v)[3]] = v.date // add the value to the date property
   return c;
 }, {});
+
     let arr1 = [];
     let arr2 = [];
-    Object.keys(orders).map(key => arr1.push(orders[key].patientName));
+    Object.keys(orders).map(key => arr1.push(`${orders[key].lNameKanji} ${orders[key].fNameKanji}`));
     Object.keys(orders).map(key => arr2.push(orders[key].patientID ));
-    const nameArr = new Set(arr1)
-    const idArr = new Set(arr2)
 
+    const nameArr = arr1
+    const idArr = arr2
     const names = [...nameArr]
     const ids = [...idArr]
-
-
     const values = names;
     const keys = ids
-    
     const result = {};
-    keys.forEach((key, i) => result[key] = values[i]);
-    
+
+    keys.forEach((key, i) =>  result[key] = values[i]);
     const [orderId, setOrder] = useState("");
     const [orderView, setOrderView] = useState(false);
     const [hideOrder, hiddenOrder] = useState("");
@@ -47,7 +44,7 @@ let sortedObj = arr.reduce((c, v) => {
     const goBack = () => {
         setOrderView(false);
     }
-    
+
     const toggle = (id,e) => { 
 
         // const carets = document.querySelectorAll(".arrow")
@@ -63,7 +60,6 @@ let sortedObj = arr.reduce((c, v) => {
         hiddenOrder(id)
         setIsOpen(!isOpen);
     };
-    
   
     const contentRender = (orderView, orderId, orders, context) => {
         if(orderView) {

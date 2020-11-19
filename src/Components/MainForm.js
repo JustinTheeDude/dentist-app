@@ -30,8 +30,11 @@ class MainInfo extends Component {
         doctorName: "",
         address: "",
         zip: "",
-        patientName: "",
         patientID: "",
+        lNameKanji: "",
+        fNameKanji: "",
+        lNameKana: "",
+        fNameKana: "",
         age: "",
         gender: "男",
         paymentType: "保険",
@@ -143,12 +146,17 @@ class MainInfo extends Component {
         e.preventDefault();
         const user = firebase.auth().currentUser;
         const itemsRef = firebase.database().ref(`Dentist/${user.uid}/Form`);
+
         const item = {
             doctorName: this.user.displayName,
             address: this.state.address,
             zip: this.state.zip,
-            patientName: this.state.patientName,
+            // patientName: this.state.patientName,
             patientID: this.state.patientID,
+            lNameKanji: this.state.lNameKanji,
+            fNameKanji: this.state.fNameKanji,
+            lNameKana: this.state.lNameKana,
+            fNameKana: this.state.fNameKana,
             date: this.state.date.toString().slice(0, 15),
             deliveryDate: this.state.deliveryDate.toString().slice(0, 15),  
             age: this.state.age,
@@ -217,8 +225,12 @@ class MainInfo extends Component {
             doctorName: this.user.displayName,
             address: this.state.address,
             zip: this.state.zip,
-            patientName: this.state.patientName,
+            // patientName: this.state.patientName,
             patientID: this.state.patientID,
+            lNameKanji: this.state.lNameKanji,
+            fNameKanji: this.state.fNameKanji,
+            lNameKana: this.state.lNameKana,
+            fNameKana: this.state.fNameKana,
             date: this.state.date.toString().slice(0, 15),
             deliveryDate: this.state.deliveryDate.toString().slice(0, 15),  
             age: this.state.age,
@@ -279,6 +291,7 @@ class MainInfo extends Component {
         if(this.props.value !== "") {
             const ref = firebase.database().ref(`Dentist/${this.user.uid}/Info`)
             ref.on('value',(snap)=>{
+
                 this.setState({
                     address: snap.val().address,
                     zip: snap.val().zip,
@@ -297,8 +310,11 @@ class MainInfo extends Component {
                     doctorName: items["doctorName"],
                     address: items["address"],
                     zip: items["zip"],
-                    patientName: items["patientName"],
                     patientID: items["patientID"],
+                    lNameKanji: items["lNameKanji"],
+                    fNameKanji: items["fNameKanji"],
+                    lNameKana: items["lNameKana"],
+                    fNameKana: items["fNameKana"],
                     date: items["date"],
                     deliveryDate: items["deliveryDate"],
                     age: items["age"],
@@ -382,7 +398,10 @@ class MainInfo extends Component {
                             <PatientInfo 
                                 handleChange={this.handleChange} 
                                 nextStep={this.nextStep}  
-                                patientName={this.state.patientName} 
+                                lNameKanji={this.state.lNameKanji}
+                                fNameKanji={this.state.fNameKanji}
+                                lNameKana={this.state.lNameKana}
+                                fNameKana={this.state.fNameKana}
                                 patientID={this.state.patientID} 
                                 age={this.state.age} 
                                 gender={this.state.gender}                                                
@@ -512,17 +531,7 @@ class MainInfo extends Component {
                                                     />
                                                 </Form> 
                                             )  
-                                    case "delivery-time" :
-                                        return (
-                                            <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
-                                                <div>
-                                                <h3 className="order-heading">主訴/時間</h3>
-                                                    <MainComplaint handleChange={this.handleChange} mainComplaint={this.state.mainComplaint} />
-                                                    <DeliveryTime  handleChange={this.handleChange} deliveryTime={this.state.deliveryTime} id={id}/>
-                                                </div>
-                                            </Form> 
-                                        )
-                                    case "delivery-date" :
+                                    case "delivery" :
                                     
                                         return (
                                             <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
@@ -539,16 +548,18 @@ class MainInfo extends Component {
                                                         delivery={this.state.deliveryDate.toString().slice(0, 15)}
                                                         id={id}
                                                     />
-                                                </div>  
+                                                    <DeliveryTime  handleChange={this.handleChange} deliveryTime={this.state.deliveryTime} id={id}/>
+                                                </div>
                                             </div>  
                                             </Form> 
                                     )
                                     case "diagram" :
                                         return (
                                         <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
-                                            <div className="canvas form-box">
-                                              <MouthCanvas  drawing={this.state.drawing} id={this.id} getDrawing={this.getDrawing} />
-                                              <PtnadultCanvas diagram={this.state.diagram} id={this.id} getDiagram={this.getDiagram} />
+                                            <div className="canvas-container">
+                                              <MouthCanvas  drawing={this.state.drawing}  getDrawing={this.getDrawing} />
+                                              <PtnadultCanvas  diagram={this.state.diagram}  getDiagram={this.getDiagram} />
+                                              <MainComplaint   handleChange={this.handleChange} id={this.id} mainComplaint={this.state.mainComplaint} />  
                                              </div>  
                                         </Form> 
                                     )

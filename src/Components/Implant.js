@@ -184,13 +184,13 @@ function Implant({
             <option>C 4</option>
           </Input>
     </FormGroup>
-    {!id && <Button className="nav-btn" onClick={() => history.push(`/form/delivery-time`)}>次</Button>}
-    {!id && <Button className="nav-btn" variant="contained" onClick={() => history.push(`/form/treatment`)}>add order</Button>}
+    {!id && <Button className="nav-btn" onClick={() => history.push(`/form/delivery`)}>次</Button>}
+    {!id && <Button className="nav-btn" variant="contained" onClick={() => history.push(`/form/treatment`)}>別の注文を追加</Button>}
     {
       id ?
-      <Button className="nav-btn"  onClick={() => history.push(`/form/${id}/confirm`)}>check order</Button>
+      <Button className="nav-btn"  onClick={() => history.push(`/form/${id}/confirm`)}>注文詳細</Button>
       :
-      <Button className="nav-btn"  onClick={() => history.push(`/form/confirm`)}>check order</Button>
+      <Button className="nav-btn"  onClick={() => history.push(`/form/confirm`)}>注文詳細</Button>
     }
   </div>
   )

@@ -2,7 +2,7 @@ import React from 'react';
 import {Button} from "reactstrap";
 import takao from '../assets/takao.ttf';
 import mouth from '../assets/mouth.png';
-import diagram from '../assets/Ptnadult.svg.png'
+import diagram from '../assets/toothNotation.png'
 import {PDFDownloadLink, Document, Page, Text, View, StyleSheet, Font, Image } from '@react-pdf/renderer';
 class PDF extends React.Component{
     state = {
@@ -113,8 +113,9 @@ class PDF extends React.Component{
                         <Text>住所: {this.props.address}</Text>
                         <Text>郵便番号: {this.props.zip}</Text>
                         <Text>PATIENT INFO</Text>
-                        <Text>患者名: {this.props.patientName}</Text>
                         <Text>患者ID: {this.props.patientID}</Text>
+                        <Text>患者名: {this.props.lNameKanji} {this.props.fNameKanji}</Text>
+                        <Text>患者名 (フリガナ): {this.props.lNameKana} {this.props.fNameKana}</Text>
                         <Text>年齢: {this.props.age}</Text>
                         <Text>性別: {this.props.gender}</Text>
                         <Text>支払い: {this.props.paymentType}</Text>
@@ -166,7 +167,6 @@ class PDF extends React.Component{
                         { this.props.dentureFloorInsured ? <Text>床 保険: {this.props.dentureFloorInsured}</Text> : null }
                         { this.props.dentureOtherInsured ? <Text>その他 保険: {this.props.dentureOtherInsured}</Text> : null }
                         <Text>ORDER DATE</Text>
-                        <Text>主訴: {this.props.mainComplaint}</Text>
                         <Text>発注日: {this.props.date}</Text>
                         <Text>時間: {this.props.deliveryTime}</Text>
                         <Text>DELIVERY DATE</Text>
@@ -181,6 +181,10 @@ class PDF extends React.Component{
                     <Image style={this.DiagramStyles.image} src={diagram} alt="ptnadult diagram"  />
                         <Image style={this.DiagramStyles.diagram} src={this.state.images[5]} alt="ptnadult diagram"  />
                     </View>
+                    <View style={this.MouthStyles.imageSection}>
+                        <Text>主訴:</Text>
+                        <Text>{this.props.mainComplaint}</Text>
+                    </View>
                 </Page>
             </Document>
         );
@@ -188,7 +192,7 @@ class PDF extends React.Component{
         return (
             <>
             {this.state.ready && (
-                <PDFDownloadLink document={doc} fileName={this.props.filename.split(' ').join('').toLowerCase()}>
+                <PDFDownloadLink document={doc} fileName={this.props.filename}>
                 {({ blob, url, loading, error }) => (loading ? 'Loading document...' :
                 <Button onClick={() => (this.setState({ ready: false }))}>
                     download pdf

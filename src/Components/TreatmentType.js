@@ -71,7 +71,7 @@ function TreatmentType() {
     <Button
      className="nav-btn"
       onClick={()=> {
-        history.push(`/form/delivery-time`) 
+        history.push(`/form/delivery`) 
         }}
       >次
     </Button>
