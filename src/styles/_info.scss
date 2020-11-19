@@ -87,18 +87,16 @@
             color: #fff;
         }
     }
-    .arrow {
-        border: solid navy;
-        border-width: 0 5px 5px 0;
-        display: inline-block;
-        padding: 3px;
-      }
       .down {
-        transform: rotate(45deg);
-        -webkit-transform: rotate(45deg);
+        transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
+        width: 35px;
+        height: 35px; 
       }
       .up {
-        transform: rotate(-135deg);
-        -webkit-transform: rotate(-135deg);
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        width: 35px;
+        height: 35px;  
       }
 }

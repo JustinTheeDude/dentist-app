@@ -3,7 +3,7 @@ import {MyContext} from "./Context/AppProvider";
 import CardInfo from "../Components/CardInfo";
 import ListItem from "../Components/ListItem";
 import { Collapse } from 'reactstrap';
-
+import tIcon from "../assets/cube-icon_blue001.png"
 
 const OrderList = ({orders, pagination}) => {
 let arr = orders
@@ -44,23 +44,18 @@ let sortedObj = arr.reduce((c, v) => {
     const goBack = () => {
         setOrderView(false);
     }
-
     const toggle = (id,e) => { 
-
-        // const carets = document.querySelectorAll(".arrow")
-        if(e.target.className === "arrow up") {  
-            e.target.classList.remove("up")
-            e.target.classList.add("down")
-        } else {
-            e.target.classList.remove("down")
-            e.target.classList.add("up")
+        const btns = document.querySelectorAll("img")
+        for(let i = 0; i < btns.length;i++) {
+            btns[i].className = "up"
         }
-
-        
+        if(!isOpen) {
+            e.target.className = "down"
+        }
         hiddenOrder(id)
         setIsOpen(!isOpen);
     };
-  
+    console.log(isOpen)
     const contentRender = (orderView, orderId, orders, context) => {
         if(orderView) {
        
@@ -88,7 +83,7 @@ let sortedObj = arr.reduce((c, v) => {
                         <ul>
                             <li>{result[k]}</li>
                             <li>{k}</li>                                  
-                            <button id="toggler" onClick={(e) => toggle(k,e)} style={{ marginBottom: '1rem' }} className="arrow up" ></button>
+                            <img className="up" onClick={(e) => toggle(k,e)}  src={tIcon} alt="tooth" />
                         </ul>
                         <div className="contact-cards" key={k} id={k}>
                     {   
