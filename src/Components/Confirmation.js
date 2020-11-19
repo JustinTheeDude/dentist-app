@@ -148,13 +148,13 @@ function Confirmation({data, user, id, update}) {
                          </div> 
         </div>
         <div>
-          {!id && <Button className="nav-btn" onClick={() => history.push(`/form/treatment`)}>add order</Button>}
-          <Button className="nav-btn" onClick={()=> history.push("/cards")}>Order List</Button>
+          {!id && <Button className="nav-btn" onClick={() => history.push(`/form/treatment`)}>別の注文を追加</Button>}
+          <Button className="nav-btn" onClick={()=> history.push("/cards")}>オーダーリスト</Button>
           {
             id ?
-          <Button className="nav-btn" onClick={()=> update()}>update</Button>
+          <Button className="nav-btn" onClick={()=> update()}>更新</Button>
           :  
-          <Button className="nav-btn">Submit</Button>  
+          <Button className="nav-btn">同じる</Button>  
 
           }
         </div>
