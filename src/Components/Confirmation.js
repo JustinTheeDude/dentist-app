@@ -37,9 +37,9 @@ function Confirmation({data, user, id, update}) {
                             <h1>性別: {data.gender}</h1>
                             <h1>支払い: {data.paymentType}</h1>
                           {  id ?
-                            <Button className="edit-btn" onClick={() => history.push(`/form/${id}/patient`)}>Edit</Button> 
+                            <Button className="edit-btn" onClick={() => history.push(`/form/${id}/patient`)}>編集</Button> 
                             :
-                            <Button className="edit-btn" onClick={() => history.push(`/form/patient`)}>Edit</Button> 
+                            <Button className="edit-btn" onClick={() => history.push(`/form/patient`)}>編集</Button> 
                           }
                             {data.inlaySpecInsured || data.inlaySpecUninsured ? <h1 style={fontObj}>インレー</h1> : null}          
                             {data.inlayInvolution && <h1>対合 : {data.inlayInvolution}</h1>}
@@ -50,8 +50,8 @@ function Confirmation({data, user, id, update}) {
                             {data.inlayShade && <h1>インレーシェード: {data.inlayShade}</h1>}
                             { id  ? 
                               data.inlaySpecInsured || data.inlaySpecUninsured || data.inlayInvolutionBT ?
-                              <Button className="edit-btn" onClick={() => history.push(`/form/${id}/inlay`)}>Edit</Button> : null : null}
-                            { !id ? data.inlaySpecInsured || data.inlaySpecUninsured ? <Button className="edit-btn" onClick={() => history.push("/form/inlay")}>Edit</Button> : null : null}
+                              <Button className="edit-btn" onClick={() => history.push(`/form/${id}/inlay`)}>編集</Button> : null : null}
+                            { !id ? data.inlaySpecInsured || data.inlaySpecUninsured ? <Button className="edit-btn" onClick={() => history.push("/form/inlay")}>編集</Button> : null : null}
                             {data.crownMaterialInsured || data.crownMaterialUninsured ? <h1 style={fontObj}>クラウン</h1> : null}
                             {data.crownInvolution && <h1>対合: {data.crownInvolution}</h1>}  
                             {data.crownInvolutionBT && <h1>対合 BT: {data.crownInvolutionBT}</h1>}
@@ -61,8 +61,8 @@ function Confirmation({data, user, id, update}) {
                             {data.crownShadeUninsured && <h1>クラウン シェード選択 自費: {data.crownShadeUninsured}</h1>}
                             { id ? 
                               data.crownMaterialInsured || data.crownMaterialUninsured || data.BrInvolution ?
-                                <Button className="edit-btn" onClick={() => history.push(`/form/${id}/crown`)}>Edit</Button> : null : null} 
-                            {!id ? data.crownMaterialInsured || data.crownMaterialUninsured ?  <Button className="edit-btn" onClick={() => history.push("/form/crown")}>Edit</Button> : null : null} 
+                                <Button className="edit-btn" onClick={() => history.push(`/form/${id}/crown`)}>編集</Button> : null : null} 
+                            {!id ? data.crownMaterialInsured || data.crownMaterialUninsured ?  <Button className="edit-btn" onClick={() => history.push("/form/crown")}>編集</Button> : null : null} 
                             {data.BrMaterialInsured || data.BrMaterialUninsured ? <h1 style={fontObj}>Br</h1> : null}       
                             {data.BrInvolution && <h1>対合: {data.BrInvolution}</h1>}
                             {data.BrInvolutionBT && <h1>対合 BT: {data.BrInvolutionBT}</h1>}
@@ -72,21 +72,21 @@ function Confirmation({data, user, id, update}) {
                             {data.BrShadeUninsured && <h1>Br シェード選択 自費: {data.BrShadeUninsured}</h1>}
                             { id ?
                               data.BrMaterialInsured || data.BrMaterialUninsured ?
-                              <Button className="edit-btn" onClick={() => history.push(`/form/${id}/br`)}>Edit</Button> : null : null } 
+                              <Button className="edit-btn" onClick={() => history.push(`/form/${id}/br`)}>編集</Button> : null : null } 
                             { !id ?
-                              data.BrMaterialInsured || data.BrMaterialUninsured ? <Button className="edit-btn" onClick={() => history.push("/form/br")}>Edit</Button> : null : null}
+                              data.BrMaterialInsured || data.BrMaterialUninsured ? <Button className="edit-btn" onClick={() => history.push("/form/br")}>編集</Button> : null : null}
                             {data.otherOptionInsured || data.otherOptionUninsured ? <h1 style={fontObj}>その他</h1> : null}
                             {data.otherOptionInsured && <h1>その他 保険: {data.otherOptionInsured}</h1>}
                             {data.otherOptionUninsured && <h1>その他 自費: {data.otherOptionUninsured}</h1>}
                             { id ?
                                data.otherOptionInsured || data.otherOptionUninsured ?
                                <Button className="edit-btn" onClick={() => history.push(`/form/${id}/other`)}>Edit</Button> : null : null }
-                            { !id ? data.otherOptionInsured || data.otherOptionUninsured ? <Button className="edit-btn" onClick={() => history.push("/form/other")}>Edit</Button> : null : null}
+                            { !id ? data.otherOptionInsured || data.otherOptionUninsured ? <Button className="edit-btn" onClick={() => history.push("/form/other")}>編集</Button> : null : null}
                             {data.oralDeviceInsured || data.oralDeviceUninsured ? <h1 style={fontObj}>口腔内装置:</h1> : null}
                             {data.oralDeviceInsured && <h1>口腔内装置 保険: {data.oralDeviceInsured}</h1>}
                             {data.oralDeviceUninsured && <h1>口腔内装置 自費: {data.oralDeviceUninsured}</h1>}
-                            {id ? data.oralDeviceInsured || data.oralDeviceUninsured  ? <Button className="edit-btn" onClick={() => history.push("/form/other")}>Edit</Button> : null : null}
-                            {!id ? data.oralDeviceInsured || data.oralDeviceUninsured  ? <Button className="edit-btn" onClick={() => history.push("/form/other")}>Edit</Button> : null : null}
+                            {id ? data.oralDeviceInsured || data.oralDeviceUninsured  ? <Button className="edit-btn" onClick={() => history.push("/form/other")}>編集</Button> : null : null}
+                            {!id ? data.oralDeviceInsured || data.oralDeviceUninsured  ? <Button className="edit-btn" onClick={() => history.push("/form/other")}>編集</Button> : null : null}
                             {data.implantType  && <h1 style={fontObj}>インプラント</h1> }
                             {data.implantType && <h1>インプラント: {data.implantType}</h1>} 
                             {data.implantMaterial && <h1>インプラントタイプ: {data.implantMaterial}</h1>}
@@ -97,8 +97,8 @@ function Confirmation({data, user, id, update}) {
                             {data.implantMakerAnkylosOption && <h1>アンキロス Option: {data.implantMakerAnkylosOption}</h1>}
                             {data.implantMakerAstraTechOption && <h1>アストラテック Option: {data.implantMakerAstraTechOption}</h1>}
                             {data.implantShade && <h1>インプラント シェード選択: {data.implantShade}</h1>}
-                            {id ? data.implantType ? <Button className="edit-btn" onClick={() => history.push(`/form/${id}/implant`)}>Edit</Button> : null : null }
-                            {!id ? data.implantType ? <Button className="edit-btn" onClick={() => history.push("/form/implant")}>Edit</Button> : null : null }
+                            {id ? data.implantType ? <Button className="edit-btn" onClick={() => history.push(`/form/${id}/implant`)}>編集</Button> : null : null }
+                            {!id ? data.implantType ? <Button className="edit-btn" onClick={() => history.push("/form/implant")}>編集</Button> : null : null }
                             {data.dentureInsured || data.dentureUninsured ?<h1 style={fontObj}>義歯</h1> : null}
                             {data.dentureInvolution && <h1>対合: {data.dentureInvolution}</h1>}
                             {data.dentureInvolutionBT && <h1>対合 BT: {data.dentureInvolutionBT}</h1>}
@@ -109,17 +109,17 @@ function Confirmation({data, user, id, update}) {
                             {data.dentureFloorInsured && <h1>床 保険: {data.dentureFloorInsured}</h1>}
                             {data.dentureBarUninsured && <h1>バー 自費: {data.dentureBarUninsured}</h1>}
                             {data.dentureOtherInsured && <h1>その他 保険: {data.dentureOtherInsured}</h1>}
-                            { id ? data.dentureInsured || data.dentureUninsured ? <Button className="edit-btn" onClick={() => history.push(`/form/${id}/denture`)}>Edit</Button> : null : null}
-                            { !id ? data.dentureInsured || data.dentureUninsured  ? <Button className="edit-btn" onClick={() => history.push("/form/denture")}>Edit</Button> : null : null}
+                            { id ? data.dentureInsured || data.dentureUninsured ? <Button className="edit-btn" onClick={() => history.push(`/form/${id}/denture`)}>編集</Button> : null : null}
+                            { !id ? data.dentureInsured || data.dentureUninsured  ? <Button className="edit-btn" onClick={() => history.push("/form/denture")}>編集</Button> : null : null}
                             <h1 style={fontObj}>注文日</h1>  
                             <h1>発注日: {date}</h1>
                             <h1>時間: {deliveryTime}</h1>
-                            { id &&  <Button className="edit-btn" onClick={() => history.push(`/form/${id}/delivery`)}>Edit</Button> }
-                            { !id && <Button className="edit-btn" onClick={() => history.push("/form/delivery")}>Edit</Button> }
+                            { id &&  <Button className="edit-btn" onClick={() => history.push(`/form/${id}/delivery`)}>編集</Button> }
+                            { !id && <Button className="edit-btn" onClick={() => history.push("/form/delivery")}>編集</Button> }
                             <h1 style={fontObj}>納品日</h1>
                             <h1>配送日: {deliveryDate}</h1>
-                            {id  && <Button className="edit-btn" onClick={() => history.push(`/form/${id}/delivery`)}>Edit</Button>} 
-                            {!id && <Button className="edit-btn" onClick={() => history.push("/form/delivery")}>Edit</Button> }
+                            {id  && <Button className="edit-btn" onClick={() => history.push(`/form/${id}/delivery`)}>編集</Button>} 
+                            {!id && <Button className="edit-btn" onClick={() => history.push("/form/delivery")}>編集</Button> }
                         </div>
                         <div className="teeth">
                             <h1 style={fontObj}>図面</h1>
@@ -143,8 +143,8 @@ function Confirmation({data, user, id, update}) {
                             />
                             <h1 style={fontObj}>主訴</h1>
                             <h1>{data.mainComplaint }</h1>
-                            { id && <Button className="edit-btn" onClick={() => history.push(`/form/${id}/diagram`)}>Edit</Button>}
-                            {!id && <Button className="edit-btn" onClick={() => history.push("/form/diagram")}>Edit</Button>}
+                            { id && <Button className="edit-btn" onClick={() => history.push(`/form/${id}/diagram`)}>編集</Button>}
+                            {!id && <Button className="edit-btn" onClick={() => history.push("/form/diagram")}>編集</Button>}
                          </div> 
         </div>
         <div>
