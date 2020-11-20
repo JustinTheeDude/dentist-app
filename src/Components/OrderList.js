@@ -55,7 +55,7 @@ let sortedObj = arr.reduce((c, v) => {
         hiddenOrder(id)
         setIsOpen(!isOpen);
     };
-    console.log(isOpen)
+
     const contentRender = (orderView, orderId, orders, context) => {
         if(orderView) {
        
