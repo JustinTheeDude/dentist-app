@@ -3,7 +3,8 @@ import { Button } from "reactstrap";
 import { useHistory} from 'react-router-dom'
 import CanvasDraw from "react-canvas-draw";
 import mouth from '../assets/mouth.png';
-import diagram from '../assets/toothNotation.png'
+import pntAdult from '../assets/toothNotation.png';
+import pntChild from '../assets/pntChild.png';
 
 
 function Confirmation({data, user, id, update}) {
@@ -121,26 +122,40 @@ function Confirmation({data, user, id, update}) {
                             {id  && <Button className="edit-btn" onClick={() => history.push(`/form/${id}/delivery`)}>編集</Button>} 
                             {!id && <Button className="edit-btn" onClick={() => history.push("/form/delivery")}>編集</Button> }
                         </div>
-                        <div className="teeth">
+                        <div>
                             <h1 style={fontObj}>図面</h1>
-                            <CanvasDraw 
-                                className="teeth-mouth"
+                            <CanvasDraw
                                 imgSrc={mouth} alt="mouth diagram" 
                                 saveData={data.drawing}  
                                 brushColor={data.color}
                                 brushRadius={brushRadius}
                                 lazyRadius={lazyRadius}
                                 immediateLoading={immediateLoading}
+                                className="diagram"
                             />
+                              {
+                                data.age > 14 
+                                ?
                               <CanvasDraw 
-                                imgSrc={diagram} alt="Ptnadult diagram" 
+                                imgSrc={pntAdult} alt="Ptnadult diagram" 
                                 saveData={data.diagram}  
                                 brushRadius={brushRadius}
                                 lazyRadius={lazyRadius}
                                 canvasHeight={height}
                                 canvasWidth={width}
                                 immediateLoading={immediateLoading}
-                            />
+                                className="diagram"
+                              />
+                              :
+                              <CanvasDraw 
+                                imgSrc={pntChild} alt="PtnChild diagram" 
+                                saveData={data.pntChild}  
+                                brushRadius={brushRadius}
+                                lazyRadius={lazyRadius}
+                                immediateLoading={immediateLoading}
+                                className="diagram"
+                              />
+                              }
                             <h1 style={fontObj}>主訴</h1>
                             <h1>{data.mainComplaint }</h1>
                             { id && <Button className="edit-btn" onClick={() => history.push(`/form/${id}/diagram`)}>編集</Button>}

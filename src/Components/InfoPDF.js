@@ -2,7 +2,8 @@ import React from 'react';
 import {Button} from "reactstrap";
 import takao from '../assets/takao.ttf';
 import mouth from '../assets/mouth.png';
-import diagram from '../assets/toothNotation.png'
+import pntAdult from '../assets/toothNotation.png';
+import pntChild from '../assets/pntChild.png';
 import {PDFDownloadLink, Document, Page, Text, View, StyleSheet, Font, Image } from '@react-pdf/renderer';
 class PDF extends React.Component{
     state = {
@@ -103,7 +104,7 @@ class PDF extends React.Component{
 
 
     render() {
-
+        console.log()
         const doc = (
             <Document>
                 <Page size="A4" style={this.MouthStyles.page}>
@@ -177,10 +178,20 @@ class PDF extends React.Component{
                         <Image style={this.MouthStyles.image} src={mouth} alt="teeth diagram"  />
                         <Image style={this.MouthStyles.drawing} src={this.state.images[1]} alt="teeth diagram"  />
                     </View>
-                    <View style={this.MouthStyles.imageSection}>
-                    <Image style={this.DiagramStyles.image} src={diagram} alt="ptnadult diagram"  />
-                        <Image style={this.DiagramStyles.diagram} src={this.state.images[5]} alt="ptnadult diagram"  />
-                    </View>
+                    {
+                        this.props.age < 14
+                        ?
+                        <View style={this.MouthStyles.imageSection}>
+                            <Image style={this.DiagramStyles.image} src={pntChild} alt="ptnadult diagram"  />
+                            <Image style={this.DiagramStyles.diagram} src={this.state.images[5]} alt="ptnadult diagram"  />
+                        </View>
+                        :
+                        <View style={this.MouthStyles.imageSection}>
+                            <Image style={this.DiagramStyles.image} src={pntAdult} alt="ptnadult diagram"  />
+                            <Image style={this.DiagramStyles.diagram} src={this.state.images[5]} alt="ptnadult diagram"  />
+                        </View>
+                    
+                    }
                     <View style={this.MouthStyles.imageSection}>
                         <Text>主訴:</Text>
                         <Text>{this.props.mainComplaint}</Text>

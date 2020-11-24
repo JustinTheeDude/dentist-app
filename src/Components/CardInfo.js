@@ -4,9 +4,10 @@ import { MyContext } from "./Context/AppProvider";
 import { withRouter } from 'react-router';
 import { Button } from 'reactstrap';
 import mouth from '../assets/mouth.png';
+import pntChild from '../assets/pntChild.png'
 import CanvasDraw from "react-canvas-draw";
 import PDF from "../Components/InfoPDF";
-import diagram from '../assets/toothNotation.png';
+import pntAdult from '../assets/toothNotation.png';
 
 class CardInfo extends Component {
     state = {
@@ -162,7 +163,8 @@ class CardInfo extends Component {
                             otherOption: items["otherOption"],
                             complete: items["complete"],
                             drawing: items["drawing"],
-                            diagram: items["diagram"]
+                            diagram: items["diagram"],
+                            pntChild: items["pntChild"],
                         });
                 });
                 ref.off() 
@@ -277,19 +279,22 @@ class CardInfo extends Component {
                             <h1>配送日: {this.state.deliveryDate}</h1>
                             <Button className="edit-btn" onClick={() => history.push(`/form/${id}/delivery-date`)}>編集</Button> 
                         </div>
-                        <div className="teeth">
+                        <div>
                         <h1 style={fontObj}>図面</h1>
                             <CanvasDraw
-                                className="teeth-mouth" 
                                 imgSrc={mouth} alt="mouth diagram" 
                                 saveData={this.state.drawing}  
                                 brushColor={this.state.color}
                                 brushRadius={this.state.brushRadius}
                                 lazyRadius={this.state.lazyRadius}
                                 immediateLoading={this.state.immediateLoading}
+                                className="diagram"
                             />
+                            {
+                                this.state.age > 14 
+                                ?
                               <CanvasDraw 
-                                imgSrc={diagram} alt="Ptnadult diagram" 
+                                imgSrc={pntAdult} alt="Ptnadult diagram" 
                                 saveData={this.state.diagram}  
                                 brushColor={this.state.color}
                                 brushRadius={this.state.brushRadius}
@@ -297,7 +302,19 @@ class CardInfo extends Component {
                                 canvasHeight={this.state.height}
                                 canvasWidth={this.state.width}
                                 immediateLoading={this.state.immediateLoading}
-                            />
+                                className="diagram"
+                                />
+                                :
+                                <CanvasDraw 
+                                 imgSrc={pntChild} alt="pntChild diagram"  
+                                 saveData={this.state.pntChild}  
+                                 brushColor={this.state.color}
+                                 brushRadius={this.state.brushRadius}
+                                 lazyRadius={this.state.lazyRadius}
+                                 immediateLoading={this.state.immediateLoading}
+                                 className="diagram"
+                                /> 
+                            }
                             <h1 style={fontObj}>主訴:</h1>
                             <h1>{this.state.mainComplaint}</h1>
                             <Button className="edit-btn" onClick={() => history.push(`/form/${id}/diagram`)}>編集</Button>
@@ -363,6 +380,7 @@ class CardInfo extends Component {
                             mainComplaint={this.state.mainComplaint}
                             drawing={this.state.drawing}
                             diagram={this.state.diagram}
+                            pntChild={this.state.pntChild}
                         />
                     </div>
                 )}

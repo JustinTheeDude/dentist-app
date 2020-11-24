@@ -1,4 +1,3 @@
-  
 import React, { Component } from "react"; import CanvasDraw from "react-canvas-draw";
 import mouth from '../assets/mouth.png';
 

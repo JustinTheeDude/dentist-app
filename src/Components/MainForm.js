@@ -19,7 +19,8 @@ import DeliveryTime from './DeliveryTime';
 import Calendar from "react-calendar";
 import DeliveryDate from "./DeliveryDate";
 import MouthCanvas from './MouthCanvas';
-import PtnadultCanvas from './PtnadultCanvas'
+import PtnadultCanvas from './PtnadultCanvas';
+import PntChildCanvas from './PntChildCanvas';
 import Confirmation from "./Confirmation";
 
 class MainInfo extends Component {
@@ -84,6 +85,7 @@ class MainInfo extends Component {
         OtherOption: "",
         drawing: "",
         diagram: "",
+        pntChild: "",
     };
     user = firebase.auth().currentUser;
     id = this.props.match.params.id
@@ -140,7 +142,9 @@ class MainInfo extends Component {
     getDiagram = (data) => {
         this.setState({diagram: data})
     }
-
+    getPntChild = (data) => {
+        this.setState({pntChild: data})
+    }
     handleSubmit = e => {
  
         e.preventDefault();
@@ -151,7 +155,6 @@ class MainInfo extends Component {
             doctorName: this.user.displayName,
             address: this.state.address,
             zip: this.state.zip,
-            // patientName: this.state.patientName,
             patientID: this.state.patientID,
             lNameKanji: this.state.lNameKanji,
             fNameKanji: this.state.fNameKanji,
@@ -207,7 +210,8 @@ class MainInfo extends Component {
             deliveryTime: this.state.deliveryTime,
             OtherOption: this.state.OtherOption,
             drawing: this.state.drawing,
-            diagram: this.state.diagram
+            diagram: this.state.diagram,
+            pntChild: this.state.pntChild,
         };
         itemsRef.push(item);
 
@@ -225,7 +229,6 @@ class MainInfo extends Component {
             doctorName: this.user.displayName,
             address: this.state.address,
             zip: this.state.zip,
-            // patientName: this.state.patientName,
             patientID: this.state.patientID,
             lNameKanji: this.state.lNameKanji,
             fNameKanji: this.state.fNameKanji,
@@ -281,7 +284,8 @@ class MainInfo extends Component {
             deliveryTime: this.state.deliveryTime,
             OtherOption: this.state.OtherOption,
             drawing: this.state.drawing,
-            diagram: this.state.diagram
+            diagram: this.state.diagram,
+            pntChild: this.state.pntChild
         };
         orderRef.update(items)
         this.props.history.push('/cards');
@@ -367,6 +371,7 @@ class MainInfo extends Component {
                     complete: items["complete"],
                     drawing: items["drawing"],
                     diagram: items["diagram"],
+                    pntChild: items["pntChild"],
                 });
 
             })
@@ -558,7 +563,12 @@ class MainInfo extends Component {
                                         <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
                                             <div className="canvas-container">
                                               <MouthCanvas  drawing={this.state.drawing}  getDrawing={this.getDrawing} />
-                                              <PtnadultCanvas  diagram={this.state.diagram}  getDiagram={this.getDiagram} />
+                                              {
+                                                this.state.age < 14 ?
+                                                <PntChildCanvas  pntChild={this.state.pntChild}  getPntChild={this.getPntChild} />
+                                                :
+                                                <PtnadultCanvas  diagram={this.state.diagram}  getDiagram={this.getDiagram} />
+                                              }
                                               <MainComplaint   handleChange={this.handleChange} id={this.id} mainComplaint={this.state.mainComplaint} />  
                                              </div>  
                                         </Form> 

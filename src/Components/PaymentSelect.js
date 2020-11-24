@@ -18,7 +18,7 @@ function PaymentSelect({ paymentType, handleChange, id }) {
       onClick={() => history.goBack()}
       >戻る
     </Button>
-      &nbsp;&nbsp; &nbsp;&nbsp;
+
     {
     id ?
     <Button

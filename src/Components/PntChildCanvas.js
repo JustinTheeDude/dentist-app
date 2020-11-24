@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 import CanvasDraw from "react-canvas-draw"
-import ptnadult from '../assets/toothNotation.png';
+import pntchild from '../assets/pntChild.png';
 
-class PtnadultCanvas extends Component {
- 
+class PtnChildCanvas extends Component {
+
   state = {
     color: "black",
-    height: 300,
-    width: 400,
     brushRadius: 2,
     lazyRadius: 2,
   };
@@ -18,13 +16,12 @@ class PtnadultCanvas extends Component {
   }
 
 
-
   sendData = () => {
-    this.props.getDiagram(this.saveableCanvas.getSaveData());
+    this.props.getPntChild(this.saveableCanvas.getSaveData());
   }
 
   render() {
-    const diagram = this.props.diagram
+    const pntChild = this.props.pntChild
 
     return (
       <div>
@@ -63,10 +60,8 @@ class PtnadultCanvas extends Component {
               brushColor={this.state.color}
               brushRadius={this.state.brushRadius}
               lazyRadius={this.state.lazyRadius}
-              canvasHeight={this.state.height}
-              canvasWidth={this.state.width}
-              imgSrc={ptnadult}
-              saveData={diagram}
+              imgSrc={pntchild}
+              saveData={pntChild}
               className="diagram"
             />
 
@@ -78,4 +73,4 @@ class PtnadultCanvas extends Component {
 
 }
 
-export default PtnadultCanvas;
+export default PtnChildCanvas;
