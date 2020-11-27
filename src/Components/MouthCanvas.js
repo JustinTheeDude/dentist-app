@@ -19,7 +19,9 @@ class MouthCanvas extends Component {
     this.props.getDrawing(this.saveableCanvas.getSaveData());
   }
 
+
   render() {
+
     const drawing = this.props.drawing
     return (
       <div>
@@ -49,7 +51,7 @@ class MouthCanvas extends Component {
           }}
         >
           消去
-        </button>
+        </button>          
         <CanvasDraw
           ref={canvasDraw => (this.saveableCanvas = canvasDraw)}
           brushColor={this.state.color}

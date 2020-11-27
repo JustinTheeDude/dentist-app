@@ -458,6 +458,7 @@ class MainInfo extends Component {
                                 case "br" :
                                     return (
                                         <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
+                                            <h2><strong>Br</strong></h2>    
                                             <Br 
                                                 handleChange={this.handleChange}
                                                 paymentType={this.state.paymentType}
@@ -537,11 +538,10 @@ class MainInfo extends Component {
                                                 </Form> 
                                             )  
                                     case "delivery" :
-                                    
                                         return (
                                             <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
                                                 <div>
-                                                <h3 className="order-heading">発注日/納期日</h3>
+                                                <h3><strong>発注日/納期日</strong></h3>
                                                 <div className="calendar form-box">
                                                     <Calendar
                                                         calendarType="US"
@@ -561,22 +561,23 @@ class MainInfo extends Component {
                                     case "diagram" :
                                         return (
                                         <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
+                                            <h3><strong>図面</strong></h3>
                                             <div className="canvas-container">
-                                              <MouthCanvas  drawing={this.state.drawing}  getDrawing={this.getDrawing} />
-                                              {
-                                                this.state.age < 14 ?
-                                                <PntChildCanvas  pntChild={this.state.pntChild}  getPntChild={this.getPntChild} />
-                                                :
-                                                <PtnadultCanvas  diagram={this.state.diagram}  getDiagram={this.getDiagram} />
-                                              }
-                                              <MainComplaint   handleChange={this.handleChange} id={this.id} mainComplaint={this.state.mainComplaint} />  
-                                             </div>  
+                                                <MouthCanvas drawing={this.state.drawing}  getDrawing={this.getDrawing} />
+                                                {
+                                                    this.state.age < 14 ?
+                                                    <PntChildCanvas  pntChild={this.state.pntChild}  getPntChild={this.getPntChild} />
+                                                    :
+                                                    <PtnadultCanvas  diagram={this.state.diagram}  getDiagram={this.getDiagram} />
+                                                }
+                                                <MainComplaint   handleChange={this.handleChange} id={this.id} mainComplaint={this.state.mainComplaint} />  
+                                            </div>  
                                         </Form> 
                                     )
                                     case "confirm" :
                                         return (
                                         <Form id="main_form" className="main-form" onSubmit={this.handleSubmit}>
-                                            <div className="canvas form-box">
+                                            <div className="form-box">
                                                 <Confirmation data={this.state} user={user.displayName} onSubmit={this.handleSubmit} update={this.handleUpdate} id={id} />
                                             </div>  
                                         </Form> 

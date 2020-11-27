@@ -10,7 +10,6 @@ function TreatmentType() {
     <div >
     <h3><strong>治療の種類</strong></h3>
     <FormGroup className="treatmentType form-box">
-    {/* <Label for="treatmentType">治療の種類</Label> */}
       <div className="treatment-btn-container">
         <Button
           className="treatment-btn"
