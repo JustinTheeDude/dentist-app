@@ -16,9 +16,14 @@ html {
 
 .btn-singup {
     margin-top: 10px;
-    margin: .5em;
 }
 
 p {
     margin-top: 3px;
+}
+
+path {
+    &:hover {
+        cursor: pointer;
+    }
 }

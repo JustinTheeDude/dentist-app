@@ -1,4 +1,4 @@
-  
+
 import React, { Component } from "react"; import CanvasDraw from "react-canvas-draw";
 import mouth from '../assets/mouth.png';
 
@@ -41,7 +41,7 @@ class MouthCanvas extends Component {
         >
           全消去
         </button>
-       
+
         <button
           id="btn-canvas"
           onClick={(e) => {
@@ -56,6 +56,7 @@ class MouthCanvas extends Component {
           brushColor={this.state.color}
           brushRadius={this.state.brushRadius}
           lazyRadius={this.state.lazyRadius}
+          canvasWidth={"100%"}
           imgSrc={mouth}
           saveData={drawing}
           className="diagram"

@@ -3,11 +3,11 @@ import CanvasDraw from "react-canvas-draw"
 import ptnadult from '../assets/toothNotation.png';
 
 class PtnadultCanvas extends Component {
- 
+
   state = {
     color: "black",
-    height: 300,
-    width: 400,
+    height: 200,
+    width: "100%",
     brushRadius: 2,
     lazyRadius: 2,
   };
@@ -38,7 +38,7 @@ class PtnadultCanvas extends Component {
           >
             保存
           </button>
-          
+
           <button
             id="btn-canvas"
             onClick={(e) => {
@@ -67,11 +67,9 @@ class PtnadultCanvas extends Component {
               canvasWidth={this.state.width}
               imgSrc={ptnadult}
               saveData={diagram}
-              className="diagram"
+              className="diagram pnt"
             />
-
         </div>
-
       </div>
 
     );
