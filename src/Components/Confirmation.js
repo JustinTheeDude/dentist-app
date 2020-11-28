@@ -10,8 +10,8 @@ import pntChild from '../assets/pntChild.png';
 function Confirmation({data, user, id, update}) {
   const [brushRadius] = useState(0.1)
   const [lazyRadius] = useState(0.1)
-  const [height] = useState(300)
-  const [width] = useState(400)
+  // const [height] = useState(300)
+  // const [width] = useState(400)
   const [immediateLoading] = useState(true)
   const history = useHistory()
   const date = data.date.toString().slice(0,15)
@@ -132,6 +132,7 @@ function Confirmation({data, user, id, update}) {
                                 lazyRadius={lazyRadius}
                                 immediateLoading={immediateLoading}
                                 className="diagram"
+                                canvasWidth={"100%"}
                             />
                               {
                                 data.age > 14 
@@ -141,8 +142,9 @@ function Confirmation({data, user, id, update}) {
                                 saveData={data.diagram}  
                                 brushRadius={brushRadius}
                                 lazyRadius={lazyRadius}
-                                canvasHeight={height}
-                                canvasWidth={width}
+                                // canvasHeight={height}
+                                // canvasWidth={width}
+                                canvasWidth={"100%"}
                                 immediateLoading={immediateLoading}
                                 className="diagram"
                               />
@@ -153,6 +155,7 @@ function Confirmation({data, user, id, update}) {
                                 brushRadius={brushRadius}
                                 lazyRadius={lazyRadius}
                                 immediateLoading={immediateLoading}
+                                canvasWidth={"100%"}
                                 className="diagram"
                               />
                               }

@@ -6,8 +6,8 @@ class PtnadultCanvas extends Component {
  
   state = {
     color: "black",
-    height: 300,
-    width: 400,
+    // height: 300,
+    // width: 400,
     brushRadius: 2,
     lazyRadius: 2,
   };
@@ -24,24 +24,23 @@ class PtnadultCanvas extends Component {
   render() {
     const diagram = this.props.diagram
     return (
-      <div className="form-box">
-        <div>
-          <button id="btn-canvas" onClick={(e) => { e.preventDefault(); this.sendData(); }}>保存</button> 
-          <button id="btn-canvas" onClick={(e) => {e.preventDefault(); this.saveableCanvas.clear();  }}>全消去</button>
-          <button id="btn-canvas" onClick={(e) => { e.preventDefault(); this.saveableCanvas.undo();  }}>消去</button>
-            <CanvasDraw
-              ref={canvasDraw => (this.saveableCanvas = canvasDraw)}
-              brushColor={this.state.color}
-              brushRadius={this.state.brushRadius}
-              lazyRadius={this.state.lazyRadius}
-              canvasHeight={this.state.height}
-              canvasWidth={this.state.width}
-              imgSrc={ptnadult}
-              saveData={diagram}
-              className="diagram"
-            />
-
-        </div>
+ 
+      <div>
+        <button id="btn-canvas" onClick={(e) => { e.preventDefault(); this.sendData(); }}>保存</button> 
+        <button id="btn-canvas" onClick={(e) => {e.preventDefault(); this.saveableCanvas.clear();  }}>全消去</button>
+        <button id="btn-canvas" onClick={(e) => { e.preventDefault(); this.saveableCanvas.undo();  }}>消去</button>
+          <CanvasDraw
+            ref={canvasDraw => (this.saveableCanvas = canvasDraw)}
+            brushColor={this.state.color}
+            brushRadius={this.state.brushRadius}
+            lazyRadius={this.state.lazyRadius}
+            // canvasHeight={this.state.height}
+            // canvasWidth={this.state.width}
+            imgSrc={ptnadult}
+            saveData={diagram}
+            canvasWidth={"100%"}
+            className="diagram"
+          />
       </div>
 
     );

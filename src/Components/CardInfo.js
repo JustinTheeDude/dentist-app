@@ -289,6 +289,7 @@ class CardInfo extends Component {
                                 lazyRadius={this.state.lazyRadius}
                                 immediateLoading={this.state.immediateLoading}
                                 className="diagram"
+                                canvasWidth={"100%"}
                             />
                             {
                                 this.state.age > 14 
@@ -299,8 +300,9 @@ class CardInfo extends Component {
                                 brushColor={this.state.color}
                                 brushRadius={this.state.brushRadius}
                                 lazyRadius={this.state.lazyRadius}
-                                canvasHeight={this.state.height}
-                                canvasWidth={this.state.width}
+                                // canvasHeight={this.state.height}
+                                // canvasWidth={this.state.width}
+                                canvasWidth={"100%"}
                                 immediateLoading={this.state.immediateLoading}
                                 className="diagram"
                                 />
@@ -313,6 +315,7 @@ class CardInfo extends Component {
                                  lazyRadius={this.state.lazyRadius}
                                  immediateLoading={this.state.immediateLoading}
                                  className="diagram"
+                                 canvasWidth={"100%"}
                                 /> 
                             }
                             <h1 style={fontObj}>主訴:</h1>
