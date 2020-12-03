@@ -174,13 +174,14 @@ function Denture({
                 </FormGroup>
 
           <div className="mouth-container">
-              <Mouth />
+              <Mouth options={["someting", "something"]}/>
           </div>
         </div>
     }
     {
       dentureUninsured.includes("㉂PD義歯BT(咬合床)")  &&
       <div>
+          <Mouth options={["waawaa", "weewee"]}/>
       <Label for="dentureBarUninsured">バー 自費</Label>
           <Input type="select" name="dentureBarUninsured"  value={dentureBarUninsured} onChange={handleChange} >
             <option>なし</option>
@@ -265,8 +266,6 @@ function Denture({
                     <Label check for="dentureClaspUninsuredRoach">⑲ Roach: </Label> &nbsp;&nbsp;
                     <Input type="checkbox" id="dentureClaspUninsuredRoach" name="dentureClaspUninsuredRoach"   onChange={handleChange}/>
                 </FormGroup>
-
-                <Mouth />
       </div>
     }
     <Button color="primary" variant="contained" onClick={() => history.push(`/form/patient`)}>  finish </Button>

@@ -1,27 +1,19 @@
-import React, {Component} from "react";
-import PropTypes from "prop-types";
+import React from "react";
 import {FormGroup, Label, Input} from "reactstrap";
 
-class ToolTipSelect extends Component {
-    render() {
-        const prop_options = this.props.options;
-
-        return (
-            <div id="tool_tip">
-                {prop_options.map((option, i) =>
-                <FormGroup check inline key={i}>
-                    <Label check for={this.props.label_id}>{option}</Label> &nbsp;&nbsp;
-                    <Input type="checkbox" id={this.props.label_id} name={this.props.label_id} />
-                </FormGroup>
-                )}
-            </div>
-        );
-    }
+const ToolTipSelect = (props) => {
+    return (
+        <div>
+            <FormGroup>
+                <Label for="exampleSelect">Select</Label>
+                <Input type="select" name="tooth" id="exampleSelect">
+                    {props.options.map(option =>
+                    <option>{option}</option>
+                    )}
+                </Input>
+            </FormGroup>
+        </div>
+    );
 }
-
-ToolTipSelect.propTypes = {
-    options: PropTypes.array.isRequired,
-    label_id: PropTypes.string.isRequired
-};
 
 export default ToolTipSelect;
