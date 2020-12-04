@@ -2,6 +2,46 @@ import React, {Component} from "react";
 import ToolTipSelect from "./ToolTip";
 
 class Mouth extends Component {
+    state = {
+        teeth_options: [],
+        tooth_selected: 0,
+        input_selection: [],
+    }
+
+    parent_state_handler = (value) => {
+        this.setState({
+            teeth_options: [{
+                tooth_selection: value
+            }]
+        })
+    }
+
+    render_new_selection = (e, index) => {
+        const svg_paths = document.querySelectorAll("#mouth_svg g g");
+        svg_paths.forEach(path => {
+            path.children[0].style.fill = "#fff";
+        });
+        e.target.style.fill = "red"
+        this.setState({
+            tooth_selected: index
+        });
+    }
+
+    update_state_inputs = () => {
+        let input_array = [];
+        for(let i = 1; i <= 32; i++) {
+            let tool_tip = <ToolTipSelect id={i} options={this.props.options} select_name={i} handler={this.parent_state_handler} />;
+            input_array.push(tool_tip);
+        }
+        this.setState({
+            input_selection: input_array
+        });
+    }
+
+    componentDidMount() {
+        this.update_state_inputs();
+    }
+
     render() {
         return (
             <div id="mouth_svg">
@@ -12,7 +52,7 @@ class Mouth extends Component {
                     viewBox="0 0 540.274 864.93"
                 >
                     <g transform="translate(-102.537 -102.651)">
-                        <g>
+                        <g onClick={(e) => this.render_new_selection(e,0)}>
                             <path
                                 fill="none"
                                 stroke="#000"
@@ -21,8 +61,9 @@ class Mouth extends Component {
                                 d="M146.692 465.784c10.924 1 20.776 3.6 27.411 9.574 9.472 4.9 15.515 10.027 15.015 15.609 3.032 8.508.672 14.688-1.1 21.12l-5.046 10.56c-3.192 6.146-9.788 10.237-20.107 12.082-12.147 2.014-24.295 4.428-36.418-2.482-13.8-5.148-14.46-12.453-15.785-19.647-4.074-7.38-6.8-16.267-5.186-30.015 1.432-6.284 3.251-14.273 12.159-17.924s16.9-1.757 29.061 1.124z"
                             ></path>
                         </g>
-                        <g>
+                        <g onClick={(e) => this.render_new_selection(e,1)}>
                             <path
+                                id="something"
                                 fill="none"
                                 stroke="#000"
                                 strokeLinecap="round"
@@ -30,7 +71,7 @@ class Mouth extends Component {
                                 d="M117.527 427.498c-3.831-5.25-3.33-12.891-.746-21.683 9.859-22.583 27.572-27.45 55.166-10.027 8.655 3.494 15.517 10.212 20.031 16.915 4.44 6.594 8.563 9.768 6.368 21.43-5.068 19.644-13.821 35.054-38.628 32.019-9.857-1.2-18.561 1.382-31.027-8.379-4.826-7.988-14.125-7.456-11.163-30.276z"
                             ></path>
                         </g>
-                        <g>
+                        <g onClick={(e) => this.render_new_selection(e,2)}>
                             <path
                                 fill="none"
                                 stroke="#000"
@@ -38,7 +79,7 @@ class Mouth extends Component {
                                 d="M143.243 317.821c18.819-16.333 32.693-6.9 46.567 2.531a114.234 114.234 0 0012.54 13.952c15.714 15.1 12.759 25.351 3.658 34-5.672 6.292-11.1 12.466-13.964 17.362-3.278 3.375-6.292 5.964-8.852 7.2-12.114 5.44-16.739-2.147-23.539-5.95-24.431-12.877-33.181-30.814-26.894-53.6.697-8.783 4.83-13.123 10.484-15.495z"
                             ></path>
                         </g>
-                        <g>
+                        <g onClick={(e) => this.render_new_selection(e,3)}>
                             <path
                                 fill="none"
                                 stroke="#000"
@@ -47,7 +88,7 @@ class Mouth extends Component {
                                 d="M180.864 261.445c-18.578 2.65-27.389 12.233-21.765 32.063 5.924 7.277 11.31 15.09 21.366 18.257 3.563-.074 6.692.284 8.829 1.629a26.03 26.03 0 0010.438.295c7.192-3.819 16.862-.642 20.913-13.328 3.344-10.151 2.773-19.09-5.286-25.71-15.928-13.321-24.683-12.2-34.494-13.206z"
                             ></path>
                         </g>
-                        <g>
+                        <g onClick={(e) => this.render_new_selection(e,4)}>
                             <path
                                 fill="none"
                                 stroke="#000"
@@ -56,7 +97,7 @@ class Mouth extends Component {
                                 d="M195.878 209.518c-15.506 5.4-16.526 12.851-16.6 20.435-.789 33.361 27.53 32.8 33.015 30.231 8.629 1.069 14.621.076 19.337-1.915 8.805-.675 13.047-5.939 14.454-14.052a23.141 23.141 0 00-.452-15.237c-1.594-3.407-.51-6.674-10.294-10.512-10.317-1.137-13.582-3.754-17.84-6.6-6.125-6.646-13.744-5.196-21.62-2.35z"
                             ></path>
                         </g>
-                        <g>
+                        <g onClick={(e) => this.render_new_selection(e,5)}>
                             <path
                                 fill="none"
                                 stroke="#000"
@@ -66,7 +107,7 @@ class Mouth extends Component {
                                 data-name="Union 1"
                             ></path>
                         </g>
-                        <g>
+                        <g onClick={(e) => this.render_new_selection(e,6)}>
                             <path
                                 fill="none"
                                 stroke="#000"
@@ -289,7 +330,7 @@ class Mouth extends Component {
                 </svg>
 
                 <div id="input_selection">
-                    <ToolTipSelect options={this.props.options} />
+                    {this.state.input_selection[this.state.tooth_selected]}
                 </div>
             </div>
         );

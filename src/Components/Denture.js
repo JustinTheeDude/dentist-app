@@ -174,7 +174,7 @@ function Denture({
                 </FormGroup>
 
           <div className="mouth-container">
-              <Mouth options={["someting", "something"]}/>
+              <Mouth options={["wee wee", "something"]}/>
           </div>
         </div>
     }

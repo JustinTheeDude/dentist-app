@@ -22,10 +22,22 @@ p {
     margin-top: 3px;
 }
 
-path {
-    fill: #fff;
+#mouth_svg {
+    g {
+       g {
+           &:first-of-type {
+               path {
+                   fill: red;
+               }
+           }
+        }
+    }
 
-    &:hover {
-        cursor: pointer;
+    path {
+        fill: #fff;
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 }
