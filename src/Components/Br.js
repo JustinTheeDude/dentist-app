@@ -28,7 +28,7 @@ function Br({
               <div>
                 <Label for="BrInvolutionBT">BT</Label>
                 <Input type="select" name="BrInvolutionBT" value={BrInvolutionBT} onChange={handleChange} required>
-                　<option>オプションを1つ選択してください</option>
+                　<option>オプションを1つ選択してください </option>
                   <option>なし</option>
                   <option>あり</option>     
                 </Input>
